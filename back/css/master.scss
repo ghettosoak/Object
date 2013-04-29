@@ -1,0 +1,318 @@
+/*
+looking for these? :)
+
+border-radius: 9px;
+
+<?php include("inc/head.html"); ?>
+*/
+
+//DEFINES
+$masterwidth: 1024px;
+$greyline: 1px #b3b3b3 solid;
+
+* { 
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box; 
+}
+
+a img{border:none;}
+a{
+	border:none;
+	text-decoration: none;
+}
+
+::selection {
+	/*background: #;*/
+}
+
+::-moz-selection {
+	/*background: #;*/
+}
+
+@mixin prfl{
+	position: relative;
+	float:left;
+}
+
+.master{
+	position:absolute;
+	height:100%;
+	width:100%;
+	top:0px;
+	left:0px;
+	font-family:helvetica, arial, sans-serif;
+	line-height:18px;
+	font-size:14px;
+	overflow:hidden;
+	font-family: u47;
+}
+
+.be_move{
+    position:absolute;
+    height:200%;
+    width:85%;
+    // top:-100%;
+    top:0%;
+    left:0%;
+    h3{
+    	font-size:14;
+    	font-family:u67;
+    	font-weight:normal;
+    }
+    input, textarea{
+    	border-top:0px;
+    	border-right:0px;
+    	border-bottom:$greyline;
+    	border-left:$greyline;
+    	&:focus{
+    		outline: none;
+    	}
+    }
+    textarea{resize: none; }
+}
+
+.projects, .about{
+	position:relative;
+	float:left;
+	height:50%;
+	width:100%;
+}
+
+.side{
+	position:absolute;
+	width:15%;
+	height:100%;
+	display:table;
+	right:0px;
+}
+
+.divide{
+	@include prfl;
+	height:100%;
+	display:table;
+	width:1px;
+	div{
+		height:90%;
+		width:1px;
+		display:table-cell;
+		vertical-align: middle;
+		border-right:$greyline;
+
+	}
+}
+
+.projects{
+	#oversight, .details, .cells{
+		height:100%;
+		width:33%;
+		position:relative;
+		float:left;
+	}
+	#oversight{
+		#add_project{
+			height:80px;
+			width:80px;
+			border-radius:150px;
+			background-color:grey;
+			cursor: pointer;
+			margin:auto;
+			top: 10px;
+			position: relative;
+			img{
+				margin:14px;
+			}
+		}
+		#add_row{
+			cursor: pointer;
+			margin:auto;
+			position: relative;
+			top:86%;
+			width:132px;
+			p{
+				text-align: center;
+				margin-top:-27px;
+			}
+		}
+	}
+	.details{
+		& > div{
+			@include prfl;
+			width:100%;
+		}
+		h3{
+			width:39%;
+			text-align: right;
+			padding-right: 14px;
+			margin:8px 0px 6px 0px;
+		}
+		.info{
+			border-bottom:$greyline;
+			margin-bottom:10px;
+			height: 293px;
+			div{
+				width:100%;
+				@include prfl;
+				p{
+					width:38%;
+					@include prfl;
+					margin:10px 0px;
+					text-align: right;
+					padding-right: 10px;
+				}
+				input, textarea{
+					font-family: u47;
+					font-size:14px;
+					width:57%;
+					@include prfl;
+					margin: 9px 0px 8px 0px;
+				}
+			}
+		}
+		.coords{
+			border-bottom:$greyline;
+			margin-bottom:10px;
+			height: 123px;
+			div{
+				width:100%;
+				@include prfl;
+				p{
+					width:38%;
+					@include prfl;
+					margin:10px 0px;
+					text-align: right;
+					padding-right: 10px;
+				}
+				input, textarea{
+					font-family: u47;
+					font-size:14px;
+					width:57%;
+					@include prfl;
+					margin: 9px 0px 8px 0px;
+				}
+			}
+		}
+		.shapeshifter_collect{
+
+		}
+	}
+	.cells{
+		.cell_top{
+			height:69px;
+			border-bottom:$greyline;
+			.cell_add{
+				width:46px;
+				height:46px;
+				border-radius:150px;
+				background-color:grey;
+				cursor: pointer;
+				position: relative;
+				left: 18px;
+				float: left;
+				padding:0px;	
+				img{margin:9px;}
+			}
+			h3{
+				width:85px;
+				margin: 14px 0px 0px 50px;;
+				position: relative;
+				float: left;
+			}
+		}
+		div{
+			@include prfl;
+			padding:10px 0px 0px 10px;
+			width:100%;
+			img{
+				@include prfl;
+				margin-right:10px;
+			}
+			textarea{
+				@include prfl;
+				width:57%;
+				height:158px;
+				font-family: u47;
+				font-size:14px;
+			}
+		}
+	}
+}
+
+.about{
+	.meimgs, .mebits{
+		@include prfl;
+		height:100%;
+	}
+	.meimgs{
+		width:30%;
+		padding:3%;
+		img{margin:4%;}
+	}
+	.mebits{
+		border-left:$greyline;
+		width:70%;
+		textarea{
+			width:97%;
+			margin: 8px 3%;
+			height:3em;
+		}
+	}
+}
+
+.side{
+	div{cursor: pointer;}
+	p{
+		text-align: center;
+		font-size: 18px
+	}
+	#save{
+		height:60px;
+		width:60px;
+		background-color:red;
+		color:white;
+		border-radius:150px;
+		margin:auto;
+		position: relative;
+		p{padding-top: 20px;}
+	}
+	.switcher{
+		@include prfl;
+		top:30%;
+		margin:auto;
+		width:100%;
+		div{
+			height:111px;
+			width:111px;
+			border-radius:150px;
+			position:relative;
+			margin:auto;
+			p{
+				padding-top:50px;
+			}
+		}
+		#switch_01{
+
+		}
+		#switch_02{
+
+		}
+		#switch_03{
+
+		}
+	}
+}
+
+@media only screen and (device-width: 768px) /*IPAD*/ {}
+
+@media only screen and (max-width: 480px) /*IPHONE*/{}
+
+@-moz-document url-prefix() {}
+
+.ie{}
+
+.ie8{}
+
+.ie7{}
+
+.ie6{}
+

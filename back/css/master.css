@@ -1,0 +1,246 @@
+/*
+looking for these? :)
+
+border-radius: 9px;
+
+<?php include("inc/head.html"); ?>
+*/
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+a img {
+  border: none; }
+
+a {
+  border: none;
+  text-decoration: none; }
+
+::selection {
+  /*background: #;*/ }
+
+::-moz-selection {
+  /*background: #;*/ }
+
+.master {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  font-family: helvetica, arial, sans-serif;
+  line-height: 18px;
+  font-size: 14px;
+  overflow: hidden;
+  font-family: u47; }
+
+.be_move {
+  position: absolute;
+  height: 200%;
+  width: 85%;
+  top: 0%;
+  left: 0%; }
+  .be_move h3 {
+    font-size: 14;
+    font-family: u67;
+    font-weight: normal; }
+  .be_move input, .be_move textarea {
+    border-top: 0px;
+    border-right: 0px;
+    border-bottom: 1px #b3b3b3 solid;
+    border-left: 1px #b3b3b3 solid; }
+    .be_move input:focus, .be_move textarea:focus {
+      outline: none; }
+  .be_move textarea {
+    resize: none; }
+
+.projects, .about {
+  position: relative;
+  float: left;
+  height: 50%;
+  width: 100%; }
+
+.side {
+  position: absolute;
+  width: 15%;
+  height: 100%;
+  display: table;
+  right: 0px; }
+
+.divide {
+  position: relative;
+  float: left;
+  height: 100%;
+  display: table;
+  width: 1px; }
+  .divide div {
+    height: 90%;
+    width: 1px;
+    display: table-cell;
+    vertical-align: middle;
+    border-right: 1px #b3b3b3 solid; }
+
+.projects #oversight, .projects .details, .projects .cells {
+  height: 100%;
+  width: 33%;
+  position: relative;
+  float: left; }
+.projects #oversight #add_project {
+  height: 80px;
+  width: 80px;
+  border-radius: 150px;
+  background-color: grey;
+  cursor: pointer;
+  margin: auto;
+  top: 10px;
+  position: relative; }
+  .projects #oversight #add_project img {
+    margin: 14px; }
+.projects #oversight #add_row {
+  cursor: pointer;
+  margin: auto;
+  position: relative;
+  top: 86%;
+  width: 132px; }
+  .projects #oversight #add_row p {
+    text-align: center;
+    margin-top: -27px; }
+.projects .details > div {
+  position: relative;
+  float: left;
+  width: 100%; }
+.projects .details h3 {
+  width: 39%;
+  text-align: right;
+  padding-right: 14px;
+  margin: 8px 0px 6px 0px; }
+.projects .details .info {
+  border-bottom: 1px #b3b3b3 solid;
+  margin-bottom: 10px;
+  height: 293px; }
+  .projects .details .info div {
+    width: 100%;
+    position: relative;
+    float: left; }
+    .projects .details .info div p {
+      width: 38%;
+      position: relative;
+      float: left;
+      margin: 10px 0px;
+      text-align: right;
+      padding-right: 10px; }
+    .projects .details .info div input, .projects .details .info div textarea {
+      font-family: u47;
+      font-size: 14px;
+      width: 57%;
+      position: relative;
+      float: left;
+      margin: 9px 0px 8px 0px; }
+.projects .details .coords {
+  border-bottom: 1px #b3b3b3 solid;
+  margin-bottom: 10px;
+  height: 123px; }
+  .projects .details .coords div {
+    width: 100%;
+    position: relative;
+    float: left; }
+    .projects .details .coords div p {
+      width: 38%;
+      position: relative;
+      float: left;
+      margin: 10px 0px;
+      text-align: right;
+      padding-right: 10px; }
+    .projects .details .coords div input, .projects .details .coords div textarea {
+      font-family: u47;
+      font-size: 14px;
+      width: 57%;
+      position: relative;
+      float: left;
+      margin: 9px 0px 8px 0px; }
+.projects .cells .cell_top {
+  height: 69px;
+  border-bottom: 1px #b3b3b3 solid; }
+  .projects .cells .cell_top .cell_add {
+    width: 46px;
+    height: 46px;
+    border-radius: 150px;
+    background-color: grey;
+    cursor: pointer;
+    position: relative;
+    left: 18px;
+    float: left;
+    padding: 0px; }
+    .projects .cells .cell_top .cell_add img {
+      margin: 9px; }
+  .projects .cells .cell_top h3 {
+    width: 85px;
+    margin: 14px 0px 0px 50px;
+    position: relative;
+    float: left; }
+.projects .cells div {
+  position: relative;
+  float: left;
+  padding: 10px 0px 0px 10px;
+  width: 100%; }
+  .projects .cells div img {
+    position: relative;
+    float: left;
+    margin-right: 10px; }
+  .projects .cells div textarea {
+    position: relative;
+    float: left;
+    width: 57%;
+    height: 158px;
+    font-family: u47;
+    font-size: 14px; }
+
+.about .meimgs, .about .mebits {
+  position: relative;
+  float: left;
+  height: 100%; }
+.about .meimgs {
+  width: 30%;
+  padding: 3%; }
+  .about .meimgs img {
+    margin: 4%; }
+.about .mebits {
+  border-left: 1px #b3b3b3 solid;
+  width: 70%; }
+  .about .mebits textarea {
+    width: 97%;
+    margin: 8px 3%;
+    height: 3em; }
+
+.side div {
+  cursor: pointer; }
+.side p {
+  text-align: center;
+  font-size: 18px; }
+.side #save {
+  height: 60px;
+  width: 60px;
+  background-color: red;
+  color: white;
+  border-radius: 150px;
+  margin: auto;
+  position: relative; }
+  .side #save p {
+    padding-top: 20px; }
+.side .switcher {
+  position: relative;
+  float: left;
+  top: 30%;
+  margin: auto;
+  width: 100%; }
+  .side .switcher div {
+    height: 111px;
+    width: 111px;
+    border-radius: 150px;
+    position: relative;
+    margin: auto; }
+    .side .switcher div p {
+      padding-top: 50px; }
+
+@-moz-document url-prefix() {}
