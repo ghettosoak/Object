@@ -1,0 +1,149 @@
+/*
+looking for these? :)
+
+border-radius: 9px;
+
+<?php include("inc/head.html"); ?>
+*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\0000312}}
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\0000318}}
+a img {
+  border: none; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\0000319}}
+a {
+  border: none;
+  text-decoration: none; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\0000324}}
+::selection {
+  /*background: #;*/ }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\0000328}}
+::-moz-selection {
+  /*background: #;*/ }
+
+@font-face {
+  font-family: 'u47';
+  src: url("../type/u47.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\0000339}}
+.master {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  font-family: u47, helvetica, arial, sans-serif;
+  line-height: 20px;
+  font-size: 16px;
+  overflow: hidden; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\0000349}}
+  .master #frame {
+    width: 1000%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\0000355}}
+    .master #frame div {
+      position: relative;
+      float: left;
+      width: 10%;
+      height: 100%;
+      display: inline; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\0000363}}
+      .master #frame div .img {
+        position: absolute;
+        width: 1138px;
+        height: 859px;
+        top: 50%;
+        left: 50%;
+        margin: -429.5px 0px 0px -569px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\0000371}}
+      .master #frame div .end {
+        position: relative;
+        top: 30%;
+        left: 20%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\0000375}}
+        .master #frame div .end a {
+          color: black; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\0000377}}
+      .master #frame div .txt {
+        position: absolute !important;
+        background-color: #c6c6c6;
+        opacity: .25;
+        bottom: 50px !important;
+        right: 50px !important;
+        width: 250px;
+        height: 250px;
+        border-radius: 1000px;
+        display: table;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\0000391}}
+        .master #frame div .txt p {
+          display: table-cell;
+          vertical-align: middle;
+          padding: 0px 40px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\0000396}}
+        .master #frame div .txt:hover {
+          opacity: 1; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\00003100}}
+      .master #frame div .de {
+        display: none; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\00003103}}
+  .master .nav {
+    position: fixed;
+    height: 50px;
+    width: 100px;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -47.5px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\00003110}}
+    .master .nav img {
+      height: 100%;
+      cursor: pointer;
+      display: none;
+      opacity: 0;
+      position: relative;
+      float: left;
+      -webkit-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\00003124}}
+    .master .nav .lit {
+      opacity: 1 !important; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\00003133}}
+.ipad #frame div {
+  overflow: hidden; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\00003135}}
+  .ipad #frame div .img {
+    top: inherit !important;
+    left: inherit !important;
+    margin: -107px 0px 0px -57px !important; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\00003140}}
+  .ipad #frame div .txt:hover {
+    opacity: .25; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\00003141}}
+  .ipad #frame div .tapt {
+    opacity: 1 !important; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\00003144}}
+.ipad .nav {
+  width: 126px !important; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/comingsoon\/css\/master\.scss}line{font-family:\00003147}}
+  .ipad .nav #mouse_l, .ipad .nav #mouse_r {
+    display: none; }
+
+@-moz-document url-prefix() {}

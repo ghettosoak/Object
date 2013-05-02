@@ -1,0 +1,20 @@
+@font-face {
+    font-family : 'u47';
+    src: url('u47.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family : 'u47i';
+    src: url('u47i.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family : 'u39';
+    src: url('u39.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

@@ -1,0 +1,2 @@
+This site has been designed and authored by Mike Fischer.
+It has been built with Sublime Text 2, Codekit and Chromium. It attempts to be HTML5 / CSS3 compliant.

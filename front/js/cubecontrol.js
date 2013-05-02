@@ -2,7 +2,7 @@ var container, stats;
 var camera, scene, blockRenderer, renderer;
 var projector, plane, cube, controls;
 var mouse2D, mouse3D, ray,
-rollOveredFace, isShiftDown = false, isMouseDown = false, isCtrlDown = false, heylookatme,
+rollOveredFace, isShiftDown = false, isMouseDown = false, isCtrlDown = false, heylookatme, oneup = false,
 radious = 1600, theta = -90, onMouseDownTheta = -90, phi = 60, onMouseDownPhi = 60, onMouseDownPosition, previewed = false, separated = false,
 trow, tref, tnumber, tcube, strow, stnumber, rowsless = 0, rowsmore = 0, previewedOrigCoordx, previewedOrigCoordy, returnCoordx, returnCoordy, returnCoordz,
 $name;
@@ -13,7 +13,7 @@ var cubeGeo, cubeMaterial;
 var i, intersector;
 var zoomfactor = 3;
 var counter = 1, cubecounter = 1;
-var origpos= {};
+var origheight = [];
 var slide = new slider();
 
 var namelist = [];
@@ -59,7 +59,7 @@ function init() {
 
 	//init.init
 	heylookatme = scene.position;
-	cubegenerator(cubedescend);
+	// cubegenerator(cubedescend);
 
 	camera = new THREE.PerspectiveCamera( 18, 1024 / 768, 1, 10000 ); 
 	camera.position.x = radious * Math.sin( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
@@ -69,7 +69,7 @@ function init() {
 
 	onMouseDownPosition = new THREE.Vector2();
 
-	// cubedescender();
+	cubedescender();
 }
 
 function onWindowResize() {
@@ -110,110 +110,125 @@ function onDocumentMouseUp( event ) {
 	onMouseDownPosition.y = event.clientY - onMouseDownPosition.y;
 }
 
+function cube_ensure(){
+	$('.cube').on('click', function(){
+		console.log('cube!')
+		if (oneup){
+			// $('#cubic').click()
+			oneup = false;
+		}else oneup = true;
 
-$('.cube').on('click', function(){
-	trow = $(this).data('row');
-	tref = $(this).nextAll('.name').first().find('p').text();
-	tnumber = $(this).data('array');
-	tcube = $(this).data('cube');
-	twhich = $(this).data('number');
+		console.log(oneup)
 
-	console.log(trow+' // '+tref+' // '+tnumber+' // '+tcube+' // '+twhich)
+		if (!previewed){
+			trow = $(this).data('row');
+			tref = $(this).nextAll('.name').first().find('p').text();
+			tnumber = $(this).data('array');
+			tcube = $(this).data('cube');
+			twhich = $(this).data('number');
+		}
 
-	if (!previewed && !separated){
-		var rowrecurse;
-		$(this).siblings().each(function(e){
-			var $that = $(this)
-			var $dcube = $that.data('array')
-			var $drow = $that.data('row')
-			if (!$that.hasClass('r'+trow)){
-				if ($dcube < tnumber) slide.likethis($dcube, 'left', $drow)
-				else slide.likethis($dcube, 'right', $drow)
-			}else slide.likethis($dcube, 'center', $drow)
-		});
-		slide.likethis(tnumber, 'center', trow)
+		console.log(trow+' // '+tref+' // '+tnumber+' // '+tcube+' // '+twhich)
 
-		var tween = new TWEEN.Tween({
-			g: heylookatme.x,
-			gc: camera.position.x
-		})
-		.to({ 
-			g: scene.children[tnumber].position.x,
-			gc: scene.children[tnumber].position.x
-		}, 500)
-		.easing(TWEEN.Easing.Exponential.InOut)
-		.onUpdate(function () {
-			heylookatme.x = this.g
-			camera.lookAt(heylookatme)
-		})
-		.start();
+		if (!previewed && !separated){
+			console.log('111111111')
+			$(this).siblings().each(function(e){
+				var $that = $(this)
+				var $dcube = $that.data('array')
+				var $drow = $that.data('row')
+				if (!$that.hasClass('r'+trow)){
+					if ($dcube < tnumber) slide.likethis($dcube, 'left', $drow)
+					else slide.likethis($dcube, 'right', $drow)
+				}else slide.likethis($dcube, 'center', $drow)
+			});
+			slide.likethis(tnumber, 'center', trow)
 
-		setTimeout(function(){
-			separated = true;
-			camera.updateMatrix();
-		},500);
-	}
+			var tween = new TWEEN.Tween({
+				g: heylookatme.x//,
+				// gc: camera.position.x
+			})
+			.to({ 
+				g: scene.children[tnumber].position.x//,
+				// gc: scene.children[tnumber].position.x
+			}, 500)
+			.easing(TWEEN.Easing.Exponential.InOut)
+			.onUpdate(function () {
+				heylookatme.x = this.g
+				camera.lookAt(heylookatme)
+			})
+			.start();
 
-	if (!previewed && separated && (trow == strow)){
-		previewedOrigCoordx = scene.children[tnumber].position.x;
-		previewedOrigCoordy = scene.children[tnumber].position.y;
-		returnCoordx = camera.position.x;
-		returnCoordy = camera.position.y;
-		returnCoordz = camera.position.z;
+			setTimeout(function(){
+				separated = true;
+				camera.updateMatrix();
+			},500);
+		}
 
-		var tween = new TWEEN.Tween({ by: scene.children[tnumber].position.y})
-		.to({ by: 300 }, 500)
-		.easing(TWEEN.Easing.Exponential.InOut)
-		.onUpdate(function () {
-			scene.children[tnumber].position.y = this.by
-		})
-		.start();
+		if (!previewed && separated && (trow == strow)){
+			console.log('222222222')
+			previewedOrigCoordx = scene.children[tnumber].position.x;
+			previewedOrigCoordy = scene.children[tnumber].position.y;
+			returnCoordx = camera.position.x;
+			returnCoordy = camera.position.y;
+			returnCoordz = camera.position.z;
 
-		setTimeout(function(){
-			previewed = true;
-			centeraround(scene.children[tnumber])
-		},500);
+			var tween = new TWEEN.Tween({ by: scene.children[tnumber].position.y})
+			.to({ by: 300 }, 500)
+			.easing(TWEEN.Easing.Exponential.InOut)
+			.onUpdate(function () {
+				scene.children[tnumber].position.y = this.by
+			})
+			.start();
 
-		setTimeout(function(){
-			shapeshift(tcube, tref, trow, twhich)
-		},1000)
+			setTimeout(function(){
+				previewed = true;
+				centeraround(scene.children[tnumber])
+			},500);
 
-	}else if (!previewed && separated){
-		var directionalcorrection;
-		if (trow > strow) directionalcorrection = -50;
-		else directionalcorrection = 50;
+			setTimeout(function(){
+				shapeshift(tcube, tref, trow, twhich)
+			},1000)
 
-		var rowrecurse;
-		$(this).siblings().each(function(e){
-			var $that = $(this)
-			var $dcube = $that.data('array')
-			var $drow = $that.data('row')
-			if (!$that.hasClass('r'+trow)){
-				if ($dcube < tnumber) slide.likethis($dcube, 'left', $drow)
-				else slide.likethis($dcube, 'right', $drow)
-			}else slide.likethis($dcube, 'center', $drow)
-		});
-		slide.likethis(tnumber, 'center', trow)
+		}else if (!previewed && separated){
+			var directionalcorrection;
+			if (trow > strow) directionalcorrection = -50;
+			else directionalcorrection = 50;
 
-		var tween = new TWEEN.Tween({
-			g: heylookatme.x
-		})
-		.to({ g: scene.children[tnumber].position.x + directionalcorrection }, 500)
-		.easing(TWEEN.Easing.Exponential.InOut)
-		.onUpdate(function () {
-			heylookatme.x = this.g
-			camera.lookAt(heylookatme)
-		})
-		.start();
-	}
+			$(this).siblings().each(function(e){
+				var $that = $(this)
+				var $dcube = $that.data('array')
+				var $drow = $that.data('row')
+				if (!$that.hasClass('r'+trow)){
+					if ($dcube < tnumber) slide.likethis($dcube, 'left', $drow)
+					else slide.likethis($dcube, 'right', $drow)
+				}else slide.likethis($dcube, 'center', $drow)
+			});
+			slide.likethis(tnumber, 'center', trow)
 
-	strow = trow;
-	stnumber = tnumber;
-});
+			console.log('333333333')
 
-$('.name').on('click', function(){
-	$(this).prev().click();
-});
+			getdown(tcube)
+
+			var tween = new TWEEN.Tween({
+				g: heylookatme.x
+			})
+			.to({ g: scene.children[tnumber].position.x + directionalcorrection }, 500)
+			.easing(TWEEN.Easing.Exponential.InOut)
+			.onUpdate(function () {
+				heylookatme.x = this.g
+				camera.lookAt(heylookatme)
+			})
+			.start();
+		}
+
+		strow = trow;
+		stnumber = tnumber;
+	});
+
+	$('.name').on('click', function(){
+		$(this).prev().click();
+	});
+}
 
 function centeraround(me){
 	var jump = 500;
@@ -247,9 +262,29 @@ function centeraround(me){
 	},jump);
 }
 
+function getdown(except){
+	for (var t = 1; t < counter; t++){
+		if ((scene.children[t].position.y != origheight[t-1]) && ((t-1) != except)){
+			console.log('oh noes!')
+
+			var tween = new TWEEN.Tween({ by: scene.children[t].position.y})
+			.to({ by: origheight[t-1] }, 500)
+			.easing(TWEEN.Easing.Exponential.InOut)
+			.onUpdate(function () {
+				scene.children[t].position.y = this.by
+			})
+			.start();
+			
+		}
+	}
+}
+
 $('#cubic').on('click',function(){
+	console.log('background!')
 	if (previewed){
 		$('#shapeshifter').fadeOut(100, function(){
+			console.log('44444444')
+
 			clearInterval(clicker)
 			$('.ssi').css('display','none')
 
@@ -281,6 +316,8 @@ $('#cubic').on('click',function(){
 					scene.children[stnumber].position.y = this.by
 				})
 				.start();
+
+				// getdown(stnumber)
 
 				previewed = false;
 				camera.updateMatrix();
@@ -333,19 +370,23 @@ function cubedescender(){
 		dataType:'JSON',
 		url: "php/cubepull.php",
 	}).done( function(cube){
-		cubegenerator(cube)
+		cubedescend = cube
+		cubegenerator(cubedescend)
 	})
 }
 
 function cubegenerator(receive){
 	var centered = new THREE.Vector3((Math.floor(_.size(receive))/2)*50, 50, 100)
 	heylookatme = centered;
-	// camera.lookAt(heylookatme)
+	camera.lookAt(heylookatme)
+	console.log(receive)
+
 
 	var rowcount = 1, numberexact = 0;
 	for (var row in receive){
 		var cube = receive[row];
 		for (var i in cube){
+			// console.log(rowcount+' // '+_.size(receive)+' // '+i+' // '+_.size(cube))
 			var element = document.createElement( 'div' );
 			element.className = 'cube r'+rowcount.toString();
 			element.id = 'c'+counter.toString();
@@ -387,6 +428,10 @@ function cubegenerator(receive){
 			object.position.y = cube[i].y*50;
 			object.position.z = cube[i].z*50;
 			scene.add( object );
+
+			origheight[counter-2] = cube[i].y*50;
+
+			if ((rowcount >= _.size(receive)) && (numberexact >= _.size(cube))) setTimeout(cube_ensure, 100)
 		}
 
 		var name = document.createElement( 'div' );
@@ -397,12 +442,13 @@ function cubegenerator(receive){
 		// name.className = 'name r'+rowcount.toString();
 		nametxt.innerHTML = row;
 		name.appendChild(nametxt)
-
 		name.setAttribute('data-array',counter.toString())
 		name.setAttribute('data-row', rowcount.toString())
 		namelist.push(counter.toString())
 
-		counter++;	
+		origheight[counter-1] = 0;
+
+		counter++;
 		numberexact = 0;
 
 		var text = new THREE.CSS3DObject( name );
@@ -412,7 +458,7 @@ function cubegenerator(receive){
 		text.rotation.y = Math.PI*1.5;
 		scene.add( text );
 
-		rowcount++
+		rowcount++;
 	}
 
 	setTimeout(function(){

@@ -1,0 +1,160 @@
+/*
+looking for these? :)
+
+border-radius: 9px;
+
+<?php include("inc/head.html"); ?>
+*/
+
+//DEFINES
+$masterwidth: 1024px;
+
+* { 
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box; 
+}
+
+a img{border:none;}
+a{
+	border:none;
+	text-decoration: none;
+}
+
+::selection {
+	/*background: #;*/
+}
+
+::-moz-selection {
+	/*background: #;*/
+}
+
+@font-face {
+    font-family : 'u47';
+    src: url('../type/u47.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.master{
+	position:absolute;
+	height:100%;
+	width:100%;
+	top:0px;
+	left:0px;
+	font-family:u47, helvetica, arial, sans-serif;
+	line-height:20px;
+	font-size:16px;
+	overflow:hidden;
+	#frame{
+		width:1000%;
+		height:100%;
+		position:absolute;
+		top:0px;
+		left:0px;
+		div{
+			position: relative;
+			float:left;
+			width:10%;
+			height:100%;
+			// top:0px;
+			// left:0px;
+			display:inline;
+			.img{
+				position: absolute;
+				width:1138px;
+				height:859px;
+				top:50%;
+				left:50%;
+				margin:-429.5px 0px 0px -569px;
+			}
+			.end{
+				position: relative;
+				top:30%;
+				left:20%;
+				a{color:black;}
+			}
+			.txt{
+				position: absolute !important;
+				background-color:rgb(198, 198, 198);
+				opacity:.1;
+				bottom:50px !important;
+				right:50px !important;
+				width:250px;
+				height:250px;
+				border-radius:1000px;
+				display:table;
+				-webkit-transition: all 0.5s ease-in-out;
+				-moz-transition: all 0.5s ease-in-out;
+				-o-transition: all 0.5s ease-in-out;
+				transition: all 0.5s ease-in-out;
+				p{
+					display:table-cell;
+					vertical-align: middle;
+					padding:0px 40px;
+				}
+				&:hover{
+					opacity:1;
+				}
+			}
+			.de{display:none;}
+		}
+	}
+	.nav{
+		position:fixed;
+		height:50px;
+		width:100px;
+		bottom:50px;
+		left:50%;
+		margin-left:-47.5px;
+		img{
+			height:100%;
+			cursor: pointer;
+			display:none;
+			opacity:0;
+			position: relative;
+			float: left;
+			-webkit-transition: all 0.5s ease-in-out;
+			-moz-transition: all 0.5s ease-in-out;
+			-o-transition: all 0.5s ease-in-out;
+			transition: all 0.5s ease-in-out;
+		}
+		// #mouse_l, #mouse_r{}
+		// #mouse_r{left:50px;}
+		.lit{opacity: 1 !important;}
+	}
+}
+
+
+
+// @media only screen and (device-width: 768px) /*IPAD*/ {
+.ipad{
+	#frame{
+		div{overflow: hidden;}
+		.img{
+			top:inherit !important;
+			left:inherit !important;
+			margin:-107px 0px 0px -57px !important;
+		}
+		.txt:hover{opacity:.1;}
+		.tapt{opacity: 1 !important;}
+	}
+	.nav{
+		width:126px !important;
+		// #swipe{display: block;}
+		#mouse_l, #mouse_r{display:none;}
+	}
+}
+
+@media only screen and (max-width: 480px) /*IPHONE*/{}
+
+@-moz-document url-prefix() {}
+
+.ie{}
+
+.ie8{}
+
+.ie7{}
+
+.ie6{}
+
