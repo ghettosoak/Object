@@ -86,6 +86,8 @@ a {
   width: 33%;
   position: relative;
   float: left; }
+.projects #oversight #add_project, .projects #oversight #add_row {
+  z-index: 3; }
 .projects #oversight #add_project {
   height: 80px;
   width: 80px;
@@ -106,19 +108,105 @@ a {
   .projects #oversight #add_row p {
     text-align: center;
     margin-top: -27px; }
+.projects #oversight #oversight_sight {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px; }
+  .projects #oversight #oversight_sight .cube {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    z-index: 10; }
+  .projects #oversight #oversight_sight .cube div {
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 120px;
+    font-weight: bold;
+    color: white;
+    text-align: center; }
+  .projects #oversight #oversight_sight .cube .front {
+    -webkit-transform: translateZ(25px);
+    -moz-transform: translateZ(25px);
+    -ms-transform: translateZ(25px);
+    -o-transform: translateZ(25px);
+    transform: translateZ(25px); }
+  .projects #oversight #oversight_sight .cube .back {
+    -webkit-transform: rotateX(-180deg) translateZ(25px);
+    -moz-transform: rotateX(-180deg) translateZ(25px);
+    -ms-transform: rotateX(-180deg) translateZ(25px);
+    -o-transform: rotateX(-180deg) translateZ(25px);
+    transform: rotateX(-180deg) translateZ(25px); }
+  .projects #oversight #oversight_sight .cube .right {
+    -webkit-transform: rotateY(90deg) translateZ(25px);
+    -moz-transform: rotateY(90deg) translateZ(25px);
+    -ms-transform: rotateY(90deg) translateZ(25px);
+    -o-transform: rotateY(90deg) translateZ(25px);
+    transform: rotateY(90deg) translateZ(25px); }
+  .projects #oversight #oversight_sight .cube .left {
+    -webkit-transform: rotateY(-90deg) translateZ(25px);
+    -moz-transform: rotateY(-90deg) translateZ(25px);
+    -ms-transform: rotateY(-90deg) translateZ(25px);
+    -o-transform: rotateY(-90deg) translateZ(25px);
+    transform: rotateY(-90deg) translateZ(25px); }
+  .projects #oversight #oversight_sight .cube .top {
+    -webkit-transform: rotateX(90deg) translateZ(25px);
+    -moz-transform: rotateX(90deg) translateZ(25px);
+    -ms-transform: rotateX(90deg) translateZ(25px);
+    -o-transform: rotateX(90deg) translateZ(25px);
+    transform: rotateX(90deg) translateZ(25px); }
+  .projects #oversight #oversight_sight .cube .bottom {
+    -webkit-transform: rotateX(-90deg) translateZ(25px);
+    -moz-transform: rotateX(-90deg) translateZ(25px);
+    -ms-transform: rotateX(-90deg) translateZ(25px);
+    -o-transform: rotateX(-90deg) translateZ(25px);
+    transform: rotateX(-90deg) translateZ(25px); }
+  .projects #oversight #oversight_sight .r1 div {
+    background-color: rgba(255, 0, 0, 0.2); }
+  .projects #oversight #oversight_sight .r2 div {
+    background-color: rgba(0, 255, 0, 0.2); }
+  .projects #oversight #oversight_sight .r3 div {
+    background-color: rgba(0, 0, 255, 0.2); }
+  .projects #oversight #oversight_sight .r4 div {
+    background-color: rgba(255, 255, 0, 0.2); }
+  .projects #oversight #oversight_sight .r5 div {
+    background-color: rgba(0, 0, 0, 0.2); }
+  .projects #oversight #oversight_sight .r6 div {
+    background-color: rgba(0, 0, 0, 0.2); }
+  .projects #oversight #oversight_sight .r7 div {
+    background-color: rgba(0, 0, 0, 0.2); }
+  .projects #oversight #oversight_sight .r8 div {
+    background-color: rgba(0, 0, 0, 0.2); }
+  .projects #oversight #oversight_sight .r9 div {
+    background-color: rgba(0, 0, 0, 0.2); }
+  .projects #oversight #oversight_sight .r10 div {
+    background-color: rgba(0, 0, 0, 0.2); }
+  .projects #oversight #oversight_sight .r11 div {
+    background-color: rgba(0, 0, 0, 0.2); }
+  .projects #oversight #oversight_sight .r12 div {
+    background-color: rgba(0, 0, 0, 0.2); }
 .projects .details > div {
   position: relative;
   float: left;
-  width: 100%; }
+  width: 100%;
+  padding-bottom: 10px; }
 .projects .details h3 {
   width: 39%;
   text-align: right;
   padding-right: 14px;
-  margin: 8px 0px 6px 0px; }
+  margin: 12px 0px 6px 0px; }
 .projects .details .info {
   border-bottom: 1px #b3b3b3 solid;
-  margin-bottom: 10px;
-  height: 293px; }
+  height: 332px; }
   .projects .details .info div {
     width: 100%;
     position: relative;
@@ -139,7 +227,6 @@ a {
       margin: 9px 0px 8px 0px; }
 .projects .details .coords {
   border-bottom: 1px #b3b3b3 solid;
-  margin-bottom: 10px;
   height: 123px; }
   .projects .details .coords div {
     width: 100%;
@@ -159,10 +246,24 @@ a {
       position: relative;
       float: left;
       margin: 9px 0px 8px 0px; }
+.projects .details .shapeshifter_collect #shapeshifterhopper {
+  position: relative;
+  float: left;
+  width: 100%;
+  padding: 7px 0px 0px 10px; }
+  .projects .details .shapeshifter_collect #shapeshifterhopper .loading {
+    opacity: .8; }
+  .projects .details .shapeshifter_collect #shapeshifterhopper img {
+    position: relative;
+    float: left;
+    width: 137px;
+    margin: 0px 10px 10px 0px; }
 .projects .cells .cell_top {
-  height: 69px;
-  border-bottom: 1px #b3b3b3 solid; }
-  .projects .cells .cell_top .cell_add {
+  height: 60px;
+  border-bottom: 1px #b3b3b3 solid;
+  top: 10px;
+  position: relative; }
+  .projects .cells .cell_top #cell_add {
     width: 46px;
     height: 46px;
     border-radius: 150px;
@@ -172,29 +273,57 @@ a {
     left: 18px;
     float: left;
     padding: 0px; }
-    .projects .cells .cell_top .cell_add img {
+    .projects .cells .cell_top #cell_add img {
       margin: 9px; }
   .projects .cells .cell_top h3 {
     width: 85px;
     margin: 14px 0px 0px 50px;
     position: relative;
     float: left; }
-.projects .cells div {
-  position: relative;
-  float: left;
-  padding: 10px 0px 0px 10px;
-  width: 100%; }
-  .projects .cells div img {
+.projects .cells #cell_put {
+  overflow: scroll !important;
+  height: 100%;
+  margin: 10px 0px 0px 10px;
+  padding: 10px 0px 10px 0px; }
+  .projects .cells #cell_put div {
     position: relative;
     float: left;
-    margin-right: 10px; }
-  .projects .cells div textarea {
-    position: relative;
-    float: left;
-    width: 57%;
-    height: 158px;
-    font-family: u47;
-    font-size: 14px; }
+    padding-bottom: 10px;
+    width: 100%; }
+    .projects .cells #cell_put div .cell_img_hold {
+      position: relative;
+      float: left;
+      width: 85px;
+      height: 85px;
+      margin-right: 10px;
+      overflow: hidden; }
+      .projects .cells #cell_put div .cell_img_hold img {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        margin: -100% 0 0 -100%; }
+      .projects .cells #cell_put div .cell_img_hold #img_blank {
+        margin: 0px !important; }
+      .projects .cells #cell_put div .cell_img_hold .loading {
+        opacity: .8; }
+      .projects .cells #cell_put div .cell_img_hold .kill {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 30px !important;
+        z-index: 10;
+        margin: 0 !important;
+        display: none;
+        cursor: pointer; }
+      .projects .cells #cell_put div .cell_img_hold:hover .kill {
+        display: block; }
+    .projects .cells #cell_put div textarea {
+      position: relative;
+      float: left;
+      width: 57%;
+      height: 158px;
+      font-family: u47;
+      font-size: 14px; }
 
 .about .meimgs, .about .mebits {
   position: relative;
@@ -221,6 +350,7 @@ a {
 .side #save {
   height: 60px;
   width: 60px;
+  top: -8px;
   background-color: red;
   color: white;
   border-radius: 150px;

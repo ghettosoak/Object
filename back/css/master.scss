@@ -6,9 +6,12 @@ border-radius: 9px;
 <?php include("inc/head.html"); ?>
 */
 
+@import "bourbon";
+
 //DEFINES
 $masterwidth: 1024px;
 $greyline: 1px #b3b3b3 solid;
+$offset: 25px;
 
 * { 
 	-moz-box-sizing: border-box; 
@@ -110,6 +113,9 @@ a{
 		float:left;
 	}
 	#oversight{
+		#add_project, #add_row{
+			z-index:3;
+		}
 		#add_project{
 			height:80px;
 			width:80px;
@@ -134,22 +140,74 @@ a{
 				margin-top:-27px;
 			}
 		}
+		#oversight_sight{
+			height:100%;
+			width:100%;
+			position: absolute;
+			top:0px;
+			left:0px;
+
+			.cube {
+			    width: 50px;
+			    height: 50px;
+			    position: absolute;
+			    -webkit-transform-style: preserve-3d;
+			    -moz-transform-style: preserve-3d;
+			    -o-transform-style: preserve-3d;
+			    transform-style: preserve-3d;
+			    cursor: pointer;
+			    z-index: 10;
+			}
+
+			.cube div {
+			    display: block;
+			    position: absolute;
+			    width: 50px;
+			    height: 50px;
+			    line-height: 50px;
+			    font-size: 120px;
+			    font-weight: bold;
+			    color: white;
+			    text-align: center;
+			}
+
+			.cube .front { @include transform(translateZ( $offset )); }
+			.cube .back { @include transform(rotateX( -180deg ) translateZ( $offset )); }
+			.cube .right { @include transform(rotateY(   90deg ) translateZ( $offset )); }
+			.cube .left { @include transform(rotateY(  -90deg ) translateZ( $offset )); }
+			.cube .top { @include transform(rotateX(   90deg ) translateZ( $offset )); }
+			.cube .bottom { @include transform(rotateX(  -90deg ) translateZ( $offset )); }
+
+			.r1 div{background-color:rgba(255,0,0,.2);}
+			.r2 div{background-color:rgba(0,255,0,.2);}
+			.r3 div{background-color:rgba(0,0,255,.2);}
+			.r4 div{background-color:rgba(255,255,0,.2);}
+			.r5 div{background-color:rgba(0,0,0,.2);}
+			.r6 div{background-color:rgba(0,0,0,.2);}
+			.r7 div{background-color:rgba(0,0,0,.2);}
+			.r8 div{background-color:rgba(0,0,0,.2);}
+			.r9 div{background-color:rgba(0,0,0,.2);}
+			.r10 div{background-color:rgba(0,0,0,.2);}
+			.r11 div{background-color:rgba(0,0,0,.2);}
+			.r12 div{background-color:rgba(0,0,0,.2);}
+		}
 	}
 	.details{
 		& > div{
 			@include prfl;
 			width:100%;
+			padding-bottom:10px;
 		}
 		h3{
 			width:39%;
 			text-align: right;
 			padding-right: 14px;
-			margin:8px 0px 6px 0px;
+			margin:12px 0px 6px 0px;
 		}
 		.info{
 			border-bottom:$greyline;
-			margin-bottom:10px;
-			height: 293px;
+			// margin-bottom:10px;
+			height: 332px;
 			div{
 				width:100%;
 				@include prfl;
@@ -171,7 +229,7 @@ a{
 		}
 		.coords{
 			border-bottom:$greyline;
-			margin-bottom:10px;
+			// margin-bottom:10px;
 			height: 123px;
 			div{
 				width:100%;
@@ -193,14 +251,30 @@ a{
 			}
 		}
 		.shapeshifter_collect{
-
+			h3{
+				// @include prfl;
+				// width:100%;
+			}
+			#shapeshifterhopper{
+				@include prfl;
+				width:100%;
+				padding:7px 0px 0px 10px;
+				.loading{opacity:.8;}
+				img{
+					@include prfl;
+					width:137px;
+					margin:0px 10px 10px 0px;
+				}
+			}
 		}
 	}
 	.cells{
 		.cell_top{
-			height:69px;
+			height:60px;
 			border-bottom:$greyline;
-			.cell_add{
+			top:10px;
+			position: relative;
+			#cell_add{
 				width:46px;
 				height:46px;
 				border-radius:150px;
@@ -219,20 +293,50 @@ a{
 				float: left;
 			}
 		}
-		div{
-			@include prfl;
-			padding:10px 0px 0px 10px;
-			width:100%;
-			img{
+		#cell_put{
+			overflow: scroll !important;
+			height:100%;
+			margin:10px 0px 0px 10px;
+			padding:10px 0px 10px 0px;
+
+			div{
 				@include prfl;
-				margin-right:10px;
-			}
-			textarea{
-				@include prfl;
-				width:57%;
-				height:158px;
-				font-family: u47;
-				font-size:14px;
+				padding-bottom:10px;
+				width:100%;
+				.cell_img_hold{
+					@include prfl;
+					width:85px;
+					height: 85px;
+					margin-right:10px;
+					overflow:hidden;
+					img{
+						position: absolute;
+						top:0px;
+						left:0px;
+						margin:-100% 0 0 -100%;
+					}
+					#img_blank{margin:0px !important;}
+					.loading{opacity:.8;}
+					.kill{
+						position: absolute;
+						top:0px;
+						left:0px;
+						width:30px !important;
+						z-index: 10;
+						margin:0 !important;
+						display:none;
+						cursor: pointer;
+					}
+					&:hover .kill{display:block;}
+				}
+
+				textarea{
+					@include prfl;
+					width:57%;
+					height:158px;
+					font-family: u47;
+					font-size:14px;
+				}
 			}
 		}
 	}
@@ -268,6 +372,7 @@ a{
 	#save{
 		height:60px;
 		width:60px;
+		top: -8px;
 		background-color:red;
 		color:white;
 		border-radius:150px;

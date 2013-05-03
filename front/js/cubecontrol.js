@@ -207,7 +207,7 @@ function cube_ensure(){
 
 			console.log('333333333')
 
-			getdown(tcube)
+			// getdown(tcube)
 
 			var tween = new TWEEN.Tween({
 				g: heylookatme.x
@@ -390,6 +390,7 @@ function cubegenerator(receive){
 			var element = document.createElement( 'div' );
 			element.className = 'cube r'+rowcount.toString();
 			element.id = 'c'+counter.toString();
+			element.setAttribute('data-callmemaybe', i)
 			element.setAttribute('data-number', numberexact.toString())
 			element.setAttribute('data-array', counter.toString())
 			element.setAttribute('data-cube', cubecounter.toString())

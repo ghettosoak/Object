@@ -21,6 +21,7 @@
 				<div id="oversight">
 					<div id="add_project"><img src="img/plus_large.png" /></div>
 					<div id="add_row"><img src="img/addrow.png" /><p>add row</p></div>
+					<div id="oversight_sight"></div>
 				</div>
 				<div class="divide"><div></div></div>
 				<div class="details">
@@ -31,6 +32,7 @@
 						<div><p>Category:</p> <input tabindex="1" type="text" id="info_category"><br /></div>
 						<div><p>Date Launched:</p> <input tabindex="1" type="text" id="info_datelaunch"><br /></div>
 						<div><p>Total Hours:</p> <input tabindex="1" type="text" id="info_hours"><br /></div>
+						<div><p>Link:</p> <input tabindex="1" type="text" id="info_link"><br /></div>
 						<div><p>Text</p><textarea tabindex="16" id="info_text"></textarea></div>
 					</div>
 					<div class="coords">
@@ -40,16 +42,17 @@
 					</div>
 					<div class="shapeshifter_collect">
 						<h3>Shapeshifter</h3>
-
+						<div id="shapeshifterhopper"></div>
 					</div>
 				</div>
 				<div class="divide"><div></div></div>
 				<div class="cells">
 					<div class="cell_top">
-						<div class="cell_add"><img src="img/plus_small.png" /></div>
+						<div id="cell_add"><img src="img/plus_small.png" /></div>
 						<h3>Cells</h3>
 					</div>
-					<div>
+					<div id="cell_put"></div>
+					<!-- <div>
 						<img src="img/cross.png" />
 						<textarea tabindex="16" class="kommentar_content"></textarea>
 					</div>
@@ -60,7 +63,7 @@
 					<div>
 						<img src="img/cross.png" />
 						<textarea tabindex="16" class="kommentar_content"></textarea>
-					</div>
+					</div> -->
 				</div>
 			</div>
 
@@ -111,8 +114,11 @@
 
 <script src="js/lib/three.min.54.js"></script>
 <script src="js/lib/CSS3DRenderer.js"></script>
+<script src="js/lib/tween.min.js"></script>
+<script src="js/lib/underscore-min.js"></script>
 
-<script src='../descend.js'></script>
+
+<script src='../join/descend.js'></script>
 <script type="text/javascript" src="js/master-m.js"></script>
 </body>
 </html>
