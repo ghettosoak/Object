@@ -367,11 +367,14 @@ b.run=function(h){d.each(e,function(f,l){a[l]=j(c[l],i,h)})}}}})(jQuery);
 //like something you see, but can't read this unholy mess? drop me a line at (mif)[at](awe)[minus](schaffhausen)[dot](com)
 
 var isMouseDown = false, radious = 1600, theta = -90, onMouseDownTheta = -90, phi = 60, onMouseDownPhi = 60, onMouseDownPosition,
-onMouseDownPosition, previewed = false, separated = false, trow, tref, tnumber, tcube, tcallme, currentlyediting, newest = false;
+onMouseDownPosition, previewed = false, separated = false, trow, tref, tnumber, tcube, tcallme, currentlyediting, cubearrayediting, newest = false,
+catoffset, categoryheight = 0, catopen = false, firstly = true, editingcount = 0;
 var counter = 1, cubecounter = 1;
 var $ovr_sight;
 var slide = new slider();
 var presence = {};
+var presenceorig = {};
+var presenceedit = {};
 var $windowpane = $(window);
 
 $(document).ready(function(){
@@ -385,12 +388,12 @@ $(document).ready(function(){
 	$('#cell_put').css('height',$windowpane.height()-60)
 	$('#shapeshifterhopper').css('height', $windowpane.height()-$('.info').height()-$('.coords').height()-18)
 
-	b_workload(23)
+	// b_workload(23)
 
-	setTimeout(function(){
-		separated = true;
-		$('#cell_add').click()
-	},200)
+	// setTimeout(function(){
+	// 	separated = true;
+	// 	$('#cell_add').click()
+	// },200)
 	
 })
 
@@ -487,7 +490,6 @@ function cube_ensure(){
 		console.log(trow+' // '+tref+' // '+tnumber+' // '+tcube+' // '+twhich)
 
 		if (!previewed && !separated){
-			// console.log('111111111')
 			$(this).siblings().each(function(e){
 				var $that = $(this)
 				var $dcube = $that.data('array')
@@ -500,12 +502,10 @@ function cube_ensure(){
 			slide.likethis(tnumber, 'center', trow)
 
 			var tween = new TWEEN.Tween({
-				g: heylookatme.x//,
-				// gc: camera.position.x
+				g: heylookatme.x
 			})
 			.to({ 
-				g: scene.children[tnumber].position.x//,
-				// gc: scene.children[tnumber].position.x
+				g: scene.children[tnumber].position.x
 			}, 500)
 			.easing(TWEEN.Easing.Exponential.InOut)
 			.onUpdate(function () {
@@ -521,31 +521,13 @@ function cube_ensure(){
 		}
 
 		if (!previewed && separated && (trow == strow)){
-			// console.log('222222222')
-			previewedOrigCoordx = scene.children[tnumber].position.x;
-			previewedOrigCoordy = scene.children[tnumber].position.y;
-			returnCoordx = camera.position.x;
-			returnCoordy = camera.position.y;
-			returnCoordz = camera.position.z;
+			$('#shapeshifterhopper, #cell_put').empty()
 
-			var tween = new TWEEN.Tween({ by: scene.children[tnumber].position.y})
-			.to({ by: 300 }, 500)
-			.easing(TWEEN.Easing.Exponential.InOut)
-			.onUpdate(function () {
-				scene.children[tnumber].position.y = this.by
-			})
-			.start();
+			$(this).addClass('targeted').siblings().removeClass('targeted')
+			previewed = true;
 
-			setTimeout(function(){
-				previewed = true;
-				// centeraround(scene.children[tnumber])
-
-				b_workload(tcallme)
-			},500);
-
-			// setTimeout(function(){
-			// 	shapeshift(tcube, tref, trow, twhich)
-			// },1000)
+			b_workload(tcallme)
+			cubearrayediting = tnumber;
 
 		}else if (!previewed && separated){
 			var directionalcorrection;
@@ -563,10 +545,6 @@ function cube_ensure(){
 			});
 			slide.likethis(tnumber, 'center', trow)
 
-			// console.log('333333333')
-
-			// getdown(tcube)
-
 			var tween = new TWEEN.Tween({
 				g: heylookatme.x
 			})
@@ -583,57 +561,8 @@ function cube_ensure(){
 		stnumber = tnumber;
 	});
 
-	$('.name').on('click', function(){
-		$(this).prev().click();
-	});
-
-
 	$ovr_sight.on('click',function(){
-		// console.log('background!')
-		if (previewed){
-			// $('#shapeshifter').fadeOut(100, function(){
-				console.log('44444444')
-
-				// clearInterval(clicker)
-				// $('.ssi').css('display','none')
-
-				var tween = new TWEEN.Tween({ 
-					center_x: heylookatme.x, center_y: heylookatme.y, center_z: heylookatme.z,
-					x: camera.position.x, y: camera.position.y, z: camera.position.z 
-				})
-				.to({ 
-					center_x: previewedOrigCoordx-50, center_y: 50, center_z: 100,
-					x: returnCoordx, y: returnCoordy, z: returnCoordz 
-				}, 500 )
-				.easing(TWEEN.Easing.Exponential.InOut)
-				.onUpdate(function (){
-					camera.position.x = this.x;
-					camera.position.y = this.y;
-					camera.position.z = this.z;
-
-					var centering = new THREE.Vector3(this.center_x, this.center_y, this.center_z)
-					heylookatme = centering;
-					camera.lookAt(heylookatme)
-				})
-				.start();
-
-				setTimeout(function(){
-					var tween = new TWEEN.Tween({ by: scene.children[stnumber].position.y})
-					.to({ by: previewedOrigCoordy }, 500)
-					.easing(TWEEN.Easing.Exponential.InOut)
-					.onUpdate(function () {
-						scene.children[stnumber].position.y = this.by
-					})
-					.start();
-
-					// getdown(stnumber)
-
-					previewed = false;
-					camera.updateMatrix();
-				},200);
-			// })
-
-		}
+		if (previewed) previewed = false;
 	});
 }
 
@@ -765,7 +694,9 @@ function slider(){
 }
 
 function b_workload(er){
+	presenceedit[currentlyediting] = presence
 	currentlyediting = er;
+
 	$.ajax({
 		type: "POST",
 		dataType:'JSON',
@@ -773,22 +704,43 @@ function b_workload(er){
 		url: "php/projection.php"
 	}).done(function(thisproj){
 		console.log(thisproj)
+		presenceorig[thisproj.data.object_id] = thisproj;
+
 		presence = thisproj;
 
 		$('#info_name').val(thisproj.data.name)
 		$('#info_client').val(thisproj.data.client)
-		$('#info_category').val(thisproj.data.category)
+
 		$('#info_datelaunch').val(thisproj.data.date_launched)
 		$('#info_hours').val(thisproj.data.total_hours)
 		$('#info_link').val(thisproj.data.project_text)
 		$('#info_text').val(thisproj.data.link)
 		$('#coord_y').val(thisproj.data.coord_y)
 		$('#coord_z').val(thisproj.data.coord_z)
+		
+		$.each(thisproj.categories, function(l){
+			categoryheight += 19;
+			var categ = '<li class="cat_'+thisproj.categories[l]+'" data-category="'+thisproj.categories[l]+'">'+thisproj.categories[l]+'</li>';
+			$.tmpl( categ , thisproj.categories[l]).appendTo( "#info_category_carousel" );
+			if (l == thisproj.categories.length-1){
+				catoffset = $('.cat_'+thisproj.data.category).position().top
+				$('#info_category_carousel').css('top', -catoffset)
+				categorical()
+			}
+		});
+
+		$.each(thisproj.shapeshifters, function(s){
+			var shapeshifted = '<img src="'+thisproj.shapeshifters[s]+'" />'
+			$.tmpl( shapeshifted , thisproj.shapeshifters[s]).appendTo( "#shapeshifterhopper" );
+		});
+
+		shapeshifterpower();
 
 		$.each(thisproj.cells, function(l){
 			var cellular = '<div class="cell_'+thisproj.cells[l].cell_id+'"><div class="cell_img_hold"><img src="'+thisproj.cells[l].img+'" /><img src="img/kill.png" class="kill" /></div><textarea tabindex="16" class="kommentar_content">'+thisproj.cells[l].txt+'</textarea></div>'
 			$.tmpl( cellular , thisproj.cells[l]).appendTo( "#cell_put" );
 		});
+
 	})
 }
 
@@ -798,9 +750,8 @@ function animate() {
 	TWEEN.update();
 }
 
-function render() {
+function render(){
 	renderer.render( scene, camera );
-	// console.log(camera.position)
 }
 
 $('#cell_add').on('click', function(){
@@ -814,7 +765,7 @@ $('#cell_add').on('click', function(){
 			
 			maxfiles: 1,
 			url: 'php/cell.php',
-			data:{ projector: currentlyediting },
+			data:{ projectnumbercell: currentlyediting },
 			
 			uploadFinished:function(i,file,response){ $.data(file).removeClass('loading'); },
 			
@@ -849,44 +800,133 @@ $('#cell_add').on('click', function(){
 	$('#cell_put').animate({'scrollTop':10000}).children().last().delay(400).css('background-color','rgba(255,0,0,.1)').animate({backgroundColor:'rgba(255,255,255,1)'})
 })
 
+function shapeshifterpower(){
+	if (!firstly){
+		$('#shapeshifterhopper').unbind('drop').unbind('dragenter').unbind('dragover').unbind('dragleave');
+		$(document).unbind('drop').unbind('dragenter').unbind('dragover').unbind('dragleave');
+	}
+	firstly = false;
 
+	$('#shapeshifterhopper').filedrop({
+		fallback_id: 'shapeshifterhopper',
+		paramname:'shap',
+		
+		url: 'php/shapeshiftput.php',
+		data:{ projectnumbershapeshift: currentlyediting },
+		
+		uploadFinished:function(i,file,response){ $.data(file).removeClass('loading'); },
+		
+		error: function(err, file) { alert("it didn't work. here's why, maybe: "+err) },
+		
+		beforeEach: function(file){
+			if(!file.type.match(/^image\//)){
+				alert('images only kthx');
+				return false;
+			}
+		},
+		
+		uploadStarted:function(i, file, len){
+			var preview = $('<span><img /></span>'), 
+			image = $('img', preview);
+			var reader = new FileReader();
+			
+			image.width = 100;
+			image.height = 100;
+			
+			reader.onload = function(e){ image.attr('src',e.target.result); };
+			reader.readAsDataURL(file);
+			preview.appendTo('#shapeshifterhopper');
+			$.data(file,preview);
+		},
+			
+		progressUpdated: function(i, file, progress) {
+			$.data(file).find('img').css('opacity',progress/100);
+		}	 
+	});
+}
 
-$('#shapeshifterhopper').filedrop({
-	fallback_id: 'shapeshifterhopper',
-	paramname:'shap',
-	
-	url: 'php/shapeshiftput.php',
-	data:{ projector: currentlyediting },
-	
-	uploadFinished:function(i,file,response){ $.data(file).removeClass('loading'); },
-	
-	error: function(err, file) { alert("it didn't work. here's why, maybe: "+err) },
-	
-	beforeEach: function(file){
-		if(!file.type.match(/^image\//)){
-			alert('images only kthx');
-			return false;
+function categorical(){
+	$('#info_category_open').on('click', function(){
+		if (!catopen){
+			catopen = true;
+			$('#info_category').addClass('open').stop().animate({'top':-catoffset, 'height':categoryheight});
+			$('#info_category_carousel').stop().animate({'top':'0px'});
+		}else{
+			catopen = false;
+			$('#info_category').stop().animate({'top':0, 'height':20}, function(){ $(this).removeClass('open') });
+			$('#info_category_carousel').stop().animate({'top':-catoffset});
+		}
+	});
+
+	$('#info_category_carousel').on('click', 'li', function(){
+		if ($(this).data('category') != presence.data.category){
+			presence.data.category = $(this).data('category');
+			cubeset('x', presence.categories.indexOf($(this).data('category')));
+			catopen = false;
+			catoffset = $('.cat_'+$(this).data('category')).position().top;
+			$('#info_category').animate({'top':0, 'height':20}, function(){ $(this).removeClass('open') });
+			$('#info_category_carousel').animate({'top':-catoffset});
+		}
+	});
+}
+
+$('.coord_button').on('click', function(){
+	var $that = $(this)
+	var pos = $that.siblings('input').val()
+	if ($that.hasClass('cb_up')){
+		$that.siblings('input').val(++pos)
+	}else{ // 'cb_down'
+		$that.siblings('input').val(--pos)
+	}
+
+	if ($(this).parent().attr('id') == 'coord_y_hold'){
+		cubeset('y', pos);
+		presence.data.coord_y = pos;
+	}else{ // 'coord_z_hold'
+		cubeset('z', pos);
+		presence.data.coord_z = pos;
+	}
+});
+
+$('.coord_inp').on({
+	keydown:function(e){
+		if (e.keyCode == 38){
+			$(this).siblings('.cb_up').click()
+		}
+		if (e.keyCode == 40){
+			$(this).siblings('.cb_down').click()
 		}
 	},
-	
-	uploadStarted:function(i, file, len){
-		var preview = $('<span><img /></span>'), 
-		image = $('img', preview);
-		var reader = new FileReader();
-		
-		image.width = 100;
-		image.height = 100;
-		
-		reader.onload = function(e){ image.attr('src',e.target.result); };
-		reader.readAsDataURL(file);
-		preview.appendTo('#shapeshifterhopper')
-		$.data(file,preview);
-	},
-		
-	progressUpdated: function(i, file, progress) {
-		$.data(file).find('img').css('opacity',progress/100);
-	}	 
+	blur:function(){
+		var leaving = $(this).val()
+		if ($(this).attr('id') == 'coord_y'){
+			cubeset('y', leaving);
+			presence.data.coord_y = leaving;
+		}else{ // 'coord_z'
+			cubeset('z', leaving);
+			presence.data.coord_z = leaving;
+		}
+	}
 });
+
+
+function cubeset(dimension, where){
+	if (dimension == 'x') scene.children[cubearrayediting].position.x = where*50;
+	if (dimension == 'y') scene.children[cubearrayediting].position.y = where*50;
+	if (dimension == 'z') scene.children[cubearrayediting].position.z = where*50;	
+}
+
+$('#save').on('click', function(){
+
+})
+
+
+
+
+
+
+
+
 
 
 

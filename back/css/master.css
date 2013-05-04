@@ -5,6 +5,41 @@ border-radius: 9px;
 
 <?php include("inc/head.html"); ?>
 */
+@-webkit-keyframes opaqr {
+  from {
+    opacity: 1; }
+
+  to {
+    opacity: .2; } }
+
+@-moz-keyframes opaqr {
+  from {
+    opacity: 1; }
+
+  to {
+    opacity: .2; } }
+
+@-ms-keyframes opaqr {
+  from {
+    opacity: 1; }
+
+  to {
+    opacity: .2; } }
+
+@-o-keyframes opaqr {
+  from {
+    opacity: 1; }
+
+  to {
+    opacity: .2; } }
+
+@keyframes opaqr {
+  from {
+    opacity: 1; }
+
+  to {
+    opacity: .2; } }
+
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -124,6 +159,12 @@ a {
     transform-style: preserve-3d;
     cursor: pointer;
     z-index: 10; }
+  .projects #oversight #oversight_sight .targeted {
+    -webkit-animation: opaqr 2s linear 0s infinite alternate;
+    -moz-animation: opaqr 2s linear 0s infinite alternate;
+    -ms-animation: opaqr 2s linear 0s infinite alternate;
+    -o-animation: opaqr 2s linear 0s infinite alternate;
+    animation: opaqr 2s linear 0s infinite alternate; }
   .projects #oversight #oversight_sight .cube div {
     display: block;
     position: absolute;
@@ -225,6 +266,49 @@ a {
       position: relative;
       float: left;
       margin: 9px 0px 8px 0px; }
+    .projects .details .info div #info_category {
+      position: absolute !important;
+      left: 116px;
+      height: 20px;
+      width: 57%;
+      margin: 9px 0px 8px 0px;
+      overflow: hidden;
+      border-top: 0px;
+      border-right: 0px;
+      border-bottom: 1px #b3b3b3 solid;
+      border-left: 1px #b3b3b3 solid;
+      z-index: 10; }
+      .projects .details .info div #info_category #info_category_open {
+        position: absolute;
+        top: 5px;
+        right: 0px;
+        cursor: pointer;
+        height: 10px;
+        width: 18px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url(../img/opener.png);
+        z-index: 10; }
+      .projects .details .info div #info_category #info_category_carousel {
+        position: absolute; }
+        .projects .details .info div #info_category #info_category_carousel li {
+          width: 100%;
+          height: 18px;
+          display: block;
+          position: relative;
+          float: left;
+          margin: 1px 0px 0px 1px; }
+    .projects .details .info div .open {
+      box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.5);
+      background-color: white; }
+      .projects .details .info div .open #info_category_open {
+        top: 0px !important;
+        height: 18px !important;
+        background-image: url(../img/kill.png) !important; }
+      .projects .details .info div .open li:hover {
+        color: white;
+        background-color: rgba(255, 0, 0, 0.7);
+        cursor: pointer; }
 .projects .details .coords {
   border-bottom: 1px #b3b3b3 solid;
   height: 123px; }
@@ -246,11 +330,21 @@ a {
       position: relative;
       float: left;
       margin: 9px 0px 8px 0px; }
+    .projects .details .coords div .coord_button {
+      height: 10px;
+      top: 15px;
+      position: absolute;
+      cursor: pointer; }
+    .projects .details .coords div .cb_down {
+      right: 15px; }
+    .projects .details .coords div .cb_up {
+      right: 33px; }
 .projects .details .shapeshifter_collect #shapeshifterhopper {
   position: relative;
   float: left;
   width: 100%;
-  padding: 7px 0px 0px 10px; }
+  padding: 7px 0px 0px 10px;
+  overflow: scroll; }
   .projects .details .shapeshifter_collect #shapeshifterhopper .loading {
     opacity: .8; }
   .projects .details .shapeshifter_collect #shapeshifterhopper img {
@@ -259,9 +353,9 @@ a {
     width: 137px;
     margin: 0px 10px 10px 0px; }
 .projects .cells .cell_top {
-  height: 60px;
+  height: 56px;
   border-bottom: 1px #b3b3b3 solid;
-  top: 10px;
+  top: 9px;
   position: relative; }
   .projects .cells .cell_top #cell_add {
     width: 46px;

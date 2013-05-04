@@ -22,6 +22,7 @@
 * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+include('../../join/delicious.php');
 
 // Source image folder
 $path = '../img/shapeshift/t';
@@ -110,7 +111,11 @@ if($use_png_crush){
 echo "\nMoving to final destination...";
 $cmd2 = 'mv '.$path.'/'.$sprite_name.'.png '.$final_sprite_location.$sprite_name.'.png';
 exec($cmd2);
+
 echo " DONE.";
+
+mysql_query("insert into shapeshifter(object_key, img) values(".$projected.", 'img/shapeshift/".$escapedname."')");
+
 
 die("\n\nAll done.\n");
 

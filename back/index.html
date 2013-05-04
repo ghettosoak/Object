@@ -29,7 +29,14 @@
 						<h3>Info</h3>
 						<div><p>Name:</p> <input tabindex="1" type="text" id="info_name"><br /></div>
 						<div><p>Client:</p> <input tabindex="1" type="text" id="info_client"><br /></div>
-						<div><p>Category:</p> <input tabindex="1" type="text" id="info_category"><br /></div>
+						<div><p>Category:</p> 
+							<!-- <input tabindex="1" type="text" id="info_category"> -->
+							<div id="info_category">
+								<div id="info_category_open"></div>
+								<div id="info_category_carousel"></div>
+							</div>
+							<br />
+						</div>
 						<div><p>Date Launched:</p> <input tabindex="1" type="text" id="info_datelaunch"><br /></div>
 						<div><p>Total Hours:</p> <input tabindex="1" type="text" id="info_hours"><br /></div>
 						<div><p>Link:</p> <input tabindex="1" type="text" id="info_link"><br /></div>
@@ -37,8 +44,20 @@
 					</div>
 					<div class="coords">
 						<h3>Coordinates</h3>
-						<div><p>Y:</p> <input tabindex="1" type="text" id="coord_y"><br /></div>
-						<div><p>Z:</p> <input tabindex="1" type="text" id="coord_z"><br /></div>
+						<div id="coord_y_hold">
+							<p>Y:</p>
+							<input tabindex="1" type="text" class="coord_inp" id="coord_y">
+							<img src="img/down.png" class="coord_button cb_down" id="coord_y_down" />
+							<img src="img/up.png" class="coord_button cb_up" id="coord_y_up" />
+							<br />
+						</div>
+						<div id="coord_z_hold">
+							<p>Z:</p>
+							<input tabindex="1" type="text" class="coord_inp" id="coord_z">
+							<img src="img/down.png" class="coord_button cb_down" id="coord_z_down" />
+							<img src="img/up.png" class="coord_button cb_up" id="coord_z_up" />
+							<br />
+						</div>
 					</div>
 					<div class="shapeshifter_collect">
 						<h3>Shapeshifter</h3>
@@ -52,18 +71,6 @@
 						<h3>Cells</h3>
 					</div>
 					<div id="cell_put"></div>
-					<!-- <div>
-						<img src="img/cross.png" />
-						<textarea tabindex="16" class="kommentar_content"></textarea>
-					</div>
-					<div>
-						<img src="img/cross.png" />
-						<textarea tabindex="16" class="kommentar_content"></textarea>
-					</div>
-					<div>
-						<img src="img/cross.png" />
-						<textarea tabindex="16" class="kommentar_content"></textarea>
-					</div> -->
 				</div>
 			</div>
 

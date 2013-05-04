@@ -5,7 +5,7 @@ include('../../join/delicious.php');
 $upload_dir = '../img/cells/';
 $allowed_ext = array('jpg','jpeg','png','gif');
 
-$projector = $_REQUEST['projector'];
+$projector = $_REQUEST['projectnumbercell'];
 
 if(strtolower($_SERVER['REQUEST_METHOD']) != 'post'){
 	exit_status('Error! Wrong HTTP method!');
