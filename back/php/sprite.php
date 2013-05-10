@@ -25,13 +25,13 @@
 include('../../join/delicious.php');
 
 // Source image folder
-$path = '../img/shapeshift/t';
+$path = '../img/shapeshift/put23/';
 
 // Internet path
 $www_path = '/images/';
 
 // Sprite image name
-$sprite_name = 'sass_sprite';
+$sprite_name = 'sass_sprite3';
 
 // Location for the generated sprite image
 $final_sprite_location = '../img/shapeshift/t/';
@@ -114,7 +114,7 @@ exec($cmd2);
 
 echo " DONE.";
 
-mysql_query("insert into shapeshifter(object_key, img) values(".$projected.", 'img/shapeshift/".$escapedname."')");
+// mysql_query("insert into shapeshifter(object_key, img) values(".$projected.", 'img/shapeshift/".$escapedname."')");
 
 
 die("\n\nAll done.\n");

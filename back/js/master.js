@@ -10,13 +10,19 @@ catoffset, categoryheight = 0, catopen = false, firstly = true, editingcount = 0
 var counter = 1, cubecounter = 1;
 var $ovr_sight;
 var slide = new slider();
+var categ = [];
 var presence = {};
-var presenceorig = {};
-var presenceedit = {};
+// var presenceorig = {};
+// var presenceedit = {};
+var changed = {};
 var $windowpane = $(window);
+var wpheight, wpwidth;
+
 
 $(document).ready(function(){
-	if ($.browser.msie && parseInt($.browser.version, 10) < 7) $('body').supersleight({shim: 'img/transparent.gif'});
+
+	wpheight = $windowpane.height();
+	wpwidth = $windowpane.width();
 	
 	$ovr_sight = $('#oversight_sight')
 
@@ -25,8 +31,19 @@ $(document).ready(function(){
 
 	$('#cell_put').css('height',$windowpane.height()-60)
 	$('#shapeshifterhopper').css('height', $windowpane.height()-$('.info').height()-$('.coords').height()-18)
+	$('#info_category').css('left', function(){
+		return $(this).parent().prev().find('input').position().left;
+	})
 
 	// b_workload(23)
+	// b_workload(22)
+
+	var timer = 1000
+
+	setTimeout(function(){$('#c20').click()},timer*1)
+	setTimeout(function(){$('#c20').click()},timer*2)
+	// setTimeout(function(){$('#c19').click()},timer*3)
+
 
 	// setTimeout(function(){
 	// 	separated = true;
@@ -210,7 +227,8 @@ function cubedescender(){
 		dataType:'JSON',
 		url: "php/cubepull.php",
 	}).done( function(cube){
-		cubedescend = cube
+		cubedescend = cube.cubes
+		categ = cube.categories
 		cubegenerator(cubedescend)
 	})
 }
@@ -332,7 +350,8 @@ function slider(){
 }
 
 function b_workload(er){
-	presenceedit[currentlyediting] = presence
+	// if (_.size(presenceorig) > 0) presenceedit[currentlyediting] = presence
+
 	currentlyediting = er;
 
 	$.ajax({
@@ -342,9 +361,9 @@ function b_workload(er){
 		url: "php/projection.php"
 	}).done(function(thisproj){
 		console.log(thisproj)
-		presenceorig[thisproj.data.object_id] = thisproj;
+		// presenceorig[thisproj.data.object_id] = thisproj;
 
-		presence = thisproj;
+		presence[thisproj.data.object_id] = thisproj;
 
 		$('#info_name').val(thisproj.data.name)
 		$('#info_client').val(thisproj.data.client)
@@ -355,12 +374,12 @@ function b_workload(er){
 		$('#info_text').val(thisproj.data.link)
 		$('#coord_y').val(thisproj.data.coord_y)
 		$('#coord_z').val(thisproj.data.coord_z)
-		
-		$.each(thisproj.categories, function(l){
+
+		$.each(categ, function(l, m){
 			categoryheight += 19;
-			var categ = '<li class="cat_'+thisproj.categories[l]+'" data-category="'+thisproj.categories[l]+'">'+thisproj.categories[l]+'</li>';
-			$.tmpl( categ , thisproj.categories[l]).appendTo( "#info_category_carousel" );
-			if (l == thisproj.categories.length-1){
+			var catego = '<li class="cat_'+m+'" data-category="'+m+'">'+m+'</li>';
+			$.tmpl( catego , m).appendTo( "#info_category_carousel" );
+			if (l == categ.length-1){
 				catoffset = $('.cat_'+thisproj.data.category).position().top
 				$('#info_category_carousel').css('top', -catoffset)
 				categorical()
@@ -368,7 +387,7 @@ function b_workload(er){
 		});
 
 		$.each(thisproj.shapeshifters, function(s){
-			var shapeshifted = '<img src="'+thisproj.shapeshifters[s]+'" />'
+			var shapeshifted = '<img src="'+thisproj.shapeshifters[s].img+'" data-shapnum="'+thisproj.shapeshifters[s].shapeshifter_id+'" style="width:'+Math.floor((((wpwidth*.85)*.3333333)/2)-17)+'px;"/>'
 			$.tmpl( shapeshifted , thisproj.shapeshifters[s]).appendTo( "#shapeshifterhopper" );
 		});
 
@@ -464,7 +483,7 @@ function shapeshifterpower(){
 		},
 		
 		uploadStarted:function(i, file, len){
-			var preview = $('<span><img /></span>'), 
+			var preview = $('<span><img style="width:'+Math.floor((((wpwidth*.85)*.3333333)/2)-17)+'px;"/></span>'), 
 			image = $('img', preview);
 			var reader = new FileReader();
 			
@@ -497,9 +516,9 @@ function categorical(){
 	});
 
 	$('#info_category_carousel').on('click', 'li', function(){
-		if ($(this).data('category') != presence.data.category){
-			presence.data.category = $(this).data('category');
-			cubeset('x', presence.categories.indexOf($(this).data('category')));
+		if ($(this).data('category') != presence[currentlyediting].data.category){
+			presence[currentlyediting].data.category = $(this).data('category'); // why is this setting presenceorig? it shouldn't...
+			cubeset('x', categ.indexOf($(this).data('category')));
 			catopen = false;
 			catoffset = $('.cat_'+$(this).data('category')).position().top;
 			$('#info_category').animate({'top':0, 'height':20}, function(){ $(this).removeClass('open') });
@@ -519,10 +538,10 @@ $('.coord_button').on('click', function(){
 
 	if ($(this).parent().attr('id') == 'coord_y_hold'){
 		cubeset('y', pos);
-		presence.data.coord_y = pos;
+		presence[currentlyediting].data.coord_y = pos;
 	}else{ // 'coord_z_hold'
 		cubeset('z', pos);
-		presence.data.coord_z = pos;
+		presence[currentlyediting].data.coord_z = pos;
 	}
 });
 
@@ -539,10 +558,10 @@ $('.coord_inp').on({
 		var leaving = $(this).val()
 		if ($(this).attr('id') == 'coord_y'){
 			cubeset('y', leaving);
-			presence.data.coord_y = leaving;
+			presence[currentlyediting].data.coord_y = leaving;
 		}else{ // 'coord_z'
 			cubeset('z', leaving);
-			presence.data.coord_z = leaving;
+			presence[currentlyediting].data.coord_z = leaving;
 		}
 	}
 });
@@ -557,6 +576,79 @@ function cubeset(dimension, where){
 $('#save').on('click', function(){
 
 })
+
+function uploader(){
+
+	// presenceedit[currentlyediting] = presence
+
+	// for (var a_cube in presenceorig){ // object_id
+	// 	var tehcube = presenceorig[a_cube]
+	// 	for (var attri_data in tehcube.data){
+	// 		// console.log(tehcube.data[attri_data])
+	// 		console.log(presenceorig[a_cube].data[attri_data])
+	// 		if ((presenceorig[a_cube].data[attri_data]) != (presenceedit[a_cube].data[attri_data])) changed[a_cube].data[attri_data] = presenceedit[a_cube].data[attri_data]
+	// 	}
+
+	// 	for (var attri_shapeshifters in tehcube.shapeshifters){
+	// 		// console.log(tehcube.shapeshifters[attri_shapeshifters])
+	// 	}
+
+	// 	for (var attri_cells in tehcube.cells){
+	// 		var tehcell = tehcube.cells[attri_cells]
+	// 		for (var cell_attribute in tehcell){
+	// 			// console.log(tehcell[cell_attribute])
+	// 		}
+	// 	}
+	// }
+
+
+	// for (var a_cube in presence){ // object_id
+
+		// I know, I know – there's a better way to do this. I'm learning.
+
+		presence[currentlyediting].data.name = $('#info_name').val()
+		presence[currentlyediting].data.client = $('#info_client').val()
+		presence[currentlyediting].data.datelaunch = $('#info_datelaunch').val()
+		presence[currentlyediting].data.hours = $('#info_hours').val()
+		presence[currentlyediting].data.link = $('#info_link').val()
+		presence[currentlyediting].data.text = $('#info_text').val()
+
+
+		var cellnr = [];
+		var celltxt = [];
+		var cellcomplet = {};
+
+		$('#cell_put').children('div').each(function(e){
+			$that = $(this)
+			cellnr[e] = $that.attr('class').split('_')[1]
+			celltxt[e] = $that.find('textarea').val()
+
+			if (e == $('#cell_put').children('div').size()-1){
+				cellcomplet = _.object(cellnr, celltxt)
+			}
+		});
+
+
+		var shapeshnr = [];
+
+		$('#shapeshifterhopper').children('img').each(function(e){
+			shapeshnr[e] = $(this).data('shapnum')
+		});
+
+
+		$.ajax({
+			type: "POST",
+			dataType:'JSON',
+			data: {
+				number:currentlyediting,
+				data:presence[currentlyediting].data,
+				shapeshifters:shapeshnr,
+				celltext:cellcomplet
+			},
+			url: "php/heavylifting.php"
+		})
+	// }
+}
 
 
 

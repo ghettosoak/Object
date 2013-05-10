@@ -12,12 +12,16 @@ if(strtolower($_SERVER['REQUEST_METHOD']) != 'post'){
 }
 
 if(array_key_exists('shap',$_FILES) && $_FILES['shap']['error'] == 0 ){
+
+	if (!is_dir($upload_dir.$projected)) {
+	    mkdir($upload_dir.$projected);         
+	}
 	
 	$shap = $_FILES['shap'];
 
 	$escapedname = str_replace(' ', '%20', $shap['name']);
 
-	mysql_query("insert into shapeshifter_individual(object_key, img) values(".$projected.", 'img/shapeshift/".$escapedname."')");
+	mysql_query("insert into shapeshifter_individual(object_key, img) values(".$projected.", 'img/shapeshift/".$projected."/".$escapedname."')");
 
 	if(!in_array(get_extension($shap['name']),$allowed_ext)){
 		exit_status('Only '.implode(',',$allowed_ext).' files are allowed!');
@@ -26,7 +30,7 @@ if(array_key_exists('shap',$_FILES) && $_FILES['shap']['error'] == 0 ){
 	$line = implode('		', array( date('r'), $_SERVER['REMOTE_ADDR'], $shap['size'], $shap['name']));
 	file_put_contents('log.txt', $line.PHP_EOL, FILE_APPEND);		
 
-	if(move_uploaded_file($shap['tmp_name'], $upload_dir.$shap['name'])){
+	if(move_uploaded_file($shap['tmp_name'], $upload_dir."/".$projected."/".$shap['name'])){
 		exit_status('File was uploaded successfuly!');
 	}
 }

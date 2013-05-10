@@ -241,7 +241,8 @@ a{
 				}
 				#info_category{
 					position: absolute !important;
-					left:116px;
+					// left:116px;
+					// right:19px;
 					height:20px;
 					width:57%;
 					margin: 9px 0px 8px 0px;
@@ -323,8 +324,12 @@ a{
 		}
 		.shapeshifter_collect{
 			h3{
-				// @include prfl;
-				// width:100%;
+				span{
+					position: absolute;
+					margin: 1px 0px 0px 5px;
+					font-family: u47;
+					font-size: 13px;
+				}
 			}
 			#shapeshifterhopper{
 				@include prfl;
@@ -334,7 +339,7 @@ a{
 				.loading{opacity:.8;}
 				img{
 					@include prfl;
-					width:137px;
+					width:177px;
 					margin:0px 10px 10px 0px;
 				}
 			}

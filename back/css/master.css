@@ -268,7 +268,6 @@ a {
       margin: 9px 0px 8px 0px; }
     .projects .details .info div #info_category {
       position: absolute !important;
-      left: 116px;
       height: 20px;
       width: 57%;
       margin: 9px 0px 8px 0px;
@@ -339,6 +338,11 @@ a {
       right: 15px; }
     .projects .details .coords div .cb_up {
       right: 33px; }
+.projects .details .shapeshifter_collect h3 span {
+  position: absolute;
+  margin: 1px 0px 0px 5px;
+  font-family: u47;
+  font-size: 13px; }
 .projects .details .shapeshifter_collect #shapeshifterhopper {
   position: relative;
   float: left;
@@ -350,7 +354,7 @@ a {
   .projects .details .shapeshifter_collect #shapeshifterhopper img {
     position: relative;
     float: left;
-    width: 137px;
+    width: 177px;
     margin: 0px 10px 10px 0px; }
 .projects .cells .cell_top {
   height: 56px;
