@@ -52,6 +52,13 @@ function jsonReadable($json, $html=FALSE) {
     return $result; 
 } 
 
+function proper_array_diff($a, $b) {
+    $map = $out = array();
+    foreach($a as $val) $map[$val] = 1;
+    foreach($b as $val) unset($map[$val]);
+    return array_keys($map);
+}
+
 mysql_connect("localhost", "root", "root");
 mysql_select_db("ob.ject");
 

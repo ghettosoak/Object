@@ -22,19 +22,19 @@
 * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-include('../../join/delicious.php');
+// include('../../join/delicious.php');
 
 // Source image folder
-$path = '../img/shapeshift/put23/';
+// $path = '../img/shapeshift/23/';
 
 // Internet path
 $www_path = '/images/';
 
 // Sprite image name
-$sprite_name = 'sass_sprite3';
+// $sprite_name = 'sass_sprite3';
 
 // Location for the generated sprite image
-$final_sprite_location = '../img/shapeshift/t/';
+// $final_sprite_location = '../img/shapeshift/t/';
 
 // Location and name for the generated sass mixin file
 // $markup_mixin_file = '../img/shapeshift/t';
@@ -117,7 +117,8 @@ echo " DONE.";
 // mysql_query("insert into shapeshifter(object_key, img) values(".$projected.", 'img/shapeshift/".$escapedname."')");
 
 
-die("\n\nAll done.\n");
+// die("\n\nAll done.\n");
+echo "\n\nSPRITE SUCCESSFULLY CREATED\n\n";
 
 
 // Helper functions
@@ -172,3 +173,5 @@ function image_gd_close($res, $destination, $extension) {
     return $close_func($res, $destination);
   }
 }
+
+?>

@@ -21,7 +21,7 @@ if(array_key_exists('shap',$_FILES) && $_FILES['shap']['error'] == 0 ){
 
 	$escapedname = str_replace(' ', '%20', $shap['name']);
 
-	mysql_query("insert into shapeshifter_individual(object_key, img) values(".$projected.", 'img/shapeshift/".$projected."/".$escapedname."')");
+	mysql_query("insert into shapeshifter_individual(object_key, img) values(".$projected.", 'img/shapeshift/".$projected."/new_".$escapedname."')");
 
 	if(!in_array(get_extension($shap['name']),$allowed_ext)){
 		exit_status('Only '.implode(',',$allowed_ext).' files are allowed!');
@@ -31,7 +31,49 @@ if(array_key_exists('shap',$_FILES) && $_FILES['shap']['error'] == 0 ){
 	file_put_contents('log.txt', $line.PHP_EOL, FILE_APPEND);		
 
 	if(move_uploaded_file($shap['tmp_name'], $upload_dir."/".$projected."/".$shap['name'])){
-		exit_status('File was uploaded successfuly!');
+
+		$image = imagecreatefromjpeg($upload_dir."/".$projected."/".$shap['name']);
+		$filename = $upload_dir."/".$projected."/new_".$shap['name'];
+
+		$thumb_width = 351;
+		$thumb_height = 351;
+
+		$width = imagesx($image);
+		$height = imagesy($image);
+
+		$original_aspect = $width / $height;
+		$thumb_aspect = $thumb_width / $thumb_height;
+
+		if ( $original_aspect >= $thumb_aspect )
+		{
+		   // If image is wider than thumbnail (in aspect ratio sense)
+		   $new_height = $thumb_height;
+		   $new_width = $width / ($height / $thumb_height);
+		}
+		else
+		{
+		   // If the thumbnail is wider than the image
+		   $new_width = $thumb_width;
+		   $new_height = $height / ($width / $thumb_width);
+		}
+
+		$thumb = imagecreatetruecolor( $thumb_width, $thumb_height );
+
+		// Resize and crop
+		imagecopyresampled($thumb,
+		                   $image,
+		                   0 - ($new_width - $thumb_width) / 2, // Center the image horizontally
+		                   0 - ($new_height - $thumb_height) / 2, // Center the image vertically
+		                   0, 0,
+		                   $new_width, $new_height,
+		                   $width, $height);
+		imagejpeg($thumb, $filename, 80);
+
+		// exit_status('Uploaded & Cropped!');
+		$thelatest = mysql_query('select shapeshifter_id from shapeshifter_individual order by shapeshifter_id desc limit 1');
+		$thelatestnumber = mysql_fetch_array($thelatest, MYSQL_NUM);
+		echo json_encode(array('status'=>'Uploaded & Cropped!', 'number'=>$thelatestnumber[0]));
+		exit;
 	}
 }
 

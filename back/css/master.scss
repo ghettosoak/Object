@@ -192,6 +192,8 @@ a{
 			.cube .top { @include transform(rotateX(   90deg ) translateZ( $offset )); }
 			.cube .bottom { @include transform(rotateX(  -90deg ) translateZ( $offset )); }
 
+			// .newcube div
+
 			.r1 div{background-color:rgba(255,0,0,.2);}
 			.r2 div{background-color:rgba(0,255,0,.2);}
 			.r3 div{background-color:rgba(0,0,255,.2);}
@@ -204,6 +206,16 @@ a{
 			.r10 div{background-color:rgba(0,0,0,.2);}
 			.r11 div{background-color:rgba(0,0,0,.2);}
 			.r12 div{background-color:rgba(0,0,0,.2);}
+
+			.name{
+			    text-align:left;
+			    opacity:1;
+			    cursor:pointer;
+			    p{
+			        font-size: 40px;
+			        @include transform(scale3d(0.5, 0.5, 1));
+			    }
+			}
 		}
 	}
 	.details{
@@ -337,10 +349,22 @@ a{
 				padding:7px 0px 0px 10px;
 				overflow:scroll;
 				.loading{opacity:.8;}
-				img{
+				div{
 					@include prfl;
-					width:177px;
+					overflow:hidden;
 					margin:0px 10px 10px 0px;
+					img{position: absolute;}
+					.shap_kill{
+						position: absolute;
+						top:0px;
+						left:0px;
+						width:30px !important;
+						z-index: 10;
+						margin:0 !important;
+						display:none;
+						cursor: pointer;
+					}
+					&:hover .shap_kill{display:block;}
 				}
 			}
 		}
@@ -394,7 +418,7 @@ a{
 					}
 					#img_blank{margin:0px !important;}
 					.loading{opacity:.8;}
-					.kill{
+					.cell_kill{
 						position: absolute;
 						top:0px;
 						left:0px;
@@ -404,7 +428,7 @@ a{
 						display:none;
 						cursor: pointer;
 					}
-					&:hover .kill{display:block;}
+					&:hover .cell_kill{display:block;}
 				}
 
 				textarea{

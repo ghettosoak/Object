@@ -235,6 +235,17 @@ a {
     background-color: rgba(0, 0, 0, 0.2); }
   .projects #oversight #oversight_sight .r12 div {
     background-color: rgba(0, 0, 0, 0.2); }
+  .projects #oversight #oversight_sight .name {
+    text-align: left;
+    opacity: 1;
+    cursor: pointer; }
+    .projects #oversight #oversight_sight .name p {
+      font-size: 40px;
+      -webkit-transform: scale3d(0.5, 0.5, 1);
+      -moz-transform: scale3d(0.5, 0.5, 1);
+      -ms-transform: scale3d(0.5, 0.5, 1);
+      -o-transform: scale3d(0.5, 0.5, 1);
+      transform: scale3d(0.5, 0.5, 1); }
 .projects .details > div {
   position: relative;
   float: left;
@@ -351,11 +362,24 @@ a {
   overflow: scroll; }
   .projects .details .shapeshifter_collect #shapeshifterhopper .loading {
     opacity: .8; }
-  .projects .details .shapeshifter_collect #shapeshifterhopper img {
+  .projects .details .shapeshifter_collect #shapeshifterhopper div {
     position: relative;
     float: left;
-    width: 177px;
+    overflow: hidden;
     margin: 0px 10px 10px 0px; }
+    .projects .details .shapeshifter_collect #shapeshifterhopper div img {
+      position: absolute; }
+    .projects .details .shapeshifter_collect #shapeshifterhopper div .shap_kill {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 30px !important;
+      z-index: 10;
+      margin: 0 !important;
+      display: none;
+      cursor: pointer; }
+    .projects .details .shapeshifter_collect #shapeshifterhopper div:hover .shap_kill {
+      display: block; }
 .projects .cells .cell_top {
   height: 56px;
   border-bottom: 1px #b3b3b3 solid;
@@ -404,7 +428,7 @@ a {
         margin: 0px !important; }
       .projects .cells #cell_put div .cell_img_hold .loading {
         opacity: .8; }
-      .projects .cells #cell_put div .cell_img_hold .kill {
+      .projects .cells #cell_put div .cell_img_hold .cell_kill {
         position: absolute;
         top: 0px;
         left: 0px;
@@ -413,7 +437,7 @@ a {
         margin: 0 !important;
         display: none;
         cursor: pointer; }
-      .projects .cells #cell_put div .cell_img_hold:hover .kill {
+      .projects .cells #cell_put div .cell_img_hold:hover .cell_kill {
         display: block; }
     .projects .cells #cell_put div textarea {
       position: relative;
