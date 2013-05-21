@@ -1108,48 +1108,62 @@ function kill(who, where){
 
 function newcube(){
 
-	var element = document.createElement( 'div' );
-	element.className = 'cube newcube';
-	element.id = 'c'+counter.toString();
-	// element.setAttribute('data-callmemaybe', i)
-	// element.setAttribute('data-number', numberexact.toString())
-	element.setAttribute('data-array', counter.toString())
-	element.setAttribute('data-cube', cubecounter.toString())
-	// element.setAttribute('data-row', rowcount.toString())
-	counter++;	
-	cubecounter++;
-	// numberexact++
+	$.ajax({
+		type: "POST",
+		url: "php/newcube.php"
+	}).done(function(e){
+		console.log(e)
 
-	var front = document.createElement('div');
-	front.className = 'front';
-	element.appendChild(front);
+		var element = document.createElement( 'div' );
+		element.className = 'cube newcube';
+		element.id = 'c'+counter.toString();
+		// element.setAttribute('data-callmemaybe', i)
+		// element.setAttribute('data-number', numberexact.toString())
+		element.setAttribute('data-array', counter.toString())
+		element.setAttribute('data-cube', cubecounter.toString())
+		// element.setAttribute('data-row', rowcount.toString())
+		counter++;	
+		cubecounter++;
+		// numberexact++
 
-	var back = document.createElement('div');
-	back.className = 'back';
-	element.appendChild(back);
+		var front = document.createElement('div');
+		front.className = 'front';
+		element.appendChild(front);
 
-	var right = document.createElement('div');
-	right.className = 'right';
-	element.appendChild(right);
+		var back = document.createElement('div');
+		back.className = 'back';
+		element.appendChild(back);
 
-	var left = document.createElement('div');
-	left.className = 'left';
-	element.appendChild(left);
+		var right = document.createElement('div');
+		right.className = 'right';
+		element.appendChild(right);
 
-	var top = document.createElement('div');
-	top.className = 'top';
-	element.appendChild(top);
+		var left = document.createElement('div');
+		left.className = 'left';
+		element.appendChild(left);
 
-	var bottom = document.createElement('div');
-	bottom.className = 'bottom';
-	element.appendChild(bottom);
+		var top = document.createElement('div');
+		top.className = 'top';
+		element.appendChild(top);
 
-	var object = new THREE.CSS3DObject( element );
-	// object.position.x = (((rowcount)-(Math.floor(_.size(receive))/2))*50)-25;
-	object.position.x = 0;
-	object.position.y = 300;
-	object.position.z = 0;
-	scene.add( object );
+		var bottom = document.createElement('div');
+		bottom.className = 'bottom';
+		element.appendChild(bottom);
+
+		var object = new THREE.CSS3DObject( element );
+		// object.position.x = (((rowcount)-(Math.floor(_.size(receive))/2))*50)-25;
+		object.position.x = categ.length*50;
+		object.position.y = 300;
+		object.position.z = 0;
+		scene.add( object );
+
+		$('.newcube').addClass('targeted')
+
+		presence = {}
+		presence[e.number] = {cells:{}, data:{category: "", client: "", coord_y: 300, coord_z: 0, date_launched: "", link: "", name: "", object_id: "", project_text: "", total_hours: ""}, shapeshifters:{}}
+
+	})
+	
 
 }
 
