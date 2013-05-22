@@ -574,25 +574,38 @@ a {
   border-radius: 150px;
   margin: auto;
   position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003482}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003483}}
   .side #save p {
     padding-top: 20px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003484}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003490}}
 .side .switcher {
   position: relative;
   float: left;
   top: 30%;
   margin: auto;
   width: 100%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003489}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003495}}
   .side .switcher div {
     height: 111px;
     width: 111px;
     border-radius: 150px;
     position: relative;
     margin: auto; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003495}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003501}}
     .side .switcher div p {
       padding-top: 50px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003512}}
+  .side .switcher #switch_03 div {
+    height: 60px;
+    width: 60px;
+    top: 38px;
+    background-color: blue;
+    color: white;
+    border-radius: 150px;
+    margin: auto;
+    position: relative; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003521}}
+    .side .switcher #switch_03 div p {
+      padding-top: 20px; }
 
 @-moz-document url-prefix() {}

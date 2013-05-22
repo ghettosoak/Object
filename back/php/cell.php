@@ -6,6 +6,7 @@ $upload_dir = '../img/cells/';
 $allowed_ext = array('jpg','jpeg','png','gif');
 
 $projector = $_REQUEST['projectnumbercell'];
+$microprojector = $_REQUEST['cellnumbercell'];
 
 if(strtolower($_SERVER['REQUEST_METHOD']) != 'post'){
 	exit_status('Error! Wrong HTTP method!');
@@ -17,13 +18,14 @@ if(array_key_exists('pic',$_FILES) && $_FILES['pic']['error'] == 0 ){
 
 	$escapedname = str_replace(' ', '%20', $pic['name']);
 
-	mysql_query("insert into cells(object_key, img) values(".$projector.", 'img/cells/".$escapedname."')");
+	//mysql_query("insert into cells(object_key, img) values(".$projector.", 'img/cells/".$escapedname."')");
+	mysql_query("update cells set object_key =".$projector.", img = 'img/cells/".$escapedname."' where cell_id = ".$microprojector);
+
+	// mysql_query("update cells set object_key = $projector, img = '' where cell_id = $microprojector");
 
 	if(!in_array(get_extension($pic['name']),$allowed_ext)){
 		exit_status('Only '.implode(',',$allowed_ext).' files are allowed!');
 	}
-
-	
 
 	$line = implode('		', array( date('r'), $_SERVER['REMOTE_ADDR'], $pic['size'], $pic['name']));
 	file_put_contents('log.txt', $line.PHP_EOL, FILE_APPEND);		

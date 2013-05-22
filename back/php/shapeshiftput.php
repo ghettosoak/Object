@@ -23,6 +23,8 @@ if(array_key_exists('shap',$_FILES) && $_FILES['shap']['error'] == 0 ){
 
 	mysql_query("insert into shapeshifter_individual(object_key, img) values(".$projected.", 'img/shapeshift/".$projected."/new_".$escapedname."')");
 
+	$thelatestnumber = mysql_insert_id();
+
 	if(!in_array(get_extension($shap['name']),$allowed_ext)){
 		exit_status('Only '.implode(',',$allowed_ext).' files are allowed!');
 	}
@@ -44,14 +46,11 @@ if(array_key_exists('shap',$_FILES) && $_FILES['shap']['error'] == 0 ){
 		$original_aspect = $width / $height;
 		$thumb_aspect = $thumb_width / $thumb_height;
 
-		if ( $original_aspect >= $thumb_aspect )
-		{
+		if ( $original_aspect >= $thumb_aspect ){
 		   // If image is wider than thumbnail (in aspect ratio sense)
 		   $new_height = $thumb_height;
 		   $new_width = $width / ($height / $thumb_height);
-		}
-		else
-		{
+		}else{
 		   // If the thumbnail is wider than the image
 		   $new_width = $thumb_width;
 		   $new_height = $height / ($width / $thumb_width);
@@ -69,10 +68,9 @@ if(array_key_exists('shap',$_FILES) && $_FILES['shap']['error'] == 0 ){
 		                   $width, $height);
 		imagejpeg($thumb, $filename, 80);
 
-		// exit_status('Uploaded & Cropped!');
-		$thelatest = mysql_query('select shapeshifter_id from shapeshifter_individual order by shapeshifter_id desc limit 1');
-		$thelatestnumber = mysql_fetch_array($thelatest, MYSQL_NUM);
-		echo json_encode(array('status'=>'Uploaded & Cropped!', 'number'=>$thelatestnumber[0]));
+		unlink($upload_dir."/".$projected."/".$shap['name']);
+
+		echo json_encode(array('status'=>'Uploaded & Cropped!', 'number'=>$thelatestnumber));
 		exit;
 	}
 }

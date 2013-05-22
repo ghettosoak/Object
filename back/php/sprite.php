@@ -22,19 +22,25 @@
 * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-// include('../../join/delicious.php');
+//DEBUG
 
 // Source image folder
-// $path = '../img/shapeshift/23/';
-
-// Internet path
-$www_path = '/images/';
+// $path = '../img/shapeshift/t2/';
 
 // Sprite image name
 // $sprite_name = 'sass_sprite3';
 
 // Location for the generated sprite image
-// $final_sprite_location = '../img/shapeshift/t/';
+// $final_sprite_location = '../img/shapeshift/';
+
+
+
+
+
+// include('../../join/delicious.php');
+
+// Internet path
+$www_path = '/images/';
 
 // Location and name for the generated sass mixin file
 // $markup_mixin_file = '../img/shapeshift/t';
@@ -96,29 +102,29 @@ foreach( $images as $file_name => $file_info ){
 // fclose($markup_file);
 // echo " DONE.";
 
-echo "\nCombining images...";
+array_push($watcher, "Combining images...");
 generate_sprite_png($images_positioned, $path, $x, $y, $sprite_name);
-echo " DONE.";
+array_push($watcher, "DONE.");
 
 if($use_png_crush){
-    echo "\nCrushing png...";
+    echo "Crushing png...";
     $cmd = 'pngcrush -rem alla -brute -reduce '.$path.'/'.$sprite_name.'.png '.$path.'/'.$sprite_name.'_crushed.png';
     $cmd .= ' && rm  '.$path.'/'.$sprite_name.'.png && mv '.$path.'/'.$sprite_name.'_crushed.png '.$path.'/'.$sprite_name.'.png';
     exec($cmd);
-    echo " DONE.";
+    echo "DONE.";
 }
 
-echo "\nMoving to final destination...";
+array_push($watcher, "Moving to final destination...");
 $cmd2 = 'mv '.$path.'/'.$sprite_name.'.png '.$final_sprite_location.$sprite_name.'.png';
 exec($cmd2);
 
-echo " DONE.";
+array_push($watcher, "DONE.");
 
 // mysql_query("insert into shapeshifter(object_key, img) values(".$projected.", 'img/shapeshift/".$escapedname."')");
 
 
 // die("\n\nAll done.\n");
-echo "\n\nSPRITE SUCCESSFULLY CREATED\n\n";
+array_push($watcher, "SPRITE SUCCESSFULLY CREATED");
 
 
 // Helper functions

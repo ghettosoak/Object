@@ -367,8 +367,9 @@ b.run=function(h){d.each(e,function(f,l){a[l]=j(c[l],i,h)})}}}})(jQuery);
 //like something you see, but can't read this unholy mess? drop me a line at (mif)[at](awe)[minus](schaffhausen)[dot](com)
 
 var isMouseDown = false, radious = 1600, theta = -90, onMouseDownTheta = -90, phi = 60, onMouseDownPhi = 60, onMouseDownPosition,
-onMouseDownPosition, previewed = false, separated = false, trow, tref, tnumber, tcube, tcallme, currentlyediting, cubearrayediting, newest = false,
-catinit, catoffset, categoryheight = 0, catopen = false, firstly = true, oneup = false, editingcount = 0;
+onMouseDownPosition, separated = false, trow, tref, tnumber, tcube, tcallme, currentlyediting, cubearrayediting, newest = false,
+catinit, catoffset, categoryheight = 0, catopen = false, firstly = true, oneup = false, workingwithanewcube = false, editingcount = 0, rowcount = 1;
+var rowarray = []
 var counter = 1, cubecounter = 1;
 var $ovr_sight;
 var slide = new slider();
@@ -401,6 +402,8 @@ $(document).ready(function(){
 		return $(this).parent().prev().find('input').position().left;
 	})
 
+	$('#switch_03').css('margin-top', (wpheight-447))
+
 	// b_workload(23)
 	// b_workload(22)
 
@@ -412,14 +415,13 @@ $(document).ready(function(){
 
 
 	// setTimeout(function(){
-	// 	separated = true;
+		// separated = true;
 	// 	$('#cell_add').click()
 	// },200)
 	
 })
 
 function init() {
-	// $('#oversight_sight').css({'top': ($windowpane.height()-672)/2, 'left':($windowpane.width()-1024)/2})
 	
 	scene = new THREE.Scene();
 
@@ -437,15 +439,12 @@ function init() {
 	renderer.setSize( $ovr_sight.width(), $ovr_sight.height() );
 	renderer.domElement.style.position = 'absolute';
 	renderer.domElement.style.top = 0;
-	// renderer.domElement.style.overflow = 'inherit';
-	$('#oversight_sight').append( renderer.domElement );
+	$ovr_sight.append( renderer.domElement );
 
 	//listeners
 	$ovr_sight.mousemove(onDocumentMouseMove);
 	$ovr_sight.mousedown(onDocumentMouseDown);
 	$ovr_sight.mouseup(onDocumentMouseUp);
-	// document.addEventListener( 'keydown', onDocumentKeyDown, false );
-	// document.addEventListener( 'keyup', onDocumentKeyUp, false );
 	// window.addEventListener( 'resize', onWindowResize, false );
 
 	//init.init
@@ -496,21 +495,19 @@ function onDocumentMouseUp( event ) {
 }
 
 function cube_ensure(activation){
-	$('.cube').on('click', function(){
-		// console.log('cube!')
+	$('.cube').on('click', function(){		
 
-		if (!previewed){
-			tcallme = $(this).data('callmemaybe')
-			trow = $(this).data('row');
-			tref = $(this).nextAll('.name').first().find('p').text();
-			tnumber = $(this).data('array');
-			tcube = $(this).data('cube');
-			twhich = $(this).data('number');
-		}
+		tcallme = $(this).data('callmemaybe')
+		trow = $(this).data('row');
+		tref = $(this).nextAll('.name').first().find('p').text();
+		tnumber = $(this).data('array');
+		tcube = $(this).data('cube');
+		twhich = $(this).data('number');
 
-		console.log(trow+' // '+tref+' // '+tnumber+' // '+tcube+' // '+twhich)
+		if (!separated){		
 
-		if (!previewed && !separated){
+			console.log(trow+' // '+tref+' // '+tnumber+' // '+tcube+' // '+twhich)
+
 			selectorgeneral(tcallme)
 
 			setTimeout(function(){
@@ -519,43 +516,17 @@ function cube_ensure(activation){
 			},500);
 		}
 
-		if (!previewed && separated && (trow == strow)){
+		if (separated && (trow == strow)){
 			$('#shapeshifterhopper, #cell_put').empty()
 
 			$(this).addClass('targeted').siblings().removeClass('targeted')
-			previewed = true;			
+			separated = true;
+			workingwithanewcube = false;
 
 			if (!oneup) b_workload(tcallme)
 			else uploader(false, tcallme)
 
 			cubearrayediting = tnumber;
-
-		}else if (!previewed && separated){
-			var directionalcorrection;
-			if (trow > strow) directionalcorrection = -50;
-			else directionalcorrection = 50;
-
-			$(this).siblings().each(function(e){
-				var $that = $(this)
-				var $dcube = $that.data('array')
-				var $drow = $that.data('row')
-				if (!$that.hasClass('r'+trow)){
-					if ($dcube < tnumber) slide.likethis($dcube, 'left', $drow)
-					else slide.likethis($dcube, 'right', $drow)
-				}else slide.likethis($dcube, 'center', $drow)
-			});
-			slide.likethis(tnumber, 'center', trow)
-
-			var tween = new TWEEN.Tween({
-				g: heylookatme.x
-			})
-			.to({ g: scene.children[tnumber].position.x + directionalcorrection }, 500)
-			.easing(TWEEN.Easing.Exponential.InOut)
-			.onUpdate(function () {
-				heylookatme.x = this.g
-				camera.lookAt(heylookatme)
-			})
-			.start();
 		}
 
 		strow = trow;
@@ -563,13 +534,12 @@ function cube_ensure(activation){
 	});
 
 	$ovr_sight.on('click',function(){
-		if (previewed) previewed = false;
+		// if (separated) separated = false;
 	});
 
 	if(activation){
 		selectorgeneral(activation)
 		$('.cube[data-callmemaybe="'+activation+'"]').addClass('targeted')
-		// oneup = false;
 	}	
 }
 
@@ -586,17 +556,6 @@ function cubedescender(activate){
 		if (!activate) cubegenerator(cubedescend)
 		else cubegenerator(cubedescend, activate)
 
-
-			// previewed = false;
-			// separated = false;
-			// setTimeout(function(){$('.cube[data-callmemaybe="'+activate+'"]').click()}, 1000)
-			// setTimeout(function(){$('.cube[data-callmemaybe="'+activate+'"]').click()}, 2000)
-
-		// 	setTimeout(function(){
-		// 		selectorgeneral(activate)
-		// 		oneup = false;
-		// 	},1000)
-		// }
 	})
 }
 
@@ -604,7 +563,7 @@ function selectorgeneral(orders){
 
 	var $activator = $('.cube[data-callmemaybe="'+orders+'"]')
 	var $act_row = $activator.data('row')
-	$activator.siblings().each(function(e){
+	$activator.siblings().not('.newcube').each(function(e){
 		var $that = $(this)
 		var $dcube = $that.data('array')
 		var $drow = $that.data('row')
@@ -615,7 +574,7 @@ function selectorgeneral(orders){
 	});
 	slide.likethis($activator.data('array'), 'center', $act_row)
 
-	var tween = new TWEEN.Tween({
+	var generalcamera = new TWEEN.Tween({
 		g: heylookatme.x
 	})
 	.to({ 
@@ -636,11 +595,10 @@ function cubegenerator(receive, active){
 	camera.lookAt(heylookatme)
 	console.log(receive)
 
-	var rowcount = 1, numberexact = 0;
+	var numberexact = 0;
 	for (var row in receive){
 		var cube = receive[row];
 		for (var i in cube){
-			// console.log(rowcount+' // '+_.size(receive)+' // '+i+' // '+_.size(cube))
 			var element = document.createElement( 'div' );
 			element.className = 'cube r'+rowcount.toString();
 			element.id = 'c'+counter.toString();
@@ -678,13 +636,10 @@ function cubegenerator(receive, active){
 			element.appendChild(bottom);
 
 			var object = new THREE.CSS3DObject( element );
-			// object.position.x = (((rowcount)-(Math.floor(_.size(receive))/2))*50)-25;
 			object.position.x = (rowcount-1)*50;
 			object.position.y = cube[i].y*50;
 			object.position.z = cube[i].z*50;
 			scene.add( object );
-
-			// origheight[counter-2] = cube[i].y*50;
 
 			if ((rowcount >= _.size(receive)) && (numberexact >= _.size(cube))) setTimeout(function(){cube_ensure(active)}, 100)
 		}
@@ -818,8 +773,8 @@ function b_workload(er){
 
 function animate() {
 	render();
-	requestAnimationFrame( animate );
 	TWEEN.update();
+	requestAnimationFrame( animate );
 }
 
 function render(){
@@ -827,54 +782,65 @@ function render(){
 }
 
 $('#cell_add').on('click', function(){
-	if ((separated) && (!newest)){
-		newest = true;
-		$('<div id="cell_new"><div class="cell_img_hold"><img src="img/cross.png" id="img_blank" /><img src="img/cell_kill.png" class="cell_kill" /></div><textarea tabindex="16" class="kommentar_content"></textarea></div>')
-		.appendTo('#cell_put')
-		.filedrop({
-			fallback_id: 'cell_new',
-			paramname:'pic',
-			
-			maxfiles: 1,
-			url: 'php/cell.php',
-			data:{ projectnumbercell: currentlyediting },
-			
-			uploadFinished:function(i,file,response){ $.data(file).removeClass('loading'); },
-			
-	    	error: function(err, file) { alert("it didn't work. here's why, maybe: "+err) },
-			
-			beforeEach: function(file){
-				if(!file.type.match(/^image\//)){
-					alert('images only kthx');
-					return false;
-				}
-			},
-			
-			uploadStarted:function(i, file, len){
-				var preview = $('<span><img class="loading" /></span>'), 
-				image = $('img', preview);
-				var reader = new FileReader();
-				
-				image.width = 100;
-				image.height = 100;
-				
-				reader.onload = function(e){ image.attr('src',e.target.result); };
-				reader.readAsDataURL(file);
-				$('#img_blank').replaceWith(preview);
-				$.data(file,preview);
-			},
-		
-			progressUpdated: function(i, file, progress) {
-				$.data(file).find('img').css('opacity',progress/100);
-			}
-		});
-	}
-	
-	$('#cell_put').animate({'scrollTop':10000}).children().last().delay(400).css('background-color','rgba(255,0,0,.1)').animate({backgroundColor:'rgba(255,255,255,1)'})
 
-	$('.cell_kill').on('click', function(){
-		kill('cell', $(this).parent().parent().attr('class').split('_')[1], true)
-		$(this).parent().parent().slideUp().remove();
+	$.ajax({
+		type: "POST",
+		url: "php/newcell.php"
+	}).done(function(e){
+
+		if ((separated) && (!newest)){
+			newest = true;
+			$('<div class="cell_'+e.number+'"><div class="cell_img_hold"><img src="img/cross.png" id="img_blank" /><img src="img/kill.png" class="cell_kill" /></div><textarea tabindex="16" class="kommentar_content"></textarea></div>')
+			.appendTo('#cell_put')
+			.filedrop({
+				fallback_id: 'cell_new',
+				paramname:'pic',
+				
+				maxfiles: 1,
+				url: 'php/cell.php',
+				data:{
+					projectnumbercell: currentlyediting,
+					cellnumbercell: e.number
+				},
+				
+				uploadFinished:function(i,file,response){ $.data(file).removeClass('loading'); },
+				
+		    	error: function(err, file) { alert("it didn't work. here's why, maybe: "+err) },
+				
+				beforeEach: function(file){
+					if(!file.type.match(/^image\//)){
+						alert('images only kthx');
+						return false;
+					}
+				},
+				
+				uploadStarted:function(i, file, len){
+					var preview = $('<span><img class="loading" /></span>'), 
+					image = $('img', preview);
+					var reader = new FileReader();
+					
+					image.width = 100;
+					image.height = 100;
+					
+					reader.onload = function(e){ image.attr('src',e.target.result); };
+					reader.readAsDataURL(file);
+					$('#img_blank').replaceWith(preview);
+					$.data(file,preview);
+				},
+			
+				progressUpdated: function(i, file, progress) {
+					$.data(file).find('img').css('opacity',progress/100);
+				}
+			});
+		}
+		
+		$('#cell_put').animate({'scrollTop':10000}).children().last().delay(400).css('background-color','rgba(255,0,0,.1)').animate({backgroundColor:'rgba(255,255,255,1)'})
+
+		$('.cell_kill').on('click', function(){
+			kill('cell', $(this).parent().parent().attr('class').split('_')[1], true)
+			$(this).parent().parent().slideUp().remove();
+		})
+
 	})
 })
 
@@ -900,6 +866,8 @@ function shapeshifterpower(){
 				kill('shapeshifter', response.number, true)
 				$(this).parent().slideUp().remove();
 			})
+
+			$('#shapeshifterhopper').find('div').last().find('img').attr('data-shapnum', response.number)
 		},
 		
 		error: function(err, file) { alert("it didn't work. here's why, maybe: "+err) },
@@ -923,9 +891,7 @@ function shapeshifterpower(){
 			reader.readAsDataURL(file);
 			preview.appendTo('#shapeshifterhopper');
 			preview.append('<img src="img/kill.png" class="shap_kill" />')
-			$.data(file,preview);
-
-			
+			$.data(file,preview);			
 		},
 			
 		progressUpdated: function(i, file, progress) {
@@ -951,12 +917,20 @@ function categorical(){
 		var newcateg = $(this).data('category')
 		var newindex = categ.indexOf(newcateg)
 
-		if ($(this).data('category') != presence[currentlyediting].data.category){
+		console.log(newcateg+' // '+newindex+' // '+categ.indexOf(presence[currentlyediting].data.category))
 
-			if (newindex < categ.indexOf(presence[currentlyediting].data.category)) cubeset('x', newindex);
-			else cubeset('x', newindex+2);
+		if (newcateg != presence[currentlyediting].data.category){
 
-			presence[currentlyediting].data.category = $(this).data('category');
+			if (!workingwithanewcube){
+				if (newindex < categ.indexOf(presence[currentlyediting].data.category)) cubeset('x', newindex);
+				else cubeset('x', newindex+2);
+			}else{
+				cubeset('x', newindex+1)
+				var reacharound = $('.cube[data-row="'+(newindex+1)+'"]').first().data('callmemaybe')
+				selectorgeneral(reacharound)
+			}
+
+			presence[currentlyediting].data.category = newcateg;
 			
 			catopen = false;
 			catoffset = $('.cat_'+newcateg).position().top;
@@ -975,6 +949,7 @@ function categorical(){
 				camera.lookAt(heylookatme)
 			})
 			.start();
+
 		}
 	});
 }
@@ -1022,14 +997,14 @@ $('.coord_inp').on({
 function cubeset(dimension, where){
 	if (dimension == 'x') scene.children[cubearrayediting].position.x = where*50;
 	if (dimension == 'y') scene.children[cubearrayediting].position.y = where*50;
-	if (dimension == 'z') scene.children[cubearrayediting].position.z = where*50;	
+	if (dimension == 'z') scene.children[cubearrayediting].position.z = where*50;
 }
 
 
 Array.prototype.remove = function(from, to) {
-  var rest = this.slice((to || from) + 1 || this.length);
-  this.length = from < 0 ? this.length + from : from;
-  return this.push.apply(this, rest);
+	var rest = this.slice((to || from) + 1 || this.length);
+	this.length = from < 0 ? this.length + from : from;
+	return this.push.apply(this, rest);
 };
 
 $('#save').on('click', function(){uploader(true, currentlyediting)})
@@ -1037,10 +1012,10 @@ $('#save').on('click', function(){uploader(true, currentlyediting)})
 function uploader(remain, weight){
 	presence[currentlyediting].data.name = $('#info_name').val()
 	presence[currentlyediting].data.client = $('#info_client').val()
-	presence[currentlyediting].data.datelaunch = $('#info_datelaunch').val()
-	presence[currentlyediting].data.hours = $('#info_hours').val()
+	presence[currentlyediting].data.date_launched = $('#info_datelaunch').val()
+	presence[currentlyediting].data.total_hours = $('#info_hours').val()
 	presence[currentlyediting].data.link = $('#info_link').val()
-	presence[currentlyediting].data.text = $('#info_text').val()
+	presence[currentlyediting].data.project_text = $('#info_text').val()
 
 
 	var cellnr = [];
@@ -1060,9 +1035,11 @@ function uploader(remain, weight){
 
 	var shapeshnr = [];
 
-	$('#shapeshifterhopper').children('img').each(function(e){
-		shapeshnr[e] = $(this).data('shapnum')
+	$('#shapeshifterhopper').find('img').not('.shap_kill').each(function(e){
+		shapeshnr.push($(this).data('shapnum'))
 	});
+
+	console.log(shapeshnr)
 
 
 	$.ajax({
@@ -1071,11 +1048,12 @@ function uploader(remain, weight){
 			number:currentlyediting,
 			data:presence[currentlyediting].data,
 			shapeshifters:shapeshnr,
-			celltext:cellcomplet
+			celltext:cellcomplet,
+			isnew:workingwithanewcube
 		},
 		url: "php/heavylifting.php"
 	}).done(function(e){		
-		if (catinit !== presence[currentlyediting].data.category){
+		if ((catinit !== presence[currentlyediting].data.category) || (workingwithanewcube)){
 			$ovr_sight.children().children().empty();
 			for (var i = 0; i <= counter; i++){
 				scene.remove(scene.children[0]);
@@ -1088,11 +1066,13 @@ function uploader(remain, weight){
 			}
 		}
 		if (!remain) b_workload(weight)
+
+		if (workingwithanewcube) workingwithanewcube = false;
 	});
 }
 
 
-function kill(who, where){
+function kill(who, where, how){
 	$.ajax({
 		type: "POST",
 		dataType:'JSON',
@@ -1105,14 +1085,61 @@ function kill(who, where){
 	})
 }
 
+var press, sweettime = false, holding = 1000, downtimer, uptimer;
+
+// $('#add_project').on('click', newcube);
+
+
+
+
+
+$('#add_project').on({
+	mousedown: function(){
+		downtimer = new Date().getTime();
+		press = setTimeout(function(){
+			sweettime = true
+			console.log('START')
+		}, holding)
+	}, 
+	mouseup: function(){
+		uptimer = new Date().getTime();
+		clearTimeout(press)
+		if (sweettime){
+
+		}
+		sweettime = false;
+		
+		if ((uptimer - downtimer) > holding){
+			console.log('LONG')
+		}else{
+			console.log('SHORT')
+		}
+	}
+})
+	
 
 function newcube(){
-
 	$.ajax({
 		type: "POST",
 		url: "php/newcube.php"
 	}).done(function(e){
-		console.log(e)
+		// console.log(e)
+
+		$('#shapeshifterhopper, #cell_put').empty()
+
+		var $targetedindex = $('.targeted').data('array')
+		var $targetedrow = $('.targeted').data('row')
+		slide.likethis($targetedindex, 'left', $targetedrow)
+		$('.targeted').siblings().each(function(){
+			var $theindex = $(this).data('array')
+			var $therow = $(this).data('row')
+			if($therow == $targetedrow) slide.likethis($theindex, 'left', $therow)
+			if($therow >= $targetedrow) slide.likethis($theindex, 'left', $therow)
+		})
+
+		separated = false;
+		workingwithanewcube = true;
+
 
 		var element = document.createElement( 'div' );
 		element.className = 'cube newcube';
@@ -1151,20 +1178,30 @@ function newcube(){
 		element.appendChild(bottom);
 
 		var object = new THREE.CSS3DObject( element );
-		// object.position.x = (((rowcount)-(Math.floor(_.size(receive))/2))*50)-25;
-		object.position.x = categ.length*50;
+
+		object.position.x = (categ.length)*50;
 		object.position.y = 300;
-		object.position.z = 0;
+		object.position.z = 50;
 		scene.add( object );
 
-		$('.newcube').addClass('targeted')
+		currentlyediting = e.number;
 
-		presence = {}
-		presence[e.number] = {cells:{}, data:{category: "", client: "", coord_y: 300, coord_z: 0, date_launched: "", link: "", name: "", object_id: "", project_text: "", total_hours: ""}, shapeshifters:{}}
+		cubearrayediting = scene.children.length-1;
 
+		$('.info').find('input, textarea').val('')
+
+		$('#info_category_carousel').css('top', '19px')
+
+		$('#coord_y').val(6)
+		$('#coord_z').val(1)
+
+		presence = {};
+		presence[currentlyediting] = {cells:{}, data:{category: "", client: "", coord_y: 300, coord_z: 0, date_launched: "", link: "", name: "", object_id: "", project_text: "", total_hours: ""}, shapeshifters:{}};
+
+		shapeshifterpower()
+
+		setTimeout(function(){$('.newcube').addClass('targeted').siblings().removeClass('targeted');},50)
 	})
-	
-
 }
 
 

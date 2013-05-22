@@ -477,9 +477,15 @@ a{
 		background-color:red;
 		color:white;
 		border-radius:150px;
+		// border:1px white solid;
 		margin:auto;
 		position: relative;
 		p{padding-top: 20px;}
+		// &:hover{
+		// 	background-color:white;
+		// 	border:1px red solid;
+		// 	color:red;
+		// }
 	}
 	.switcher{
 		@include prfl;
@@ -503,7 +509,22 @@ a{
 
 		}
 		#switch_03{
-
+			div{
+				height:60px;
+				width:60px;
+				top: 38px;
+				background-color:blue;
+				color:white;
+				border-radius:150px;
+				margin:auto;
+				position: relative;
+				p{padding-top: 20px;}
+				// &:hover{
+				// 	background-color:white;
+				// 	border:1px blue solid;
+				// 	color:blue;
+				// }
+			}
 		}
 	}
 }
