@@ -44,7 +44,7 @@ body {
   height: 100%;
   width: 400%;
   top: 0px;
-  left: -100%; }
+  left: 0%; }
 
 .me, .front, .grid, .red {
   position: relative;
@@ -201,8 +201,9 @@ body {
       height: 200px;
       border-radius: 100px;
       position: absolute;
-      top: 0px;
-      left: 0px;
+      top: 50%;
+      left: 50%;
+      margin: -100px 0px 0px -100px;
       float: none;
       display: block;
       padding: 0px; }
@@ -217,36 +218,36 @@ body {
   .me .meback {
     padding: 0px;
     cursor: pointer; }
-    .me .meback img {
-      display: table-cell;
-      width: 100px;
-      margin: auto;
-      z-index: 2;
-      position: relative; }
     .me .meback #mebackwhite {
       background-color: white;
       width: 160px;
       height: 160px;
       border-radius: 100px;
       position: absolute;
-      top: 0px;
-      left: 0px;
+      top: 50%;
+      left: 50%;
+      margin: -80px 0px 0px -80px;
       float: none;
       display: block;
       padding: 0px; }
       .me .meback #mebackwhite:hover {
         border: none !important; }
+    .me .meback img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      margin: -26px 0px 0px -50px;
+      z-index: 2; }
     .me .meback:hover {
       border: none !important; }
       .me .meback:hover #mebackwhite {
         background-color: grey; }
   .me div {
-    position: relative;
-    float: left;
+    position: absolute;
     width: 25%;
     height: 25%;
     display: table;
-    padding: 5%;
     background-color: rgba(0, 0, 0, 0); }
     .me div p {
       display: table-cell;
@@ -256,6 +257,22 @@ body {
       color: white; }
     .me div:hover {
       border: 1px black solid; }
+  .me .me_x1 {
+    left: 0%; }
+  .me .me_x2 {
+    left: 25%; }
+  .me .me_x3 {
+    left: 50%; }
+  .me .me_x4 {
+    left: 75%; }
+  .me .me_y1 {
+    top: 0%; }
+  .me .me_y2 {
+    top: 25%; }
+  .me .me_y3 {
+    top: 50%; }
+  .me .me_y4 {
+    top: 75%; }
 
 #cubic {
   position: absolute;

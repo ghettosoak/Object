@@ -60,8 +60,8 @@ body {
     width:400%;
     top:0px;
     // left:-300%;
-    left:-100%;
-    // left:0%;
+    // left:-100%;
+    left:0%;
 }
 
 .me, .front, .grid, .red{
@@ -226,8 +226,9 @@ body {
             height:200px;
             border-radius: 100px;
             position:absolute;
-            top:0px;
-            left:0px;
+            top:50%;
+            left:50%;
+            margin:-100px 0px 0px -100px;
             float:none;
             display:block;
             padding:0px;
@@ -242,25 +243,28 @@ body {
     .meback{
         padding:0px;
         cursor: pointer;
-        img{
-            display:table-cell;
-            width:100px;
-            margin:auto;
-            z-index:2;
-            position:relative;
-        }
+        
         #mebackwhite{
             background-color:white;
             width:160px;
             height:160px;
             border-radius: 100px;
             position:absolute;
-            top:0px;
-            left:0px;
+            top:50%;
+            left:50%;
+            margin:-80px 0px 0px -80px;
             float:none;
             display:block;
             padding:0px;
             &:hover{border:none !important;}
+        }
+        img{
+            position: absolute;
+            top:50%;
+            left:50%;
+            width:100px;
+            margin:-26px 0px 0px -50px;
+            z-index:2;
         }
         &:hover{
             border:none !important;
@@ -268,12 +272,13 @@ body {
         }
     }
     div{
-        position:relative;
-        float:left;
+        // position:relative;
+        // float:left;
+        position:absolute;
         width:25%;
         height:25%;
         display:table;
-        padding: 5%;
+        // padding: 5%;
         background-color:rgba(0,0,0,.0);
         p{
             display:table-cell;
@@ -284,6 +289,14 @@ body {
         }
         &:hover{border:1px black solid;}
     }
+    .me_x1{left:0*25%;}
+    .me_x2{left:1*25%;}
+    .me_x3{left:2*25%;}
+    .me_x4{left:3*25%;}
+    .me_y1{top:0*25%;}
+    .me_y2{top:1*25%;}
+    .me_y3{top:2*25%;}
+    .me_y4{top:3*25%;}
 }
 
 #cubic{

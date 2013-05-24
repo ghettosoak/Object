@@ -2,15 +2,30 @@
 
 include('../../join/delicious.php');
 
-$result = mysql_query("select object_id, category, coord_y, coord_z from objects");
-$cateresult = mysql_query("select distinct category from objects");
 
+$reprecateg = mysql_query("select distinct category from objects");
+$totalcateg = mysql_query("select name from categories");
 
 $cubes = array();
 $cubes['cubes'] = array(); 
-$cubes['categories'] = array();
+$cubes['rep_cat'] = array();
+$cubes['tot_cat'] = array();
 
-while ($row = mysql_fetch_assoc($result)){
+while ($rep = mysql_fetch_assoc($reprecateg)){
+    array_push($cubes['rep_cat'], $rep['category']);
+}
+
+while ($all = mysql_fetch_assoc($totalcateg)){
+    array_push($cubes['tot_cat'], $all['name']);
+}
+
+$categ_list = '"'.implode('", "', $cubes['tot_cat']).'"';
+// echo $categ_list;
+
+
+$gathered = mysql_query("select object_id, category, coord_y, coord_z from objects order by field (category, ".$categ_list.")");
+
+while ($row = mysql_fetch_assoc($gathered)){
 	// array_push($cubes,$row);
 	//$cubes[$row['category']]['category'] = $row['category'];
 
@@ -21,9 +36,7 @@ while ($row = mysql_fetch_assoc($result)){
     $cubes['cubes'][$row['category']][$row['object_id']] = $coords;
 }
 
-while ($infocate = mysql_fetch_assoc($cateresult)){
-    array_push($cubes['categories'], $infocate['category']);
-}
+
 
 echo jsonReadable(json_encode($cubes));
 

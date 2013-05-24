@@ -61,8 +61,8 @@ a{
     position:absolute;
     height:200%;
     width:85%;
-    // top:-100%;
-    top:0%;
+    top:-100%;
+    // top:0%;
     left:0%;
     h3{
     	font-size:14;
@@ -132,8 +132,10 @@ a{
 			top: 10px;
 			position: relative;
 			img{
+				position: absolute;
 				margin:14px;
 			}
+			.minus{display:none;}
 		}
 		#add_row{
 			cursor: pointer;
@@ -145,6 +147,53 @@ a{
 				text-align: center;
 				margin-top:-27px;
 			}
+			#row_list{
+				position: absolute;
+				z-index:100;
+				width:100%;
+				box-shadow: 1px 1px 11px 1px rgba(0,0,0,.5);
+				
+				
+				overflow:hidden;
+				// height:0px;
+				@include transition (all 0.5s ease-in-out);
+				li{
+					display:block;
+					position: relative;
+					float:left;
+					width:100%;
+					text-align: center;
+					@include transition (height 0.5s ease-in-out);
+				}
+				.row{
+
+				}
+				.rowselectable{
+					height:10px;
+					&:hover{
+						background-color:rgba(0,0,255,.3);
+						box-shadow: 1px 1px 11px 1px rgba(0,0,255,.3);
+					}
+				}
+				.thisrowthx{
+					height:20px;
+					input{
+						width:100%;
+						border:none;
+						text-align: center;
+						font-family: u47;
+						font-size: 14px;
+						margin:0px;
+					}
+				}
+				&.addrow_closed{
+					// display:none;
+					top:13px;
+					height:0px;
+					box-shadow: none;
+				}
+			}
+			.addrow_nothx{display:none;}
 		}
 		#oversight_sight{
 			height:100%;
@@ -264,6 +313,7 @@ a{
 					border-bottom:$greyline;
 					border-left:$greyline;
 					z-index:10;
+					@include transition (height 0.5s ease-in-out);
 					#info_category_open{
 						position: absolute;
 						top:5px;
@@ -283,7 +333,7 @@ a{
 							height: 18px;
 							display:block;
 							@include prfl;
-							margin: 1px 0px 0px 1px;
+							margin: 0px 0px 0px 1px;
 						}	
 					}
 				}
@@ -301,6 +351,7 @@ a{
 						cursor:pointer;
 					}
 				}
+				.ready{@include transition (top 0.5s ease-in-out);}
 			}
 		}
 		.coords{

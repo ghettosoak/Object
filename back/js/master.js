@@ -4,14 +4,24 @@
 //jquery v1.8.0 is included in this mess. Copyright 2012 jQuery Foundation and other contributors.
 //like something you see, but can't read this unholy mess? drop me a line at (mif)[at](awe)[minus](schaffhausen)[dot](com)
 
+$.fn.preload = function() { this.each(function(e){ $('<img/>')[0].src = this; }); }
+
+Array.prototype.remove = function(from, to) {
+	var rest = this.slice((to || from) + 1 || this.length);
+	this.length = from < 0 ? this.length + from : from;
+	return this.push.apply(this, rest);
+};
+
 var isMouseDown = false, radious = 1600, theta = -90, onMouseDownTheta = -90, phi = 60, onMouseDownPhi = 60, onMouseDownPosition,
 onMouseDownPosition, separated = false, trow, tref, tnumber, tcube, tcallme, currentlyediting, cubearrayediting, newest = false,
-catinit, catoffset, categoryheight = 0, catopen = false, firstly = true, oneup = false, workingwithanewcube = false, editingcount = 0, rowcount = 1;
+catinit, catoffset, categoryheight = 0, catopen = false, firstly = true, oneup = false, workingwithanewcube = false, editingcount = 0, rowcount = 1,
+addrow_height, addrow_open = false, makingnewrow = false;
 var rowarray = []
 var counter = 1, cubecounter = 1;
 var $ovr_sight;
 var slide = new slider();
 var categ = [];
+var thesecateg = [];
 var presence = {};
 // var presenceorig = {};
 // var presenceedit = {};
@@ -20,6 +30,8 @@ var changed = {};
 var $windowpane = $(window);
 var wpheight, wpwidth;
 var hoppersize;
+var press, sweettime = false, holding = 500, downtimer, uptimer;
+var $addproj = $('#add_project')
 
 
 $(document).ready(function(){
@@ -48,7 +60,7 @@ $(document).ready(function(){
 	var timer = 1000
 
 	setTimeout(function(){$('#c20').click()},timer*1)
-	setTimeout(function(){$('#c20').click()},timer*2)
+	// setTimeout(function(){$('#c20').click()},timer*2)
 	// setTimeout(function(){$('#c19').click()},timer*3)
 
 
@@ -142,43 +154,74 @@ function cube_ensure(activation){
 		tcube = $(this).data('cube');
 		twhich = $(this).data('number');
 
-		if (!separated){		
+		console.log(trow+' // '+tref+' // '+tnumber+' // '+tcube+' // '+twhich)
 
-			console.log(trow+' // '+tref+' // '+tnumber+' // '+tcube+' // '+twhich)
+		if ((!separated) || (trow != strow)) selectorgeneral(tcallme)
 
-			selectorgeneral(tcallme)
+		$('#shapeshifterhopper, #cell_put').empty()
 
-			setTimeout(function(){
-				separated = true;
-				camera.updateMatrix();
-			},500);
-		}
+		$(this).addClass('targeted').siblings().removeClass('targeted')
+		separated = true;
+		workingwithanewcube = false;
 
-		if (separated && (trow == strow)){
-			$('#shapeshifterhopper, #cell_put').empty()
+		if (!oneup) b_workload(tcallme)
+		else uploader(false, tcallme)
 
-			$(this).addClass('targeted').siblings().removeClass('targeted')
+		cubearrayediting = tnumber;
+
+		setTimeout(function(){
 			separated = true;
-			workingwithanewcube = false;
-
-			if (!oneup) b_workload(tcallme)
-			else uploader(false, tcallme)
-
-			cubearrayediting = tnumber;
-		}
+			camera.updateMatrix();
+		},500);
 
 		strow = trow;
 		stnumber = tnumber;
 	});
 
 	$ovr_sight.on('click',function(){
-		// if (separated) separated = false;
+		if (addrow_open){
+			addrow_open = false;
+			makingnewrow = false;
+
+			var $rowlist = $('#row_list')
+			
+			$rowlist.attr('style','').addClass('addrow_closed')
+			.siblings().removeClass('addrow_nothx')
+			$rowlist.find('.rowafter').addClass('rowselectable')
+			.children().remove()
+		}
 	});
 
-	if(activation){
+	if(activation){ //activation = callmemaybe kthx
 		selectorgeneral(activation)
-		$('.cube[data-callmemaybe="'+activation+'"]').addClass('targeted')
+		cubearrayediting = $('.cube[data-callmemaybe="'+activation+'"]').addClass('targeted').data('array')
 	}	
+}
+
+function selectorgeneral(orders){
+	console.log(tnumber)
+	var $activator = $('.cube[data-callmemaybe="'+orders+'"]')
+	var $act_row = $activator.data('row')
+	tnumber = $activator.data('array')
+	$activator.siblings().not('.newcube').each(function(e){
+		var $that = $(this)
+		var $dcube = $that.data('array')
+		var $drow = $that.data('row')
+		if (!$that.hasClass('r'+$act_row)){
+			if ($drow < $act_row) slide.likethis($dcube, 'left', $drow)
+			else slide.likethis($dcube, 'right', $drow)
+		}else slide.likethis($dcube, 'center', $drow)
+	});
+	slide.likethis($activator.data('array'), 'center', $act_row)
+
+	var generalcamera = new TWEEN.Tween({ g: heylookatme.x })
+	.to({ g: scene.children[tnumber].position.x }, 500)
+	.easing(TWEEN.Easing.Exponential.InOut)
+	.onUpdate(function () {
+		heylookatme.x = this.g
+		camera.lookAt(heylookatme)
+	})
+	.start();
 }
 
 function cubedescender(activate){
@@ -187,44 +230,13 @@ function cubedescender(activate){
 		dataType:'JSON',
 		url: "php/cubepull.php",
 	}).done( function(cube){
-		cubedescend = cube.cubes
-		categ = cube.categories
-		
+		cubedescend = cube.cubes;
+		categ = cube.tot_cat;
+		thesecateg = cube.rep_cat;
 
 		if (!activate) cubegenerator(cubedescend)
 		else cubegenerator(cubedescend, activate)
-
 	})
-}
-
-function selectorgeneral(orders){
-
-	var $activator = $('.cube[data-callmemaybe="'+orders+'"]')
-	var $act_row = $activator.data('row')
-	$activator.siblings().not('.newcube').each(function(e){
-		var $that = $(this)
-		var $dcube = $that.data('array')
-		var $drow = $that.data('row')
-		if (!$that.hasClass('r'+$act_row)){
-			if ($dcube < tnumber) slide.likethis($dcube, 'left', $drow)
-			else slide.likethis($dcube, 'right', $drow)
-		}else slide.likethis($dcube, 'center', $drow)
-	});
-	slide.likethis($activator.data('array'), 'center', $act_row)
-
-	var generalcamera = new TWEEN.Tween({
-		g: heylookatme.x
-	})
-	.to({ 
-		g: scene.children[tnumber].position.x
-	}, 500)
-	.easing(TWEEN.Easing.Exponential.InOut)
-	.onUpdate(function () {
-		heylookatme.x = this.g
-		camera.lookAt(heylookatme)
-	})
-	.start();
-
 }
 
 function cubegenerator(receive, active){
@@ -367,18 +379,8 @@ function b_workload(er){
 		$('#coord_y').val(thisproj.data.coord_y)
 		$('#coord_z').val(thisproj.data.coord_z)
 
-		if (!oneup){
-			$.each(categ, function(l, m){
-				categoryheight += 19;
-				var catego = '<li class="cat_'+m+'" data-category="'+m+'">'+m+'</li>';
-				$.tmpl( catego , m).appendTo( "#info_category_carousel" );
-				if (l == categ.length-1){
-					catoffset = $('.cat_'+thisproj.data.category).position().top
-					$('#info_category_carousel').css('top', -catoffset)
-					categorical()
-				}
-			});
-		}else{
+		if (!oneup) categori(false);
+		else{
 			catoffset = $('.cat_'+thisproj.data.category).position().top
 			$('#info_category_carousel').css('top', -catoffset)
 		}
@@ -538,16 +540,41 @@ function shapeshifterpower(){
 	});
 }
 
-function categorical(){
+function categori(again){
+	$('#info_category_carousel').empty()
+	$.each(categ, function(l, m){
+		categoryheight += 18;
+		var catego = '<li class="cat_'+m+'" data-category="'+m+'">'+m+'</li>';
+		$.tmpl( catego , m).appendTo( "#info_category_carousel" );
+
+		var catego = '<li class="row row_'+m+'">'+m+'</li><li class="rowafter rowselectable" data-after="'+m+'"></li>';
+		$.tmpl( catego , m).appendTo( "#row_list" );
+
+		if (l == categ.length-1){
+			addrow_height = $('#row_list').outerHeight()
+			$('#row_list').addClass('addrow_closed')
+			catoffset = $('.cat_'+presence[currentlyediting].data.category).position().top
+			$('#info_category_carousel').css('top', -catoffset)
+			setTimeout(function(){$('#info_category_carousel').addClass('ready')},500)
+			if (!again) categorical()
+		}
+	});
+}
+
+function categorical(freshness){
 	$('#info_category_open').on('click', function(){
+		$info_cat = $('#info_category')
+		$info_car = $info_cat.find('#info_category_carousel')
+
 		if (!catopen){
 			catopen = true;
-			$('#info_category').addClass('open').stop().animate({'top':-catoffset, 'height':categoryheight});
-			$('#info_category_carousel').stop().animate({'top':'0px'});
+			$info_cat.addClass('open').stop().css({'height':categoryheight});
+			$info_car.stop().css({'top':'0px'});
 		}else{
 			catopen = false;
-			$('#info_category').stop().animate({'top':0, 'height':20}, function(){ $(this).removeClass('open') });
-			$('#info_category_carousel').stop().animate({'top':-catoffset});
+			$info_cat.stop().css({'height':20})
+			setTimeout(function(){$info_cat.removeClass('open')},500)
+			$info_car.stop().css({'top':-catoffset});
 		}
 	});
 
@@ -557,37 +584,74 @@ function categorical(){
 
 		console.log(newcateg+' // '+newindex+' // '+categ.indexOf(presence[currentlyediting].data.category))
 
-		if (newcateg != presence[currentlyediting].data.category){
-
-			if (!workingwithanewcube){
-				if (newindex < categ.indexOf(presence[currentlyediting].data.category)) cubeset('x', newindex);
-				else cubeset('x', newindex+2);
-			}else{
-				cubeset('x', newindex+1)
-				var reacharound = $('.cube[data-row="'+(newindex+1)+'"]').first().data('callmemaybe')
-				selectorgeneral(reacharound)
-			}
+		if (newcateg != presence[currentlyediting].data.category){			
 
 			presence[currentlyediting].data.category = newcateg;
 			
 			catopen = false;
 			catoffset = $('.cat_'+newcateg).position().top;
-			$('#info_category').animate({'top':0, 'height':20}, function(){ $(this).removeClass('open') });
-			$('#info_category_carousel').animate({'top':-catoffset});
+			$('#info_category').css({'height':20})
+			setTimeout(function(){$('#info_category').removeClass('open')},500)
+			$('#info_category_carousel').css({'top':-catoffset});
 
-			var newcolor = $('.cube[data-row="'+(newindex+1)+'"]').first().children().first().css('background-color')
+			if (!workingwithanewcube){
+				uploader(true, currentlyediting)
+			}else{
+				cubeset('x', newindex+1)
+				var reacharound = $('.cube[data-row="'+(newindex+1)+'"]').first().data('callmemaybe')
+				selectorgeneral(reacharound)
+			}
+				
+		}
+	});
 
-			$('.targeted').find('div').css('background-color', newcolor)
+	$('#add_row').on('click', function(){
+		if (!addrow_open){
+			$(this).children('#row_list').removeClass('addrow_closed')
+			.css({'top':-(addrow_height-13), 'height':addrow_height})
+			.siblings().addClass('addrow_nothx')
+			addrow_open = true;
+		}		
+	});
 
-			var tween = new TWEEN.Tween({ g: heylookatme.x })
-			.to({ g: newindex*50 }, 500)
-			.easing(TWEEN.Easing.Exponential.InOut)
-			.onUpdate(function () {
-				heylookatme.x = this.g
-				camera.lookAt(heylookatme)
-			})
-			.start();
+	$('.rowafter').on('click', function(){
+		if (!makingnewrow){
+			makingnewrow = true;
+			$(this).addClass('thisrowthx').removeClass('rowselectable')
+			.append('<input type="text" id="newrow">').find('input').focus()
+			.parent().siblings().removeClass('rowselectable').find('input').remove();
 
+			$(this).parent().css({'top':-(addrow_height-((categ.length-1)*10)-13), 'height':addrow_height-((categ.length-1)*10)});
+
+			$('#newrow').on({
+				keydown:function(e){
+					if (e.keyCode == 13){
+						var $that = $(this)
+						var newcategindex = categ.indexOf($that.parent().data('after'))+1
+						categ.splice(newcategindex, 0, $that.val())
+						
+						$.ajax({
+							type: "POST",
+							dataType:'JSON',
+							data: { newcategarray : categ },
+							url: "php/newrow.php"
+						}).done(function(e){
+							addrow_open = false;
+							makingnewrow = false;
+
+							var $rowlist = $('#row_list')
+							
+							$rowlist.attr('style','').addClass('addrow_closed')
+							.siblings().removeClass('addrow_nothx')
+
+							$rowlist.find('.rowafter').addClass('rowselectable')
+							.children().remove()
+
+							categori();
+						})						
+					}
+				}
+			});
 		}
 	});
 }
@@ -638,13 +702,6 @@ function cubeset(dimension, where){
 	if (dimension == 'z') scene.children[cubearrayediting].position.z = where*50;
 }
 
-
-Array.prototype.remove = function(from, to) {
-	var rest = this.slice((to || from) + 1 || this.length);
-	this.length = from < 0 ? this.length + from : from;
-	return this.push.apply(this, rest);
-};
-
 $('#save').on('click', function(){uploader(true, currentlyediting)})
 
 function uploader(remain, weight){
@@ -679,7 +736,6 @@ function uploader(remain, weight){
 
 	console.log(shapeshnr)
 
-
 	$.ajax({
 		type: "POST",
 		data: {
@@ -698,6 +754,7 @@ function uploader(remain, weight){
 				if (i == counter){
 					counter = 0;
 					cubecounter = 0;
+					rowcount = 1;
 					cubedescender(weight)
 					catinit = presence[currentlyediting].data.category
 				}
@@ -723,37 +780,51 @@ function kill(who, where, how){
 	})
 }
 
-var press, sweettime = false, holding = 1000, downtimer, uptimer;
-
-// $('#add_project').on('click', newcube);
-
-
-
-
-
-$('#add_project').on({
+$addproj.on({
 	mousedown: function(){
 		downtimer = new Date().getTime();
 		press = setTimeout(function(){
-			sweettime = true
-			console.log('START')
+			$addproj.animate({backgroundColor:'rgb(255,0,0)'})
+			.find('#add_project_plus').addClass('minus')
 		}, holding)
 	}, 
 	mouseup: function(){
 		uptimer = new Date().getTime();
 		clearTimeout(press)
-		if (sweettime){
-
-		}
-		sweettime = false;
 		
-		if ((uptimer - downtimer) > holding){
-			console.log('LONG')
-		}else{
-			console.log('SHORT')
+		if ((uptimer - downtimer) < holding) newcube();
+		else{
+			$addproj.animate({backgroundColor:'rgb(255,255,255)'},200)
+			$addproj.animate({backgroundColor:'rgb(255,0,0)'},200)
+			$addproj.animate({backgroundColor:'rgb(255,255,255)'},200)
+			$addproj.animate({backgroundColor:'rgb(255,0,0)'},200)
+			killcube();
 		}
+	},
+	mouseout:function(){
+		$addproj.animate({backgroundColor:'rgb(128,128,128)'})
+		.find('#add_project_plus').removeClass('minus')
 	}
 })
+
+function killcube(){
+	$.ajax({
+		type: "POST",
+		dataType:'JSON',
+		data: {
+			target : currentlyediting
+		},
+		url: "php/killcube.php"
+	}).done(function(e){
+		scene.remove(scene.children[cubearrayediting]);
+		$('.targeted').find('div').remove()
+		$('.targeted').remove()
+		$('#shapeshifterhopper, #cell_put').empty()
+		$('.info').find('input, textarea').val('')
+		$('#info_category_carousel').css('top', '19px')
+		presence = {};
+	})
+}
 	
 
 function newcube(){
@@ -834,7 +905,7 @@ function newcube(){
 		$('#coord_z').val(1)
 
 		presence = {};
-		presence[currentlyediting] = {cells:{}, data:{category: "", client: "", coord_y: 300, coord_z: 0, date_launched: "", link: "", name: "", object_id: "", project_text: "", total_hours: ""}, shapeshifters:{}};
+		presence[currentlyediting] = {cells:{}, data:{category: "", client: "", coord_y: 300, coord_z: 50, date_launched: "", link: "", name: "", object_id: "", project_text: "", total_hours: ""}, shapeshifters:{}};
 
 		shapeshifterpower()
 

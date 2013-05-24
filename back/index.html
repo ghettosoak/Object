@@ -19,8 +19,16 @@
 		<div class="be_move">
 			<div class="projects">
 				<div id="oversight">
-					<div id="add_project"><img src="img/plus_large.png" /></div>
-					<div id="add_row"><img src="img/addrow.png" /><p>add row</p></div>
+					<div id="add_project">
+						<img src="img/plus_large.png" id="add_project_plus"/>
+						<img src="img/minus_large.png"/>
+					</div>
+					<div id="add_row">
+						<img src="img/addrow.png" /><p>add row</p>
+						<div id="row_list">
+							<li class="rowselectable" data-after="first"></li>
+						</div>
+					</div>
 					<div id="oversight_sight"></div>
 				</div>
 				<div class="divide"><div></div></div>
