@@ -70,25 +70,36 @@ a {
   overflow: hidden;
   font-family: u47; }
 
-.be_move {
+#be_move {
   position: absolute;
   height: 200%;
   width: 85%;
   top: -100%;
-  left: 0%; }
-  .be_move h3 {
+  left: 0%;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out; }
+  #be_move h3 {
     font-size: 14;
     font-family: u67;
     font-weight: normal; }
-  .be_move input, .be_move textarea {
+  #be_move input, #be_move textarea {
     border-top: 0px;
     border-right: 0px;
     border-bottom: 1px #b3b3b3 solid;
     border-left: 1px #b3b3b3 solid; }
-    .be_move input:focus, .be_move textarea:focus {
+    #be_move input:focus, #be_move textarea:focus {
       outline: none; }
-  .be_move textarea {
+  #be_move textarea {
     resize: none; }
+
+.lookingatprojects {
+  top: 0% !important; }
+
+.lookinatmeimsuchadick {
+  top: -100% !important; }
 
 .projects, .about {
   position: relative;
@@ -505,21 +516,49 @@ a {
       font-family: u47;
       font-size: 14px; }
 
-.about .meimgs, .about .mebits {
+.about #meimgs, .about #mebits {
   position: relative;
   float: left;
   height: 100%; }
-.about .meimgs {
+.about #meimgs {
+  overflow: scroll !important;
   width: 30%;
-  padding: 3%; }
-  .about .meimgs img {
-    margin: 4%; }
-.about .mebits {
+  padding-top: 17px; }
+  .about #meimgs div {
+    position: relative;
+    float: left;
+    overflow: hidden;
+    margin: 10px 0px 0px 10px; }
+    .about #meimgs div img {
+      position: absolute; }
+    .about #meimgs div .img_kill {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 30px !important;
+      z-index: 10;
+      margin: 0 !important;
+      display: none;
+      cursor: pointer; }
+    .about #meimgs div:hover .img_kill {
+      display: block; }
+  .about #meimgs .loading img {
+    opacity: .5; }
+  .about #meimgs p {
+    width: 100%;
+    font-family: u47;
+    font-size: 10px;
+    text-align: center; }
+.about #mebits {
   border-left: 1px #b3b3b3 solid;
-  width: 70%; }
-  .about .mebits textarea {
-    width: 97%;
-    margin: 8px 3%;
+  width: 70%;
+  overflow: scroll;
+  padding: 10px 0px; }
+  .about #mebits textarea {
+    font-family: u47;
+    font-size: 14px;
+    width: 93%;
+    margin: 7px 2%;
     height: 3em; }
 
 .side div {

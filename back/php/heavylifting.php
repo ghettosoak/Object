@@ -63,9 +63,9 @@
 	// array_push($watcher, implode(', ', $diffff));
 
 	if (count($diffff) > 0){
-		$path = '../img/shapeshift/'.$number.'/';
+		$path = '../../join/img/shapeshift/'.$number.'/';
 		$sprite_name = 'sprite_'.$number;
-		$final_sprite_location = '../img/shapeshift/';
+		$final_sprite_location = '../../join/img/shapeshift/';
 
 		echo $path."\n";
 		echo $sprite_name."\n";

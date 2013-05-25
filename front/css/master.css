@@ -174,29 +174,53 @@ body {
   -ms-background-size: cover;
   -o-background-size: cover;
   background-size: cover; }
-  .me .meblur {
+  .me .me_img {
     position: absolute;
     height: 100%;
     width: 100%;
     top: 0px;
-    left: 0px;
-    float: none;
-    display: block;
-    padding: 0;
-    background-position: 50% 50%; }
+    left: 0px; }
+    .me .me_img #me_blur, .me .me_img #me_clean {
+      -webkit-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -ms-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0px;
+      left: 0px; }
+      .me .me_img #me_blur img, .me .me_img #me_clean img {
+        display: block;
+        position: relative;
+        margin: auto; }
+    .me .me_img .not {
+      opacity: 0; }
   .me .meme {
-    cursor: pointer; }
+    position: absolute;
+    width: 25%;
+    height: 25%;
+    cursor: pointer;
+    display: table; }
     .me .meme p {
+      color: white;
       z-index: 2;
       opacity: 1 !important;
-      position: relative; }
+      position: absolute;
+      width: 108px;
+      height: 84px;
+      top: 50%;
+      left: 50%;
+      margin: -42px 0px 0px -54px;
+      text-align: center; }
       .me .meme p span {
         font-family: u39;
         font-size: 79px;
-        margin: 24px;
+        margin: 24px 24px 0px 22px;
         display: block; }
     .me .meme #megrey {
-      background-color: grey;
+      background-color: rgba(0, 0, 0, 0.8);
       width: 200px;
       height: 200px;
       border-radius: 100px;
@@ -216,6 +240,9 @@ body {
       .me .meme:hover p {
         color: black; }
   .me .meback {
+    position: absolute;
+    width: 25%;
+    height: 25%;
     padding: 0px;
     cursor: pointer; }
     .me .meback #mebackwhite {
@@ -243,20 +270,41 @@ body {
       border: none !important; }
       .me .meback:hover #mebackwhite {
         background-color: grey; }
-  .me div {
+  .me .me_bit {
     position: absolute;
     width: 25%;
     height: 25%;
-    display: table;
+    cursor: pointer;
     background-color: rgba(0, 0, 0, 0); }
-    .me div p {
-      display: table-cell;
-      vertical-align: middle;
-      text-align: center;
-      opacity: 0;
-      color: white; }
-    .me div:hover {
+    .me .me_bit:hover {
       border: 1px black solid; }
+    .me .me_bit .me_float {
+      -webkit-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -ms-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
+      height: 100%;
+      width: 100%;
+      position: absolute; }
+      .me .me_bit .me_float .me_txt {
+        padding: 10%;
+        display: table;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px; }
+        .me .me_bit .me_float .me_txt p {
+          -webkit-transition: all 0.5s ease-in-out;
+          -moz-transition: all 0.5s ease-in-out;
+          -ms-transition: all 0.5s ease-in-out;
+          -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;
+          display: table-cell;
+          vertical-align: middle;
+          opacity: 0;
+          color: white; }
   .me .me_x1 {
     left: 0%; }
   .me .me_x2 {
@@ -273,6 +321,14 @@ body {
     top: 50%; }
   .me .me_y4 {
     top: 75%; }
+  .me .up:hover {
+    border: none; }
+  .me .up .me_float {
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 10px 10px 15px;
+    top: -3px; }
+    .me .up .me_float .me_txt p {
+      opacity: 1 !important; }
 
 #cubic {
   position: absolute;

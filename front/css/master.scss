@@ -196,32 +196,53 @@ body {
 
 .me{
     @include background-size(cover);
-    .meblur{
+    .me_img{
         position:absolute;
         height:100%;
         width:100%;
         top:0px;
         left:0px;
-        float: none;
-        display: block;
-        padding: 0;
-        background-position: 50% 50%;
+        #me_blur, #me_clean{
+            @include transition (all 0.5s ease-in-out);
+            position:absolute;
+            height:100%;
+            width:100%;
+            top:0px;
+            left:0px;
+            img{
+                display: block;
+                position: relative;
+                margin: auto;
+            }
+        }
+        .not{opacity:0;}
     }
     .meme {
+        position:absolute;
+        width:25%;
+        height:25%;
         cursor: pointer;
+        display:table;
         p{
+            color:white;
             z-index:2;
             opacity:1 !important;
-            position:relative;
+            position: absolute;
+            width:108px;
+            height:84px;
+            top: 50%;
+            left: 50%;
+            margin: -42px 0px 0px -54px;
+            text-align: center;
             span{
                 font-family: u39;
                 font-size:79px;
-                margin: 24px;
+                margin: 24px 24px 0px 22px;
                 display:block;
             }
         }
         #megrey{
-            background-color:grey;
+            background-color:rgba(0,0,0,.8);
             width:200px;
             height:200px;
             border-radius: 100px;
@@ -236,11 +257,14 @@ body {
         }
         &:hover{
             border:none !important;
-            #megrey{background-color:red !important;}
+            #megrey{background-color:rgba(255,0,0,1) !important;}
             p{color:black;}
         }
     }
     .meback{
+        position:absolute;
+        width:25%;
+        height:25%;
         padding:0px;
         cursor: pointer;
         
@@ -271,23 +295,35 @@ body {
             #mebackwhite{background-color:grey;}
         }
     }
-    div{
-        // position:relative;
-        // float:left;
+    .me_bit{
         position:absolute;
         width:25%;
         height:25%;
-        display:table;
-        // padding: 5%;
+        cursor: pointer;
         background-color:rgba(0,0,0,.0);
-        p{
-            display:table-cell;
-            vertical-align: middle;
-            text-align: center;
-            opacity:0;
-            color:white;
-        }
         &:hover{border:1px black solid;}
+        .me_float{
+            @include transition (all 0.5s ease-in-out);
+            height:100%;
+            width:100%;
+            position: absolute;
+            .me_txt{
+                padding:10%;
+                display:table;
+                position: absolute;
+                width:100%;
+                height:100%;
+                top:0px;
+                left:0px;
+                p{
+                    @include transition (all 0.5s ease-in-out);
+                    display:table-cell;
+                    vertical-align: middle;
+                    opacity:0;
+                    color:white;
+                }
+            }
+        }
     }
     .me_x1{left:0*25%;}
     .me_x2{left:1*25%;}
@@ -297,6 +333,17 @@ body {
     .me_y2{top:1*25%;}
     .me_y3{top:2*25%;}
     .me_y4{top:3*25%;}
+    .up{
+        &:hover{border:none;}
+        .me_float{
+            background-color: rgba(0,0,0,.5);
+            box-shadow: 10px 10px 15px; 
+            top: -3px;
+            .me_txt{
+                p{opacity:1 !important;}
+            }
+        }
+    }
 }
 
 #cubic{

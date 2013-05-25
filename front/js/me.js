@@ -6,7 +6,9 @@ $('.who').on('click', function(){
 
 function iammike(){
 	var bestside = Math.floor(Math.random() * (10 - 1) + 1)
-	$('.me').css('background','url(img/me/'+bestside+'.jpg) no-repeat center center fixed');
+	// $('.me').css('background','url(img/me/'+bestside+'.jpg) no-repeat center center fixed');
+	$('#me_clean').append('<img src="img/me/clean/'+bestside+'.jpg" />')
+	$('#me_blur').append('<img src="img/me/blur/'+bestside+'.jpg" />')
 	// $('#megrey').css({
 	// 	'top': ($('.meme').outerHeight(true)-200)/2,
 	// 	'left': ($('.meme').outerWidth(true)-200)/2
@@ -24,25 +26,17 @@ function iammike(){
 	// });
 }
 
-$('.me').on('click', 'div', function(){
+$('.me').on('click', '.me_bit', function(){
 	var $that = $(this);
 	if (!$that.hasClass('meme') && !$that.hasClass('meback') && !$that.is('#mebackwhite')){
-		$that.animate({
-			backgroundColor:'rgba(0,0,0,.5)',
-			boxShadow: '10px 10px 15px', 
-			top: -3
-		}).find('p').animate({'opacity':1})
-		if ($('.meblur').hasClass('faded')) $('.meblur').fadeIn();
+		$that.toggleClass('up')
+		if ($('#me_blur').hasClass('not')) $('#me_blur').removeClass('not')
 	}
 });
 
 $('.meme').on('click', function(){
-	$('.meblur').fadeOut().addClass('faded')
-	$('.me_bit').animate({
-		backgroundColor:'rgba(0,0,0,.0)',
-		boxShadow: '0px', 
-		top: 0
-	}).find('p').animate({'opacity':0})
+	$('#me_blur').addClass('not')
+	$('.me_bit').removeClass('up')
 });
 
 $('.meback').on('click', function(){

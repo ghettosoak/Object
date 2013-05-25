@@ -2,7 +2,7 @@
 
 include('../../join/delicious.php');
 
-$upload_dir = '../img/shapeshift/';
+$upload_dir = '../../join/img/shapeshift/';
 $allowed_ext = array('jpg','jpeg','png','gif');
 
 $projected = $_REQUEST['projectnumbershapeshift'];
@@ -21,7 +21,7 @@ if(array_key_exists('shap',$_FILES) && $_FILES['shap']['error'] == 0 ){
 
 	$escapedname = str_replace(' ', '%20', $shap['name']);
 
-	mysql_query("insert into shapeshifter_individual(object_key, img) values(".$projected.", 'img/shapeshift/".$projected."/new_".$escapedname."')");
+	mysql_query("insert into shapeshifter_individual(object_key, img) values(".$projected.", '../join/img/shapeshift/".$projected."/new_".$escapedname."')");
 
 	$thelatestnumber = mysql_insert_id();
 

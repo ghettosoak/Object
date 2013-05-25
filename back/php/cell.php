@@ -2,7 +2,7 @@
 
 include('../../join/delicious.php');
 
-$upload_dir = '../img/cells/';
+$upload_dir = '../../join/img/cells/';
 $allowed_ext = array('jpg','jpeg','png','gif');
 
 $projector = $_REQUEST['projectnumbercell'];
@@ -31,11 +31,11 @@ if(array_key_exists('pic',$_FILES) && $_FILES['pic']['error'] == 0 ){
 	file_put_contents('log.txt', $line.PHP_EOL, FILE_APPEND);		
 	
 	if(move_uploaded_file($pic['tmp_name'], $upload_dir.$pic['name'])){
-		exit_status('File was uploaded successfuly!');
+		exit_status('SUCCESS');
 	}
 }
 
-exit_status('Something went wrong with your upload!');
+exit_status('FUCK');
 
 function exit_status($str){
 	echo json_encode(array('status'=>$str));
