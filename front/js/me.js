@@ -4,9 +4,10 @@ $('.who').on('click', function(){
 	$('.movement').transition({'x':'25%'}, 1000);
 })
 
-function iammike(){
-	$('#me_clean').append('<img src="img/me/clean/'+bestside+'.jpg" />')
-	$('#me_blur').append('<img src="img/me/blur/'+bestside+'.jpg" />')
+function iammike(txt, img){
+	
+	// $('#me_clean').append('<img src="img/me/clean/'+bestside+'.jpg" />')
+	// $('#me_blur').append('<img src="img/me/blur/'+bestside+'.jpg" />')
 }
 
 $('.me').on('click', '.me_bit', function(){

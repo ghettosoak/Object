@@ -1,22 +1,22 @@
 var clicker, tracker = 1, prone, layerrefere, layernumber, individualnumber;
 
 function shapeshifterload(block){
-	for (var ssi in block){
-		var path = block[ssi];
-		for (var p in path){
+	// for (var ssi in block){
+	// 	var path = block[ssi];
+		for (var p in block){
 			var img = document.createElementNS('http://www.w3.org/2000/svg','image');
 			img.setAttributeNS(null,'height','499%');
 			img.setAttributeNS(null,'width','107%');
-			img.setAttributeNS('http://www.w3.org/1999/xlink','href', path[p]);
+			img.setAttributeNS('http://www.w3.org/1999/xlink','href', block[p]);
 			img.setAttributeNS(null,'x','0');
 			img.setAttributeNS(null,'y','0');
 			img.setAttributeNS(null, 'clip-path', 'url(#hex-mask)');
 			img.setAttributeNS(null, 'preserveAspectRatio', 'xMidYMin slice');
-			img.setAttributeNS(null, 'id', 'ssi'+p);
+			img.setAttributeNS(null, 'id', 'ssi_'+p);
 			img.setAttributeNS(null, 'class', 'ssi');
 			$('#cubeshape').append(img);
 		}
-	}
+	// }
 	$('#shapeshifter').css({'top':($windowpane.height()-147)/2, 'left':($windowpane.width()-342)/2})
 }
 

@@ -5,7 +5,17 @@ $(document).ready(function(){
 	wpheight = $windowpane.height();
 	wpwidth = $windowpane.width();
 	
-	shapeshifterload(shapeshifterdescend);
+	// shapeshifterload(shapeshifterdescend);
+
+	// $.ajax({
+	// 	type: "POST",
+	// 	dataType:'JSON',
+	// 	url: "php/front.php",
+	// }).done( function(cube){
+	// 	shapeshifterload(cube.nav.shapeshifter);
+	// 	cubegenerator(cube.nav.cubes)
+	// })
+
 });
 
 $windowpane.load(function(){

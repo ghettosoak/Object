@@ -18,12 +18,6 @@ var slide = new slider();
 
 var namelist = [];
 
-var testpos = {
-	x: 3,
-	y: 3,
-	z: 3
-};
-
 init();
 animate();
 
@@ -59,7 +53,6 @@ function init() {
 
 	//init.init
 	heylookatme = scene.position;
-	// cubegenerator(cubedescend);
 
 	camera = new THREE.PerspectiveCamera( 18, 1024 / 768, 1, 10000 ); 
 	camera.position.x = radious * Math.sin( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
@@ -68,8 +61,6 @@ function init() {
 	camera.lookAt(heylookatme)
 
 	onMouseDownPosition = new THREE.Vector2();
-
-	cubedescender();
 }
 
 function onWindowResize() {
@@ -364,16 +355,7 @@ function textgenerate(word){
 	scene.add( object );
 }
 
-function cubedescender(){
-	$.ajax({
-		type: "POST",
-		dataType:'JSON',
-		url: "php/cubepull.php",
-	}).done( function(cube){
-		cubedescend = cube
-		cubegenerator(cubedescend)
-	})
-}
+
 
 function cubegenerator(receive){
 	var centered = new THREE.Vector3((Math.floor(_.size(receive))/2)*50, 50, 100)

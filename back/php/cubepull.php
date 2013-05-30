@@ -20,29 +20,14 @@ while ($all = mysql_fetch_assoc($totalcateg)){
 }
 
 $categ_list = '"'.implode('", "', $cubes['tot_cat']).'"';
-// echo $categ_list;
-
 
 $gathered = mysql_query("select object_id, category, coord_y, coord_z from objects order by field (category, ".$categ_list.")");
 
 while ($row = mysql_fetch_assoc($gathered)){
-	// array_push($cubes,$row);
-	//$cubes[$row['category']]['category'] = $row['category'];
-
 	$coords = array("y" => $row['coord_y'], "z" => $row['coord_z']);
-
-	//$cubes[$row['category']][] = $coords;
-    // array_push($cubes[$row['category']], $coords );
     $cubes['cubes'][$row['category']][$row['object_id']] = $coords;
 }
 
-
-
 echo jsonReadable(json_encode($cubes));
-
-
-
-
-
 
 ?>
