@@ -1,23 +1,20 @@
 var mass, fertig, first = false;
 var imagemarker = [];
 var $floater = $('.floater')
-
-var b_prfx = '';
-
-function browser_perfect(){
-	if ($.browser.webkit)b_prfx = '-webkit-';
-	if ($.browser.mozilla)b_prfx = '-moz-';
-	if ($.browser.opera)b_prfx = '-o-';
-	if ($.browser.msie)b_prfx = '-ms-';
-}
+var $floaterparent;
+var drg_h, drg_w;
 
 function projectdeploy(incoming){
 	imagemarker.length = 0;
 	mass = _.size(incoming)
+	$floaterparent = $floater.parent()
 
 	var squaresize = Math.floor(Math.sqrt(mass)) * 225;
 
 	$floater.css('width', squaresize)
+
+	drg_h = $floaterparent.outerHeight()
+	drg_w = $floaterparent.outerWidth()
 
 	for (var i in incoming){
 		var decide = Math.random()
@@ -25,7 +22,7 @@ function projectdeploy(incoming){
 		if (decide > 0 && decide < .33333) orient = 'vertical'
 		if (decide > .33333 && decide < .66666) orient = 'horzontal'
 		if (decide > .66666 && decide < 1) orient = 'square'
-		$floater.append('<div class="'+orient+'" id="pr_'+i+'"><p>'+incoming[i].text+'</p></div>')
+		$floater.append('<div class="'+orient+'" id="pr_'+i+'"><p>'+incoming[i].txt+'</p></div>')
 		imager(i, incoming[i].img)
 	}
 
@@ -48,19 +45,8 @@ function projectdeploy(incoming){
 	},50)
 
 	function gotogrid(){
-		$('#instruct').css({'left': ((wpwidth*.2)-108)/2, 'top':((wpheight*.5)-108)/2})
-		$('#point').css('left', ((wpwidth*.2)-100)/2)
-		$('.title').transition({
-			'left':(wpwidth*1.2)+(((wpwidth*.2)-72)/2), delay:50
-		}, 1000, 'ease')
-		$('.who').transition({
-			'left':(wpwidth*1.2)+(((wpwidth*.2)-40)/2), delay:50
-		}, 1000, 'ease');
-		$('.movement').transition({'x':'-50%'}, 1000, function(){
-			setTimeout(function(){
-				$('#instruct').fadeOut();
-			},5000)
-		});
+		$('#movement').removeClass().addClass('fourth');
+		setTimeout(function(){ $('#instruct').fadeOut(); },5000)
 	}
 }
 
@@ -68,33 +54,24 @@ function projectdeploy(incoming){
 
 function breadcrumb(shape, color, selected){
 	var crumbpulse, crumbthrob = 1, crumbengorge = false;
-	console.log(shape+' ++ '+color+' ++ '+selected)
-	var $crumb = $('.crumbput');
+	console.log(color+' ++ '+selected)
+	console.log(shape);
+	var $crumb = $('#crumbput');
 	var crumbmass = 1;
-	var proj = _.keys(shape);
 
-	$crumb.parent().css('top', (wpheight-175)/2);
+	// $crumb.parent());
 
 	for (var cr in shape){
-		$('<div class="crumbcube '+color+'" data-project="'+proj[cr]+'" style="z-index:'+(crumbmass++)+'; bottom:'+((shape[cr].y*28)+(shape[cr].z*13))+'px; left:'+(shape[cr].z-1)*25+'px;"><div class="crumbface cr_top"></div><div class="crumbface cr_left"></div><div class="crumbface cr_right"></div></div>')
+		console.log(cr)
+		$('<div class="crumbcube r'+color
+			+'" data-row="'+color
+			+'" data-callmemaybe="'+cr
+			+'" style="z-index:'+(crumbmass++)
+			+'; bottom:'+((shape[cr].y*28)+(shape[cr].z*13))
+			+'px; left:'+(shape[cr].z-1)*25+'px;"><div class="crumbface cr_top"></div><div class="crumbface cr_left"></div><div class="crumbface cr_right"></div></div>')
 		.appendTo($crumb)
 		.addClass(function(){if(cr == selected) return 'ccs';})
 	}
-
-	$crumb.parent().on({
-		mouseenter:function(){
-			crumbpulse = setInterval(function(){
-				if (!crumbengorge){
-					$('.ccs').children().css('border', --crumbthrob+'px white solid')
-					if (crumbthrob <= 1) crumbengorge = !crumbengorge;	
-				}else{
-					$('.ccs').children().css('border', ++crumbthrob+'px white solid')
-					if (crumbthrob >= 5) crumbengorge = !crumbengorge;
-				}
-			},100);
-		},
-		mouseleave:function(){clearTimeout(crumbpulse);}
-	})
 }
 
 function isotopeengage(){
@@ -117,37 +94,41 @@ function isotopeengage(){
 	});
 }
 
-var drg_h, drg_w, pos_y, pos_x, dragtimer;
-var dragging = false;
+var go_x, go_y, orig_y, orig_x;
+var clicked = false, dragging = false;
+
 
 $floater.on({
 	mousedown:function(e){
-		dragtimer = setTimeout(function(){
-			dragging = true;
-		},120)
-		var $that = $(this).parent()
-		drg_h = $that.outerHeight(),
-		drg_w = $that.outerWidth(),
-		pos_y = $that.offset().top + drg_h - e.pageY,
-		pos_x = $that.offset().left + drg_w - e.pageX;
+		clicked = true;
+
+		drg_h = $floaterparent.outerHeight()
+		drg_w = $floaterparent.outerWidth()
+		
+		orig_y = $floaterparent.offset().top + drg_h - e.pageY,
+		orig_x = $floaterparent.offset().left + drg_w - e.pageX;
 	},
 	mousemove:function(e){
-		if (dragging){
-			var $that = $(this).parent()
-			$that.offset({
-				top:e.pageY + pos_y - drg_h,
-				left:e.pageX + pos_x - drg_w
+		go_x = (e.pageY + orig_y) - drg_h;
+		go_y = (e.pageX + orig_x) - drg_w;
+
+		if (((Math.abs(go_x) > 10) || (Math.abs(go_y) > 10)) && clicked){
+			dragging = true;
+			$floaterparent.offset({
+				top:go_x,
+				left:go_y
 			})
-		}
+		}else dragging = false;
 	},
 	mouseup:function(){
 		if (!dragging){
-			var $that = $(this);
-			$that.toggleClass('open');
+			$(this).toggleClass('open');
 			$floater.isotope('reLayout');
 		}
+		clicked = false;
 		dragging = false;
-		clearTimeout(dragtimer)
+		go_x = 0;
+		go_y = 0;
 	}
 },'div');
 
@@ -161,30 +142,31 @@ function MouseWheelHandler() {
 	$('#instruct').addClass('reinstruct').css('display','block').delay(3000).fadeOut()
 }
 
-$('.crumbput').on('click', 'crumbcube', function(){
-	$('.title').transition({'left':((wpwidth-72)/2)+(wpwidth*.2), 'margin':'0px'}, 1000)
-	$('.who').transition({'left':((wpwidth-40)/2)+(wpwidth*.2), 'margin':'0px'}, 1000)
-	$('.movement').transition({'x':'-25%'}, 1000, function(){
+$('#crumbput').on('click', '.crumbcube', function(){
+	$('#movement').removeClass().addClass('third')
+	var $nextcrumb = $(this).data()
+	setTimeout(function(){
 		cleargrid();
-		// $.getJSON('php/project.json', {$(this).data('project')}, function(q) {
-		$.getJSON('php/project.json', function(q) {
-			projectdeploy(q);
-		})
-		breadcrumb(cubedescend[layerrefere], 'r'+layernumber , layernumber)
-	});
+		$.ajax({
+			type: "POST",
+			dataType:'JSON',
+			data:{project:$nextcrumb.callmemaybe},
+			url: "php/project.php",
+		}).done( function(cellular){
+			projectdeploy(cellular);
+			breadcrumb(cubedescend.nav.cubes[layerrefere], $nextcrumb.row , $nextcrumb.callmemaybe)
+		})		
+	},1000)
 });
 
 $('#point').on('click', function(){
 	$('#cubic').click()
-	$('.title').transition({'left':0, 'margin': titlemargin}, 1000)
-	$('.who').transition({'left':0, 'margin': whomargin}, 1000)
-	$('.movement').transition({'x':'0'}, 1000, function(){
-		cleargrid()
-	});
+	$('#movement').removeClass().addClass('second')
+	setTimeout(cleargrid, 1000)
 })
 
 function cleargrid(){
-	$(".crumbput, .floater").children().detach();
+	$("#crumbput, .floater").children().detach();
 	$floater.isotope('destroy')
 }
 

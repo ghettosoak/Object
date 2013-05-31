@@ -4,7 +4,7 @@ var projector, plane, cube, controls;
 var mouse2D, mouse3D, ray,
 rollOveredFace, isShiftDown = false, isMouseDown = false, isCtrlDown = false, heylookatme, oneup = false,
 radious = 1600, theta = -90, onMouseDownTheta = -90, phi = 60, onMouseDownPhi = 60, onMouseDownPosition, previewed = false, separated = false,
-trow, tref, tnumber, tcube, strow, stnumber, rowsless = 0, rowsmore = 0, previewedOrigCoordx, previewedOrigCoordy, returnCoordx, returnCoordy, returnCoordz,
+tcallme, trow, tref, tnumber, tcube, strow, stnumber, rowsless = 0, rowsmore = 0, previewedOrigCoordx, previewedOrigCoordy, returnCoordx, returnCoordy, returnCoordz,
 $name;
 var where = 'front';
 
@@ -18,11 +18,8 @@ var slide = new slider();
 
 var namelist = [];
 
-init();
-animate();
-
 function init() {
-	$('#cubic').css({'top': ($windowpane.height()-672)/2, 'left':($windowpane.width()-1024)/2})
+	// $('#cubic').css({'top': ($windowpane.height()-672)/2, 'left':($windowpane.width()-1024)/2})
 	
 	scene = new THREE.Scene();
 
@@ -64,9 +61,7 @@ function init() {
 }
 
 function onWindowResize() {
-	camera.setLens( window.innerWidth, window.innerHeight );
 	camera.updateProjectionMatrix();
-	renderer.setSize( window.innerWidth, window.innerHeight );
 }
 
 function onDocumentMouseDown( event ) {
@@ -112,6 +107,7 @@ function cube_ensure(){
 		console.log(oneup)
 
 		if (!previewed){
+			tcallme = $(this).data('callmemaybe')
 			trow = $(this).data('row');
 			tref = $(this).nextAll('.name').first().find('p').text();
 			tnumber = $(this).data('array');
@@ -119,7 +115,7 @@ function cube_ensure(){
 			twhich = $(this).data('number');
 		}
 
-		console.log(trow+' // '+tref+' // '+tnumber+' // '+tcube+' // '+twhich)
+		console.log(tcallme+' // '+trow+' // '+tref+' // '+tnumber+' // '+tcube+' // '+twhich)
 
 		if (!previewed && !separated){
 			console.log('111111111')
@@ -177,7 +173,7 @@ function cube_ensure(){
 			},500);
 
 			setTimeout(function(){
-				shapeshift(tcube, tref, trow, twhich)
+				shapeshift(tcallme, tref, trow, twhich)
 			},1000)
 
 		}else if (!previewed && separated){
@@ -197,8 +193,6 @@ function cube_ensure(){
 			slide.likethis(tnumber, 'center', trow)
 
 			console.log('333333333')
-
-			// getdown(tcube)
 
 			var tween = new TWEEN.Tween({
 				g: heylookatme.x
@@ -253,23 +247,6 @@ function centeraround(me){
 	},jump);
 }
 
-function getdown(except){
-	for (var t = 1; t < counter; t++){
-		if ((scene.children[t].position.y != origheight[t-1]) && ((t-1) != except)){
-			console.log('oh noes!')
-
-			var tween = new TWEEN.Tween({ by: scene.children[t].position.y})
-			.to({ by: origheight[t-1] }, 500)
-			.easing(TWEEN.Easing.Exponential.InOut)
-			.onUpdate(function () {
-				scene.children[t].position.y = this.by
-			})
-			.start();
-			
-		}
-	}
-}
-
 $('#cubic').on('click',function(){
 	console.log('background!')
 	if (previewed){
@@ -307,8 +284,6 @@ $('#cubic').on('click',function(){
 					scene.children[stnumber].position.y = this.by
 				})
 				.start();
-
-				// getdown(stnumber)
 
 				previewed = false;
 				camera.updateMatrix();

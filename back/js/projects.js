@@ -33,7 +33,7 @@ var hoppersize;
 var press, sweettime = false, holding = 500, downtimer, uptimer;
 var $addproj = $('#add_project')
 var $be_move = $('#be_move')
-var lookingat = 'me';
+var lookingat = 'projects';
 
 
 $(document).ready(function(){
@@ -793,8 +793,8 @@ function kill(who, where, how){
 		dataType:'JSON',
 		data: {
 			target : who,
-			project : currentlyediting,
-			field : where
+			field : where,
+			project : currentlyediting
 		},
 		url: "php/kill.php"
 	})

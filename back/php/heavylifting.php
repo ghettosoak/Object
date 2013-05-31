@@ -55,7 +55,10 @@
 
 	$madewithlove = explode(', ', $madewithrow[0]);
 
-	$diffff = array_diff($shapeshifters, $madewithlove);
+	$diffff1 = array_diff($shapeshifters, $madewithlove);
+	$diffff2 = array_diff($madewithlove, $shapeshifters);
+
+	$diffff = array_merge($diffff1, $diffff2);
 
 	
 	// array_push($watcher, implode(', ', $shapeshifters));
@@ -63,17 +66,18 @@
 	// array_push($watcher, implode(', ', $diffff));
 
 	if (count($diffff) > 0){
+		// unlink('../../join/img/shapeshift/sprite_'.$number);
 		$path = '../../join/img/shapeshift/'.$number.'/';
 		$sprite_name = 'sprite_'.$number;
 		$final_sprite_location = '../../join/img/shapeshift/';
 
-		echo $path."\n";
-		echo $sprite_name."\n";
-		echo $final_sprite_location."\n";
+		array_push($watcher, $path);
+		array_push($watcher, $sprite_name);
+		array_push($watcher, $final_sprite_location);
 
 		include('sprite.php');
 
-		mysql_query('update shapeshifters_sprite set madewith = "'.implode(', ', $shapeshifters).'", img = "img/shapeshifter/sprite_'.$number.'.png" where object_key = '.$number);
+		mysql_query('update shapeshifters_sprite set madewith = "'.implode(', ', $shapeshifters).'", img = "../join/img/shapeshift/sprite_'.$number.'.png" where object_key = '.$number);
 
 	}else array_push($watcher, "NO SPRITE CREATED");
 

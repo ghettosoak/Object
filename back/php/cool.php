@@ -5,14 +5,17 @@
 // 	}
 	include('../../join/delicious.php');
 
-	header('Content-Type: image/png');
-
-	$blurs = 30;
-	$image = imagecreatefromjpeg('../../join/img/me/clean/1.jpg');
-	for ($i = 0; $i < $blurs; $i++) {
-	    imagefilter($image, IMG_FILTER_GAUSSIAN_BLUR);
+	function my_array_diff($a, $b) {
+	    $map = $out = array();
+	    foreach($a as $val) $map[$val] = 1;
+	    foreach($b as $val) if(isset($map[$val])) $map[$val] = 0;
+	    foreach($map as $val => $ok) if($ok) $out[] = $val;
+	    return $out;
 	}
-	imagejpeg($image, '../../join/img/me/blur/14.jpg');
-	imagedestroy($image);
+
+	$a = array('A', 'B', 'C', 'D');
+	$b = array('A', 'B', 'C', 'D', 'E');
+
+	print_r(my_array_diff($a, $b));
 
 ?>

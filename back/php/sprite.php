@@ -24,14 +24,18 @@
 
 //DEBUG
 
-// Source image folder
-// $path = '../img/shapeshift/t2/';
+// // WHAT
+// $watcher = array();
+// unlink('../../join/img/shapeshift/sprite_23');
 
-// Sprite image name
-// $sprite_name = 'sass_sprite3';
+// // Source image folder
+// $path = '../../join/img/shapeshift/23/';
 
-// Location for the generated sprite image
-// $final_sprite_location = '../img/shapeshift/';
+// // Sprite image name
+// $sprite_name = 'sprite_23';
+
+// // Location for the generated sprite image
+// $final_sprite_location = '../../join/img/shapeshift/';
 
 
 
@@ -107,11 +111,11 @@ generate_sprite_png($images_positioned, $path, $x, $y, $sprite_name);
 array_push($watcher, "DONE.");
 
 if($use_png_crush){
-    echo "Crushing png...";
+    array_push($watcher, "Crushing png...");
     $cmd = 'pngcrush -rem alla -brute -reduce '.$path.'/'.$sprite_name.'.png '.$path.'/'.$sprite_name.'_crushed.png';
     $cmd .= ' && rm  '.$path.'/'.$sprite_name.'.png && mv '.$path.'/'.$sprite_name.'_crushed.png '.$path.'/'.$sprite_name.'.png';
     exec($cmd);
-    echo "DONE.";
+    array_push($watcher, "DONE.");
 }
 
 array_push($watcher, "Moving to final destination...");

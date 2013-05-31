@@ -1,4 +1,44 @@
-<!DOCTYPE html>
+<?php
+
+include('../join/delicious.php');
+
+$cubes = mysql_query("select object_id, category, coord_y, coord_z from objects");
+$shapeshift = mysql_query("select object_key, img, madewith from shapeshifters_sprite");
+$ids = mysql_query("select mebg_id from mebg");
+$txt = mysql_query("select txt from metxt");
+
+$first = array();
+
+$first['nav'] = array();
+$first['nav']['cubes'] = array();
+$first['nav']['shapeshifter'] = array();
+
+$first['me'] = array();
+$first['me']['txt'] = array();
+
+while ($onecube = mysql_fetch_assoc($cubes)){
+	$coords = array("y" => $onecube['coord_y'], "z" => $onecube['coord_z']);
+    $first['nav']['cubes'][$onecube['category']][$onecube['object_id']] = $coords;
+}
+
+while ($oneshapeshift = mysql_fetch_assoc($shapeshift)){
+    $first['nav']['shapeshifter'][$oneshapeshift['object_key']] = array('img' => $oneshapeshift['img'], 'count' => count(explode(', ', $oneshapeshift['madewith'])));
+}
+
+$me_ids = array();
+
+while ($theids = mysql_fetch_array($ids)){
+	array_push($me_ids, $theids['mebg_id']);
+}
+
+$mike = $me_ids[rand(0, count($me_ids)-1)];
+
+$me_x = 2;
+$me_y = 1;
+
+?>
+
+<!doctype html>
 <html lang="en">
 	<head>
 		<title>object_v0020</title>
@@ -9,31 +49,29 @@
 	</head>
 	<body>
 		<div class="master">
-			<div class="movement">
+			<div id="movement" class="second">
 				<div class="me">
 					<div class="me_img">
-						<div id="me_clean"></div>
-						<div id="me_blur"></div>
+						<?php
+							echo '<div id="me_clean"><img src="../join/img/me/clean/'.$mike.'.jpg" /></div>';
+							echo '<div id="me_blur"><img src="../join/img/me/blur/'.$mike.'.jpg" /></div>';
+						?>						
 					</div>
 
 					<div class="meme me_x1 me_y1"> 
 						<div id="megrey"></div>
 						<p>my name is <br /><span>mike</span></p>
 					</div>
-					<div class="me01 me_x2 me_y1 me_bit"><div class="me_float"><div class="me_txt"></div></div></div>
-					<div class="me02 me_x3 me_y1 me_bit"><div class="me_float"><div class="me_txt"></div></div></div>
-					<div class="me03 me_x4 me_y1 me_bit"><div class="me_float"><div class="me_txt"></div></div></div>
-					<div class="me04 me_x1 me_y2 me_bit"><div class="me_float"><div class="me_txt"></div></div></div>
-					<div class="me05 me_x2 me_y2 me_bit"><div class="me_float"><div class="me_txt"></div></div></div>
-					<div class="me06 me_x3 me_y2 me_bit"><div class="me_float"><div class="me_txt"></div></div></div>
-					<div class="me07 me_x4 me_y2 me_bit"><div class="me_float"><div class="me_txt"></div></div></div>
-					<div class="me08 me_x1 me_y3 me_bit"><div class="me_float"><div class="me_txt"></div></div></div>
-					<div class="me09 me_x2 me_y3 me_bit"><div class="me_float"><div class="me_txt"></div></div></div>
-					<div class="me10 me_x3 me_y3 me_bit"><div class="me_float"><div class="me_txt"></div></div></div>
-					<div class="me11 me_x4 me_y3 me_bit"><div class="me_float"><div class="me_txt"></div></div></div>
-					<div class="me12 me_x1 me_y4 me_bit"><div class="me_float"><div class="me_txt"></div></div></div>
-					<div class="me13 me_x2 me_y4 me_bit"><div class="me_float"><div class="me_txt"></div></div></div>
-					<div class="me14 me_x3 me_y4 me_bit"><div class="me_float"><div class="me_txt"></div></div></div>
+
+					<?php
+						while ($metext = mysql_fetch_assoc($txt)){
+							echo '<div class="me_x'.$me_x++.' me_y'.$me_y.' me_bit"><div class="me_float"><div class="me_txt"><p>'.$metext['txt'].'</p></div></div></div>';
+							if ($me_x > 4){
+								$me_x = 1;
+								$me_y++;
+							}
+						}
+					?>
 					<div class="meback me_x4 me_y4">
 						<div id="mebackwhite"></div>
 						<img src="img/back_right.png" />
@@ -49,6 +87,18 @@
 				                </clipPath>
 				           	</g>
 
+				           	<?php
+					           	// while ($oneshapeshift = mysql_fetch_assoc($shapeshift)){
+					           	//     // $oneshapeshift['object_key']
+					           	//     // $oneshapeshift['img']
+					           	//     // $oneshapeshift['madewith']
+					           	//     echo '<image height=​499% width=​107% href=​'.$oneshapeshift['img'].' x=​0 y=​0 clip-path=​url(#hex-mask)​ preserveAspectRatio=​xMidYMin id=​ssi_'.$oneshapeshift['object_key'].' class=​ssi data-count='.count(explode(', ',$oneshapeshift['madewith'])).'>​</image>​';
+					           	//     // echo "<image height=​\"499%\" width=​\"107%\" href=​\"../​join/​img/​shapeshift/​sprite_23.png\" x=​\"0\" y=​\"0\" clip-path=​\"url(#hex-mask)​\" preserveAspectRatio=​\"xMidYMin slice\" id=​\"ssi_23\" class=​\"ssi\">​</image>​";
+					           	// }
+				           	?>
+
+				           	<!-- <image height=​"499%" width=​"107%" href=​"../​join/​img/​shapeshift/​sprite_23.png" x=​"0" y=​"0" clip-path=​"url(#hex-mask)​" preserveAspectRatio=​"xMidYMin slice" id=​"ssi_23" class=​"ssi">​</image>​ -->
+
 				           <!-- <image id="ssi01" class="ssi" clip-path="url(#hex-mask)" height="499%" width="107%" x="-3.5%" y="0" xlink:href="img/p/sh/1.jpg" preserveAspectRatio="xMidYMin slice" /> -->
 						</svg>
 					</div>
@@ -58,7 +108,8 @@
 					<div class="left">
 						<p class="title">OB.JECT</p>
 						<p class="who">?</p>
-						<p class="copright">&copy; 2013 MTO'BF</p>
+						<p class="copyright">&copy; 2013 MTO'BF</p>
+						<input tabindex="1" type="text" id="trial">
 					</div>
 					<div class="middle">
 
@@ -70,7 +121,7 @@
 						</p>
 						<img src="img/back_left.png" id="point" />
 						<div class="crumb">
-							<div class="crumbput"></div>
+							<div id="crumbput"></div>
 						</div>
 					</div>
 					
@@ -85,62 +136,22 @@
 
 		<script src="js/lib/jquery-1.8.3.min.js"></script>
 		<script src="js/lib/underscore-min.js"></script>
-		<script src="js/lib/jquery.transit.min.js"></script>
 		<script src="js/lib/three.min.54.js"></script>
 		<script src="js/lib/CSS3DRenderer.js"></script>
 		<script src="js/lib/tween.min.js"></script>
 		<script src="js/lib/jquery.isotope.min.js"></script>
-		<script src="js/lib/blur.dev.js"></script>
 		<script src="js/lib/jquery.animate-colors-min.js"></script>
-		<script src="js/lib/jquery.animate-shadow-min.js"></script>
-		<script src="js/lib/selectivizr-min.js"></script>
-
 		
 		<script src='js/launch.js'></script>
 		<script src='js/cubecontrol.js'></script>
 		<script src='js/shapeshifter.js'></script>
 		<script src='js/project.js'></script>
 		<script src='js/me.js'></script>
+		<script src='js/link.js'></script>
 
 		<?php
 
-		// include('../join/delicious.php');
-
-		// $cubes = mysql_query("select object_id, category, coord_y, coord_z from objects");
-		// $shapeshift = mysql_query("select object_key, img from shapeshifters_sprite");
-		// $ids = mysql_query("select mebg_id from mebg");
-		// $txt = mysql_query("select txt from metxt");
-
-		// $first = array();
-
-		// $first['nav'] = array();
-		// $first['nav']['cubes'] = array();
-		// $first['nav']['shapeshifter'] = array();
-
-		// $first['me'] = array();
-		// $first['me']['txt'] = array();
-		// // $first['me']['img'] = array();
-
-		// while ($onecube = mysql_fetch_assoc($cubes)){
-		// 	$coords = array("y" => $onecube['coord_y'], "z" => $onecube['coord_z']);
-		//     $first['nav']['cubes'][$onecube['category']][$onecube['object_id']] = $coords;
-		// }
-
-		// while ($oneshapeshift = mysql_fetch_assoc($shapeshift)){
-		//     $first['nav']['shapeshifter'][$oneshapeshift['object_key']] = $oneshapeshift['img'];
-		// }
-
-		// $me_ids = array();
-
-		// while ($theids = mysql_fetch_array($ids)){
-		// 	array_push($me_ids, $theids['mebg_id']);
-		// }
-
-		// $first['me']['img'] = $me_ids[rand(0, count($me_ids)-1)];
-
-		// while ($metext = mysql_fetch_assoc($txt)){
-		// 	$first['me']['txt'][] = $metext['txt'];
-		// }
+		
 
 		// echo "<script>
 		// 	var descend = ".json_encode($first)."

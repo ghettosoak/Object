@@ -26,7 +26,7 @@
 
 		$nextimg = $thestatus['Auto_increment'];
 
-		mysql_query("insert into mebg (bg) values('../join/img/me/clean/".$nextimg.".jpg')");
+		// mysql_query("insert into mebg (bg) values('../join/img/me/clean/".$nextimg.".jpg')");
 
 		if(!in_array(get_extension($me_image['name']),$allowed_ext)){
 			exit_status('Only '.implode(',',$allowed_ext).' files are allowed!');
@@ -49,13 +49,13 @@
 			// imagedestroy($image);
 
 
-			// $blurs = 30;
-			// $image = imagecreatefromjpeg("../../join/img/me/clean/"..".jpg");
-			// for ($i = 0; $i < $blurs; $i++) {
-			//     imagefilter($image, IMG_FILTER_GAUSSIAN_BLUR);
-			// }
-			// imagejpeg($image, '../../join/img/me/blur/43.jpg');
-			// imagedestroy($image);
+			$blurs = 30;
+			$image = imagecreatefromjpeg("../../join/img/me/clean/".$nextimg.".jpg");
+			for ($i = 0; $i < $blurs; $i++) {
+			    imagefilter($image, IMG_FILTER_GAUSSIAN_BLUR);
+			}
+			imagejpeg($image, '../../join/img/me/blur/'.$nextimg.'.jpg');
+			imagedestroy($image);
 
 			echo json_encode(array('img_id'=>$nextimg));
 			exit;

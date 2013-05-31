@@ -6,15 +6,18 @@ $(document).ready(function(){
 	wpwidth = $windowpane.width();
 	
 	// shapeshifterload(shapeshifterdescend);
-
-	// $.ajax({
-	// 	type: "POST",
-	// 	dataType:'JSON',
-	// 	url: "php/front.php",
-	// }).done( function(cube){
-	// 	shapeshifterload(cube.nav.shapeshifter);
-	// 	cubegenerator(cube.nav.cubes)
-	// })
+	
+	$.ajax({
+		type: "POST",
+		dataType:'JSON',
+		url: "php/front.php",
+	}).done( function(cube){
+		init();
+		animate();
+		cubedescend = cube;
+		shapeshifterload(cube.nav.shapeshifter);
+		cubegenerator(cube.nav.cubes)
+	})
 
 });
 
@@ -24,10 +27,8 @@ $windowpane.load(function(){
 
 	titlemargin = $('.title').css('margin');
 	whomargin = $('.who').css('margin');
-	$('.title').css('margin', titlemargin)
-	$('.who').css('margin', whomargin)
-
-	iammike();
+	// $('.title').css('margin', titlemargin)
+	// $('.who').css('margin', whomargin)
 });
 
 $windowpane.resize(function(){

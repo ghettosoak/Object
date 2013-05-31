@@ -2,8 +2,9 @@
 
 include('../../join/delicious.php');
 
+
 $cubes = mysql_query("select object_id, category, coord_y, coord_z from objects");
-$shapeshift = mysql_query("select object_key, img from shapeshifters_sprite");
+$shapeshift = mysql_query("select object_key, img, madewith from shapeshifters_sprite");
 $ids = mysql_query("select mebg_id from mebg");
 $txt = mysql_query("select txt from metxt");
 
@@ -23,7 +24,7 @@ while ($onecube = mysql_fetch_assoc($cubes)){
 }
 
 while ($oneshapeshift = mysql_fetch_assoc($shapeshift)){
-    $first['nav']['shapeshifter'][$oneshapeshift['object_key']] = $oneshapeshift['img'];
+    $first['nav']['shapeshifter'][$oneshapeshift['object_key']] = array('img' => $oneshapeshift['img'], 'count' => count(explode(', ', $oneshapeshift['madewith'])));
 }
 
 $me_ids = array();

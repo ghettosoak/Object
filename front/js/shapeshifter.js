@@ -1,23 +1,20 @@
 var clicker, tracker = 1, prone, layerrefere, layernumber, individualnumber;
 
 function shapeshifterload(block){
-	// for (var ssi in block){
-	// 	var path = block[ssi];
-		for (var p in block){
-			var img = document.createElementNS('http://www.w3.org/2000/svg','image');
-			img.setAttributeNS(null,'height','499%');
-			img.setAttributeNS(null,'width','107%');
-			img.setAttributeNS('http://www.w3.org/1999/xlink','href', block[p]);
-			img.setAttributeNS(null,'x','0');
-			img.setAttributeNS(null,'y','0');
-			img.setAttributeNS(null, 'clip-path', 'url(#hex-mask)');
-			img.setAttributeNS(null, 'preserveAspectRatio', 'xMidYMin slice');
-			img.setAttributeNS(null, 'id', 'ssi_'+p);
-			img.setAttributeNS(null, 'class', 'ssi');
-			$('#cubeshape').append(img);
-		}
-	// }
-	$('#shapeshifter').css({'top':($windowpane.height()-147)/2, 'left':($windowpane.width()-342)/2})
+	for (var p in block){
+		var img = document.createElementNS('http://www.w3.org/2000/svg','image');
+		img.setAttributeNS(null,'height', (block[p].count-1)+'99%');
+		img.setAttributeNS(null,'width','107%');
+		img.setAttributeNS('http://www.w3.org/1999/xlink','href', block[p].img);
+		img.setAttributeNS(null,'x','0');
+		img.setAttributeNS(null,'y','0');
+		img.setAttributeNS(null, 'clip-path', 'url(#hex-mask)');
+		img.setAttributeNS(null, 'preserveAspectRatio', 'xMidYMin slice');
+		img.setAttributeNS(null, 'id', 'ssi_'+p);
+		img.setAttributeNS(null, 'class', 'ssi');
+		img.setAttributeNS(null, 'data-count', block[p].count);
+		$('#cubeshape').append(img);
+	}
 }
 
 function shapeshift(ed, ing, er, ar){
@@ -27,23 +24,26 @@ function shapeshift(ed, ing, er, ar){
 	individualnumber = ar;
 
 	console.log(ed+' >> '+ing+' >> '+er+' >> '+ar)
-	$('#ssi'+ed).css('display','block')
+	var toomuch = $('#ssi_'+ed).css('display','block').data('count')-1
+	console.log(toomuch)
 	$('#shapeshifter').fadeIn(300)
 	clicker = setInterval(function(){
-		document.getElementById('ssi'+ed).setAttributeNS(null, 'y', -149*tracker)
-		tracker >= 4 ? tracker = 0 : tracker++;
+		document.getElementById('ssi_'+prone).setAttributeNS(null, 'y', -149*tracker)
+		tracker >= toomuch ? tracker = 0 : tracker++;
 	}, 500);
 }
 
 $('#shapeshifter').on('click', function(){
 	where = 'project';
-	$('.title').transition({'left':((wpwidth-72)/2)+(wpwidth*.2), 'margin':'0px'}, 1000)
-	$('.who').transition({'left':((wpwidth-40)/2)+(wpwidth*.2), 'margin':'0px'}, 1000)
-	$('.movement').transition({'x':'-25%'}, 1000, function(){
-		// $.getJSON('php/project.json', {}, function(q) {
-		$.getJSON('php/project.json', function(q) {
-			projectdeploy(q);
-		})
-		breadcrumb(cubedescend[layerrefere], 'r'+layernumber , individualnumber)
-	});
+	$('#movement').removeClass().addClass('third')
+	clearInterval(clicker)
+	$.ajax({
+		type: "POST",
+		dataType:'JSON',
+		data:{project:tcallme},
+		url: "php/project.php",
+	}).done( function(cellular){
+		projectdeploy(cellular);
+	})
+	breadcrumb(cubedescend.nav.cubes[layerrefere], layernumber, prone)
 });
