@@ -6,6 +6,27 @@ border-radius: 9px;
 <?php include("inc/head.html"); ?>
 */
 
+@font-face {
+    font-family : 'u47';
+    src: url('../../join/type/u47.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family : 'u47i';
+    src: url('../../join/type/u47i.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family : 'u39';
+    src: url('../../join/type/u39.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @import "bourbon";
 
 //DEFINES
