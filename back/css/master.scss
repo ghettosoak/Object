@@ -61,8 +61,8 @@ a{
     position:absolute;
     height:200%;
     width:85%;
-    top:-100%;
-    // top:0%;
+    // top:-100%;
+    top:0%;
     left:0%;
     @include transition (all 0.5s ease-in-out);
     h3{
