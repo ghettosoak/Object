@@ -47,7 +47,7 @@ body {
   margin: 0px;
   overflow: hidden; }
 
-.master {
+#master {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -57,13 +57,24 @@ body {
   font-size: 14px;
   overflow: hidden; }
 
+#edit {
+  position: absolute;
+  -webkit-transform: translateY(-200%);
+  -moz-transform: translateY(-200%);
+  -ms-transform: translateY(-200%);
+  -o-transform: translateY(-200%);
+  transform: translateY(-200%);
+  left: 0px;
+  height: 200%;
+  width: 100%; }
+
 #movement {
   position: absolute;
   height: 100%;
   width: 400%;
   top: 0px; }
 
-#movement, .red, .red .left * {
+#movement, #edit, .red, .red .left * {
   -webkit-transition: all 1s ease-in-out;
   -moz-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
@@ -100,6 +111,34 @@ body {
   transform: translateX(-75%); }
   .fourth .red .left * {
     left: 613.6%; }
+
+.editing {
+  -webkit-transform: translateY(0%) !important;
+  -moz-transform: translateY(0%) !important;
+  -ms-transform: translateY(0%) !important;
+  -o-transform: translateY(0%) !important;
+  transform: translateY(0%) !important; }
+
+.down.second {
+  -webkit-transform: translateX(-25%) translateY(200%);
+  -moz-transform: translateX(-25%) translateY(200%);
+  -ms-transform: translateX(-25%) translateY(200%);
+  -o-transform: translateX(-25%) translateY(200%);
+  transform: translateX(-25%) translateY(200%); }
+
+.down.third {
+  -webkit-transform: translateX(-50%) translateY(200%);
+  -moz-transform: translateX(-50%) translateY(200%);
+  -ms-transform: translateX(-50%) translateY(200%);
+  -o-transform: translateX(-50%) translateY(200%);
+  transform: translateX(-50%) translateY(200%); }
+
+.down.fourth {
+  -webkit-transform: translateX(-75%) translateY(200%);
+  -moz-transform: translateX(-75%) translateY(200%);
+  -ms-transform: translateX(-75%) translateY(200%);
+  -o-transform: translateX(-75%) translateY(200%);
+  transform: translateX(-75%) translateY(200%); }
 
 .me, .front, .grid, .red {
   position: relative;
@@ -437,12 +476,16 @@ body {
       top: 10%;
       width: 72px; }
     .red .left .who {
+      -webkit-transition: top 1s ease-in-out !important;
+      -moz-transition: top 1s ease-in-out !important;
+      -o-transition: top 1s ease-in-out !important;
+      transition: top 1s ease-in-out !important;
       top: 81%;
       font-size: 20px;
       text-align: center;
       height: 40px;
       width: 40px;
-      padding: 12px;
+      padding: 7px;
       border-radius: 40px;
       background: white;
       color: #c50000;
@@ -457,12 +500,14 @@ body {
       top: 85%;
       width: 33px;
       font-size: 11px;
-      line-height: 12px; }
+      line-height: 12px;
+      text-align: center; }
     .red .left #trial {
       font-family: u47;
       font-size: 14px;
       width: 104%;
       position: relative;
+      float: left;
       left: -2%;
       height: 30px;
       border: 0px;
@@ -470,6 +515,8 @@ body {
       display: block;
       top: 81%;
       z-index: 200;
+      outline: 0px !important;
+      text-align: center;
       opacity: 0; }
   .red .middle {
     width: 72%; }

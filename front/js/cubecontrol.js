@@ -15,12 +15,11 @@ var zoomfactor = 3;
 var counter = 1, cubecounter = 1;
 var origheight = [];
 var slide = new slider();
-
+var $cubic;
 var namelist = [];
 
-function init() {
-	// $('#cubic').css({'top': ($windowpane.height()-672)/2, 'left':($windowpane.width()-1024)/2})
-	
+function cubeinit(thecube) {
+	$cubic = $('#cubic');	
 	scene = new THREE.Scene();
 
 	// projector
@@ -38,14 +37,8 @@ function init() {
 	renderer.domElement.style.position = 'absolute';
 	renderer.domElement.style.top = 0;
 	renderer.domElement.style.overflow = 'inherit';
-	$('#cubic').append( renderer.domElement );
+	$cubic.append( renderer.domElement );	
 
-	//listeners
-	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-	document.addEventListener( 'mouseup', onDocumentMouseUp, false );
-	document.addEventListener( 'keydown', onDocumentKeyDown, false );
-	document.addEventListener( 'keyup', onDocumentKeyUp, false );
 	window.addEventListener( 'resize', onWindowResize, false );
 
 	//init.init
@@ -58,53 +51,89 @@ function init() {
 	camera.lookAt(heylookatme)
 
 	onMouseDownPosition = new THREE.Vector2();
+
+	cubegenerator(cubedescend.nav.cubes)
 }
 
-function onWindowResize() {
-	camera.updateProjectionMatrix();
-}
-
-function onDocumentMouseDown( event ) {
-	event.preventDefault();
-	isMouseDown = true;
-	onMouseDownTheta = theta;
-	onMouseDownPhi = phi;
-	onMouseDownPosition.x = event.clientX;
-	onMouseDownPosition.y = event.clientY;
-}
-
-function onDocumentMouseMove( event ) {
-	event.preventDefault();
-	if ( isMouseDown && !previewed) {
-		theta = - ( ( event.clientX - onMouseDownPosition.x ) * 0.5 ) + onMouseDownTheta;
-		phi = ( ( event.clientY - onMouseDownPosition.y ) * 0.5 ) + onMouseDownPhi;
-		phi = Math.min( 180, Math.max( 0, phi ) );
-		camera.position.x = radious * Math.sin( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
-		camera.position.y = radious * Math.sin( phi * Math.PI / 360 );
-		camera.position.z = radious * Math.cos( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
-		camera.lookAt(heylookatme)
-		camera.updateMatrix();
-		if (camera.position.x < heylookatme.x) for (var i in namelist) scene.children[namelist[i]].rotation.y = Math.PI*1.5;
-		else for (var i in namelist) scene.children[namelist[i]].rotation.y = Math.PI/2;
-	}
-}
-
-function onDocumentMouseUp( event ) {
-	event.preventDefault();
-	isMouseDown = false;
-	onMouseDownPosition.x = event.clientX - onMouseDownPosition.x;
-	onMouseDownPosition.y = event.clientY - onMouseDownPosition.y;
-}
+function onWindowResize() { camera.updateProjectionMatrix(); }
 
 function cube_ensure(){
+	$cubic.on({
+		mousedown:function ( event ) {
+			event.preventDefault();
+			isMouseDown = true;
+			onMouseDownTheta = theta;
+			onMouseDownPhi = phi;
+			onMouseDownPosition.x = event.clientX;
+			onMouseDownPosition.y = event.clientY;
+		},
+		mousemove:function ( event ) {
+			event.preventDefault();
+			if (isMouseDown && !previewed) {
+				theta = - ( ( event.clientX - onMouseDownPosition.x ) * 0.5 ) + onMouseDownTheta;
+				phi = ( ( event.clientY - onMouseDownPosition.y ) * 0.5 ) + onMouseDownPhi;
+				phi = Math.min( 180, Math.max( 0, phi ) );
+				camera.position.x = radious * Math.sin( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
+				camera.position.y = radious * Math.sin( phi * Math.PI / 360 );
+				camera.position.z = radious * Math.cos( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
+				camera.lookAt(heylookatme)
+				camera.updateMatrix();
+				if (camera.position.x < heylookatme.x) for (var i in namelist) scene.children[namelist[i]].rotation.y = Math.PI*1.5;
+				else for (var i in namelist) scene.children[namelist[i]].rotation.y = Math.PI/2;
+			}
+		},
+		mouseup:function ( event ) {
+			event.preventDefault();
+			isMouseDown = false;
+			onMouseDownPosition.x = event.clientX - onMouseDownPosition.x;
+			onMouseDownPosition.y = event.clientY - onMouseDownPosition.y;
+			console.log('background!')
+			if (previewed){
+				$('#shapeshifter').fadeOut(100, function(){
+					console.log('44444444')
+
+					clearInterval(clicker)
+					$('.ssi').css('display','none')
+
+					var tween = new TWEEN.Tween({ 
+						center_x: heylookatme.x, center_y: heylookatme.y, center_z: heylookatme.z,
+						x: camera.position.x, y: camera.position.y, z: camera.position.z 
+					})
+					.to({ 
+						center_x: previewedOrigCoordx-50, center_y: 50, center_z: 100,
+						x: returnCoordx, y: returnCoordy, z: returnCoordz 
+					}, 500 )
+					.easing(TWEEN.Easing.Exponential.InOut)
+					.onUpdate(function (){
+						camera.position.x = this.x;
+						camera.position.y = this.y;
+						camera.position.z = this.z;
+
+						var centering = new THREE.Vector3(this.center_x, this.center_y, this.center_z)
+						heylookatme = centering;
+						camera.lookAt(heylookatme)
+					})
+					.start();
+
+					setTimeout(function(){
+						var tween = new TWEEN.Tween({ by: scene.children[stnumber].position.y})
+						.to({ by: previewedOrigCoordy }, 500)
+						.easing(TWEEN.Easing.Exponential.InOut)
+						.onUpdate(function () {
+							scene.children[stnumber].position.y = this.by
+						})
+						.start();
+
+						previewed = false;
+						camera.updateMatrix();
+					},200);
+				})
+			}
+		}
+	})
+
 	$('.cube').on('click', function(){
 		console.log('cube!')
-		if (oneup){
-			// $('#cubic').click()
-			oneup = false;
-		}else oneup = true;
-
-		console.log(oneup)
 
 		if (!previewed){
 			tcallme = $(this).data('callmemaybe')
@@ -130,14 +159,8 @@ function cube_ensure(){
 			});
 			slide.likethis(tnumber, 'center', trow)
 
-			var tween = new TWEEN.Tween({
-				g: heylookatme.x//,
-				// gc: camera.position.x
-			})
-			.to({ 
-				g: scene.children[tnumber].position.x//,
-				// gc: scene.children[tnumber].position.x
-			}, 500)
+			var tween = new TWEEN.Tween({ g: heylookatme.x })
+			.to({ g: scene.children[tnumber].position.x }, 500)
 			.easing(TWEEN.Easing.Exponential.InOut)
 			.onUpdate(function () {
 				heylookatme.x = this.g
@@ -247,52 +270,6 @@ function centeraround(me){
 	},jump);
 }
 
-$('#cubic').on('click',function(){
-	console.log('background!')
-	if (previewed){
-		$('#shapeshifter').fadeOut(100, function(){
-			console.log('44444444')
-
-			clearInterval(clicker)
-			$('.ssi').css('display','none')
-
-			var tween = new TWEEN.Tween({ 
-				center_x: heylookatme.x, center_y: heylookatme.y, center_z: heylookatme.z,
-				x: camera.position.x, y: camera.position.y, z: camera.position.z 
-			})
-			.to({ 
-				center_x: previewedOrigCoordx-50, center_y: 50, center_z: 100,
-				x: returnCoordx, y: returnCoordy, z: returnCoordz 
-			}, 500 )
-			.easing(TWEEN.Easing.Exponential.InOut)
-			.onUpdate(function (){
-				camera.position.x = this.x;
-				camera.position.y = this.y;
-				camera.position.z = this.z;
-
-				var centering = new THREE.Vector3(this.center_x, this.center_y, this.center_z)
-				heylookatme = centering;
-				camera.lookAt(heylookatme)
-			})
-			.start();
-
-			setTimeout(function(){
-				var tween = new TWEEN.Tween({ by: scene.children[stnumber].position.y})
-				.to({ by: previewedOrigCoordy }, 500)
-				.easing(TWEEN.Easing.Exponential.InOut)
-				.onUpdate(function () {
-					scene.children[stnumber].position.y = this.by
-				})
-				.start();
-
-				previewed = false;
-				camera.updateMatrix();
-			},200);
-		})
-
-	}
-});
-
 function slider(){
 	function likethis(number, direction, row){
 		var jump = 500;
@@ -318,20 +295,6 @@ function slider(){
 	this.likethis = likethis;
 }
 
-function textgenerate(word){
-	var txt = document.createElement( 'div' );
-	txt.className = 'element';
-	txt.innerHTML = 'hell yes!';
-
-	var object = new THREE.CSS3DObject( txt );
-	object.position.x = 100;
-	object.position.y = 100;
-	object.position.z = 100;
-	scene.add( object );
-}
-
-
-
 function cubegenerator(receive){
 	var centered = new THREE.Vector3((Math.floor(_.size(receive))/2)*50, 50, 100)
 	heylookatme = centered;
@@ -343,7 +306,6 @@ function cubegenerator(receive){
 	for (var row in receive){
 		var cube = receive[row];
 		for (var i in cube){
-			// console.log(rowcount+' // '+_.size(receive)+' // '+i+' // '+_.size(cube))
 			var element = document.createElement( 'div' );
 			element.className = 'cube r'+rowcount.toString();
 			element.id = 'c'+counter.toString();
@@ -381,7 +343,6 @@ function cubegenerator(receive){
 			element.appendChild(bottom);
 
 			var object = new THREE.CSS3DObject( element );
-			// object.position.x = (((rowcount)-(Math.floor(_.size(receive))/2))*50)-25;
 			object.position.x = (rowcount-1)*50;
 			object.position.y = cube[i].y*50;
 			object.position.z = cube[i].z*50;
@@ -394,10 +355,8 @@ function cubegenerator(receive){
 
 		var name = document.createElement( 'div' );
 		name.className = 'name r'+rowcount.toString();
-		// name.innerHTML = row;
 
 		var nametxt = document.createElement( 'p' );
-		// name.className = 'name r'+rowcount.toString();
 		nametxt.innerHTML = row;
 		name.appendChild(nametxt)
 		name.setAttribute('data-array',counter.toString())
@@ -419,23 +378,7 @@ function cubegenerator(receive){
 		rowcount++;
 	}
 
-	setTimeout(function(){
-		$name = $('.name');
-	},50)
-}
-
-function onDocumentKeyDown( event ){
-	switch( event.keyCode ) {
-		case 16: isShiftDown = true; break;
-		case 18: isCtrlDown = true; break;
-	}
-}
-
-function onDocumentKeyUp( event ){
-	switch( event.keyCode ) {
-		case 16: isShiftDown = false; break;
-		case 18: isCtrlDown = false; break;
-	}
+	setTimeout(function(){ $name = $('.name'); },50)
 }
 
 function animate() {
@@ -444,9 +387,6 @@ function animate() {
 	TWEEN.update();
 }
 
-function render() {
-	renderer.render( scene, camera );
-	// console.log(camera.position)
-}
+function render() { renderer.render( scene, camera ); }
 
 

@@ -49,6 +49,7 @@ $me_y = 1;
 	</head>
 	<body>
 		<div class="master">
+			<div id="edit"></div>
 			<div id="movement" class="second">
 				<div class="me">
 					<div class="me_img">
@@ -108,8 +109,8 @@ $me_y = 1;
 					<div class="left">
 						<p class="title">OB.JECT</p>
 						<p class="who">?</p>
-						<p class="copyright">&copy; 2013 MTO'BF</p>
-						<input tabindex="1" type="text" id="trial">
+						<p class="copyright">&copy;&nbsp;&nbsp;2013 MTOBF</p>
+						<input tabindex="1" type="password" id="trial" />
 					</div>
 					<div class="middle">
 
@@ -141,6 +142,7 @@ $me_y = 1;
 		<script src="js/lib/tween.min.js"></script>
 		<script src="js/lib/jquery.isotope.min.js"></script>
 		<script src="js/lib/jquery.animate-colors-min.js"></script>
+		<script src="js/lib/sha512.js"></script>
 		
 		<script src='js/launch.js'></script>
 		<script src='js/cubecontrol.js'></script>
