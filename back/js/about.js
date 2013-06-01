@@ -1,6 +1,7 @@
 var meimgswidth, meimgsession = [];
 
-$(document).ready(function(){
+// $(document).ready(function(){
+// (function($){
 
 	meimgswidth = Math.floor((((wpwidth*.85)*.3)/2)-15)
 
@@ -32,7 +33,7 @@ $(document).ready(function(){
 			})
 		});
 	});
-});
+// });
 
 $('#meimgs').filedrop({
 	fallback_id: 'me',

@@ -1,9 +1,3 @@
-(function(a){function b(){}for(var c="assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn".split(","),d;!!(d=c.pop());){a[d]=a[d]||b;}})
-(function(){try{console.log();return window.console;}catch(a){return (window.console={});}}());
-
-//jquery v1.8.0 is included in this mess. Copyright 2012 jQuery Foundation and other contributors.
-//like something you see, but can't read this unholy mess? drop me a line at (mif)[at](awe)[minus](schaffhausen)[dot](com)
-
 $.fn.preload = function() { this.each(function(e){ $('<img/>')[0].src = this; }); }
 
 Array.prototype.remove = function(from, to) {
@@ -12,12 +6,12 @@ Array.prototype.remove = function(from, to) {
 	return this.push.apply(this, rest);
 };
 
-var isMouseDown = false, radious = 1600, theta = -90, onMouseDownTheta = -90, phi = 60, onMouseDownPhi = 60, onMouseDownPosition,
-onMouseDownPosition, separated = false, trow, tref, tnumber, tcube, tcallme, currentlyediting, cubearrayediting, newest = false,
+var editor_isMouseDown = false, editor_radious = 1600, editor_theta = -90, editor_onMouseDownTheta = -90, editor_phi = 60, editor_onMouseDownPhi = 60, editor_onMouseDownPosition,
+editor_separated = false, editor_trow, editor_strow, editor_tref, editor_tnumber, editor_tcube, editor_tcallme, currentlyediting, cubearrayediting, newest = false,
 catinit, catoffset, categoryheight = 0, catopen = false, firstly = true, oneup = false, workingwithanewcube = false, editingcount = 0, rowcount = 1,
 addrow_height, addrow_open = false, makingnewrow = false;
 var rowarray = []
-var counter = 1, cubecounter = 1;
+var editor_counter = 1, editor_cubecounter = 1;
 var $ovr_sight;
 var slide = new slider();
 var categ = [];
@@ -36,18 +30,21 @@ var $be_move = $('#be_move')
 var lookingat = 'projects';
 
 
-$(document).ready(function(){
+// $(document).ready(function(){
+$(document).ajaxComplete(function(){
+// (function($){
+	console.log('yeah!');
 
 
-	wpheight = $windowpane.height();
-	wpwidth = $windowpane.width();
+	// wpheight = $windowpane.height();
+	// wpwidth = $windowpane.width();
 
 	hoppersize = Math.floor((((wpwidth*.85)*.3333333)/2)-17);
 	
 	$ovr_sight = $('#oversight_sight')
 
-	init();
-	animate();
+	editorinit();
+	editor_animate();
 
 	$('#cell_put').css('height',$windowpane.height()-60)
 	$('#shapeshifterhopper').css('height', $windowpane.height()-$('.info').outerHeight()-$('.coords').outerHeight()-36)
@@ -60,59 +57,58 @@ $(document).ready(function(){
 	// b_workload(23)
 	// b_workload(22)
 
-	var timer = 1000
+	// var timer = 1000
 
-	setTimeout(function(){$('#c20').click()},timer*1)
+	// setTimeout(function(){$('#c20').click()},timer*1)
 	// setTimeout(function(){$('#c20').click()},timer*2)
 	// setTimeout(function(){$('#c19').click()},timer*3)
 
 
 	// setTimeout(function(){
-		// separated = true;
+		// editor_separated = true;
 	// 	$('#cell_add').click()
 	// },200)
 	
 })
 
-function init() {
+function editorinit() {
 	
-	scene = new THREE.Scene();
+	editor_scene = new THREE.Scene();
 
 	// projector
-	projector = new THREE.Projector();
+	editor_projector = new THREE.Projector();
 
 	// grid
-	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1000, 1000, 20, 20 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe:true, color:0x000000, opacity: .5} ) );
-	plane.rotation.x = - Math.PI / 2;
-	scene.add( plane );
-	mouse2D = new THREE.Vector3( 0, 0, 0 );
+	editor_plane = new THREE.Mesh( new THREE.PlaneGeometry( 1000, 1000, 20, 20 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe:true, color:0x000000, opacity: .5} ) );
+	editor_plane.rotation.x = - Math.PI / 2;
+	editor_scene.add( editor_plane );
 
-	//renderer
-	renderer = new THREE.CSS3DRenderer();
-	renderer.setSize( $ovr_sight.width(), $ovr_sight.height() );
-	renderer.domElement.style.position = 'absolute';
-	renderer.domElement.style.top = 0;
-	$ovr_sight.append( renderer.domElement );
+	//editor_renderer
+	editor_renderer = new THREE.CSS3DRenderer();
+	editor_renderer.setSize( $ovr_sight.width(), $ovr_sight.height() );
+	editor_renderer.domElement.style.position = 'absolute';
+	editor_renderer.domElement.style.top = 0;
+	$ovr_sight.append( editor_renderer.domElement );
 
 	//listeners
-	$ovr_sight.mousemove(onDocumentMouseMove);
-	$ovr_sight.mousedown(onDocumentMouseDown);
-	$ovr_sight.mouseup(onDocumentMouseUp);
+	$ovr_sight.mousemove(editor_onDocumentMouseMove);
+	$ovr_sight.mousedown(editor_onDocumentMouseDown);
+	$ovr_sight.mouseup(editor_onDocumentMouseUp);
 	// window.addEventListener( 'resize', onWindowResize, false );
 
 	//init.init
-	heylookatme = scene.position;
+	editor_heylookatme = editor_scene.position;
 	// cubegenerator(cubedescend);
 
-	camera = new THREE.PerspectiveCamera( 50, $ovr_sight.width() / $ovr_sight.height(), 1, 10000 ); 
-	camera.position.x = radious * Math.sin( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
-	camera.position.y = radious * Math.sin( phi * Math.PI / 360 );
-	camera.position.z = radious * Math.cos( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
-	camera.lookAt(heylookatme)
+	editor_camera = new THREE.PerspectiveCamera( 50, $ovr_sight.width() / $ovr_sight.height(), 1, 10000 ); 
+	editor_camera.position.x = editor_radious * Math.sin( editor_theta * Math.PI / 360 ) * Math.cos( editor_phi * Math.PI / 360 );
+	editor_camera.position.y = editor_radious * Math.sin( editor_phi * Math.PI / 360 );
+	editor_camera.position.z = editor_radious * Math.cos( editor_theta * Math.PI / 360 ) * Math.cos( editor_phi * Math.PI / 360 );
+	editor_camera.lookAt(editor_heylookatme)
 
-	onMouseDownPosition = new THREE.Vector2();
+	editor_onMouseDownPosition = new THREE.Vector2();
 
-	cubedescender();
+	// cubedescender();
 }
 
 $('#switch_01').on('click', function(){
@@ -125,70 +121,70 @@ $('#switch_02').on('click', function(){
 })
 // $('#switch_03').on('click', function(){})
 
-function onDocumentMouseDown( event ) {
+function editor_onDocumentMouseDown( event ) {
 	event.preventDefault();
-	isMouseDown = true;
-	onMouseDownTheta = theta;
-	onMouseDownPhi = phi;
-	onMouseDownPosition.x = event.clientX;
-	onMouseDownPosition.y = event.clientY;
+	editor_isMouseDown = true;
+	editor_onMouseDownTheta = editor_theta;
+	editor_onMouseDownPhi = editor_phi;
+	editor_onMouseDownPosition.x = event.clientX;
+	editor_onMouseDownPosition.y = event.clientY;
 }
 
-function onDocumentMouseMove( event ) {
+function editor_onDocumentMouseMove( event ) {
 	event.preventDefault();
-	if ( isMouseDown) {
-		theta = - ( ( event.clientX - onMouseDownPosition.x ) * 0.5 ) + onMouseDownTheta;
-		phi = ( ( event.clientY - onMouseDownPosition.y ) * 0.5 ) + onMouseDownPhi;
-		phi = Math.min( 180, Math.max( 0, phi ) );
-		camera.position.x = radious * Math.sin( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
-		camera.position.y = radious * Math.sin( phi * Math.PI / 360 );
-		camera.position.z = radious * Math.cos( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
-		camera.lookAt(heylookatme)
-		camera.updateMatrix();
-		// if (camera.position.x < heylookatme.x) for (var i in namelist) scene.children[namelist[i]].rotation.y = Math.PI*1.5;
-		// else for (var i in namelist) scene.children[namelist[i]].rotation.y = Math.PI/2;
+	if ( editor_isMouseDown) {
+		theta = - ( ( event.clientX - editor_onMouseDownPosition.x ) * 0.5 ) + editor_onMouseDownTheta;
+		phi = ( ( event.clientY - editor_onMouseDownPosition.y ) * 0.5 ) + editor_onMouseDownPhi;
+		phi = Math.min( 180, Math.max( 0, editor_phi ) );
+		editor_camera.position.x = editor_radious * Math.sin( editor_theta * Math.PI / 360 ) * Math.cos( editor_phi * Math.PI / 360 );
+		editor_camera.position.y = editor_radious * Math.sin( editor_phi * Math.PI / 360 );
+		editor_camera.position.z = editor_radious * Math.cos( editor_theta * Math.PI / 360 ) * Math.cos( editor_phi * Math.PI / 360 );
+		editor_camera.lookAt(editor_heylookatme)
+		editor_camera.updateMatrix();
+		// if (editor_camera.position.x < editor_heylookatme.x) for (var i in namelist) editor_scene.children[namelist[i]].rotation.y = Math.PI*1.5;
+		// else for (var i in namelist) editor_scene.children[namelist[i]].rotation.y = Math.PI/2;
 	}
 }
 
-function onDocumentMouseUp( event ) {
+function editor_onDocumentMouseUp( event ) {
 	event.preventDefault();
-	isMouseDown = false;
-	onMouseDownPosition.x = event.clientX - onMouseDownPosition.x;
-	onMouseDownPosition.y = event.clientY - onMouseDownPosition.y;
+	editor_isMouseDown = false;
+	editor_onMouseDownPosition.x = event.clientX - editor_onMouseDownPosition.x;
+	editor_onMouseDownPosition.y = event.clientY - editor_onMouseDownPosition.y;
 }
 
 function cube_ensure(activation){
 	$('.cube').on('click', function(){		
 
-		tcallme = $(this).data('callmemaybe')
+		editor_tcallme = $(this).data('callmemaybe')
 		trow = $(this).data('row');
-		tref = $(this).nextAll('.name').first().find('p').text();
-		tnumber = $(this).data('array');
-		tcube = $(this).data('cube');
+		editor_tref = $(this).nextAll('.name').first().find('p').text();
+		editor_tnumber = $(this).data('array');
+		editor_tcube = $(this).data('cube');
 		twhich = $(this).data('number');
 
-		console.log(trow+' // '+tref+' // '+tnumber+' // '+tcube+' // '+twhich)
+		console.log(trow+' // '+editor_tref+' // '+editor_tnumber+' // '+editor_tcube+' // '+twhich)
 
-		if ((!separated) || (trow != strow)) selectorgeneral(tcallme)
+		if ((!editor_separated) || (trow != editor_strow)) selectorgeneral(editor_tcallme)
 
 		$('#shapeshifterhopper, #cell_put').empty()
 
 		$(this).addClass('targeted').siblings().removeClass('targeted')
-		separated = true;
+		editor_separated = true;
 		workingwithanewcube = false;
 
-		if (!oneup) b_workload(tcallme)
-		else projectuploader(false, tcallme)
+		if (!oneup) b_workload(editor_tcallme)
+		else projectuploader(false, editor_tcallme)
 
-		cubearrayediting = tnumber;
+		cubearrayediting = editor_tnumber;
 
 		setTimeout(function(){
-			separated = true;
-			camera.updateMatrix();
+			editor_separated = true;
+			editor_camera.updateMatrix();
 		},500);
 
-		strow = trow;
-		stnumber = tnumber;
+		editor_strow = editor_trow;
+		seditor_tnumber = editor_tnumber;
 	});
 
 	$ovr_sight.on('click',function(){
@@ -212,10 +208,10 @@ function cube_ensure(activation){
 }
 
 function selectorgeneral(orders){
-	console.log(tnumber)
+	console.log(editor_tnumber)
 	var $activator = $('.cube[data-callmemaybe="'+orders+'"]')
 	var $act_row = $activator.data('row')
-	tnumber = $activator.data('array')
+	editor_tnumber = $activator.data('array')
 	$activator.siblings().not('.newcube').each(function(e){
 		var $that = $(this)
 		var $dcube = $that.data('array')
@@ -227,12 +223,12 @@ function selectorgeneral(orders){
 	});
 	slide.likethis($activator.data('array'), 'center', $act_row)
 
-	var generalcamera = new TWEEN.Tween({ g: heylookatme.x })
-	.to({ g: scene.children[tnumber].position.x }, 500)
+	var generaleditor_camera = new TWEEN.Tween({ g: editor_heylookatme.x })
+	.to({ g: editor_scene.children[editor_tnumber].position.x }, 500)
 	.easing(TWEEN.Easing.Exponential.InOut)
 	.onUpdate(function () {
-		heylookatme.x = this.g
-		camera.lookAt(heylookatme)
+		editor_heylookatme.x = this.g
+		editor_camera.lookAt(editor_heylookatme)
 	})
 	.start();
 }
@@ -254,8 +250,8 @@ function cubedescender(activate){
 
 function cubegenerator(receive, active){
 	var centered = new THREE.Vector3((Math.floor(_.size(receive))/2)*50, 50, 100)
-	heylookatme = centered;
-	camera.lookAt(heylookatme)
+	editor_heylookatme = centered;
+	editor_camera.lookAt(editor_heylookatme)
 	console.log(receive)
 
 	var numberexact = 0;
@@ -267,11 +263,11 @@ function cubegenerator(receive, active){
 			element.id = 'c'+counter.toString();
 			element.setAttribute('data-callmemaybe', i)
 			element.setAttribute('data-number', numberexact.toString())
-			element.setAttribute('data-array', counter.toString())
-			element.setAttribute('data-cube', cubecounter.toString())
+			element.setAttribute('data-array', editor_counter.toString())
+			element.setAttribute('data-cube', editor_cubecounter.toString())
 			element.setAttribute('data-row', rowcount.toString())
 			counter++;	
-			cubecounter++;
+			editor_cubecounter++;
 			numberexact++
 
 			var front = document.createElement('div');
@@ -302,7 +298,7 @@ function cubegenerator(receive, active){
 			object.position.x = (rowcount-1)*50;
 			object.position.y = cube[i].y*50;
 			object.position.z = cube[i].z*50;
-			scene.add( object );
+			editor_scene.add( object );
 
 			if ((rowcount >= _.size(receive)) && (numberexact >= _.size(cube))) setTimeout(function(){cube_ensure(active)}, 100)
 		}
@@ -329,7 +325,7 @@ function cubegenerator(receive, active){
 		text.position.y = 0;
 		text.position.z = 200;
 		text.rotation.y = Math.PI*1.5;
-		scene.add( text );
+		editor_scene.add( text );
 
 		rowcount++;
 	}
@@ -342,23 +338,23 @@ function cubegenerator(receive, active){
 function slider(){
 	function likethis(number, direction, row){
 		var jump = 500;
-		var stay = scene.children[number].position.x;
+		var stay = editor_scene.children[number].position.x;
 		var going;
 		if (direction == 'left') going = (row*50)-50;
 		else if (direction == 'right') going = (row*50)+50;
 		else if (direction == 'center') going = row*50;
 
 		var tween = new TWEEN.Tween({
-			g: scene.children[number].position.x
+			g: editor_scene.children[number].position.x
 		})
 		.to({ g: going }, jump)
 		.easing(TWEEN.Easing.Exponential.InOut)
 		.onUpdate(function () {
-			scene.children[number].position.x = this.g
+			editor_scene.children[number].position.x = this.g
 		})
 		.start();
 		setTimeout(function(){
-			camera.updateMatrix();
+			editor_camera.updateMatrix();
 		},jump);
 	}
 	this.likethis = likethis;
@@ -424,14 +420,14 @@ function b_workload(er){
 	})
 }
 
-function animate() {
-	render();
+function editor_animate() {
+	editor_render();
 	TWEEN.update();
-	requestAnimationFrame( animate );
+	requestAnimationFrame( editor_animate );
 }
 
-function render(){
-	renderer.render( scene, camera );
+function editor_render(){
+	editor_renderer.render( editor_scene, editor_camera );
 }
 
 $('#cell_add').on('click', function(){
@@ -441,7 +437,7 @@ $('#cell_add').on('click', function(){
 		url: "php/newcell.php"
 	}).done(function(e){
 
-		if ((separated) && (!newest)){
+		if ((editor_separated) && (!newest)){
 			newest = true;
 			$('<div class="cell_'+e.number+'"><div class="cell_img_hold"><img src="img/cross.png" id="img_blank" /><img src="img/kill.png" class="cell_kill" /></div><textarea tabindex="16" class="kommentar_content"></textarea></div>')
 			.appendTo('#cell_put')
@@ -452,7 +448,7 @@ $('#cell_add').on('click', function(){
 				maxfiles: 1,
 				url: 'php/cell.php',
 				data:{
-					projectnumbercell: currentlyediting,
+					projeceditor_tnumbercell: currentlyediting,
 					cellnumbercell: e.number
 				},
 				
@@ -509,7 +505,7 @@ function shapeshifterpower(){
 		paramname:'shap',
 		
 		url: 'php/shapeshiftput.php',
-		data:{ projectnumbershapeshift: currentlyediting },
+		data:{ projeceditor_tnumbershapeshift: currentlyediting },
 		
 		uploadFinished:function(i,file,response){
 
@@ -714,9 +710,9 @@ $('.coord_inp').on({
 
 
 function cubeset(dimension, where){
-	if (dimension == 'x') scene.children[cubearrayediting].position.x = where*50;
-	if (dimension == 'y') scene.children[cubearrayediting].position.y = where*50;
-	if (dimension == 'z') scene.children[cubearrayediting].position.z = where*50;
+	if (dimension == 'x') editor_scene.children[cubearrayediting].position.x = where*50;
+	if (dimension == 'y') editor_scene.children[cubearrayediting].position.y = where*50;
+	if (dimension == 'z') editor_scene.children[cubearrayediting].position.z = where*50;
 }
 
 $('#save').on('click', function(){
@@ -769,11 +765,11 @@ function projectuploader(remain, weight){
 	}).done(function(e){		
 		if ((catinit !== presence[currentlyediting].data.category) || (workingwithanewcube)){
 			$ovr_sight.children().children().empty();
-			for (var i = 0; i <= counter; i++){
-				scene.remove(scene.children[0]);
-				if (i == counter){
+			for (var i = 0; i <= editor_counter; i++){
+				editor_scene.remove(editor_scene.children[0]);
+				if (i == editor_counter){
 					counter = 0;
-					cubecounter = 0;
+					editor_cubecounter = 0;
 					rowcount = 1;
 					cubedescender(weight)
 					catinit = presence[currentlyediting].data.category
@@ -836,7 +832,7 @@ function killcube(){
 		},
 		url: "php/killcube.php"
 	}).done(function(e){
-		scene.remove(scene.children[cubearrayediting]);
+		editor_scene.remove(editor_scene.children[cubearrayediting]);
 		$('.targeted').find('div').remove()
 		$('.targeted').remove()
 		$('#shapeshifterhopper, #cell_put').empty()
@@ -866,7 +862,7 @@ function newcube(){
 			if($therow >= $targetedrow) slide.likethis($theindex, 'left', $therow)
 		})
 
-		separated = false;
+		editor_separated = false;
 		workingwithanewcube = true;
 
 
@@ -875,11 +871,11 @@ function newcube(){
 		element.id = 'c'+counter.toString();
 		// element.setAttribute('data-callmemaybe', i)
 		// element.setAttribute('data-number', numberexact.toString())
-		element.setAttribute('data-array', counter.toString())
-		element.setAttribute('data-cube', cubecounter.toString())
+		element.setAttribute('data-array', editor_counter.toString())
+		element.setAttribute('data-cube', editor_cubecounter.toString())
 		// element.setAttribute('data-row', rowcount.toString())
 		counter++;	
-		cubecounter++;
+		editor_cubecounter++;
 		// numberexact++
 
 		var front = document.createElement('div');
@@ -911,11 +907,11 @@ function newcube(){
 		object.position.x = (categ.length)*50;
 		object.position.y = 300;
 		object.position.z = 50;
-		scene.add( object );
+		editor_scene.add( object );
 
 		currentlyediting = e.number;
 
-		cubearrayediting = scene.children.length-1;
+		cubearrayediting = editor_scene.children.length-1;
 
 		$('.info').find('input, textarea').val('')
 

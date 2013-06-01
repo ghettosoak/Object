@@ -14,6 +14,7 @@ $(document).ready(function(){
 		cubeinit(cubedescend.nav.cubes);
 		shapeshifterload(cubedescend.nav.shapeshifter);
 		animate();
+		linkup();
 	})
 
 });

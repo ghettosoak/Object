@@ -1,10 +1,9 @@
 var container, stats;
 var camera, scene, blockRenderer, renderer;
-var projector, plane, cube, controls;
-var mouse2D, mouse3D, ray,
-rollOveredFace, isShiftDown = false, isMouseDown = false, isCtrlDown = false, heylookatme, oneup = false,
+var projector, plane, cube, controls,
+isMouseDown = false, heylookatme,
 radious = 1600, theta = -90, onMouseDownTheta = -90, phi = 60, onMouseDownPhi = 60, onMouseDownPosition, previewed = false, separated = false,
-tcallme, trow, tref, tnumber, tcube, strow, stnumber, rowsless = 0, rowsmore = 0, previewedOrigCoordx, previewedOrigCoordy, returnCoordx, returnCoordy, returnCoordz,
+tcallme, trow, tref, tnumber, tcube, strow, stnumber, previewedOrigCoordx, previewedOrigCoordy, returnCoordx, returnCoordy, returnCoordz,
 $name;
 var where = 'front';
 
@@ -29,7 +28,6 @@ function cubeinit(thecube) {
 	plane = new THREE.Mesh( new THREE.PlaneGeometry( 1000, 1000, 20, 20 ), new THREE.MeshBasicMaterial( { transparent: true, wireframe:true, color:0x000000, opacity: .5} ) );
 	plane.rotation.x = - Math.PI / 2;
 	scene.add( plane );
-	mouse2D = new THREE.Vector3( 0, 0, 0 );
 
 	//renderer
 	renderer = new THREE.CSS3DRenderer();
