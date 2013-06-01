@@ -131,9 +131,7 @@ $me_y = 1;
 					<div class="floater"></div>
 				</div>
 			</div>
-		</div>
-
-		
+		</div>		
 
 		<script src="js/lib/jquery-1.8.3.min.js"></script>
 		<script src="js/lib/underscore-min.js"></script>
