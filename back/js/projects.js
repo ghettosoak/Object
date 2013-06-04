@@ -30,8 +30,8 @@ var $be_move = $('#be_move')
 var lookingat = 'projects';
 
 
-// $(document).ready(function(){
-$(document).ajaxComplete(function(){
+$(document).ready(function(){
+// $(document).ajaxComplete(function(){
 // (function($){
 	console.log('yeah!');
 
@@ -108,7 +108,7 @@ function editorinit() {
 
 	editor_onMouseDownPosition = new THREE.Vector2();
 
-	// cubedescender();
+	cubedescender();
 }
 
 $('#switch_01').on('click', function(){
@@ -133,6 +133,7 @@ function editor_onDocumentMouseDown( event ) {
 function editor_onDocumentMouseMove( event ) {
 	event.preventDefault();
 	if ( editor_isMouseDown) {
+		console.log('yeah!')
 		theta = - ( ( event.clientX - editor_onMouseDownPosition.x ) * 0.5 ) + editor_onMouseDownTheta;
 		phi = ( ( event.clientY - editor_onMouseDownPosition.y ) * 0.5 ) + editor_onMouseDownPhi;
 		phi = Math.min( 180, Math.max( 0, editor_phi ) );
@@ -260,13 +261,13 @@ function cubegenerator(receive, active){
 		for (var i in cube){
 			var element = document.createElement( 'div' );
 			element.className = 'cube r'+rowcount.toString();
-			element.id = 'c'+counter.toString();
+			element.id = 'c'+editor_counter.toString();
 			element.setAttribute('data-callmemaybe', i)
 			element.setAttribute('data-number', numberexact.toString())
 			element.setAttribute('data-array', editor_counter.toString())
 			element.setAttribute('data-cube', editor_cubecounter.toString())
 			element.setAttribute('data-row', rowcount.toString())
-			counter++;	
+			editor_counter++;	
 			editor_cubecounter++;
 			numberexact++
 
@@ -311,13 +312,13 @@ function cubegenerator(receive, active){
 		// name.className = 'name r'+rowcount.toString();
 		nametxt.innerHTML = row;
 		name.appendChild(nametxt)
-		name.setAttribute('data-array',counter.toString())
+		name.setAttribute('data-array',editor_counter.toString())
 		name.setAttribute('data-row', rowcount.toString())
 		// namelist.push(counter)
 
 		// origheight[counter-1] = 0;
 
-		counter++;
+		editor_counter++;
 		numberexact = 0;
 
 		var text = new THREE.CSS3DObject( name );
