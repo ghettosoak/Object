@@ -11,10 +11,11 @@ $logic = mysql_fetch_assoc($check);
 if (count($logic['id']) == 1){
 	// echo 'yeah!';
 
-	// $editor = 
-	include('../../back/index.php');
+	$editor = include('../../back/index.php');
 	echo $editor;
-}else exit;
+}else{
+	echo 'FUCK YOU';
+};
 
 // $logins = array();
 

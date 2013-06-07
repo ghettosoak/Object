@@ -42,7 +42,7 @@ $('#shapeshifter').on('click', function(){
 		dataType:'JSON',
 		data:{project:tcallme},
 		url: "php/project.php",
-	}).done( function(cellular){
+	}).done(function(cellular){
 		projectdeploy(cellular);
 	})
 	breadcrumb(cubedescend.nav.cubes[layerrefere], layernumber, prone)

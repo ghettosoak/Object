@@ -64,33 +64,26 @@ border-radius: 9px;
   to {
     opacity: .2; } }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\0000350}}
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\0000356}}
 a img {
   border: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\0000357}}
 a {
   border: none;
   text-decoration: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\0000362}}
 ::selection {
   /*background: #;*/ }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\0000366}}
 ::-moz-selection {
   /*background: #;*/ }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\0000375}}
-.master {
+.master, #master_back {
   position: absolute;
-  height: 100%;
   width: 100%;
   top: 0px;
   left: 0px;
@@ -100,50 +93,49 @@ a {
   overflow: hidden;
   font-family: u47; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\0000388}}
+#master_back {
+  height: 50%; }
+
+.master {
+  height: 100%; }
+
 #be_move {
   position: absolute;
   height: 200%;
   width: 85%;
   top: 0%;
   left: 0%;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\0000396}}
+  -webkit-transition: top 0.5s ease-in-out;
+  -moz-transition: top 0.5s ease-in-out;
+  -ms-transition: top 0.5s ease-in-out;
+  -o-transition: top 0.5s ease-in-out;
+  transition: top 0.5s ease-in-out; }
   #be_move h3 {
     font-size: 14;
     font-family: u67;
     font-weight: normal; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003101}}
   #be_move input, #be_move textarea {
     border-top: 0px;
     border-right: 0px;
     border-bottom: 1px #b3b3b3 solid;
     border-left: 1px #b3b3b3 solid; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003106}}
     #be_move input:focus, #be_move textarea:focus {
       outline: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003110}}
   #be_move textarea {
     resize: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003113}}
 .lookingatprojects {
   top: 0% !important; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003114}}
 .lookinatmeimsuchadick {
   top: -100% !important; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003116}}
 .projects, .about {
   position: relative;
   float: left;
   height: 50%;
   width: 100%; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003123}}
 .side {
   position: absolute;
   width: 15%;
@@ -151,14 +143,12 @@ a {
   display: table;
   right: 0px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003131}}
 .divide {
   position: relative;
   float: left;
   height: 100%;
   display: table;
   width: 1px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003136}}
   .divide div {
     height: 90%;
     width: 1px;
@@ -166,16 +156,13 @@ a {
     vertical-align: middle;
     border-right: 1px #b3b3b3 solid; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003147}}
 .projects #oversight, .projects .details, .projects .cells {
   height: 100%;
   width: 33%;
   position: relative;
   float: left; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003154}}
 .projects #oversight #add_project, .projects #oversight #add_row {
   z-index: 3; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003157}}
 .projects #oversight #add_project {
   height: 80px;
   width: 80px;
@@ -185,25 +172,20 @@ a {
   margin: auto;
   top: 10px;
   position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003166}}
   .projects #oversight #add_project img {
     position: absolute;
     margin: 14px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003170}}
   .projects #oversight #add_project .minus {
     display: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003172}}
 .projects #oversight #add_row {
   cursor: pointer;
   margin: auto;
   position: relative;
   top: 86%;
   width: 132px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003178}}
   .projects #oversight #add_row p {
     text-align: center;
     margin-top: -27px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003182}}
   .projects #oversight #add_row #row_list {
     position: absolute;
     z-index: 100;
@@ -212,8 +194,9 @@ a {
     overflow: hidden;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003192}}
     .projects #oversight #add_row #row_list li {
       display: block;
       position: relative;
@@ -222,18 +205,16 @@ a {
       text-align: center;
       -webkit-transition: height 0.5s ease-in-out;
       -moz-transition: height 0.5s ease-in-out;
+      -ms-transition: height 0.5s ease-in-out;
+      -o-transition: height 0.5s ease-in-out;
       transition: height 0.5s ease-in-out; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003203}}
     .projects #oversight #add_row #row_list .rowselectable {
       height: 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003205}}
       .projects #oversight #add_row #row_list .rowselectable:hover {
         background-color: rgba(0, 0, 255, 0.3);
         box-shadow: 1px 1px 11px 1px rgba(0, 0, 255, 0.3); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003210}}
     .projects #oversight #add_row #row_list .thisrowthx {
       height: 20px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003212}}
       .projects #oversight #add_row #row_list .thisrowthx input {
         width: 100%;
         border: none;
@@ -241,22 +222,18 @@ a {
         font-family: u47;
         font-size: 14px;
         margin: 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003221}}
     .projects #oversight #add_row #row_list.addrow_closed {
       top: 13px;
       height: 0px;
       box-shadow: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003228}}
   .projects #oversight #add_row .addrow_nothx {
     display: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003230}}
 .projects #oversight #oversight_sight {
   height: 100%;
   width: 100%;
   position: absolute;
   top: 0px;
   left: 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003237}}
   .projects #oversight #oversight_sight .cube {
     width: 50px;
     height: 50px;
@@ -267,14 +244,12 @@ a {
     transform-style: preserve-3d;
     cursor: pointer;
     z-index: 10; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003249}}
   .projects #oversight #oversight_sight .targeted {
     -webkit-animation: opaqr 2s linear 0s infinite alternate;
     -moz-animation: opaqr 2s linear 0s infinite alternate;
     -ms-animation: opaqr 2s linear 0s infinite alternate;
     -o-animation: opaqr 2s linear 0s infinite alternate;
     animation: opaqr 2s linear 0s infinite alternate; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003257}}
   .projects #oversight #oversight_sight .cube div {
     display: block;
     position: absolute;
@@ -285,93 +260,72 @@ a {
     font-weight: bold;
     color: white;
     text-align: center; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003269}}
   .projects #oversight #oversight_sight .cube .front {
     -webkit-transform: translateZ(25px);
     -moz-transform: translateZ(25px);
     -ms-transform: translateZ(25px);
     -o-transform: translateZ(25px);
     transform: translateZ(25px); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003270}}
   .projects #oversight #oversight_sight .cube .back {
     -webkit-transform: rotateX(-180deg) translateZ(25px);
     -moz-transform: rotateX(-180deg) translateZ(25px);
     -ms-transform: rotateX(-180deg) translateZ(25px);
     -o-transform: rotateX(-180deg) translateZ(25px);
     transform: rotateX(-180deg) translateZ(25px); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003271}}
   .projects #oversight #oversight_sight .cube .right {
     -webkit-transform: rotateY(90deg) translateZ(25px);
     -moz-transform: rotateY(90deg) translateZ(25px);
     -ms-transform: rotateY(90deg) translateZ(25px);
     -o-transform: rotateY(90deg) translateZ(25px);
     transform: rotateY(90deg) translateZ(25px); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003272}}
   .projects #oversight #oversight_sight .cube .left {
     -webkit-transform: rotateY(-90deg) translateZ(25px);
     -moz-transform: rotateY(-90deg) translateZ(25px);
     -ms-transform: rotateY(-90deg) translateZ(25px);
     -o-transform: rotateY(-90deg) translateZ(25px);
     transform: rotateY(-90deg) translateZ(25px); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003273}}
   .projects #oversight #oversight_sight .cube .top {
     -webkit-transform: rotateX(90deg) translateZ(25px);
     -moz-transform: rotateX(90deg) translateZ(25px);
     -ms-transform: rotateX(90deg) translateZ(25px);
     -o-transform: rotateX(90deg) translateZ(25px);
     transform: rotateX(90deg) translateZ(25px); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003274}}
   .projects #oversight #oversight_sight .cube .bottom {
     -webkit-transform: rotateX(-90deg) translateZ(25px);
     -moz-transform: rotateX(-90deg) translateZ(25px);
     -ms-transform: rotateX(-90deg) translateZ(25px);
     -o-transform: rotateX(-90deg) translateZ(25px);
     transform: rotateX(-90deg) translateZ(25px); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003276}}
   .projects #oversight #oversight_sight .newcube div {
     background-color: rgba(0, 0, 0, 0.2); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003278}}
   .projects #oversight #oversight_sight .r1 div {
     background-color: rgba(255, 0, 0, 0.2); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003279}}
   .projects #oversight #oversight_sight .r2 div {
     background-color: rgba(0, 255, 0, 0.2); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003280}}
   .projects #oversight #oversight_sight .r3 div {
     background-color: rgba(0, 0, 255, 0.2); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003281}}
   .projects #oversight #oversight_sight .r4 div {
     background-color: rgba(255, 255, 0, 0.2); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003282}}
   .projects #oversight #oversight_sight .r5 div {
     background-color: rgba(0, 0, 0, 0.2); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003283}}
   .projects #oversight #oversight_sight .r6 div {
     background-color: rgba(0, 0, 0, 0.2); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003284}}
   .projects #oversight #oversight_sight .r7 div {
     background-color: rgba(0, 0, 0, 0.2); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003285}}
   .projects #oversight #oversight_sight .r8 div {
     background-color: rgba(0, 0, 0, 0.2); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003286}}
   .projects #oversight #oversight_sight .r9 div {
     background-color: rgba(0, 0, 0, 0.2); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003287}}
   .projects #oversight #oversight_sight .r10 div {
     background-color: rgba(0, 0, 0, 0.2); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003288}}
   .projects #oversight #oversight_sight .r11 div {
     background-color: rgba(0, 0, 0, 0.2); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003289}}
   .projects #oversight #oversight_sight .r12 div {
     background-color: rgba(0, 0, 0, 0.2); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003291}}
   .projects #oversight #oversight_sight .name {
     text-align: left;
     opacity: 1;
     cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003295}}
     .projects #oversight #oversight_sight .name p {
       font-size: 40px;
       -webkit-transform: scale3d(0.5, 0.5, 1);
@@ -379,28 +333,23 @@ a {
       -ms-transform: scale3d(0.5, 0.5, 1);
       -o-transform: scale3d(0.5, 0.5, 1);
       transform: scale3d(0.5, 0.5, 1); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003303}}
 .projects .details > div {
   position: relative;
   float: left;
   width: 100%;
   padding-bottom: 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003308}}
 .projects .details h3 {
   width: 39%;
   text-align: right;
   padding-right: 17px;
   margin: 12px 0px 6px 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003314}}
 .projects .details .info {
   border-bottom: 1px #b3b3b3 solid;
   height: 332px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003318}}
   .projects .details .info div {
     width: 100%;
     position: relative;
     float: left; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003321}}
     .projects .details .info div p {
       width: 38%;
       position: relative;
@@ -408,7 +357,6 @@ a {
       margin: 10px 0px;
       text-align: right;
       padding-right: 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003328}}
     .projects .details .info div input, .projects .details .info div textarea {
       font-family: u47;
       font-size: 14px;
@@ -416,7 +364,6 @@ a {
       position: relative;
       float: left;
       margin: 9px 0px 8px 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003335}}
     .projects .details .info div #info_category {
       position: absolute !important;
       height: 20px;
@@ -430,8 +377,9 @@ a {
       z-index: 10;
       -webkit-transition: height 0.5s ease-in-out;
       -moz-transition: height 0.5s ease-in-out;
+      -ms-transition: height 0.5s ease-in-out;
+      -o-transition: height 0.5s ease-in-out;
       transition: height 0.5s ease-in-out; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003349}}
       .projects .details .info div #info_category #info_category_open {
         position: absolute;
         top: 5px;
@@ -443,10 +391,8 @@ a {
         background-repeat: no-repeat;
         background-image: url(../img/opener.png);
         z-index: 10; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003361}}
       .projects .details .info div #info_category #info_category_carousel {
         position: absolute; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003363}}
         .projects .details .info div #info_category #info_category_carousel li {
           width: 100%;
           height: 18px;
@@ -454,35 +400,30 @@ a {
           position: relative;
           float: left;
           margin: 0px 0px 0px 1px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003372}}
     .projects .details .info div .open {
       box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.5);
       background-color: white; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003375}}
       .projects .details .info div .open #info_category_open {
         top: 0px !important;
         height: 18px !important;
         background-image: url(../img/kill.png) !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003380}}
       .projects .details .info div .open li:hover {
         color: white;
         background-color: rgba(255, 0, 0, 0.7);
         cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003386}}
     .projects .details .info div .ready {
       -webkit-transition: top 0.5s ease-in-out;
       -moz-transition: top 0.5s ease-in-out;
+      -ms-transition: top 0.5s ease-in-out;
+      -o-transition: top 0.5s ease-in-out;
       transition: top 0.5s ease-in-out; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003389}}
 .projects .details .coords {
   border-bottom: 1px #b3b3b3 solid;
   height: 123px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003393}}
   .projects .details .coords div {
     width: 100%;
     position: relative;
     float: left; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003396}}
     .projects .details .coords div p {
       width: 38%;
       position: relative;
@@ -490,7 +431,6 @@ a {
       margin: 10px 0px;
       text-align: right;
       padding-right: 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003403}}
     .projects .details .coords div input, .projects .details .coords div textarea {
       font-family: u47;
       font-size: 14px;
@@ -498,47 +438,37 @@ a {
       position: relative;
       float: left;
       margin: 9px 0px 8px 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003410}}
     .projects .details .coords div .coord_button {
       height: 10px;
       top: 15px;
       position: absolute;
       cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003416}}
     .projects .details .coords div .cb_down {
       right: 15px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003417}}
     .projects .details .coords div .cb_up {
       right: 33px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003421}}
 .projects .details .shapeshifter_collect h3 {
   padding-right: 15px !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003423}}
   .projects .details .shapeshifter_collect h3 span {
     position: absolute;
     margin: 1px 0px 0px 5px;
     font-family: u47;
     font-size: 13px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003430}}
 .projects .details .shapeshifter_collect #shapeshifterhopper {
   position: relative;
   float: left;
   width: 100%;
   padding: 7px 0px 0px 10px;
   overflow: scroll; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003435}}
   .projects .details .shapeshifter_collect #shapeshifterhopper .loading {
     opacity: .8; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003436}}
   .projects .details .shapeshifter_collect #shapeshifterhopper div {
     position: relative;
     float: left;
     overflow: hidden;
     margin: 0px 10px 10px 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003440}}
     .projects .details .shapeshifter_collect #shapeshifterhopper div img {
       position: absolute; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003441}}
     .projects .details .shapeshifter_collect #shapeshifterhopper div .shap_kill {
       position: absolute;
       top: 0px;
@@ -548,16 +478,13 @@ a {
       margin: 0 !important;
       display: none;
       cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003451}}
     .projects .details .shapeshifter_collect #shapeshifterhopper div:hover .shap_kill {
       display: block; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003457}}
 .projects .cells .cell_top {
   height: 56px;
   border-bottom: 1px #b3b3b3 solid;
   top: 9px;
   position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003462}}
   .projects .cells .cell_top #cell_add {
     width: 46px;
     height: 46px;
@@ -568,28 +495,23 @@ a {
     left: 18px;
     float: left;
     padding: 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003472}}
     .projects .cells .cell_top #cell_add img {
       margin: 9px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003474}}
   .projects .cells .cell_top h3 {
     width: 85px;
     margin: 14px 0px 0px 62px;
     position: relative;
     float: left; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003481}}
 .projects .cells #cell_put {
   overflow: scroll !important;
   height: 100%;
   margin: 10px 0px 0px 10px;
   padding: 10px 0px 10px 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003487}}
   .projects .cells #cell_put div {
     position: relative;
     float: left;
     padding-bottom: 10px;
     width: 100%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003491}}
     .projects .cells #cell_put div .cell_img_hold {
       position: relative;
       float: left;
@@ -597,19 +519,15 @@ a {
       height: 85px;
       margin-right: 10px;
       overflow: hidden; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003497}}
       .projects .cells #cell_put div .cell_img_hold img {
         position: absolute;
         top: 0px;
         left: 0px;
         margin: -100% 0 0 -100%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003503}}
       .projects .cells #cell_put div .cell_img_hold #img_blank {
         margin: 0px !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003504}}
       .projects .cells #cell_put div .cell_img_hold .loading {
         opacity: .8; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003505}}
       .projects .cells #cell_put div .cell_img_hold .cell_kill {
         position: absolute;
         top: 0px;
@@ -619,10 +537,8 @@ a {
         margin: 0 !important;
         display: none;
         cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003515}}
       .projects .cells #cell_put div .cell_img_hold:hover .cell_kill {
         display: block; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003518}}
     .projects .cells #cell_put div textarea {
       position: relative;
       float: left;
@@ -631,26 +547,21 @@ a {
       font-family: u47;
       font-size: 14px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003531}}
 .about #meimgs, .about #mebits {
   position: relative;
   float: left;
   height: 100%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003535}}
 .about #meimgs {
   overflow: scroll !important;
   width: 30%;
   padding-top: 17px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003539}}
   .about #meimgs div {
     position: relative;
     float: left;
     overflow: hidden;
     margin: 10px 0px 0px 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003543}}
     .about #meimgs div img {
       position: absolute; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003544}}
     .about #meimgs div .img_kill {
       position: absolute;
       top: 0px;
@@ -660,25 +571,20 @@ a {
       margin: 0 !important;
       display: none;
       cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003554}}
     .about #meimgs div:hover .img_kill {
       display: block; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003556}}
   .about #meimgs .loading img {
     opacity: .5; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003557}}
   .about #meimgs p {
     width: 100%;
     font-family: u47;
     font-size: 10px;
     text-align: center; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003564}}
 .about #mebits {
   border-left: 1px #b3b3b3 solid;
   width: 70%;
   overflow: scroll;
   padding: 10px 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003569}}
   .about #mebits textarea {
     font-family: u47;
     font-size: 14px;
@@ -686,14 +592,11 @@ a {
     margin: 7px 2%;
     height: 3em; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003580}}
 .side div {
   cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003581}}
 .side p {
   text-align: center;
   font-size: 18px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003585}}
 .side #save {
   height: 60px;
   width: 60px;
@@ -703,27 +606,22 @@ a {
   border-radius: 150px;
   margin: auto;
   position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003595}}
   .side #save p {
     padding-top: 20px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003602}}
 .side .switcher {
   position: relative;
   float: left;
   top: 30%;
   margin: auto;
   width: 100%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003607}}
   .side .switcher div {
     height: 111px;
     width: 111px;
     border-radius: 150px;
     position: relative;
     margin: auto; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003613}}
     .side .switcher div p {
       padding-top: 50px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003624}}
   .side .switcher #switch_03 div {
     height: 60px;
     width: 60px;
@@ -733,7 +631,6 @@ a {
     border-radius: 150px;
     margin: auto;
     position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003633}}
     .side .switcher #switch_03 div p {
       padding-top: 20px; }
 

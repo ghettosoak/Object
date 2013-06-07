@@ -6,8 +6,9 @@ var drg_h, drg_w;
 
 function projectdeploy(incoming){
 	imagemarker.length = 0;
-	mass = _.size(incoming)
+	mass = _.size(incoming.cells)
 	$floaterparent = $floater.parent()
+	console.log(incoming)
 
 	var squaresize = Math.floor(Math.sqrt(mass)) * 225;
 
@@ -16,14 +17,25 @@ function projectdeploy(incoming){
 	drg_h = $floaterparent.outerHeight()
 	drg_w = $floaterparent.outerWidth()
 
-	for (var i in incoming){
+	$floater.append('<div class="cell stats s_close"><div id="stats_closed"><span>i</span></div><div id="stats_open"><table><tbody>'+
+		'<tr><td class="stat_titel">Name</td><td class="stat_stat">'+incoming.stat.name+'</td></tr>'+
+		'<tr><td class="stat_titel">Client</td><td class="stat_stat">'+incoming.stat.client+'</td></tr>'+
+		'<tr><td class="stat_titel">Date Launched</td><td class="stat_stat">'+incoming.stat.date_launched+'</td></tr>'+
+		'<tr><td class="stat_titel">Total Hours</td><td class="stat_stat">'+incoming.stat.total_hours+'</td></tr>'+
+		'<tr><td class="stat_text" colspan="2">'+incoming.stat.project_text+'</td></tr>'+
+		'<tr><td class="stat_link" colspan="2"><a href="'+incoming.stat.link+'" target="_blank">go to<br />page</a></td></tr>'+
+	'</tbody></table></div></div>')
+
+	for (var i in incoming.cells){
 		var decide = Math.random()
 		var orient;
-		if (decide > 0 && decide < .33333) orient = 'vertical'
-		if (decide > .33333 && decide < .66666) orient = 'horzontal'
-		if (decide > .66666 && decide < 1) orient = 'square'
-		$floater.append('<div class="'+orient+'" id="pr_'+i+'"><p>'+incoming[i].txt+'</p></div>')
-		imager(i, incoming[i].img)
+		if (decide < .25) orient = 'vertical'
+		if (decide > .25 && decide < .5) orient = 'horzontal'
+		if (decide > .5 && decide < .75) orient = 'square_small'
+		if (decide > .75) orient = 'square_large'
+
+		$floater.append('<div class="cell '+orient+'" id="pr_'+i+'"><p>'+incoming.cells[i].txt+'</p></div>')
+		imager(i, incoming.cells[i].img)
 	}
 
 	function imager(selec, place){
@@ -76,7 +88,7 @@ function breadcrumb(shape, color, selected){
 
 function isotopeengage(){
 	$floater.isotope({
-		itemSelector : 'div',
+		itemSelector : '.cell',
 		masonry : {
 			columnWidth : 150
 		},
@@ -100,7 +112,9 @@ var clicked = false, dragging = false;
 
 $floater.on({
 	mousedown:function(e){
-		clicked = true;
+
+		e.preventDefault();
+		if (!$(this).hasClass('stats')) clicked = true;
 
 		drg_h = $floaterparent.outerHeight()
 		drg_w = $floaterparent.outerWidth()
@@ -119,18 +133,23 @@ $floater.on({
 				left:go_y
 			})
 		}else dragging = false;
+		e.preventDefault();
 	},
 	mouseup:function(){
-		if (!dragging){
+		if (!dragging && (!$(this).hasClass('stats'))){
 			$(this).toggleClass('open');
 			$floater.isotope('reLayout');
+		}else if ($(this).hasClass('stats')){
+			$(this).toggleClass('s_close s_open')
+			$floater.isotope('reLayout');
 		}
+
 		clicked = false;
 		dragging = false;
 		go_x = 0;
 		go_y = 0;
 	}
-},'div');
+},'.cell');
 
 if (document.addEventListener) {
 	document.addEventListener("mousewheel", MouseWheelHandler, false);

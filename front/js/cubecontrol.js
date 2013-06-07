@@ -298,12 +298,13 @@ function cubegenerator(receive){
 	heylookatme = centered;
 	camera.lookAt(heylookatme)
 	console.log(receive)
-
+	console.log('cubed!')
 
 	var rowcount = 1, numberexact = 0;
 	for (var row in receive){
 		var cube = receive[row];
 		for (var i in cube){
+			console.log(i)
 			var element = document.createElement( 'div' );
 			element.className = 'cube r'+rowcount.toString();
 			element.id = 'c'+counter.toString();
@@ -380,9 +381,11 @@ function cubegenerator(receive){
 }
 
 function animate() {
-	render();
-	requestAnimationFrame( animate );
-	TWEEN.update();
+	if (!backendexists){
+		render();
+		requestAnimationFrame( animate );
+		TWEEN.update();
+	}
 }
 
 function render() { renderer.render( scene, camera ); }

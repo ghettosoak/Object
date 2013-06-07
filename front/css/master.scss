@@ -27,6 +27,13 @@ border-radius: 9px;
     font-style: normal;
 }
 
+@font-face {
+    font-family : 'u67';
+    src: url('../../join/type/u67.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @import "bourbon";
 
 //DEFINES
@@ -64,7 +71,7 @@ body {
 
 #master{
     position:absolute;
-    height:100%;
+    height:50%;
     width:100%;
     top:0px;
     left:0px;
@@ -82,7 +89,7 @@ body {
 #edit{
     position: absolute;
     // top:-200%;
-    @include transform(translateY(-200%));
+    @include transform(translateY(-100%));
     left:0px;
     height:200%;
     width:100%;
@@ -123,9 +130,9 @@ body {
     transform: translateY(0%) !important;
 }
 
-.down.second{ @include transform(translateX(-25%) translateY(200%)); }
-.down.third{ @include transform(translateX(-50%) translateY(200%)); }
-.down.fourth{ @include transform(translateX(-75%) translateY(200%)); }
+.down.second{ @include transform(translateX(-25%) translateY(100%)); }
+.down.third{ @include transform(translateX(-50%) translateY(100%)); }
+.down.fourth{ @include transform(translateX(-75%) translateY(100%)); }
 
 .me, .front, .grid, .red{
     position:relative;
@@ -405,7 +412,7 @@ body {
             -moz-transition: top 1s ease-in-out !important;
             -o-transition: top 1s ease-in-out !important;
             transition: top 1s ease-in-out !important;
-            top:81%;
+            top:76%;
             font-size:20px;
             text-align: center;
             height: 40px;
@@ -424,7 +431,7 @@ body {
             }
         }
         .copyright{
-            top: 85%;
+            top: 81%;
             width: 33px;
             font-size: 11px;
             line-height: 12px;
@@ -441,7 +448,7 @@ body {
             border: 0px;
             margin: auto;
             display: block;
-            top: 81%;
+            top: 76%;
             z-index: 200;
             outline:0px !important;
             text-align: center;
@@ -507,13 +514,13 @@ body {
         #instruct{
             position: absolute;
             margin: auto;
-            width: 108px;
-            height: 108px;
-            padding: 35px 0px;
+            width: 130px;
+            height: 130px;
+            padding: 44px 0px;
             text-align: center;
-            top: 18%;
-            left:50%;
-            margin-left:-54px;
+            top: 20%;
+            left: 50%;
+            margin-left: -62px;
         }
         .reinstruct{
             background-color:white;
@@ -535,7 +542,7 @@ body {
 .edit{
     background-color:#63D0FF !important;
     .who{
-        top:70% !important;
+        top:69% !important;
         color:#63D0FF !important;
         border:1px #63D0FF solid !important;
         &:hover{
@@ -560,7 +567,7 @@ body {
         position: absolute;
         top:0px;
         left:10px;
-        div{
+        .vertical, .horzontal, .square_small, .square_large{
             overflow:hidden;
             float:left;
             position:relative;
@@ -579,6 +586,74 @@ body {
                 display:none;
             }
         }
+
+
+        .stats{
+            table{
+                height:100%;
+                width:100%;
+                .stat_titel{
+                    font-weight: normal;
+                    font-family: u67;
+                    position: relative;
+                    width:116px;
+                }
+                .stat_stat{
+                    width:157px;
+                }
+                .stat_text{
+                    width:100%;
+                    padding:20px 0px;
+                }
+                .stat_link{
+                    // height:;
+                    a{
+                        display:block;
+                        width:100px;
+                        height:100px;
+                        left:50%;
+                        margin-left:-50px;
+                        background-color:#c50000;
+                        border-radius:200px;
+                        text-align: center;
+                        font-style: italic;
+                        font-family: georgia;
+                        color:white;
+                        position: relative;
+                        padding: 28px;
+                    }
+                }
+            }
+        }
+        .s_close{
+            height:150px;
+            width:150px;
+            #stats_closed{
+                height:100%;
+                width:100%;
+                border-radius: 300px;
+                background-color:grey;
+                display:table;
+                span{
+                    display:table-cell;
+                    vertical-align: middle;
+                    text-align: center;
+                    font-style:italic;
+                    font-family: georgia;
+                    font-size:82px;
+                    color:white;
+                    cursor: pointer;
+                }
+            }
+            #stats_open{display:none;}
+        }
+        .s_open{
+            border:1px black solid;
+            height:449px;
+            width:300px;
+            #stats_closed{display:none;}
+        }
+
         .vertical{
             height:300px;
             width:150px;
@@ -587,9 +662,13 @@ body {
             height:150px;
             width:300px;
         }
-        .square{
+        .square_small{
             height:150px;
             width:150px;
+        }
+        .square_large{
+            height:300px;
+            width:300px;
         }
         .open{
             height:450px;

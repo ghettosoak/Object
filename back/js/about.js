@@ -8,10 +8,10 @@ var meimgswidth, meimgsession = [];
 	$.ajax({
 		type: "POST",
 		dataType:'JSON',
-		url: "php/getmine.php"
+		url: "../back/php/getmine.php"
 	}).done(function(my){
 		$.each(my.imgs, function(m){
-			var myimgs = '<div style="width:'+meimgswidth+'px; height:'+meimgswidth+'px;" data-img="'+my.imgs[m].id+'"><img src="img/kill.png" class="img_kill" /><img src="'+my.imgs[m].img+'"/></div>'
+			var myimgs = '<div style="width:'+meimgswidth+'px; height:'+meimgswidth+'px;" data-img="'+my.imgs[m].id+'"><img src="../back/img/kill.png" class="img_kill" /><img src="'+my.imgs[m].img+'"/></div>'
 			$.tmpl( myimgs , my.imgs[m]).appendTo( "#meimgs" );
 		});
 
@@ -27,7 +27,7 @@ var meimgswidth, meimgsession = [];
 				type: "POST",
 				dataType:'JSON',
 				data:{kill: $thisone},
-				url: "php/killmeimg.php"
+				url: "../back/php/killmeimg.php"
 			}).done(function(){
 				$waitme.remove();
 			})
@@ -39,7 +39,7 @@ $('#meimgs').filedrop({
 	fallback_id: 'me',
 	paramname:'me_image',
 	
-	url: 'php/me_img.php',
+	url: '../back/php/me_img.php',
 	maxfilesize: 20,
 	// data:{ projectnumbershapeshift: currentlyediting },
 	
@@ -58,7 +58,7 @@ $('#meimgs').filedrop({
 				type: "POST",
 				dataType:'JSON',
 				data:{kill: $thisone},
-				url: "php/killmeimg.php"
+				url: "../back/php/killmeimg.php"
 			}).done(function(){
 				$waitme.remove();
 			})
@@ -78,7 +78,7 @@ $('#meimgs').filedrop({
 	},
 	
 	uploadStarted:function(i, file, len){
-		var preview = $('<div class="loading" style="width:'+meimgswidth+'px; height:'+meimgswidth+'px;"><img src="img/kill.png" class="img_kill" /><img /></div>'), 
+		var preview = $('<div class="loading" style="width:'+meimgswidth+'px; height:'+meimgswidth+'px;"><img src="../back/img/kill.png" class="img_kill" /><img /></div>'), 
 		image = $('img', preview);
 		var reader = new FileReader();
 		
@@ -88,7 +88,7 @@ $('#meimgs').filedrop({
 		reader.onload = function(e){ image.attr('src',e.target.result); };
 		reader.readAsDataURL(file);
 		preview.appendTo('#meimgs');
-		preview.append('<img src="img/kill.png" class="img_kill" />')
+		preview.append('<img src="../back/img/kill.png" class="img_kill" />')
 		$.data(file,preview);			
 	},
 		
@@ -111,7 +111,7 @@ function meuploader(){
 			newtxt:sometxt,
 			imgsession:meimgsession
 		},
-		url: "php/setmine.php"
+		url: "../back/php/setmine.php"
 	})
 
 }

@@ -15,7 +15,7 @@
 </head>
 
 <body>
-	<div class="master">
+	<div id="master_back">
 		<div id="be_move">
 			<div class="projects">
 				<div id="oversight">

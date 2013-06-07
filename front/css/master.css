@@ -23,40 +23,39 @@ border-radius: 9px;
   font-weight: normal;
   font-style: normal; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\0000336}}
+@font-face {
+  font-family: 'u67';
+  src: url("../../join/type/u67.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\0000342}}
 a img {
   border: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\0000343}}
 a {
   border: none;
   text-decoration: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\0000348}}
 ::selection {
   /*background: #;*/ }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\0000352}}
 ::-moz-selection {
   /*background: #;*/ }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\0000356}}
 body {
   font-family: u47;
   color: #333;
   margin: 0px;
   overflow: hidden; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\0000365}}
 #master {
   position: absolute;
-  height: 100%;
+  height: 50%;
   width: 100%;
   top: 0px;
   left: 0px;
@@ -64,33 +63,29 @@ body {
   font-size: 14px;
   overflow: hidden; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\0000382}}
 #edit {
   position: absolute;
-  -webkit-transform: translateY(-200%);
-  -moz-transform: translateY(-200%);
-  -ms-transform: translateY(-200%);
-  -o-transform: translateY(-200%);
-  transform: translateY(-200%);
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
   left: 0px;
   height: 200%;
   width: 100%; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\0000391}}
 #movement {
   position: absolute;
   height: 100%;
   width: 400%;
   top: 0px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\0000398}}
 #movement, #edit, .red, .red .left * {
   -webkit-transition: all 1s ease-in-out;
   -moz-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003105}}
 .first {
   -webkit-transform: translateX(0%);
   -moz-transform: translateX(0%);
@@ -98,7 +93,6 @@ body {
   -o-transform: translateX(0%);
   transform: translateX(0%); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003106}}
 .second {
   -webkit-transform: translateX(-25%);
   -moz-transform: translateX(-25%);
@@ -106,29 +100,24 @@ body {
   -o-transform: translateX(-25%);
   transform: translateX(-25%); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003110}}
 .third {
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   transform: translateX(-50%); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003112}}
   .third .red .left * {
     left: 314%; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003114}}
 .fourth {
   -webkit-transform: translateX(-75%);
   -moz-transform: translateX(-75%);
   -ms-transform: translateX(-75%);
   -o-transform: translateX(-75%);
   transform: translateX(-75%); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003116}}
   .fourth .red .left * {
     left: 613.6%; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003118}}
 .editing {
   -webkit-transform: translateY(0%) !important;
   -moz-transform: translateY(0%) !important;
@@ -136,86 +125,78 @@ body {
   -o-transform: translateY(0%) !important;
   transform: translateY(0%) !important; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003126}}
 .down.second {
-  -webkit-transform: translateX(-25%) translateY(200%);
-  -moz-transform: translateX(-25%) translateY(200%);
-  -ms-transform: translateX(-25%) translateY(200%);
-  -o-transform: translateX(-25%) translateY(200%);
-  transform: translateX(-25%) translateY(200%); }
+  -webkit-transform: translateX(-25%) translateY(100%);
+  -moz-transform: translateX(-25%) translateY(100%);
+  -ms-transform: translateX(-25%) translateY(100%);
+  -o-transform: translateX(-25%) translateY(100%);
+  transform: translateX(-25%) translateY(100%); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003127}}
 .down.third {
-  -webkit-transform: translateX(-50%) translateY(200%);
-  -moz-transform: translateX(-50%) translateY(200%);
-  -ms-transform: translateX(-50%) translateY(200%);
-  -o-transform: translateX(-50%) translateY(200%);
-  transform: translateX(-50%) translateY(200%); }
+  -webkit-transform: translateX(-50%) translateY(100%);
+  -moz-transform: translateX(-50%) translateY(100%);
+  -ms-transform: translateX(-50%) translateY(100%);
+  -o-transform: translateX(-50%) translateY(100%);
+  transform: translateX(-50%) translateY(100%); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003128}}
 .down.fourth {
-  -webkit-transform: translateX(-75%) translateY(200%);
-  -moz-transform: translateX(-75%) translateY(200%);
-  -ms-transform: translateX(-75%) translateY(200%);
-  -o-transform: translateX(-75%) translateY(200%);
-  transform: translateX(-75%) translateY(200%); }
+  -webkit-transform: translateX(-75%) translateY(100%);
+  -moz-transform: translateX(-75%) translateY(100%);
+  -ms-transform: translateX(-75%) translateY(100%);
+  -o-transform: translateX(-75%) translateY(100%);
+  transform: translateX(-75%) translateY(100%); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003130}}
 .me, .front, .grid, .red {
   position: relative;
   float: left;
   height: 100%;
   top: 0px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003137}}
 .me {
   width: 25%; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003138}}
 .front, .grid {
   width: 20%; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003139}}
 .red {
   width: 35%; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003141}}
 .me {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -ms-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
   overflow: hidden; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003144}}
   .me .me_img {
     position: absolute;
     height: 100%;
     width: 100%;
     top: 0px;
     left: 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003150}}
     .me .me_img #me_blur, .me .me_img #me_clean {
       -webkit-transition: all 0.5s ease-in-out;
       -moz-transition: all 0.5s ease-in-out;
+      -ms-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
       transition: all 0.5s ease-in-out;
       position: absolute;
       height: 100%;
       width: 100%;
       top: 0px;
       left: 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003157}}
       .me .me_img #me_blur img, .me .me_img #me_clean img {
         display: block;
         position: relative;
         margin: auto; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003163}}
     .me .me_img .not {
       opacity: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003165}}
   .me .meme {
     position: absolute;
     width: 25%;
     height: 25%;
     cursor: pointer;
     display: table; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003171}}
     .me .meme p {
       color: white;
       z-index: 2;
@@ -227,13 +208,11 @@ body {
       left: 50%;
       margin: -42px 0px 0px -54px;
       text-align: center; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003182}}
       .me .meme p span {
         font-family: u39;
         font-size: 79px;
         margin: 24px 24px 0px 22px;
         display: block; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003189}}
     .me .meme #megrey {
       background-color: rgba(0, 0, 0, 0.8);
       width: 200px;
@@ -246,26 +225,20 @@ body {
       float: none;
       display: block;
       padding: 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003201}}
       .me .meme #megrey:hover {
         border: none !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003203}}
     .me .meme:hover {
       border: none !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003205}}
       .me .meme:hover #megrey {
         background-color: red !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003206}}
       .me .meme:hover p {
         color: black; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003209}}
   .me .meback {
     position: absolute;
     width: 25%;
     height: 25%;
     padding: 0px;
     cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003216}}
     .me .meback #mebackwhite {
       background-color: white;
       width: 160px;
@@ -278,10 +251,8 @@ body {
       float: none;
       display: block;
       padding: 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003228}}
       .me .meback #mebackwhite:hover {
         border: none !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003230}}
     .me .meback img {
       position: absolute;
       top: 50%;
@@ -289,31 +260,27 @@ body {
       width: 100px;
       margin: -26px 0px 0px -50px;
       z-index: 2; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003238}}
     .me .meback:hover {
       border: none !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003240}}
       .me .meback:hover #mebackwhite {
         background-color: grey; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003243}}
   .me .me_bit {
     position: absolute;
     width: 25%;
     height: 25%;
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003249}}
     .me .me_bit:hover {
       border: 1px black solid; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003250}}
     .me .me_bit .me_float {
       -webkit-transition: all 0.5s ease-in-out;
       -moz-transition: all 0.5s ease-in-out;
+      -ms-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
       transition: all 0.5s ease-in-out;
       height: 100%;
       width: 100%;
       position: absolute; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003255}}
       .me .me_bit .me_float .me_txt {
         padding: 10%;
         display: table;
@@ -322,55 +289,43 @@ body {
         height: 100%;
         top: 0px;
         left: 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003263}}
         .me .me_bit .me_float .me_txt p {
           -webkit-transition: all 0.5s ease-in-out;
           -moz-transition: all 0.5s ease-in-out;
+          -ms-transition: all 0.5s ease-in-out;
+          -o-transition: all 0.5s ease-in-out;
           transition: all 0.5s ease-in-out;
           display: table-cell;
           vertical-align: middle;
           opacity: 0;
           color: white; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003273}}
   .me .me_x1 {
     left: 0%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003274}}
   .me .me_x2 {
     left: 25%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003275}}
   .me .me_x3 {
     left: 50%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003276}}
   .me .me_x4 {
     left: 75%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003277}}
   .me .me_y1 {
     top: 0%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003278}}
   .me .me_y2 {
     top: 25%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003279}}
   .me .me_y3 {
     top: 50%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003280}}
   .me .me_y4 {
     top: 75%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003282}}
   .me .up:hover {
     border: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003283}}
   .me .up .me_float {
     background-color: rgba(0, 0, 0, 0.5);
     box-shadow: 10px 10px 15px;
     top: -3px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003288}}
     .me .up .me_float .me_txt p {
       opacity: 1 !important; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003294}}
 .front {
   overflow: hidden; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003297}}
   .front #cubic {
     position: absolute;
     top: 50%;
@@ -379,12 +334,10 @@ body {
     width: 819px;
     height: 672px;
     margin: -336px 0px 0px -409.5px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003307}}
   .front .name {
     text-align: left;
     opacity: 1;
     cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003311}}
     .front .name p {
       font-size: 28px;
       -webkit-transform: scale3d(0.5, 0.5, 1);
@@ -392,7 +345,6 @@ body {
       -ms-transform: scale3d(0.5, 0.5, 1);
       -o-transform: scale3d(0.5, 0.5, 1);
       transform: scale3d(0.5, 0.5, 1); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003317}}
   .front #shapeshifter {
     position: absolute;
     top: 50%;
@@ -402,14 +354,12 @@ body {
     margin: -73.5px 0px 0px -68.5px;
     z-index: 100;
     display: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003326}}
     .front #shapeshifter div {
       position: absolute;
       width: 137px;
       height: 147px;
       display: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003335}}
 .cube {
   width: 50px;
   height: 50px;
@@ -421,7 +371,6 @@ body {
   cursor: pointer;
   z-index: 10; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003347}}
 .cube div {
   display: block;
   position: absolute;
@@ -433,7 +382,6 @@ body {
   color: white;
   text-align: center; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003359}}
 .cube .front {
   -webkit-transform: translateZ(25px);
   -moz-transform: translateZ(25px);
@@ -441,7 +389,6 @@ body {
   -o-transform: translateZ(25px);
   transform: translateZ(25px); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003360}}
 .cube .back {
   -webkit-transform: rotateX(-180deg) translateZ(25px);
   -moz-transform: rotateX(-180deg) translateZ(25px);
@@ -449,7 +396,6 @@ body {
   -o-transform: rotateX(-180deg) translateZ(25px);
   transform: rotateX(-180deg) translateZ(25px); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003361}}
 .cube .right {
   -webkit-transform: rotateY(90deg) translateZ(25px);
   -moz-transform: rotateY(90deg) translateZ(25px);
@@ -457,7 +403,6 @@ body {
   -o-transform: rotateY(90deg) translateZ(25px);
   transform: rotateY(90deg) translateZ(25px); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003362}}
 .cube .left {
   -webkit-transform: rotateY(-90deg) translateZ(25px);
   -moz-transform: rotateY(-90deg) translateZ(25px);
@@ -465,7 +410,6 @@ body {
   -o-transform: rotateY(-90deg) translateZ(25px);
   transform: rotateY(-90deg) translateZ(25px); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003363}}
 .cube .top {
   -webkit-transform: rotateX(90deg) translateZ(25px);
   -moz-transform: rotateX(90deg) translateZ(25px);
@@ -473,7 +417,6 @@ body {
   -o-transform: rotateX(90deg) translateZ(25px);
   transform: rotateX(90deg) translateZ(25px); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003364}}
 .cube .bottom {
   -webkit-transform: rotateX(-90deg) translateZ(25px);
   -moz-transform: rotateX(-90deg) translateZ(25px);
@@ -481,87 +424,69 @@ body {
   -o-transform: rotateX(-90deg) translateZ(25px);
   transform: rotateX(-90deg) translateZ(25px); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003366}}
 .r1 div {
   background-color: rgba(255, 0, 0, 0.2); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003367}}
 .r2 div {
   background-color: rgba(0, 255, 0, 0.2); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003368}}
 .r3 div {
   background-color: rgba(0, 0, 255, 0.2); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003369}}
 .r4 div {
   background-color: rgba(255, 255, 0, 0.2); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003370}}
 .r5 div {
   background-color: rgba(0, 0, 0, 0.2); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003371}}
 .r6 div {
   background-color: rgba(0, 0, 0, 0.2); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003372}}
 .r7 div {
   background-color: rgba(0, 0, 0, 0.2); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003373}}
 .r8 div {
   background-color: rgba(0, 0, 0, 0.2); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003374}}
 .r9 div {
   background-color: rgba(0, 0, 0, 0.2); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003375}}
 .r10 div {
   background-color: rgba(0, 0, 0, 0.2); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003376}}
 .r11 div {
   background-color: rgba(0, 0, 0, 0.2); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003377}}
 .r12 div {
   background-color: rgba(0, 0, 0, 0.2); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003379}}
 .red {
   z-index: 200;
   background-color: #c50000;
   color: white;
   overflow: hidden; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003384}}
   .red > div {
     position: relative;
     float: left;
     height: 100%;
     top: 0px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003390}}
   .red .left {
     width: 14%;
     left: .16%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003393}}
     .red .left .title, .red .left .who, .red .left .copyright {
       position: relative;
       margin: auto; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003397}}
     .red .left .title {
       font-family: u39;
       font-size: 53px;
       top: 10%;
       width: 72px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003403}}
     .red .left .who {
       -webkit-transition: top 1s ease-in-out !important;
       -moz-transition: top 1s ease-in-out !important;
       -o-transition: top 1s ease-in-out !important;
       transition: top 1s ease-in-out !important;
-      top: 81%;
+      top: 76%;
       font-size: 20px;
       text-align: center;
       height: 40px;
@@ -572,20 +497,17 @@ body {
       color: #c50000;
       border: 1px #c50000 solid;
       z-index: 200; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003419}}
       .red .left .who:hover {
         background: #c50000;
         border: 1px white solid;
         color: white;
         cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003426}}
     .red .left .copyright {
-      top: 85%;
+      top: 81%;
       width: 33px;
       font-size: 11px;
       line-height: 12px;
       text-align: center; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003433}}
     .red .left #trial {
       font-family: u47;
       font-size: 14px;
@@ -597,18 +519,15 @@ body {
       border: 0px;
       margin: auto;
       display: block;
-      top: 81%;
+      top: 76%;
       z-index: 200;
       outline: 0px !important;
       text-align: center;
       opacity: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003451}}
   .red .middle {
     width: 72%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003454}}
   .red .right {
     width: 13.6%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003456}}
     .red .right .crumb {
       height: 175px;
       width: 175px;
@@ -618,39 +537,32 @@ body {
       margin: auto;
       top: 50%;
       margin-top: -87.5px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003465}}
       .red .right .crumb #crumbput {
         margin: auto;
         position: relative;
         width: 20px;
         height: 116px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003470}}
         .red .right .crumb #crumbput .crumbcube {
           position: absolute;
           cursor: pointer; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003478}}
         .red .right .crumb #crumbput .ccs div {
           border: 1px white solid; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003479}}
         .red .right .crumb #crumbput .ccs:hover div {
           -webkit-animation: throb 1s infinite;
           -moz-animation: throb 1s infinite;
           -ms-animation: throb 1s infinite;
           -o-animation: throb 1s infinite;
           animation: throb 1s infinite; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003486}}
         .red .right .crumb #crumbput .crumbface {
           position: absolute;
           width: 27px;
           height: 27px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003491}}
         .red .right .crumb #crumbput .cr_top {
           -webkit-transform: rotate(-45deg) skew(15deg, 15deg);
           -moz-transform: rotate(-45deg) skew(15deg, 15deg);
           -ms-transform: rotate(-45deg) skew(15deg, 15deg);
           -o-transform: rotate(-45deg) skew(15deg, 15deg);
           transform: rotate(-45deg) skew(15deg, 15deg); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003495}}
         .red .right .crumb #crumbput .cr_left {
           -webkit-transform: rotate(15deg) skew(15deg, 15deg);
           -moz-transform: rotate(15deg) skew(15deg, 15deg);
@@ -659,7 +571,6 @@ body {
           transform: rotate(15deg) skew(15deg, 15deg);
           top: 22px;
           left: -12px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003500}}
         .red .right .crumb #crumbput .cr_right {
           -webkit-transform: rotate(-15deg) skew(-15deg, -15deg);
           -moz-transform: rotate(-15deg) skew(-15deg, -15deg);
@@ -668,23 +579,20 @@ body {
           transform: rotate(-15deg) skew(-15deg, -15deg);
           top: 21px;
           left: 12px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003507}}
     .red .right #instruct {
       position: absolute;
       margin: auto;
-      width: 108px;
-      height: 108px;
-      padding: 35px 0px;
+      width: 130px;
+      height: 130px;
+      padding: 44px 0px;
       text-align: center;
-      top: 18%;
+      top: 20%;
       left: 50%;
-      margin-left: -54px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003518}}
+      margin-left: -62px; }
     .red .right .reinstruct {
       background-color: white;
       color: black;
       border-radius: 1000px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003523}}
     .red .right #point {
       position: absolute;
       margin: auto;
@@ -694,44 +602,35 @@ body {
       top: 68%;
       cursor: pointer; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003535}}
 .edit {
-  background-color: #63D0FF !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003537}}
+  background-color: #63d0ff !important; }
   .edit .who {
-    top: 70% !important;
-    color: #63D0FF !important;
-    border: 1px #63D0FF solid !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003541}}
+    top: 69% !important;
+    color: #63d0ff !important;
+    border: 1px #63d0ff solid !important; }
     .edit .who:hover {
-      background: #63D0FF !important;
+      background: #63d0ff !important;
       border: 1px white solid !important;
       color: white !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003547}}
   .edit .copyright {
     top: 74% !important; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003550}}
   .edit #trial {
     opacity: 1 !important; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003554}}
 .ssi {
   display: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003557}}
 .grid .floater {
   width: 150%;
   height: 100%;
   position: absolute;
   top: 0px;
   left: 10px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003563}}
-  .grid .floater div {
+  .grid .floater .vertical, .grid .floater .horzontal, .grid .floater .square_small, .grid .floater .square_large {
     overflow: hidden;
     float: left;
     position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003570}}
-    .grid .floater div p {
+    .grid .floater .vertical p, .grid .floater .horzontal p, .grid .floater .square_small p, .grid .floater .square_large p {
       padding: 10px;
       margin: 0px;
       background-color: rgba(0, 0, 0, 0.7);
@@ -741,37 +640,85 @@ body {
       left: 0px;
       width: 100%;
       display: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003582}}
+  .grid .floater .stats table {
+    height: 100%;
+    width: 100%; }
+    .grid .floater .stats table .stat_titel {
+      font-weight: normal;
+      font-family: u67;
+      position: relative;
+      width: 116px; }
+    .grid .floater .stats table .stat_stat {
+      width: 157px; }
+    .grid .floater .stats table .stat_text {
+      width: 100%;
+      padding: 20px 0px; }
+    .grid .floater .stats table .stat_link a {
+      display: block;
+      width: 100px;
+      height: 100px;
+      left: 50%;
+      margin-left: -50px;
+      background-color: #c50000;
+      border-radius: 200px;
+      text-align: center;
+      font-style: italic;
+      font-family: georgia;
+      color: white;
+      position: relative;
+      padding: 28px; }
+  .grid .floater .s_close {
+    height: 150px;
+    width: 150px; }
+    .grid .floater .s_close #stats_closed {
+      height: 100%;
+      width: 100%;
+      border-radius: 300px;
+      background-color: grey;
+      display: table; }
+      .grid .floater .s_close #stats_closed span {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        font-style: italic;
+        font-family: georgia;
+        font-size: 82px;
+        color: white;
+        cursor: pointer; }
+    .grid .floater .s_close #stats_open {
+      display: none; }
+  .grid .floater .s_open {
+    border: 1px black solid;
+    height: 449px;
+    width: 300px; }
+    .grid .floater .s_open #stats_closed {
+      display: none; }
   .grid .floater .vertical {
     height: 300px;
     width: 150px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003586}}
   .grid .floater .horzontal {
     height: 150px;
     width: 300px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003590}}
-  .grid .floater .square {
+  .grid .floater .square_small {
     height: 150px;
     width: 150px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003594}}
+  .grid .floater .square_large {
+    height: 300px;
+    width: 300px; }
   .grid .floater .open {
     height: 450px;
     width: 450px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003597}}
     .grid .floater .open:hover p {
       display: block; }
 
 @-moz-document url-prefix() {}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003622}}
 .isotope-item {
   z-index: 2; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003624}}
 .isotope-hidden.isotope-item {
   pointer-events: none;
   z-index: 1; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003630}}
 .isotope,
 .isotope .isotope-item {
   -webkit-transition-duration: 0.8s;
@@ -780,7 +727,6 @@ body {
   -o-transition-duration: 0.8s;
   transition-duration: 0.8s; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003638}}
 .isotope {
   -webkit-transition-property: height, width;
   -moz-transition-property: height, width;
@@ -788,7 +734,6 @@ body {
   -o-transition-property: height, width;
   transition-property: height, width; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/front\/css\/master\.scss}line{font-family:\00003646}}
 .isotope .isotope-item {
   -webkit-transition-property: -webkit-transform, opacity;
   -moz-transition-property: -moz-transform, opacity;
