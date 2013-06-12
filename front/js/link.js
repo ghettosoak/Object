@@ -24,22 +24,28 @@ function linkup(tehcode){
 		url: "php/link.php",
 	}).done( function(edit){
 		if (edit.length > 30){
-			$('.red').removeClass('edit')
+			backendhasexisted = true;
+			previewed = false;
+			separated = false;
+
 			$('#movement').addClass('down')
 			/*edit*/.prev().addClass('editing').append(edit)
 
-			$('#cubic').children().children().empty();
-			for (var i = 0; i <= counter; i++){
-				scene.remove(scene.children[1]);
-				if (i == counter){
-					counter = 1;
-					cubecounter = 1;
-					rowcount = 1;
-					namelist = [];
+			setTimeout(function(){
+				$('.red').removeClass('edit')
+				$('#cubic').children().children().empty();
+				for (var i = 0; i <= counter; i++){
+					scene.remove(scene.children[1]);
+					if (i == counter){
+						counter = 1;
+						cubecounter = 1;
+						rowcount = 1;
+						namelist = [];
+					}
 				}
-			}
-
-			$('#switch_03').on('click', function(){
+			},1000)
+			
+			$('#switch_03').find('div').on('click', function(){
 				$.ajax({
 					type: "POST",
 					dataType:'JSON',

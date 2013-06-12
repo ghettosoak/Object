@@ -72,14 +72,14 @@ a{
 	float:left;
 }
 
-.master, #master_back{
+.old_master, #master_back{
 	position:absolute;
 	width:100%;
 	top:0px;
 	left:0px;
 	font-family:helvetica, arial, sans-serif;
-	line-height:18px;
-	font-size:14px;
+	// line-height:18px !important;
+	font-size:15px;
 	overflow:hidden;
 	font-family: u47;
 }
@@ -97,7 +97,7 @@ a{
     left:0%;
     @include transition (top 0.5s ease-in-out);
     h3{
-    	font-size:14;
+    	font-size:15px;
     	font-family:u67;
     	font-weight:normal;
     }
@@ -217,7 +217,7 @@ a{
 						border:none;
 						text-align: center;
 						font-family: u47;
-						font-size: 14px;
+						font-size: 15px;
 						margin:0px;
 					}
 				}
@@ -237,7 +237,7 @@ a{
 			top:0px;
 			left:0px;
 
-			.cube {
+			.editor_cube {
 			    width: 50px;
 			    height: 50px;
 			    position: absolute;
@@ -257,7 +257,7 @@ a{
 				animation: opaqr 2s linear 0s infinite alternate;
 			}				
 
-			.cube div {
+			.editor_cube div {
 			    display: block;
 			    position: absolute;
 			    width: 50px;
@@ -269,12 +269,12 @@ a{
 			    text-align: center;
 			}
 
-			.cube .front { @include transform(translateZ( $offset )); }
-			.cube .back { @include transform(rotateX( -180deg ) translateZ( $offset )); }
-			.cube .right { @include transform(rotateY(   90deg ) translateZ( $offset )); }
-			.cube .left { @include transform(rotateY(  -90deg ) translateZ( $offset )); }
-			.cube .top { @include transform(rotateX(   90deg ) translateZ( $offset )); }
-			.cube .bottom { @include transform(rotateX(  -90deg ) translateZ( $offset )); }
+			.editor_cube .front { @include transform(translateZ( $offset )); }
+			.editor_cube .back { @include transform(rotateX( -180deg ) translateZ( $offset )); }
+			.editor_cube .right { @include transform(rotateY(   90deg ) translateZ( $offset )); }
+			.editor_cube .left { @include transform(rotateY(  -90deg ) translateZ( $offset )); }
+			.editor_cube .top { @include transform(rotateX(   90deg ) translateZ( $offset )); }
+			.editor_cube .bottom { @include transform(rotateX(  -90deg ) translateZ( $offset )); }
 
 			.newcube div{background-color:rgba(0,0,0,.2);}
 
@@ -330,7 +330,7 @@ a{
 				}
 				input, textarea{
 					font-family: u47;
-					font-size:14px;
+					font-size:15px;
 					width:57%;
 					@include prfl;
 					margin: 9px 0px 8px 0px;
@@ -339,7 +339,7 @@ a{
 					position: absolute !important;
 					// left:116px;
 					// right:19px;
-					height:20px;
+					height:18px;
 					width:57%;
 					margin: 9px 0px 8px 0px;
 					overflow: hidden;
@@ -405,7 +405,7 @@ a{
 				}
 				input, textarea{
 					font-family: u47;
-					font-size:14px;
+					font-size:15px;
 					width:57%;
 					@include prfl;
 					margin: 9px 0px 8px 0px;
@@ -580,7 +580,7 @@ a{
 }
 
 .side{
-	div{cursor: pointer;}
+	// div{cursor: pointer;}
 	p{
 		text-align: center;
 		font-size: 18px
@@ -595,12 +595,12 @@ a{
 		// border:1px white solid;
 		margin:auto;
 		position: relative;
-		p{padding-top: 20px;}
-		// &:hover{
-		// 	background-color:white;
-		// 	border:1px red solid;
-		// 	color:red;
-		// }
+		p{padding-top: 23px;}
+		&:hover{
+			background-color:white;
+			border:1px red solid;
+			color:red;
+		}
 	}
 	.switcher{
 		@include prfl;
@@ -633,12 +633,12 @@ a{
 				border-radius:150px;
 				margin:auto;
 				position: relative;
-				p{padding-top: 20px;}
-				// &:hover{
-				// 	background-color:white;
-				// 	border:1px blue solid;
-				// 	color:blue;
-				// }
+				p{padding-top: 23px;}
+			}
+			&:hover div{
+				background-color:white;
+				border:1px #63D0FF solid;
+				color:#63D0FF;
 			}
 		}
 	}
