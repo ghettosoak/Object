@@ -44,6 +44,7 @@ $('#shapeshifter').on('click', function(){
 		url: "php/project.php",
 	}).done(function(cellular){
 		projectdeploy(cellular);
+		loadr();
 	})
 	breadcrumb(cubedescend.nav.cubes[layerrefere], layernumber, prone)
 });

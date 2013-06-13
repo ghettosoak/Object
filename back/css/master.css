@@ -692,60 +692,52 @@ a {
     margin: 7px 2%;
     height: 3em; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003584}}
-.side p {
-  text-align: center;
-  font-size: 18px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003588}}
-.side #save {
-  height: 60px;
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003583}}
+.side div {
+  position: absolute;
+  width: 100%;
   width: 60px;
-  top: -8px;
-  background-color: red;
-  color: white;
+  height: 60px;
+  left: 50%;
+  margin-left: -30px;
   border-radius: 150px;
-  margin: auto;
-  position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003598}}
+  display: table;
+  cursor: pointer; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003593}}
+  .side div p {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 15px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003601}}
+.side #save p, .side #switch_03 p {
+  color: white;
+  border-radius: 150px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003606}}
+.side #save {
+  top: 9px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003608}}
   .side #save p {
-    padding-top: 23px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003599}}
-  .side #save:hover {
+    background-color: red; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003609}}
+  .side #save:hover p {
     background-color: white;
     border: 1px red solid;
     color: red; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003605}}
-.side .switcher {
-  position: relative;
-  float: left;
-  top: 30%;
-  margin: auto;
-  width: 100%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003610}}
-  .side .switcher div {
-    height: 111px;
-    width: 111px;
-    border-radius: 150px;
-    position: relative;
-    margin: auto; }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003616}}
-    .side .switcher div p {
-      padding-top: 50px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003627}}
-  .side .switcher #switch_03 div {
-    height: 60px;
-    width: 60px;
-    top: 38px;
-    background-color: #63D0FF;
-    color: white;
-    border-radius: 150px;
-    margin: auto;
-    position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003636}}
-    .side .switcher #switch_03 div p {
-      padding-top: 23px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003638}}
-  .side .switcher #switch_03:hover div {
+.side #switch_01 {
+  top: 91px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003617}}
+.side #switch_02 {
+  top: 161px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003619}}
+.side #switch_03 {
+  bottom: 9px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003621}}
+  .side #switch_03 p {
+    background-color: #63D0FF; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/mif\/Desktop\/renegade\/object\/back\/css\/master\.scss}line{font-family:\00003622}}
+  .side #switch_03:hover p {
     background-color: white;
     border: 1px #63D0FF solid;
     color: #63D0FF; }

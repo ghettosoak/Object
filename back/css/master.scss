@@ -580,66 +580,49 @@ a{
 }
 
 .side{
-	// div{cursor: pointer;}
-	p{
-		text-align: center;
-		font-size: 18px
-	}
-	#save{
-		height:60px;
+	div{
+		position: absolute;
+		width:100%;
 		width:60px;
-		top: -8px;
-		background-color:red;
+		height:60px;
+		left:50%;
+		margin-left:-30px;
+		border-radius:150px;
+		display: table;
+		cursor: pointer;
+		p{
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+			font-size:15px;
+		}
+	}
+
+	#save p, #switch_03 p{
 		color:white;
 		border-radius:150px;
-		// border:1px white solid;
-		margin:auto;
-		position: relative;
-		p{padding-top: 23px;}
-		&:hover{
+	}
+
+	#save{
+		top: 9px;
+		p{background-color:red;}
+		&:hover p{
 			background-color:white;
 			border:1px red solid;
 			color:red;
 		}
 	}
-	.switcher{
-		@include prfl;
-		top:30%;
-		margin:auto;
-		width:100%;
-		div{
-			height:111px;
-			width:111px;
-			border-radius:150px;
-			position:relative;
-			margin:auto;
-			p{
-				padding-top:50px;
-			}
-		}
-		#switch_01{
 
-		}
-		#switch_02{
+	#switch_01{top:91px;}
+	#switch_02{top:161px;}
 
-		}
-		#switch_03{
-			div{
-				height:60px;
-				width:60px;
-				top: 38px;
-				background-color:#63D0FF;
-				color:white;
-				border-radius:150px;
-				margin:auto;
-				position: relative;
-				p{padding-top: 23px;}
-			}
-			&:hover div{
-				background-color:white;
-				border:1px #63D0FF solid;
-				color:#63D0FF;
-			}
+	#switch_03{
+		bottom:9px;
+		p{background-color:#63D0FF;}
+		&:hover p{
+			background-color:white;
+			border:1px #63D0FF solid;
+			color:#63D0FF;
 		}
 	}
 }

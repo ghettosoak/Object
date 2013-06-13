@@ -55,7 +55,7 @@ $(document).ready(function(){
 				return $(this).parent().prev().find('input').position().left;
 			})
 
-			$('#switch_03').css('margin-top', (wpheight-447))
+			// $('#switch_03').css('margin-top', (wpheight-447))
 
 			// b_workload(23)
 			// b_workload(22)

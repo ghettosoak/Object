@@ -89,7 +89,7 @@ body {
 #edit{
     position: absolute;
     // top:-200%;
-    @include transform(translateY(-100%));
+    @include transform(translateY(-50%));
     left:0px;
     height:200%;
     width:100%;
@@ -189,7 +189,7 @@ body {
             span{
                 font-family: u39;
                 font-size:79px;
-                margin: 24px 24px 0px 22px;
+                margin: 0px 24px 0px 20px;
                 display:block;
             }
         }
@@ -410,10 +410,6 @@ body {
             width:72px;
         }
         .who{
-            -webkit-transition: top 1s ease-in-out !important;
-            -moz-transition: top 1s ease-in-out !important;
-            -o-transition: top 1s ease-in-out !important;
-            transition: top 1s ease-in-out !important;
             top:76%;
             font-size:20px;
             text-align: center;
@@ -462,6 +458,20 @@ body {
     }
     .middle{
         width:72%;
+        #loadr{
+            position: absolute;
+            width:308px;
+            height:173px;
+            left:50%;
+            top:50%;
+            margin:-68.5px 0px 0px -137px;
+            div{
+                height:100%;
+                width:100%;
+                overflow: hidden;
+                background-image:url(../../join/img/loaders/003.png);
+            }
+        }
     }
     .right{
         width:13.6%;
@@ -547,6 +557,10 @@ body {
 .edit{
     background-color:#63D0FF !important;
     .who{
+        -webkit-transition: top 1s ease-in-out !important;
+        -moz-transition: top 1s ease-in-out !important;
+        -o-transition: top 1s ease-in-out !important;
+        transition: top 1s ease-in-out !important;
         top:69% !important;
         color:#63D0FF !important;
         border:1px #63D0FF solid !important;

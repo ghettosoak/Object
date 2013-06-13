@@ -88,6 +88,7 @@ function projectdeploy(incoming){
 
 	function gotogrid(){
 		$('#movement').removeClass().addClass('fourth');
+		okayitsloaded();
 		setTimeout(function(){ $('#instruct').fadeOut(); },5000)
 	}
 }
@@ -209,6 +210,7 @@ $('#crumbput').on('click', '.crumbcube', function(){
 });
 
 $('#point').on('click', function(){
+	where = 'front';
 	$('#cubic').click()
 	$('#movement').removeClass().addClass('second')
 	setTimeout(cleargrid, 1000)

@@ -218,7 +218,6 @@ function cube_ensure(){
 			});
 			slide.likethis(tnumber, 'center', trow)
 
-
 			var tween = new TWEEN.Tween({
 				g: heylookatme.x
 			})
