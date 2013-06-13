@@ -14,8 +14,6 @@ b.run=function(h){d.each(e,function(f,l){a[l]=j(c[l],i,h)})}}}})(jQuery);
      Begin projects.js
 ********************************************** */
 
-$.fn.preload = function() { this.each(function(e){ $('<../back/img/>')[0].src = this; }); }
-
 Array.prototype.remove = function(from, to) {
 	var rest = this.slice((to || from) + 1 || this.length);
 	this.length = from < 0 ? this.length + from : from;
@@ -29,7 +27,7 @@ addrow_height, addrow_open = false, makingnewrow = false;
 var rowarray = []
 var editor_counter = 1, editor_cubecounter = 1;
 var $ovr_sight;
-var slide = new slider();
+var editor_slide = new editor_slider();
 var categ = [];
 var thesecateg = [];
 var presence = {};
@@ -67,13 +65,13 @@ $(document).ready(function(){
 			editorinit();
 			editor_animate();
 
-			$('#cell_put').css('height',$windowpane.height()-60)
+			$('#cell_put').css('height',$windowpane.height()-54)
 			$('#shapeshifterhopper').css('height', $windowpane.height()-$('.info').outerHeight()-$('.coords').outerHeight()-36)
 			$('#info_category').css('left', function(){
 				return $(this).parent().prev().find('input').position().left;
 			})
 
-			$('#switch_03').css('margin-top', (wpheight-447))
+			// $('#switch_03').css('margin-top', (wpheight-447))
 
 			// b_workload(23)
 			// b_workload(22)
@@ -174,19 +172,19 @@ function editor_onDocumentMouseUp( event ) {
 	editor_onMouseDownPosition.y = event.clientY - editor_onMouseDownPosition.y;
 }
 
-function cube_ensure(activation){
-	$('.cube').on('click', function(){		
+function editor_cube_ensure(activation){
+	$('.editor_cube').on('click', function(){		
 
 		editor_tcallme = $(this).data('callmemaybe')
-		trow = $(this).data('row');
+		editor_trow = $(this).data('row');
 		editor_tref = $(this).nextAll('.name').first().find('p').text();
 		editor_tnumber = $(this).data('array');
 		editor_tcube = $(this).data('cube');
 		twhich = $(this).data('number');
 
-		console.log(trow+' // '+editor_tref+' // '+editor_tnumber+' // '+editor_tcube+' // '+twhich)
+		console.log(editor_trow+' // '+editor_tref+' // '+editor_tnumber+' // '+editor_tcube+' // '+twhich)
 
-		if ((!editor_separated) || (trow != editor_strow)) selectorgeneral(editor_tcallme)
+		if ((!editor_separated) || (editor_trow != editor_strow)) selectorgeneral(editor_tcallme)
 
 		$('#shapeshifterhopper, #cell_put').empty()
 
@@ -224,25 +222,25 @@ function cube_ensure(activation){
 
 	if(activation){ //activation = callmemaybe kthx
 		selectorgeneral(activation)
-		cubearrayediting = $('.cube[data-callmemaybe="'+activation+'"]').addClass('targeted').data('array')
+		cubearrayediting = $('.editor_cube[data-callmemaybe="'+activation+'"]').addClass('targeted').data('array')
 	}	
 }
 
 function selectorgeneral(orders){
 	console.log(editor_tnumber)
-	var $activator = $('.cube[data-callmemaybe="'+orders+'"]')
+	var $activator = $('.editor_cube[data-callmemaybe="'+orders+'"]')
 	var $act_row = $activator.data('row')
 	editor_tnumber = $activator.data('array')
 	$activator.siblings().not('.newcube').each(function(e){
 		var $that = $(this)
-		var $dcube = $that.data('array')
-		var $drow = $that.data('row')
+		var $editor_dcube = $that.data('array')
+		var $editor_drow = $that.data('row')
 		if (!$that.hasClass('r'+$act_row)){
-			if ($drow < $act_row) slide.likethis($dcube, 'left', $drow)
-			else slide.likethis($dcube, 'right', $drow)
-		}else slide.likethis($dcube, 'center', $drow)
+			if ($editor_drow < $act_row) editor_slide.editor_likethis($editor_dcube, 'left', $editor_drow)
+			else editor_slide.editor_likethis($editor_dcube, 'right', $editor_drow)
+		}else editor_slide.editor_likethis($editor_dcube, 'center', $editor_drow)
 	});
-	slide.likethis($activator.data('array'), 'center', $act_row)
+	editor_slide.editor_likethis($activator.data('array'), 'center', $act_row)
 
 	var generaleditor_camera = new TWEEN.Tween({ g: editor_heylookatme.x })
 	.to({ g: editor_scene.children[editor_tnumber].position.x }, 500)
@@ -280,7 +278,7 @@ function editor_cubegenerator(receive, active){
 		var cube = receive[row];
 		for (var i in cube){
 			var element = document.createElement( 'div' );
-			element.className = 'cube r'+editor_rowcount.toString();
+			element.className = 'editor_cube r'+editor_rowcount.toString();
 			element.id = 'c'+editor_counter.toString();
 			element.setAttribute('data-callmemaybe', i)
 			element.setAttribute('data-number', numberexact.toString())
@@ -321,7 +319,7 @@ function editor_cubegenerator(receive, active){
 			object.position.z = cube[i].z*50;
 			editor_scene.add( object );
 
-			if ((editor_rowcount >= _.size(receive)) && (numberexact >= _.size(cube))) setTimeout(function(){cube_ensure(active)}, 100)
+			if ((editor_rowcount >= _.size(receive)) && (numberexact >= _.size(cube))) setTimeout(function(){editor_cube_ensure(active)}, 100)
 		}
 
 		var name = document.createElement( 'div' );
@@ -356,8 +354,8 @@ function editor_cubegenerator(receive, active){
 	},50)
 }
 
-function slider(){
-	function likethis(number, direction, row){
+function editor_slider(){
+	function editor_likethis(number, direction, row){
 		var jump = 500;
 		var stay = editor_scene.children[number].position.x;
 		var going;
@@ -378,7 +376,7 @@ function slider(){
 			editor_camera.updateMatrix();
 		},jump);
 	}
-	this.likethis = likethis;
+	this.editor_likethis = editor_likethis;
 }
 
 function b_workload(er){
@@ -589,7 +587,7 @@ function categori(again){
 		if (l == categ.length-1){
 			addrow_height = $('#row_list').outerHeight()
 			$('#row_list').addClass('addrow_closed')
-			catoffset = $('.cat_'+presence[currentlyediting].data.category).position().top
+			catoffset = $('.cat_'+presence[currentlyediting].data.category).position().top-1
 			$('#info_category_carousel').css('top', -catoffset)
 			setTimeout(function(){$('#info_category_carousel').addClass('ready')},500)
 			if (!again) categorical()
@@ -608,7 +606,7 @@ function categorical(freshness){
 			$info_car.stop().css({'top':'0px'});
 		}else{
 			catopen = false;
-			$info_cat.stop().css({'height':20})
+			$info_cat.stop().css({'height':18})
 			setTimeout(function(){$info_cat.removeClass('open')},500)
 			$info_car.stop().css({'top':-catoffset});
 		}
@@ -626,7 +624,7 @@ function categorical(freshness){
 			
 			catopen = false;
 			catoffset = $('.cat_'+newcateg).position().top;
-			$('#info_category').css({'height':20})
+			$('#info_category').css({'height':18})
 			setTimeout(function(){$('#info_category').removeClass('open')},500)
 			$('#info_category_carousel').css({'top':-catoffset});
 
@@ -634,7 +632,7 @@ function categorical(freshness){
 				projectuploader(true, currentlyediting)
 			}else{
 				cubeset('x', newindex+1)
-				var reacharound = $('.cube[data-row="'+(newindex+1)+'"]').first().data('callmemaybe')
+				var reacharound = $('.editor_cube[data-row="'+(newindex+1)+'"]').first().data('callmemaybe')
 				selectorgeneral(reacharound)
 			}
 				
@@ -877,12 +875,12 @@ function newcube(){
 
 		var $targetedindex = $('.targeted').data('array')
 		var $targetedrow = $('.targeted').data('row')
-		slide.likethis($targetedindex, 'left', $targetedrow)
+		slide.editor_likethis($targetedindex, 'left', $targetedrow)
 		$('.targeted').siblings().each(function(){
 			var $theindex = $(this).data('array')
 			var $therow = $(this).data('row')
-			if($therow == $targetedrow) slide.likethis($theindex, 'left', $therow)
-			if($therow >= $targetedrow) slide.likethis($theindex, 'left', $therow)
+			if($therow == $targetedrow) editor_slide.editor_likethis($theindex, 'left', $therow)
+			if($therow >= $targetedrow) editor_slide.editor_likethis($theindex, 'left', $therow)
 		})
 
 		editor_separated = false;

@@ -113,7 +113,9 @@ $me_y = 1;
 						<input tabindex="1" type="password" id="trial" />
 					</div>
 					<div class="middle">
-
+						<div id="loadr">
+							<div id="l1"></div>
+						</div>
 					</div>
 					<div class="right">
 						<p id="instruct">
@@ -145,6 +147,7 @@ $me_y = 1;
 		<script src='js/launch.js'></script>
 		<script src='js/cubecontrol.js'></script>
 		<script src='js/shapeshifter.js'></script>
+		<script src='js/loadr.js'></script>
 		<script src='js/project.js'></script>
 		<script src='js/me.js'></script>
 		<script src='js/link.js'></script>

@@ -90,11 +90,9 @@
 
 		<div class="side">
 			<div id="save"><p>Save</p></div>
-			<div class="switcher">
-				<div id="switch_01"><p>Projects</p></div>
-				<div id="switch_02"><p>About</p></div>
-				<div id="switch_03"><div><p>Site</p></div></div>
-			</div>
+			<div id="switch_01"><p>Projects</p></div>
+			<div id="switch_02"><p>About</p></div>
+			<div id="switch_03"><p>Site</p></div>
 		</div>
 	</div>
 

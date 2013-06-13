@@ -10,21 +10,51 @@ function projectdeploy(incoming){
 	$floaterparent = $floater.parent()
 	console.log(incoming)
 
-	var squaresize = Math.floor(Math.sqrt(mass)) * 225;
+	var squaresize = (Math.floor(Math.sqrt(mass))+1) * 225;
 
 	$floater.css('width', squaresize)
 
 	drg_h = $floaterparent.outerHeight()
 	drg_w = $floaterparent.outerWidth()
 
-	$floater.append('<div class="cell stats s_close"><div id="stats_closed"><span>i</span></div><div id="stats_open"><table><tbody>'+
-		'<tr><td class="stat_titel">Name</td><td class="stat_stat">'+incoming.stat.name+'</td></tr>'+
-		'<tr><td class="stat_titel">Client</td><td class="stat_stat">'+incoming.stat.client+'</td></tr>'+
-		'<tr><td class="stat_titel">Date Launched</td><td class="stat_stat">'+incoming.stat.date_launched+'</td></tr>'+
-		'<tr><td class="stat_titel">Total Hours</td><td class="stat_stat">'+incoming.stat.total_hours+'</td></tr>'+
-		'<tr><td class="stat_text" colspan="2">'+incoming.stat.project_text+'</td></tr>'+
-		'<tr><td class="stat_link" colspan="2"><a href="'+incoming.stat.link+'" target="_blank">go to<br />page</a></td></tr>'+
-	'</tbody></table></div></div>')
+	// $floater.append('<div class="cell stats s_close"><div id="stats_closed"><span>i</span></div><div id="stats_open"><table><tbody>'+
+	// 	'<tr><td class="stat_titel">Name</td><td class="stat_stat">'+incoming.stat.name+'</td></tr>'+
+	// 	'<tr><td class="stat_titel">Client</td><td class="stat_stat">'+incoming.stat.client+'</td></tr>'+
+	// 	'<tr><td class="stat_titel">Date Launched</td><td class="stat_stat">'+incoming.stat.date_launched+'</td></tr>'+
+	// 	'<tr><td class="stat_titel">Total Hours</td><td class="stat_stat">'+incoming.stat.total_hours+'</td></tr>'+
+	// 	'<tr><td class="stat_text" colspan="2">'+incoming.stat.project_text+'</td></tr>'+
+	// 	'<tr><td class="stat_link" colspan="2"><a href="'+incoming.stat.link+'" target="_blank">go to<br />page</a></td></tr>'+
+	// '</tbody></table></div></div>')
+
+	$floater.append('<div class="cell stats s_close">'+
+		'<div id="stats_closed">'+
+			'<span>i</span>'+
+		'</div>'+
+		'<div id="stats_open">'+
+			'<div class="stat_full">'+
+				'<p>name</p>'+
+				'<p>'+incoming.stat.name+'</p>'+
+			'</div>'+
+			'<div class="stat_full">'+
+				'<p>client</p>'+
+				'<p>'+incoming.stat.client+'</p>'+
+			'</div>'+
+			'<div class="stat_small">'+
+				'<p>total hours</p>'+
+				'<p>'+incoming.stat.total_hours+'</p>'+
+			'</div>'+
+			'<div class="stat_small">'+
+				'<p>date launched</p>'+
+				'<p>'+incoming.stat.date_launched+'</p>'+
+			'</div>'+
+			'<div class="stat_text">'+
+				'<p>'+incoming.stat.project_text+'</p>'+
+			'</div>'+
+			'<div class="stat_link">'+
+				'<a href="'+incoming.stat.link+'" target="_blank"><p>View</p></a>'+
+			'</div>'+
+		'</div>'+
+	'</div>')
 
 	for (var i in incoming.cells){
 		var decide = Math.random()
@@ -58,6 +88,7 @@ function projectdeploy(incoming){
 
 	function gotogrid(){
 		$('#movement').removeClass().addClass('fourth');
+		okayitsloaded();
 		setTimeout(function(){ $('#instruct').fadeOut(); },5000)
 	}
 }
@@ -179,6 +210,7 @@ $('#crumbput').on('click', '.crumbcube', function(){
 });
 
 $('#point').on('click', function(){
+	where = 'front';
 	$('#cubic').click()
 	$('#movement').removeClass().addClass('second')
 	setTimeout(cleargrid, 1000)

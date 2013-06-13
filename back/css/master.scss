@@ -72,14 +72,14 @@ a{
 	float:left;
 }
 
-.master, #master_back{
+.old_master, #master_back{
 	position:absolute;
 	width:100%;
 	top:0px;
 	left:0px;
 	font-family:helvetica, arial, sans-serif;
-	line-height:18px;
-	font-size:14px;
+	// line-height:18px !important;
+	font-size:15px;
 	overflow:hidden;
 	font-family: u47;
 }
@@ -97,7 +97,7 @@ a{
     left:0%;
     @include transition (top 0.5s ease-in-out);
     h3{
-    	font-size:14;
+    	font-size:15px;
     	font-family:u67;
     	font-weight:normal;
     }
@@ -217,7 +217,7 @@ a{
 						border:none;
 						text-align: center;
 						font-family: u47;
-						font-size: 14px;
+						font-size: 15px;
 						margin:0px;
 					}
 				}
@@ -237,7 +237,7 @@ a{
 			top:0px;
 			left:0px;
 
-			.cube {
+			.editor_cube {
 			    width: 50px;
 			    height: 50px;
 			    position: absolute;
@@ -257,7 +257,7 @@ a{
 				animation: opaqr 2s linear 0s infinite alternate;
 			}				
 
-			.cube div {
+			.editor_cube div {
 			    display: block;
 			    position: absolute;
 			    width: 50px;
@@ -269,12 +269,12 @@ a{
 			    text-align: center;
 			}
 
-			.cube .front { @include transform(translateZ( $offset )); }
-			.cube .back { @include transform(rotateX( -180deg ) translateZ( $offset )); }
-			.cube .right { @include transform(rotateY(   90deg ) translateZ( $offset )); }
-			.cube .left { @include transform(rotateY(  -90deg ) translateZ( $offset )); }
-			.cube .top { @include transform(rotateX(   90deg ) translateZ( $offset )); }
-			.cube .bottom { @include transform(rotateX(  -90deg ) translateZ( $offset )); }
+			.editor_cube .front { @include transform(translateZ( $offset )); }
+			.editor_cube .back { @include transform(rotateX( -180deg ) translateZ( $offset )); }
+			.editor_cube .right { @include transform(rotateY(   90deg ) translateZ( $offset )); }
+			.editor_cube .left { @include transform(rotateY(  -90deg ) translateZ( $offset )); }
+			.editor_cube .top { @include transform(rotateX(   90deg ) translateZ( $offset )); }
+			.editor_cube .bottom { @include transform(rotateX(  -90deg ) translateZ( $offset )); }
 
 			.newcube div{background-color:rgba(0,0,0,.2);}
 
@@ -330,7 +330,7 @@ a{
 				}
 				input, textarea{
 					font-family: u47;
-					font-size:14px;
+					font-size:15px;
 					width:57%;
 					@include prfl;
 					margin: 9px 0px 8px 0px;
@@ -339,7 +339,7 @@ a{
 					position: absolute !important;
 					// left:116px;
 					// right:19px;
-					height:20px;
+					height:18px;
 					width:57%;
 					margin: 9px 0px 8px 0px;
 					overflow: hidden;
@@ -405,7 +405,7 @@ a{
 				}
 				input, textarea{
 					font-family: u47;
-					font-size:14px;
+					font-size:15px;
 					width:57%;
 					@include prfl;
 					margin: 9px 0px 8px 0px;
@@ -580,66 +580,49 @@ a{
 }
 
 .side{
-	div{cursor: pointer;}
-	p{
-		text-align: center;
-		font-size: 18px
-	}
-	#save{
-		height:60px;
+	div{
+		position: absolute;
+		width:100%;
 		width:60px;
-		top: -8px;
-		background-color:red;
+		height:60px;
+		left:50%;
+		margin-left:-30px;
+		border-radius:150px;
+		display: table;
+		cursor: pointer;
+		p{
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+			font-size:15px;
+		}
+	}
+
+	#save p, #switch_03 p{
 		color:white;
 		border-radius:150px;
-		// border:1px white solid;
-		margin:auto;
-		position: relative;
-		p{padding-top: 20px;}
-		// &:hover{
-		// 	background-color:white;
-		// 	border:1px red solid;
-		// 	color:red;
-		// }
 	}
-	.switcher{
-		@include prfl;
-		top:30%;
-		margin:auto;
-		width:100%;
-		div{
-			height:111px;
-			width:111px;
-			border-radius:150px;
-			position:relative;
-			margin:auto;
-			p{
-				padding-top:50px;
-			}
-		}
-		#switch_01{
 
+	#save{
+		top: 9px;
+		p{background-color:red;}
+		&:hover p{
+			background-color:white;
+			border:1px red solid;
+			color:red;
 		}
-		#switch_02{
+	}
 
-		}
-		#switch_03{
-			div{
-				height:60px;
-				width:60px;
-				top: 38px;
-				background-color:#63D0FF;
-				color:white;
-				border-radius:150px;
-				margin:auto;
-				position: relative;
-				p{padding-top: 20px;}
-				// &:hover{
-				// 	background-color:white;
-				// 	border:1px blue solid;
-				// 	color:blue;
-				// }
-			}
+	#switch_01{top:91px;}
+	#switch_02{top:161px;}
+
+	#switch_03{
+		bottom:9px;
+		p{background-color:#63D0FF;}
+		&:hover p{
+			background-color:white;
+			border:1px #63D0FF solid;
+			color:#63D0FF;
 		}
 	}
 }
