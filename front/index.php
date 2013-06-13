@@ -41,7 +41,7 @@ $me_y = 1;
 <!doctype html>
 <html lang="en">
 	<head>
-		<title>object_v0020</title>
+		<title>ob.ject</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		

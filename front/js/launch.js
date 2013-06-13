@@ -15,14 +15,14 @@ $(document).ready(function(){
 		shapeshifterload(cubedescend.nav.shapeshifter);
 		animate();
 
-		$.ajax({
-			type: "POST",
-			dataType:'JSON',
-			data:{project:23},
-			url: "php/project.php",
-		}).done(function(cellular){
-			projectdeploy(cellular);
-		})
+		// $.ajax({
+		// 	type: "POST",
+		// 	dataType:'JSON',
+		// 	data:{project:23},
+		// 	url: "php/project.php",
+		// }).done(function(cellular){
+		// 	projectdeploy(cellular);
+		// })
 	})
 });
 
