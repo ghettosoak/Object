@@ -1,38 +1,64 @@
-/*
-looking for these? :)
+// @font-face {
+//     font-family : 'u47';
+//     src: url('../../join/type/u47.woff') format('woff');
+//     font-weight: normal;
+//     font-style: normal;
+// }
 
-border-radius: 9px;
-
-<?php include("inc/head.html"); ?>
-*/
-
+@import url("//hello.myfonts.net/count/2760f4");
+@import url("//hello.myfonts.net/count/276103");
+  
 @font-face {
-    font-family : 'u47';
-    src: url('../../join/type/u47.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'u47';
+    src: url('../../join/type/u47/2760F4_0_0.eot');
+    src: url('../../join/type/u47/2760F4_0_0.eot?#iefix') format('embedded-opentype'),
+         url('../../join/type/u47/2760F4_0_0.woff') format('woff'),
+         url('../../join/type/u47/2760F4_0_0.ttf') format('truetype'),
+         url('../../join/type/u47/2760F4_0_0.svg#wf') format('svg');
 }
 
+
+  
 @font-face {
-    font-family : 'u47i';
-    src: url('../../join/type/u47i.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'u39';
+    src: url('../../join/type/u39/276103_0_0.eot');
+    src: url('../../join/type/u39/276103_0_0.eot?#iefix') format('embedded-opentype'),
+         url('../../join/type/u39/276103_0_0.woff') format('woff'),
+         url('../../join/type/u39/276103_0_0.ttf') format('truetype'),
+         url('../../join/type/u39/276103_0_0.svg#wf') format('svg');
+}
+ 
+  
+@font-face {
+    font-family: 'u67';
+    src: url('../../join/type/u67/276103_1_0.eot');
+    src: url('../../join/type/u67/276103_1_0.eot?#iefix') format('embedded-opentype'),
+         url('../../join/type/u67/276103_1_0.woff') format('woff'),
+         url('../../join/type/u67/276103_1_0.ttf') format('truetype'),
+         url('../../join/type/u67/276103_1_0.svg#wf') format('svg');
 }
 
-@font-face {
-    font-family : 'u39';
-    src: url('../../join/type/u39.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 
-@font-face {
-    font-family : 'u67';
-    src: url('../../join/type/u67.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+// @font-face {
+//     font-family : 'u47i';
+//     src: url('../../join/type/u47i.woff') format('woff');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+
+// @font-face {
+//     font-family : 'u39';
+//     src: url('../../join/type/u39.woff') format('woff');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+
+// @font-face {
+//     font-family : 'u67';
+//     src: url('../../join/type/u67.woff') format('woff');
+//     font-weight: normal;
+//     font-style: normal;
+// }
 
 @import "bourbon";
 
@@ -415,7 +441,7 @@ body {
             text-align: center;
             height: 40px;
             width:40px;
-            padding: 11px;
+            padding: 9px;
             border-radius:40px;
             background:white;
             color:rgb(197, 0, 0);
@@ -465,13 +491,17 @@ body {
             left:50%;
             top:50%;
             margin:-68.5px 0px 0px -137px;
-            div{
-                height:100%;
-                width:100%;
-                overflow: hidden;
-                background-image:url(../../join/img/loaders/003.png);
-            }
+            overflow: hidden;
+            background-image:url(../../join/img/loadr.png);
         }
+        .load_0{background-position-x: -0*308px}
+        .load_1{background-position-x: -1*308px}
+        .load_2{background-position-x: -2*308px}
+        .load_3{background-position-x: -3*308px}
+        .load_4{background-position-x: -4*308px}
+        .load_5{background-position-x: -5*308px}
+        .load_6{background-position-x: -6*308px}
+
     }
     .right{
         width:13.6%;
@@ -579,12 +609,17 @@ body {
 
 
 .grid{
+    // top:-2px;
     .floater{
         width:150%;
         height:100%;
         position: absolute;
         top:0px;
         left:10px;
+        .cell{
+            // margin:2px;
+            border-radius: 20px 0px 0px 0px;
+        }
         .vertical, .horzontal, .square_small, .square_large{
             overflow:hidden;
             float:left;

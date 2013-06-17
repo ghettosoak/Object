@@ -57,7 +57,7 @@ function onWindowResize() { camera.updateProjectionMatrix(); }
 
 function cube_ensure(){
 	console.log('FRONT ENSURE')
-	if (!backendhasexisted){
+	// if (!backendhasexisted){
 		$cubic.on({
 			mousedown:function ( event ) {
 				event.preventDefault();
@@ -131,7 +131,7 @@ function cube_ensure(){
 				}
 			}
 		});
-	}
+	// }
 
 	$('.cube').on('click', function(){
 		console.log('cube!')
@@ -385,6 +385,7 @@ function animate() {
 		render();
 		requestAnimationFrame( animate );
 		TWEEN.update();
+		if (presentlyloading) loadingplshold();
 	}
 }
 

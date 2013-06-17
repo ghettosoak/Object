@@ -1,11 +1,17 @@
 
-var $l1 = $('#l1')
+var $l1 = $('#loadr')
 
 var count = 0;
 var loaderinterval;
+var presentlyloading = false;
 
 function loadr(){
-	loaderinterval = setInterval(loadingplshold, 20)
+	var whichloader = Math.floor(Math.random() * (5 - 0 + 1)) + 0;
+	console.log(whichloader)
+	$('#loadr').removeClass().addClass('load_'+whichloader);
+	presentlyloading = true;
+	// loaderinterval = setInterval(loadingplshold, 20)
+
 }
 
 function loadingplshold(){
@@ -15,5 +21,6 @@ function loadingplshold(){
 }
 
 function okayitsloaded(){
-	clearInterval(loaderinterval);
+	presentlyloading = false;
+	// clearInterval(loaderinterval);
 }

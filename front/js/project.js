@@ -10,21 +10,12 @@ function projectdeploy(incoming){
 	$floaterparent = $floater.parent()
 	console.log(incoming)
 
-	var squaresize = (Math.floor(Math.sqrt(mass))+1) * 225;
+	var squaresize = (Math.floor(Math.sqrt(mass))+1) * 229;
 
 	$floater.css('width', squaresize)
 
 	drg_h = $floaterparent.outerHeight()
 	drg_w = $floaterparent.outerWidth()
-
-	// $floater.append('<div class="cell stats s_close"><div id="stats_closed"><span>i</span></div><div id="stats_open"><table><tbody>'+
-	// 	'<tr><td class="stat_titel">Name</td><td class="stat_stat">'+incoming.stat.name+'</td></tr>'+
-	// 	'<tr><td class="stat_titel">Client</td><td class="stat_stat">'+incoming.stat.client+'</td></tr>'+
-	// 	'<tr><td class="stat_titel">Date Launched</td><td class="stat_stat">'+incoming.stat.date_launched+'</td></tr>'+
-	// 	'<tr><td class="stat_titel">Total Hours</td><td class="stat_stat">'+incoming.stat.total_hours+'</td></tr>'+
-	// 	'<tr><td class="stat_text" colspan="2">'+incoming.stat.project_text+'</td></tr>'+
-	// 	'<tr><td class="stat_link" colspan="2"><a href="'+incoming.stat.link+'" target="_blank">go to<br />page</a></td></tr>'+
-	// '</tbody></table></div></div>')
 
 	$floater.append('<div class="cell stats s_close">'+
 		'<div id="stats_closed">'+
@@ -102,8 +93,6 @@ function breadcrumb(shape, color, selected){
 	var $crumb = $('#crumbput');
 	var crumbmass = 1;
 
-	// $crumb.parent());
-
 	for (var cr in shape){
 		console.log(cr)
 		$('<div class="crumbcube r'+color
@@ -139,7 +128,6 @@ function isotopeengage(){
 
 var go_x, go_y, orig_y, orig_x;
 var clicked = false, dragging = false;
-
 
 $floater.on({
 	mousedown:function(e){

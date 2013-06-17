@@ -15,11 +15,8 @@ $(document).ready(function(){
 		shapeshifterload(cubedescend.nav.shapeshifter);
 		animate();
 
-<<<<<<< HEAD
-=======
 		// linkup();
-
->>>>>>> 540d1daad0fbfdfe6fff096d8425be3051c4e56a
+		
 		// $.ajax({
 		// 	type: "POST",
 		// 	dataType:'JSON',

@@ -19,8 +19,8 @@ var presence = {};
 // var presenceedit = {};
 var namelist = [];
 var changed = {};
-var $windowpane = $(window);
-var wpheight, wpwidth;
+// var $windowpane = $(window);
+var ovr_height, ovr_width;
 var hoppersize;
 var press, sweettime = false, holding = 500, downtimer, uptimer;
 var $addproj = $('#add_project')
@@ -30,19 +30,20 @@ var lookingat = 'projects';
 
 $(document).ready(function(){
 // $(document).ajaxComplete(function(){
-// (function($){
-	// if (!backendexists){
+	if (!backendexists){
 		setTimeout(function(){
+
+			$windowpane.resize(resizing)
+
 			backendexists = true;
 			console.log('yeah!');
-
-
-			// wpheight = $windowpane.height();
-			// wpwidth = $windowpane.width();
 
 			hoppersize = Math.floor((((wpwidth*.85)*.3333333)/2)-17);
 			
 			$ovr_sight = $('#oversight_sight')
+
+			ovr_height = $ovr_sight.height()
+			ovr_width = $ovr_sight.width()
 
 			console.log($ovr_sight.width()+' /// '+$ovr_sight.height())
 
@@ -54,27 +55,28 @@ $(document).ready(function(){
 			$('#info_category').css('left', function(){
 				return $(this).parent().prev().find('input').position().left;
 			})
-
-			// $('#switch_03').css('margin-top', (wpheight-447))
-
-			// b_workload(23)
-			// b_workload(22)
-
-			// var timer = 1000
-
-			// setTimeout(function(){$('#c20').click()},timer*1)
-			// setTimeout(function(){$('#c20').click()},timer*2)
-			// setTimeout(function(){$('#c19').click()},timer*3)
-
-
-			// setTimeout(function(){
-				// editor_separated = true;
-			// 	$('#cell_add').click()
-			// },200)
-		},700)
-	// }
-	
+		},700)	
+	}
 })
+
+
+
+var resizing = _.debounce(resizr, 100)
+function resizr(){
+
+	ovr_height = $ovr_sight.height()
+	ovr_width = $ovr_sight.width()
+
+	hoppersize = Math.floor((((wpwidth*.85)*.3333333)/2)-17);
+	$('#shapeshifterhopper').find('div').each(function(){ $(this).css({'height':hoppersize, 'width':hoppersize}) })	
+	editor_renderer.setSize( ovr_width, ovr_height );
+
+	$('#cell_put').css('height',$windowpane.height()-54)
+	$('#shapeshifterhopper').css('height', $windowpane.height()-$('.info').outerHeight()-$('.coords').outerHeight()-36)
+	$('#info_category').css('left', function(){
+		return $(this).parent().prev().find('input').position().left;
+	})
+}
 
 function editorinit() {
 	
@@ -90,7 +92,7 @@ function editorinit() {
 
 	//editor_renderer
 	editor_renderer = new THREE.CSS3DRenderer();
-	editor_renderer.setSize( $ovr_sight.width(), $ovr_sight.height() );
+	editor_renderer.setSize( ovr_width, ovr_height );
 	editor_renderer.domElement.style.position = 'absolute';
 	editor_renderer.domElement.style.top = 0;
 	$ovr_sight.append( editor_renderer.domElement );
@@ -99,12 +101,11 @@ function editorinit() {
 	$ovr_sight.mousemove(editor_onDocumentMouseMove);
 	$ovr_sight.mousedown(editor_onDocumentMouseDown);
 	$ovr_sight.mouseup(editor_onDocumentMouseUp);
-	// window.addEventListener( 'resize', onWindowResize, false );
 
 	//init.init
 	editor_heylookatme = editor_scene.position;
 
-	editor_camera = new THREE.PerspectiveCamera( 50, $ovr_sight.width() / $ovr_sight.height(), 1, 10000 ); 
+	editor_camera = new THREE.PerspectiveCamera( 50, ovr_width / ovr_height, 1, 10000 ); 
 	editor_camera.position.x = editor_radious * Math.sin( editor_theta * Math.PI / 360 ) * Math.cos( editor_phi * Math.PI / 360 );
 	editor_camera.position.y = editor_radious * Math.sin( editor_phi * Math.PI / 360 );
 	editor_camera.position.z = editor_radious * Math.cos( editor_theta * Math.PI / 360 ) * Math.cos( editor_phi * Math.PI / 360 );
@@ -114,6 +115,8 @@ function editorinit() {
 
 	cubedescender();
 }
+
+
 
 $('#switch_01').on('click', function(){
 	$be_move.addClass('lookingatprojects').removeClass('lookinatmeimsuchadick')
