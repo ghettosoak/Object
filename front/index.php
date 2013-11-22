@@ -46,9 +46,25 @@ $me_y = 1;
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
+
+		<!-- WHOA WHOA WHOA -->
+		<!-- <link rel="stylesheet" type="text/css" href="css/mobile.css" /> -->
+
+		<script>
+
+			if (window.innerWidth <= 568){
+				if (window.location.hash.search(/^#!?redirect/) != 0){
+					var start = document.createElement('link');			
+					start.setAttribute('rel', 'stylesheet');
+					start.type = 'text/css';
+					start.href = 'css/mobile.css';
+					document.head.appendChild(start);
+				}
+			}
+		</script>
 	</head>
 	<body>
-		<div class="master">
+		<div id="master">
 			<div id="edit"></div>
 			<div id="movement" class="second">
 				<div class="me">
@@ -143,6 +159,9 @@ $me_y = 1;
 		<script src="js/lib/jquery.isotope.min.js"></script>
 		<script src="js/lib/jquery.animate-colors-min.js"></script>
 		<script src="js/lib/sha512.js"></script>
+
+		<script src="js/lib/quo.js"></script>
+		<script src="js/lib/jquery.pep.min.js"></script>
 		
 		<script src='js/launch.js'></script>
 		<script src='js/cubecontrol.js'></script>
@@ -152,9 +171,7 @@ $me_y = 1;
 		<script src='js/me.js'></script>
 		<script src='js/link.js'></script>
 
-		<?php
-
-		
+		<?php		
 
 		// echo "<script>
 		// 	var descend = ".json_encode($first)."

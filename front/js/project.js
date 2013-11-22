@@ -177,7 +177,7 @@ if (document.addEventListener) {
 else document.attachEvent("onmousewheel", MouseWheelHandler);
 	
 function MouseWheelHandler() {
-	$('#instruct').addClass('reinstruct').css('display','block').delay(3000).fadeOut()
+	if (!mobileis) $('#instruct').addClass('reinstruct').css('display','block').delay(3000).fadeOut()
 }
 
 $('#crumbput').on('click', '.crumbcube', function(){

@@ -97,7 +97,7 @@ body {
 
 #master{
     position:absolute;
-    height:50%;
+    height:100%;
     width:100%;
     top:0px;
     left:0px;
@@ -391,12 +391,12 @@ body {
     text-align: center;
 }
 
-.cube .front { @include transform(translateZ( $offset )); }
-.cube .back { @include transform(rotateX( -180deg ) translateZ( $offset )); }
-.cube .right { @include transform(rotateY(   90deg ) translateZ( $offset )); }
-.cube .left { @include transform(rotateY(  -90deg ) translateZ( $offset )); }
-.cube .top { @include transform(rotateX(   90deg ) translateZ( $offset )); }
-.cube .bottom { @include transform(rotateX(  -90deg ) translateZ( $offset )); }
+.cube .cubefront { @include transform(translateZ( $offset )); }
+.cube .cubeback { @include transform(rotateX( -180deg ) translateZ( $offset )); }
+.cube .cuberight { @include transform(rotateY(   90deg ) translateZ( $offset )); }
+.cube .cubeleft { @include transform(rotateY(  -90deg ) translateZ( $offset )); }
+.cube .cubetop { @include transform(rotateX(   90deg ) translateZ( $offset )); }
+.cube .cubebottom { @include transform(rotateX(  -90deg ) translateZ( $offset )); }
 
 .r1 div{background-color:rgba(255,0,0,.2);}
 .r2 div{background-color:rgba(0,255,0,.2);}
@@ -428,6 +428,7 @@ body {
         .title, .who, .copyright{
             position: relative;
             margin: auto;
+            text-align: center;
         }
         .title{
             font-family: u39;
@@ -438,15 +439,18 @@ body {
         .who{
             top:76%;
             font-size:20px;
-            text-align: center;
             height: 40px;
             width:40px;
-            padding: 9px;
+            padding: 12px;
             border-radius:40px;
             background:white;
             color:rgb(197, 0, 0);
             border:1px rgb(197, 0, 0) solid;
             z-index: 200;
+            -webkit-transition: top 1s ease-in-out !important;
+            -moz-transition: top 1s ease-in-out !important;
+            -o-transition: top 1s ease-in-out !important;
+            transition: top 1s ease-in-out !important;
             &:hover{
                 background:rgb(197, 0, 0);
                 border:1px white solid;
@@ -587,10 +591,7 @@ body {
 .edit{
     background-color:#63D0FF !important;
     .who{
-        -webkit-transition: top 1s ease-in-out !important;
-        -moz-transition: top 1s ease-in-out !important;
-        -o-transition: top 1s ease-in-out !important;
-        transition: top 1s ease-in-out !important;
+        
         top:69% !important;
         color:#63D0FF !important;
         border:1px #63D0FF solid !important;
@@ -618,7 +619,7 @@ body {
         left:10px;
         .cell{
             // margin:2px;
-            border-radius: 20px 0px 0px 0px;
+            // border-radius: 20px 0px 0px 0px;
         }
         .vertical, .horzontal, .square_small, .square_large{
             overflow:hidden;

@@ -3,7 +3,7 @@
 include('../../join/delicious.php');
 
 
-$cubes = mysql_query("select object_id, category, coord_y, coord_z from objects");
+$cubes = mysql_query("select name, object_id, category, coord_y, coord_z from objects");
 $shapeshift = mysql_query("select object_key, img, madewith from shapeshifters_sprite");
 $ids = mysql_query("select mebg_id from mebg");
 $txt = mysql_query("select txt from metxt");
@@ -19,7 +19,7 @@ $first['me']['txt'] = array();
 // $first['me']['img'] = array();
 
 while ($onecube = mysql_fetch_assoc($cubes)){
-	$coords = array("y" => $onecube['coord_y'], "z" => $onecube['coord_z']);
+	$coords = array("name" => $onecube['name'], "y" => $onecube['coord_y'], "z" => $onecube['coord_z']);
     $first['nav']['cubes'][$onecube['category']][$onecube['object_id']] = $coords;
 }
 

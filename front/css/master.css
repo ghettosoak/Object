@@ -41,7 +41,7 @@ body {
 
 #master {
   position: absolute;
-  height: 50%;
+  height: 100%;
   width: 100%;
   top: 0px;
   left: 0px;
@@ -371,42 +371,42 @@ body {
   color: white;
   text-align: center; }
 
-.cube .front {
+.cube .cubefront {
   -webkit-transform: translateZ(25px);
   -moz-transform: translateZ(25px);
   -ms-transform: translateZ(25px);
   -o-transform: translateZ(25px);
   transform: translateZ(25px); }
 
-.cube .back {
+.cube .cubeback {
   -webkit-transform: rotateX(-180deg) translateZ(25px);
   -moz-transform: rotateX(-180deg) translateZ(25px);
   -ms-transform: rotateX(-180deg) translateZ(25px);
   -o-transform: rotateX(-180deg) translateZ(25px);
   transform: rotateX(-180deg) translateZ(25px); }
 
-.cube .right {
+.cube .cuberight {
   -webkit-transform: rotateY(90deg) translateZ(25px);
   -moz-transform: rotateY(90deg) translateZ(25px);
   -ms-transform: rotateY(90deg) translateZ(25px);
   -o-transform: rotateY(90deg) translateZ(25px);
   transform: rotateY(90deg) translateZ(25px); }
 
-.cube .left {
+.cube .cubeleft {
   -webkit-transform: rotateY(-90deg) translateZ(25px);
   -moz-transform: rotateY(-90deg) translateZ(25px);
   -ms-transform: rotateY(-90deg) translateZ(25px);
   -o-transform: rotateY(-90deg) translateZ(25px);
   transform: rotateY(-90deg) translateZ(25px); }
 
-.cube .top {
+.cube .cubetop {
   -webkit-transform: rotateX(90deg) translateZ(25px);
   -moz-transform: rotateX(90deg) translateZ(25px);
   -ms-transform: rotateX(90deg) translateZ(25px);
   -o-transform: rotateX(90deg) translateZ(25px);
   transform: rotateX(90deg) translateZ(25px); }
 
-.cube .bottom {
+.cube .cubebottom {
   -webkit-transform: rotateX(-90deg) translateZ(25px);
   -moz-transform: rotateX(-90deg) translateZ(25px);
   -ms-transform: rotateX(-90deg) translateZ(25px);
@@ -464,7 +464,8 @@ body {
     left: .16%; }
     .red .left .title, .red .left .who, .red .left .copyright {
       position: relative;
-      margin: auto; }
+      margin: auto;
+      text-align: center; }
     .red .left .title {
       font-family: u39;
       font-size: 53px;
@@ -473,15 +474,18 @@ body {
     .red .left .who {
       top: 76%;
       font-size: 20px;
-      text-align: center;
       height: 40px;
       width: 40px;
-      padding: 9px;
+      padding: 12px;
       border-radius: 40px;
       background: white;
       color: #c50000;
       border: 1px #c50000 solid;
-      z-index: 200; }
+      z-index: 200;
+      -webkit-transition: top 1s ease-in-out !important;
+      -moz-transition: top 1s ease-in-out !important;
+      -o-transition: top 1s ease-in-out !important;
+      transition: top 1s ease-in-out !important; }
       .red .left .who:hover {
         background: #c50000;
         border: 1px white solid;
@@ -616,10 +620,6 @@ body {
 .edit {
   background-color: #63d0ff !important; }
   .edit .who {
-    -webkit-transition: top 1s ease-in-out !important;
-    -moz-transition: top 1s ease-in-out !important;
-    -o-transition: top 1s ease-in-out !important;
-    transition: top 1s ease-in-out !important;
     top: 69% !important;
     color: #63d0ff !important;
     border: 1px #63d0ff solid !important; }
@@ -638,8 +638,6 @@ body {
   position: absolute;
   top: 0px;
   left: 10px; }
-  .grid .floater .cell {
-    border-radius: 20px 0px 0px 0px; }
   .grid .floater .vertical, .grid .floater .horzontal, .grid .floater .square_small, .grid .floater .square_large {
     overflow: hidden;
     float: left;

@@ -31,7 +31,9 @@ function cubeinit(thecube) {
 
 	//renderer
 	renderer = new THREE.CSS3DRenderer();
-	renderer.setSize( 819,672 );
+	// if (!mobileis) 
+		renderer.setSize( 819,672 );
+	// else renderer.setSize( $cubic.width(), $cubic.height() );
 	renderer.domElement.style.position = 'absolute';
 	renderer.domElement.style.top = 0;
 	renderer.domElement.style.overflow = 'inherit';
@@ -57,7 +59,7 @@ function onWindowResize() { camera.updateProjectionMatrix(); }
 
 function cube_ensure(){
 	console.log('FRONT ENSURE')
-	// if (!backendhasexisted){
+	if (!mobileis){
 		$cubic.on({
 			mousedown:function ( event ) {
 				event.preventDefault();
@@ -88,6 +90,9 @@ function cube_ensure(){
 				onMouseDownPosition.x = event.clientX - onMouseDownPosition.x;
 				onMouseDownPosition.y = event.clientY - onMouseDownPosition.y;
 				console.log('background!')
+
+				console.log(camera.position.x+' /// '+camera.position.y+' /// '+camera.position.z)
+				console.log(heylookatme.x+' /// '+heylookatme.y+' /// '+heylookatme.z)
 				if (previewed){
 					$('#shapeshifter').fadeOut(100, function(){
 						console.log('44444444')
@@ -131,9 +136,9 @@ function cube_ensure(){
 				}
 			}
 		});
-	// }
+	}//else mobileensure();
 
-	$('.cube').on('click', function(){
+	$('.cube').on(action, function(){
 		console.log('cube!')
 
 		if (!previewed){
@@ -315,30 +320,30 @@ function cubegenerator(receive){
 			element.setAttribute('data-row', rowcount.toString())
 			counter++;	
 			cubecounter++;
-			numberexact++
+			numberexact++;
 
 			var front = document.createElement('div');
-			front.className = 'front';
+			front.className = 'cubefront';
 			element.appendChild(front);
 
 			var back = document.createElement('div');
-			back.className = 'back';
+			back.className = 'cubeback';
 			element.appendChild(back);
 
 			var right = document.createElement('div');
-			right.className = 'right';
+			right.className = 'cuberight';
 			element.appendChild(right);
 
 			var left = document.createElement('div');
-			left.className = 'left';
+			left.className = 'cubeleft';
 			element.appendChild(left);
 
 			var top = document.createElement('div');
-			top.className = 'top';
+			top.className = 'cubetop';
 			element.appendChild(top);
 
 			var bottom = document.createElement('div');
-			bottom.className = 'bottom';
+			bottom.className = 'cubebottom';
 			element.appendChild(bottom);
 
 			var object = new THREE.CSS3DObject( element );
@@ -349,7 +354,7 @@ function cubegenerator(receive){
 
 			origheight[counter-2] = cube[i].y*50;
 
-			if ((rowcount >= _.size(receive)) && (numberexact >= _.size(cube))) setTimeout(cube_ensure, 100)
+			if ((rowcount >= _.size(receive)) && (numberexact >= _.size(cube)))setTimeout(cube_ensure, 100)
 		}
 
 		var name = document.createElement( 'div' );
@@ -386,6 +391,10 @@ function animate() {
 		requestAnimationFrame( animate );
 		TWEEN.update();
 		if (presentlyloading) loadingplshold();
+		if (mobileis){
+			camera.position.x += ( mouseX - camera.position.x ) * .05;
+			camera.position.y += ( - mouseY + 200 - camera.position.y ) * .05;
+		}
 	}
 }
 
