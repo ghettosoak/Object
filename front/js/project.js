@@ -74,6 +74,7 @@ function projectdeploy(incoming){
 			isotopeengage();
 			first = true;
 			gotogrid();
+			$cubic.mouseup()
 		}
 	},50)
 
