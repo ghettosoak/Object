@@ -53,13 +53,13 @@ $me_y = 1;
 		<script>
 
 			if (window.innerWidth <= 568){
-				if (window.location.hash.search(/^#!?redirect/) != 0){
-					var start = document.createElement('link');			
-					start.setAttribute('rel', 'stylesheet');
-					start.type = 'text/css';
-					start.href = 'css/mobile.css';
-					document.head.appendChild(start);
-				}
+				// if (window.location.hash.search(/^#!?redirect/) != 0){
+				// 	var start = document.createElement('link');			
+				// 	start.setAttribute('rel', 'stylesheet');
+				// 	start.type = 'text/css';
+				// 	start.href = 'css/mobile.css';
+				// 	document.head.appendChild(start);
+				// }
 			}
 		</script>
 	</head>
@@ -82,7 +82,13 @@ $me_y = 1;
 
 					<?php
 						while ($metext = mysql_fetch_assoc($txt)){
-							echo '<div class="me_x'.$me_x++.' me_y'.$me_y.' me_bit"><div class="me_float"><div class="me_txt"><p>'.$metext['txt'].'</p></div></div></div>';
+							echo '<div class="me_x'.$me_x++.' me_y'.$me_y.' me_bit">
+									<div class="me_float">
+										<div class="me_txt">
+											<p>'.$metext['txt'].'</p>
+										</div>
+									</div>
+								</div>';
 							if ($me_x > 4){
 								$me_x = 1;
 								$me_y++;
@@ -125,7 +131,7 @@ $me_y = 1;
 					<div class="left">
 						<p class="title">OB.JECT</p>
 						<p class="who">?</p>
-						<p class="copyright">&copy;&nbsp;&nbsp;2013 MTOBF</p>
+						<p class="copyright">&copy;&nbsp;&nbsp;2014 MTOBF</p>
 						<input tabindex="1" type="password" id="trial" />
 					</div>
 					<div class="middle">
@@ -173,14 +179,16 @@ $me_y = 1;
 
 		<?php		
 
-		// echo "<script>
-		// 	var descend = ".json_encode($first)."
-		// 	shapeshifterload(descend.nav.shapeshifter);
-		// 	cubegenerator(descend.nav.cubes)
-		// 	iammike(descend.me.txt, descend.me.img)
-		// </script>";
+		echo "<script>
+			var cubedescend = " . json_encode($first) . "
+			cubeinit(cubedescend.nav.cubes);
+			shapeshifterload(cubedescend.nav.shapeshifter);
+			animate();
+		</script>";
 
 		?>
+
+		
 
 	</body>
 </html>

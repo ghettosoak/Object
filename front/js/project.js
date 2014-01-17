@@ -48,40 +48,40 @@ function projectdeploy(incoming){
 	'</div>')
 
 	for (var i in incoming.cells){
-		var decide = Math.random()
+		var decide = Math.random();
 		var orient;
-		if (decide < .25) orient = 'vertical'
-		if (decide > .25 && decide < .5) orient = 'horzontal'
-		if (decide > .5 && decide < .75) orient = 'square_small'
-		if (decide > .75) orient = 'square_large'
+		if (decide < .25) orient = 'vertical';
+		if (decide > .25 && decide < .5) orient = 'horzontal';
+		if (decide > .5 && decide < .75) orient = 'square_small';
+		if (decide > .75) orient = 'square_large';
 
-		$floater.append('<div class="cell '+orient+'" id="pr_'+i+'"><p>'+incoming.cells[i].txt+'</p></div>')
-		imager(i, incoming.cells[i].img)
+		$floater.append('<div class="cell '+orient+'" id="pr_'+i+'"><p>'+incoming.cells[i].txt+'</p></div>');
+		imager(i, incoming.cells[i].img);
 	}
 
 	function imager(selec, place){
 		var img = $("<img id=i_"+selec+"/>").load(function(){
 			$.when( img ).done(function() {
 				$('#pr_'+selec).prepend(img);
-				imagemarker.push(selec)
-			})
+				imagemarker.push(selec);
+			});
 		}).attr('src', place);
 	}
 
 	fertig = setInterval(function(){
 		if (imagemarker.length == mass){
-			clearInterval(fertig)
+			clearInterval(fertig);
 			isotopeengage();
 			first = true;
 			gotogrid();
-			$cubic.mouseup()
+			$cubic.mouseup();
 		}
 	},50)
 
 	function gotogrid(){
 		$('#movement').removeClass().addClass('fourth');
 		okayitsloaded();
-		setTimeout(function(){ $('#instruct').fadeOut(); },5000)
+		setTimeout(function(){ $('#instruct').fadeOut(); },5000);
 	}
 }
 

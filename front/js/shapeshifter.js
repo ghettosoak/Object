@@ -35,8 +35,9 @@ function shapeshift(ed, ing, er, ar){
 
 $('#shapeshifter').on('click', function(){
 	where = 'project';
-	$('#movement').removeClass().addClass('third')
-	clearInterval(clicker)
+	$('#movement').removeClass().addClass('third');
+	loadr();
+	clearInterval(clicker);
 	$.ajax({
 		type: "POST",
 		dataType:'JSON',
@@ -44,7 +45,6 @@ $('#shapeshifter').on('click', function(){
 		url: "php/project.php",
 	}).done(function(cellular){
 		projectdeploy(cellular);
-		loadr();
 	})
 	breadcrumb(cubedescend.nav.cubes[layerrefere], layernumber, prone)
 });

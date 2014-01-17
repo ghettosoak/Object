@@ -28,10 +28,10 @@ $(document).ready(function(){
 	wpwidth = $windowpane.width();
 
 	// if (wpwidth <= 480){
-		mobileis = true;
-		action = 'touchend';
-		window.scrollTo(0, 1);
-		$('#master').addClass('mobile')
+		// mobileis = true;
+		// action = 'touchend';
+		// window.scrollTo(0, 1);
+		// $('#master').addClass('mobile')
 		// $('#cubic, #shapeshifter').addClass('firstiwaslike')
 
 
@@ -41,29 +41,37 @@ $(document).ready(function(){
 		// })
 	// }
 
-	$.ajax({
-		type: "POST",
-		dataType:'JSON',
-		url: "php/front.php",
-	}).done( function(cube){
-		cubedescend = cube;
+	// $.ajax({
+	// 	type: "POST",
+	// 	dataType:'JSON',
+	// 	url: "php/front.php",
+	// }).done( function(cube){
 
-		if (!mobileis){
-			cubeinit(cubedescend.nav.cubes);
-			shapeshifterload(cubedescend.nav.shapeshifter);
-			animate();
-		}else{
 
-		// if (mobileis){
 
-			$.ajax({
-				dataType:'script',
-				url: 'js/mobile.js'
-			}).done( function(){
-				mobileinit() 
-			})
+		
+		// cubedescend = cube;
+
+		// if (!mobileis){
+
+
+			// cubeinit(cubedescend.nav.cubes);
+			// shapeshifterload(cubedescend.nav.shapeshifter);
+			// animate();
+
+
+		// }else{
+
+		// // if (mobileis){
+
+		// 	$.ajax({
+		// 		dataType:'script',
+		// 		url: 'js/mobile.js'
+		// 	}).done( function(){
+		// 		mobileinit() 
+		// 	})
 						
-		}
+		// }
 
 		// linkup();
 		
@@ -75,7 +83,7 @@ $(document).ready(function(){
 		// }).done(function(cellular){
 		// 	projectdeploy(cellular);
 		// })
-	})
+	// })
 });
 
 $windowpane.load(function(){
