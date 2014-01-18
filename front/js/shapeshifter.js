@@ -1,5 +1,3 @@
-var clicker, tracker = 1, prone, layerrefere, layernumber, individualnumber;
-
 function shapeshifterload(block){
 	for (var p in block){
 		var img = document.createElementNS('http://www.w3.org/2000/svg','image');
@@ -17,18 +15,12 @@ function shapeshifterload(block){
 	}
 }
 
-function shapeshift(ed, ing, er, ar){
-	prone = ed;
-	layerrefere = ing;
-	layernumber = er;
-	individualnumber = ar;
-
-	console.log(ed+' >> '+ing+' >> '+er+' >> '+ar)
-	var toomuch = $('#ssi_'+ed).css('display','block').data('count')-1
+function shapeshift(){
+	var toomuch = $('#ssi_'+tcallme).css('display','block').data('count')-1;
 	console.log(toomuch)
 	$('#shapeshifter').fadeIn(300)
 	clicker = setInterval(function(){
-		document.getElementById('ssi_'+prone).setAttributeNS(null, 'y', -149*tracker)
+		document.getElementById('ssi_'+tcallme).setAttributeNS(null, 'y', -149*tracker)
 		tracker >= toomuch ? tracker = 0 : tracker++;
 	}, 500);
 }
@@ -38,13 +30,7 @@ $('#shapeshifter').on('click', function(){
 	$('#movement').removeClass().addClass('third');
 	loadr();
 	clearInterval(clicker);
-	$.ajax({
-		type: "POST",
-		dataType:'JSON',
-		data:{project:tcallme},
-		url: "php/project.php",
-	}).done(function(cellular){
-		projectdeploy(cellular);
-	})
-	breadcrumb(cubedescend.nav.cubes[layerrefere], layernumber, prone)
+	window.location.hash = '!project_' + tcallme;
 });
+
+

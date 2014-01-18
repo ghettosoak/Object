@@ -1,9 +1,3 @@
-// @font-face {
-//     font-family : 'u47';
-//     src: url('../../join/type/u47.woff') format('woff');
-//     font-weight: normal;
-//     font-style: normal;
-// }
 
 @import url("//hello.myfonts.net/count/2760f4");
 @import url("//hello.myfonts.net/count/276103");
@@ -18,7 +12,6 @@
 }
 
 
-  
 @font-face {
     font-family: 'u39';
     src: url('../../join/type/u39/276103_0_0.eot');
@@ -37,28 +30,6 @@
          url('../../join/type/u67/276103_1_0.ttf') format('truetype'),
          url('../../join/type/u67/276103_1_0.svg#wf') format('svg');
 }
-
-
-// @font-face {
-//     font-family : 'u47i';
-//     src: url('../../join/type/u47i.woff') format('woff');
-//     font-weight: normal;
-//     font-style: normal;
-// }
-
-// @font-face {
-//     font-family : 'u39';
-//     src: url('../../join/type/u39.woff') format('woff');
-//     font-weight: normal;
-//     font-style: normal;
-// }
-
-// @font-face {
-//     font-family : 'u67';
-//     src: url('../../join/type/u67.woff') format('woff');
-//     font-weight: normal;
-//     font-style: normal;
-// }
 
 @import "bourbon";
 
@@ -87,9 +58,7 @@ a{
 }
 
 body {
-    // font-family: Helvetica, Arial, sans-serif;
-    
-    font-family: u47;
+    font-family: u47, Helvetica, Arial, sans-serif;
     color: #333;
     margin: 0px;
     overflow: hidden;
@@ -101,20 +70,13 @@ body {
     width:100%;
     top:0px;
     left:0px;
-    // font-family:helvetica, arial, sans-serif;
-    // font-family: u_test;
     line-height:18px;
     font-size:14px;
     overflow:hidden;   
 }
 
-// #master.second .movement{
-//     @include transform(translateX(-25%));
-// }
-
 #edit{
     position: absolute;
-    // top:-200%;
     @include transform(translateY(-50%));
     left:0px;
     height:200%;
@@ -215,7 +177,7 @@ body {
             span{
                 font-family: u39;
                 font-size:79px;
-                margin: 0px 24px 0px 20px;
+                margin: 30px 24px 0px 20px;
                 display:block;
             }
         }
@@ -435,6 +397,8 @@ body {
             font-size:53px;
             top:10%;
             width:72px;
+            z-index:100;
+            cursor: pointer;
         }
         .who{
             top:76%;
@@ -529,10 +493,6 @@ body {
                 .crumbcube {
                     position: absolute;
                     cursor: pointer;
-                    // &:hover div{
-                    //     background-color:rgba(255,255,255,.05);
-                    //     border:1px black solid;
-                    // }
                 }
                 .ccs div{border:1px white solid;}
                 .ccs:hover div{
@@ -620,17 +580,10 @@ body {
         position: absolute;
         top:0px;
         left:10px;
-        .cell{
-            // margin:2px;
-            // border-radius: 20px 0px 0px 0px;
-        }
         .vertical, .horzontal, .square_small, .square_large{
             overflow:hidden;
             float:left;
             position:relative;
-            img{
-
-            }
             p{
                 padding:10px;
                 margin:0px;
@@ -646,12 +599,6 @@ body {
 
 
         .stats{
-            // -webkit-transition-property: -webkit-transform, opacity;
-            // -moz-transition-property: -moz-transform, opacity;
-            // -ms-transition-property: -ms-transform, opacity;
-            // -o-transition-property: -o-transform, opacity;
-            // transition-property: transform, opacity;
-
             #stats_closed{
                 height:150px;
                 width:150px;
@@ -714,14 +661,11 @@ body {
                     position: absolute;
                     bottom:0px;
                     background-color:#ccc;
-                    // display:table;
                     p{
                         text-align: center;
                         color:white;
                         font-size:2em;
                         margin-top: 12px;
-                        // display:table-cell;
-                        // vertical-align: middle;
                     }
                     a{color:inherit;}
                     &:hover{

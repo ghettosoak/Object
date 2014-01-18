@@ -1,89 +1,33 @@
-var getScript = jQuery.getScript;
-jQuery.getScript = function( resources, callback ) {
-
-    var // reference declaration &amp; localization
-    length = resources.length,
-    handler = function() { counter++; },
-    deferreds = [],
-    counter = 0,
-    idx = 0;
-
-    for ( ; idx < length; idx++ ) {
-        deferreds.push(
-            getScript( resources[ idx ], handler )
-        );
-    }
-
-    jQuery.when.apply( null, deferreds ).then(function() {
-        callback && callback();
-    });
-};
-
-var $windowpane = $(window);
-var wpheight, wpwidth, titlemargin, whomargin, mobileis = false, action = 'click';
-// mobileis = false;
-
 $(document).ready(function(){
 	wpheight = $windowpane.height();
 	wpwidth = $windowpane.width();
 
-	// if (wpwidth <= 480){
-		// mobileis = true;
-		// action = 'touchend';
-		// window.scrollTo(0, 1);
-		// $('#master').addClass('mobile')
-		// $('#cubic, #shapeshifter').addClass('firstiwaslike')
+	if (window.location.hash){
+		hash = window.location.hash.split('#')[1];
+		hashhistory.push(hash);
+		console.log(hash);
 
+		if (hash.indexOf('!me') === 0) $('#movement').removeClass().addClass('first');
+		if (hash.indexOf('!home') === 0) $('#movement').removeClass().addClass('second');
+		if (hash.indexOf('!project') === 0){
+			var theProj = hash.split('_')[1];
+			$('#movement').removeClass().addClass('third');
 
-		// $.ajax({
-		// 	dataType:'script',
-		// 	url: 'js/mobile.js'
-		// })
-	// }
+			var $cubeInQuestion = $cubic.find('div[data-callmemaybe="' + theProj + '"]');
+			
+			tcallme = $cubeInQuestion.data('callmemaybe');
+			tref = $cubeInQuestion.nextAll('.name').first().find('p').text();
+			trow = $cubeInQuestion.data('row');
+			twhich = $cubeInQuestion.data('number');
+			
+			projLoader(theProj);
 
-	// $.ajax({
-	// 	type: "POST",
-	// 	dataType:'JSON',
-	// 	url: "php/front.php",
-	// }).done( function(cube){
-
-
-
-		
-		// cubedescend = cube;
-
-		// if (!mobileis){
-
-
-			// cubeinit(cubedescend.nav.cubes);
-			// shapeshifterload(cubedescend.nav.shapeshifter);
-			// animate();
-
-
-		// }else{
-
-		// // if (mobileis){
-
-		// 	$.ajax({
-		// 		dataType:'script',
-		// 		url: 'js/mobile.js'
-		// 	}).done( function(){
-		// 		mobileinit() 
-		// 	})
-						
-		// }
-
-		// linkup();
-		
-		// $.ajax({
-		// 	type: "POST",
-		// 	dataType:'JSON',
-		// 	data:{project:23},
-		// 	url: "php/project.php",
-		// }).done(function(cellular){
-		// 	projectdeploy(cellular);
-		// })
-	// })
+			$cubeInQuestion.click()
+		}
+	}else{
+		$('#movement').removeClass().addClass('second');
+		window.location.hash = '!home';
+	}
 });
 
 $windowpane.load(function(){
@@ -94,3 +38,22 @@ $windowpane.resize(function(){
 	wpheight = $windowpane.height();
 	wpwidth = $windowpane.width();
 });
+
+$windowpane.bind('hashchange', function(){
+	hash = window.location.hash.split('#')[1];
+
+	if (hash.indexOf('!me') === 0) $('#movement').removeClass().addClass('first');
+	if (hash.indexOf('!home') === 0) $('#movement').removeClass().addClass('second');
+	if (hash.indexOf('!project') === 0) {
+		$('#movement').removeClass().addClass('third');
+		projLoader(hash.split('_')[1]);
+		cleargrid();
+	}
+
+	hashhistory.push(hash);
+	console.log(hash)
+});
+
+$('.title').on('click', function(){
+	window.location.hash = '!home';
+})

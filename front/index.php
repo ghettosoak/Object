@@ -53,13 +53,7 @@ $me_y = 1;
 		<script>
 
 			if (window.innerWidth <= 568){
-				// if (window.location.hash.search(/^#!?redirect/) != 0){
-				// 	var start = document.createElement('link');			
-				// 	start.setAttribute('rel', 'stylesheet');
-				// 	start.type = 'text/css';
-				// 	start.href = 'css/mobile.css';
-				// 	document.head.appendChild(start);
-				// }
+				window.location = 'mobile';
 			}
 		</script>
 	</head>
@@ -109,21 +103,7 @@ $me_y = 1;
 				                    <polygon points="0,30 68.444,1 138,30 137,116 68.624,149 1,116" />
 				                </clipPath>
 				           	</g>
-
-				           	<?php
-					           	// while ($oneshapeshift = mysql_fetch_assoc($shapeshift)){
-					           	//     // $oneshapeshift['object_key']
-					           	//     // $oneshapeshift['img']
-					           	//     // $oneshapeshift['madewith']
-					           	//     echo '<image height=​499% width=​107% href=​'.$oneshapeshift['img'].' x=​0 y=​0 clip-path=​url(#hex-mask)​ preserveAspectRatio=​xMidYMin id=​ssi_'.$oneshapeshift['object_key'].' class=​ssi data-count='.count(explode(', ',$oneshapeshift['madewith'])).'>​</image>​';
-					           	//     // echo "<image height=​\"499%\" width=​\"107%\" href=​\"../​join/​img/​shapeshift/​sprite_23.png\" x=​\"0\" y=​\"0\" clip-path=​\"url(#hex-mask)​\" preserveAspectRatio=​\"xMidYMin slice\" id=​\"ssi_23\" class=​\"ssi\">​</image>​";
-					           	// }
-				           	?>
-
-				           	<!-- <image height=​"499%" width=​"107%" href=​"../​join/​img/​shapeshift/​sprite_23.png" x=​"0" y=​"0" clip-path=​"url(#hex-mask)​" preserveAspectRatio=​"xMidYMin slice" id=​"ssi_23" class=​"ssi">​</image>​ -->
-
-				           <!-- <image id="ssi01" class="ssi" clip-path="url(#hex-mask)" height="499%" width="107%" x="-3.5%" y="0" xlink:href="img/p/sh/1.jpg" preserveAspectRatio="xMidYMin slice" /> -->
-						</svg>
+			           </svg>
 					</div>
 				</div>
 				<div class="red">
@@ -163,19 +143,18 @@ $me_y = 1;
 		<script src="js/lib/CSS3DRenderer.js"></script>
 		<script src="js/lib/tween.min.js"></script>
 		<script src="js/lib/jquery.isotope.min.js"></script>
-		<script src="js/lib/jquery.animate-colors-min.js"></script>
 		<script src="js/lib/sha512.js"></script>
 
-		<script src="js/lib/quo.js"></script>
-		<script src="js/lib/jquery.pep.min.js"></script>
-		
-		<script src='js/launch.js'></script>
+		<script src='js/init.js'></script>
+
 		<script src='js/cubecontrol.js'></script>
 		<script src='js/shapeshifter.js'></script>
 		<script src='js/loadr.js'></script>
 		<script src='js/project.js'></script>
 		<script src='js/me.js'></script>
 		<script src='js/link.js'></script>
+
+		<script src='js/launch.js'></script>
 
 		<?php		
 
@@ -192,3 +171,4 @@ $me_y = 1;
 
 	</body>
 </html>
+

@@ -34,7 +34,7 @@ a {
   /*background: #;*/ }
 
 body {
-  font-family: u47;
+  font-family: u47, Helvetica, Arial, sans-serif;
   color: #333;
   margin: 0px;
   overflow: hidden; }
@@ -148,10 +148,6 @@ body {
   width: 35%; }
 
 .me {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -ms-background-size: cover;
-  -o-background-size: cover;
   background-size: cover;
   overflow: hidden; }
   .me .me_img {
@@ -163,8 +159,6 @@ body {
     .me .me_img #me_blur, .me .me_img #me_clean {
       -webkit-transition: all 0.5s ease-in-out;
       -moz-transition: all 0.5s ease-in-out;
-      -ms-transition: all 0.5s ease-in-out;
-      -o-transition: all 0.5s ease-in-out;
       transition: all 0.5s ease-in-out;
       position: absolute;
       height: 100%;
@@ -197,7 +191,7 @@ body {
       .me .meme p span {
         font-family: u39;
         font-size: 79px;
-        margin: 0px 24px 0px 20px;
+        margin: 30px 24px 0px 20px;
         display: block; }
     .me .meme #megrey {
       background-color: rgba(0, 0, 0, 0.8);
@@ -261,8 +255,6 @@ body {
     .me .me_bit .me_float {
       -webkit-transition: all 0.5s ease-in-out;
       -moz-transition: all 0.5s ease-in-out;
-      -ms-transition: all 0.5s ease-in-out;
-      -o-transition: all 0.5s ease-in-out;
       transition: all 0.5s ease-in-out;
       height: 100%;
       width: 100%;
@@ -278,8 +270,6 @@ body {
         .me .me_bit .me_float .me_txt p {
           -webkit-transition: all 0.5s ease-in-out;
           -moz-transition: all 0.5s ease-in-out;
-          -ms-transition: all 0.5s ease-in-out;
-          -o-transition: all 0.5s ease-in-out;
           transition: all 0.5s ease-in-out;
           display: table-cell;
           vertical-align: middle;
@@ -470,7 +460,9 @@ body {
       font-family: u39;
       font-size: 53px;
       top: 10%;
-      width: 72px; }
+      width: 72px;
+      z-index: 100;
+      cursor: pointer; }
     .red .left .who {
       top: 76%;
       font-size: 20px;
@@ -541,6 +533,12 @@ body {
       background-position-x: -1540px; }
     .red .middle .load_6 {
       background-position-x: -1848px; }
+    .red .middle .load_7 {
+      background-position-x: -2156px; }
+    .red .middle .load_8 {
+      background-position-x: -2464px; }
+    .red .middle .load_9 {
+      background-position-x: -2772px; }
   .red .right {
     width: 13.6%; }
     .red .right .crumb {
@@ -618,13 +616,13 @@ body {
       cursor: pointer; }
 
 .edit {
-  background-color: #63d0ff !important; }
+  background-color: #63D0FF !important; }
   .edit .who {
     top: 69% !important;
-    color: #63d0ff !important;
-    border: 1px #63d0ff solid !important; }
+    color: #63D0FF !important;
+    border: 1px #63D0FF solid !important; }
     .edit .who:hover {
-      background: #63d0ff !important;
+      background: #63D0FF !important;
       border: 1px white solid !important;
       color: white !important; }
   .edit .copyright {
@@ -671,7 +669,7 @@ body {
       background-color: white;
       height: 149px;
       width: 149px;
-      border: 1px #cccccc solid; }
+      border: 1px #ccc solid; }
       .grid .floater .stats #stats_closed:hover span {
         color: #ccc; }
   .grid .floater .stats #stats_open {
@@ -721,7 +719,7 @@ body {
     .grid .floater .s_close #stats_open {
       display: none; }
   .grid .floater .s_open {
-    border: 1px #cccccc solid;
+    border: 1px #ccc solid;
     height: 449px;
     width: 300px; }
     .grid .floater .s_open #stats_closed {

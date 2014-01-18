@@ -1,21 +1,42 @@
-var mass, fertig, first = false;
-var imagemarker = [];
-var $floater = $('.floater')
-var $floaterparent;
-var drg_h, drg_w;
+
+
+function projLoader(which){
+	console.log('WHICH = '+which);
+	$.ajax({
+		type: "POST",
+		dataType:'JSON',
+		data:{project:which},
+		url: "php/project.php"
+	}).done(function(cellular){
+
+		if(!sentFromClick){
+			var $cubeInQuestion = $cubic.find('div[data-callmemaybe="' + which + '"]');
+			
+			tcallme = $cubeInQuestion.data('callmemaybe');
+			tref = $cubeInQuestion.nextAll('.name').first().find('p').text();
+			trow = $cubeInQuestion.data('row');
+			twhich = $cubeInQuestion.data('number');
+		}
+
+		cleargrid();
+		console.log('DEPLOY');
+		projectdeploy(cellular);
+		breadcrumb(cubedescend.nav.cubes[tref], trow, tcallme);
+	});
+}
 
 function projectdeploy(incoming){
 	imagemarker.length = 0;
-	mass = _.size(incoming.cells)
-	$floaterparent = $floater.parent()
-	console.log(incoming)
+	mass = _.size(incoming.cells);
+	$floaterparent = $floater.parent();
+	console.log(incoming);
 
 	var squaresize = (Math.floor(Math.sqrt(mass))+1) * 229;
 
-	$floater.css('width', squaresize)
+	$floater.css('width', squaresize);
 
-	drg_h = $floaterparent.outerHeight()
-	drg_w = $floaterparent.outerWidth()
+	drg_h = $floaterparent.outerHeight();
+	drg_w = $floaterparent.outerWidth();
 
 	$floater.append('<div class="cell stats s_close">'+
 		'<div id="stats_closed">'+
@@ -45,7 +66,7 @@ function projectdeploy(incoming){
 				'<a href="'+incoming.stat.link+'" target="_blank"><p>View</p></a>'+
 			'</div>'+
 		'</div>'+
-	'</div>')
+	'</div>');
 
 	for (var i in incoming.cells){
 		var decide = Math.random();
@@ -76,7 +97,7 @@ function projectdeploy(incoming){
 			gotogrid();
 			$cubic.mouseup();
 		}
-	},50)
+	},50);
 
 	function gotogrid(){
 		$('#movement').removeClass().addClass('fourth');
@@ -103,7 +124,7 @@ function breadcrumb(shape, color, selected){
 			+'; bottom:'+((shape[cr].y*28)+(shape[cr].z*13))
 			+'px; left:'+(shape[cr].z-1)*25+'px;"><div class="crumbface cr_top"></div><div class="crumbface cr_left"></div><div class="crumbface cr_right"></div></div>')
 		.appendTo($crumb)
-		.addClass(function(){if(cr == selected) return 'ccs';})
+		.addClass(function(){if(cr == selected) return 'ccs';});
 	}
 }
 
@@ -178,36 +199,29 @@ if (document.addEventListener) {
 else document.attachEvent("onmousewheel", MouseWheelHandler);
 	
 function MouseWheelHandler() {
-	if (!mobileis) $('#instruct').addClass('reinstruct').css('display','block').delay(3000).fadeOut()
+	if (!mobileis) $('#instruct').addClass('reinstruct').css('display','block').delay(3000).fadeOut();
 }
 
 $('#crumbput').on('click', '.crumbcube', function(){
 	$('#movement').removeClass().addClass('third')
 	var $nextcrumb = $(this).data()
 	setTimeout(function(){
-		cleargrid();
-		$.ajax({
-			type: "POST",
-			dataType:'JSON',
-			data:{project:$nextcrumb.callmemaybe},
-			url: "php/project.php",
-		}).done( function(cellular){
-			projectdeploy(cellular);
-			breadcrumb(cubedescend.nav.cubes[layerrefere], $nextcrumb.row , $nextcrumb.callmemaybe)
-		})		
-	},1000)
+		tcallme = $nextcrumb.callmemaybe
+		trow = $nextcrumb.row;
+		window.location.hash = '!project_' + $nextcrumb.callmemaybe;
+	},1000);
 });
 
 $('#point').on('click', function(){
 	where = 'front';
-	$('#cubic').click()
-	$('#movement').removeClass().addClass('second')
-	setTimeout(cleargrid, 1000)
+	$('#cubic').click();
+	window.location.hash = '!home';
+	setTimeout(cleargrid, 1000);
 })
 
 function cleargrid(){
 	$("#crumbput, .floater").children().detach();
-	$floater.isotope('destroy')
+	$floater.isotope('destroy');
 }
 
 

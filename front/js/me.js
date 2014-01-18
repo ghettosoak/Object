@@ -1,7 +1,5 @@
-var where;
-
 $('.who').on(action, function(){
-	$('#movement').removeClass().addClass('first')
+	window.location.hash = '!me';
 })
 
 $('.me').on(action, '.me_bit', function(){
@@ -18,6 +16,9 @@ $('.meme').on(action, function(){
 });
 
 $('.meback').on(action, function(){
-	if (where == 'project') $('#movement').removeClass().addClass('fourth')
-	else if (where == 'front') $('#movement').removeClass().addClass('second')
+	if (hashhistory.length > 1) {
+		window.location.hash = hashhistory[hashhistory.length-2];
+	}else{
+		window.location.hash = '!home';
+	}
 });

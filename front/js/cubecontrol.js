@@ -1,22 +1,3 @@
-var container, stats;
-var camera, scene, blockRenderer, renderer;
-var projector, plane, cube, controls,
-isMouseDown = false, heylookatme,
-radious = 1600, theta = -90, onMouseDownTheta = -90, phi = 60, onMouseDownPhi = 60, onMouseDownPosition, previewed = false, separated = false,
-tcallme, trow, tref, tnumber, tcube, strow, stnumber, previewedOrigCoordx, previewedOrigCoordy, returnCoordx, returnCoordy, returnCoordz,
-$name, backendhasexisted = false;
-var where = 'front';
-
-var rollOverMesh, rollOverMaterial, voxelPosition = new THREE.Vector3(), tmpVec = new THREE.Vector3();
-var cubeGeo, cubeMaterial;
-var i, intersector;
-var zoomfactor = 3;
-var counter = 1, cubecounter = 1;
-var origheight = [];
-var slide = new slider();
-var $cubic;
-var namelist = [];
-
 function cubeinit(thecube) {
 	$cubic = $('#cubic');	
 	scene = new THREE.Scene();
@@ -58,7 +39,7 @@ function cubeinit(thecube) {
 function onWindowResize() { camera.updateProjectionMatrix(); }
 
 function cube_ensure(){
-	console.log('FRONT ENSURE')
+	console.log('FRONT ENSURE');
 	if (!mobileis){
 		$cubic.on({
 			mousedown:function ( event ) {
@@ -136,13 +117,13 @@ function cube_ensure(){
 				}
 			}
 		});
-	}//else mobileensure();
+	}
 
 	$('.cube').on(action, function(){
-		console.log('cube!')
+		console.log('cube!');
 
 		if (!previewed){
-			tcallme = $(this).data('callmemaybe')
+			tcallme = $(this).data('callmemaybe');
 			trow = $(this).data('row');
 			tref = $(this).nextAll('.name').first().find('p').text();
 			tnumber = $(this).data('array');
@@ -153,18 +134,18 @@ function cube_ensure(){
 		console.log(tcallme+' // '+trow+' // '+tref+' // '+tnumber+' // '+tcube+' // '+twhich)
 
 		if (!previewed && !separated){
-			console.log('111111111')
+			console.log('111111111');
 			$(this).siblings().each(function(e){
-				var $that = $(this)
-				var $dcube = $that.data('array')
-				var $drow = $that.data('row')
+				var $that = $(this);
+				var $dcube = $that.data('array');
+				var $drow = $that.data('row');
 				if (!$that.hasClass('r'+trow)){
 					// console.log($dcube+' /// '+tnumber+' /// '+$dcube+' /// '+$drow)
-					if ($dcube < tnumber) slide.likethis($dcube, 'left', $drow)
-					else slide.likethis($dcube, 'right', $drow)
-				}else slide.likethis($dcube, 'center', $drow)
+					if ($dcube < tnumber) slide.likethis($dcube, 'left', $drow);
+					else slide.likethis($dcube, 'right', $drow);
+				}else slide.likethis($dcube, 'center', $drow);
 			});
-			slide.likethis(tnumber, 'center', trow)
+			slide.likethis(tnumber, 'center', trow);
 
 			var tween = new TWEEN.Tween({ g: heylookatme.x })
 			.to({ g: scene.children[tnumber].position.x }, 500)
@@ -203,6 +184,7 @@ function cube_ensure(){
 			},500);
 
 			setTimeout(function(){
+				sentFromClick = true;
 				shapeshift(tcallme, tref, trow, twhich)
 			},1000)
 
@@ -275,6 +257,8 @@ function centeraround(me){
 		camera.updateMatrix();
 	},jump);
 }
+
+slide = new slider();
 
 function slider(){
 	function likethis(number, direction, row){

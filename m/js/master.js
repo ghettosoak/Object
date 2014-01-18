@@ -5,7 +5,7 @@ var $category, $title;
 var currentProj;
 
 var catCount = [];
-
+ing glisten!
 $(document).ready(function(){
 	wpheight = $windowpane.height();
 	wpwidth = $windowpane.width();
@@ -66,7 +66,6 @@ $(document).ready(function(){
 $windowpane.load(function(){
 	window.scrollTo(0, 1);
 	$('#top').addClass('ready');
-
 });
 
 function projectLoad(er, $ing){
