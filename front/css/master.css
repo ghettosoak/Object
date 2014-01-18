@@ -66,7 +66,7 @@ body {
   width: 400%;
   top: 0px; }
 
-#movement, #edit, .red, .red .left * {
+.ready #movement, .ready #edit, .ready .red, .ready .red .left * {
   -webkit-transition: all 1s ease-in-out;
   -moz-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
@@ -85,6 +85,8 @@ body {
   -ms-transform: translateX(-25%);
   -o-transform: translateX(-25%);
   transform: translateX(-25%); }
+  .second .red .left * {
+    left: 0px; }
 
 .third {
   -webkit-transform: translateX(-50%);
@@ -404,40 +406,31 @@ body {
   transform: rotateX(-90deg) translateZ(25px); }
 
 .r1 div {
-  background-color: rgba(255, 0, 0, 0.2); }
+  background-color: rgba(230, 0, 140, 0.2); }
 
 .r2 div {
-  background-color: rgba(0, 255, 0, 0.2); }
+  background-color: rgba(247, 148, 30, 0.2); }
 
 .r3 div {
-  background-color: rgba(0, 0, 255, 0.2); }
+  background-color: rgba(141, 198, 63, 0.2); }
 
 .r4 div {
-  background-color: rgba(255, 255, 0, 0.2); }
+  background-color: rgba(0, 166, 81, 0.2); }
 
 .r5 div {
-  background-color: rgba(0, 0, 0, 0.2); }
+  background-color: rgba(0, 174, 239, 0.2); }
 
 .r6 div {
-  background-color: rgba(0, 0, 0, 0.2); }
+  background-color: rgba(169, 124, 80, 0.2); }
 
 .r7 div {
-  background-color: rgba(0, 0, 0, 0.2); }
+  background-color: rgba(0, 104, 56, 0.2); }
 
 .r8 div {
-  background-color: rgba(0, 0, 0, 0.2); }
+  background-color: rgba(138, 157, 167, 0.2); }
 
 .r9 div {
-  background-color: rgba(0, 0, 0, 0.2); }
-
-.r10 div {
-  background-color: rgba(0, 0, 0, 0.2); }
-
-.r11 div {
-  background-color: rgba(0, 0, 0, 0.2); }
-
-.r12 div {
-  background-color: rgba(0, 0, 0, 0.2); }
+  background-color: rgba(237, 28, 36, 0.2); }
 
 .red {
   z-index: 200;
@@ -744,7 +737,25 @@ body {
     .grid .floater .open:hover p {
       display: block; }
 
-@-moz-document url-prefix() {}
+#nope {
+  height: 280px;
+  width: 230px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -140px 0 0 -115px;
+  display: none; }
+  #nope h1 {
+    font-family: u39;
+    text-align: center;
+    font-size: 65px;
+    font-weight: normal; }
+
+.old #edit, .old #movement {
+  display: none; }
+.old #nope {
+  display: block; }
+
 .isotope-item {
   z-index: 2; }
 

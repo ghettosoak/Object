@@ -37,21 +37,15 @@ $me_x = 2;
 $me_y = 1;
 
 ?>
-
 <!doctype html>
-<html lang="en">
+<html id="top" lang="en">
 	<head>
 		<title>ob.ject</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
-
-		<!-- WHOA WHOA WHOA -->
-		<!-- <link rel="stylesheet" type="text/css" href="css/mobile.css" /> -->
-
 		<script>
-
 			if (window.innerWidth <= 568){
 				window.location = 'mobile';
 			}
@@ -129,11 +123,18 @@ $me_y = 1;
 							<div id="crumbput"></div>
 						</div>
 					</div>
-					
 				</div>
 				<div class="grid">
 					<div class="floater"></div>
 				</div>
+			</div>
+			<div id="nope">
+				<h1>NOPE</h1>
+				<p>this site does not support internet explorer.</p>
+				<p>at all.</p>
+				<p>come back with something that doesn't make my blood boil.<br /></p>
+				<p>deal with it,<br />m</p>
+
 			</div>
 		</div>		
 
@@ -159,10 +160,12 @@ $me_y = 1;
 		<?php		
 
 		echo "<script>
+		if (navigator.userAgent.toLowerCase().indexOf('msie') === -1){
 			var cubedescend = " . json_encode($first) . "
 			cubeinit(cubedescend.nav.cubes);
 			shapeshifterload(cubedescend.nav.shapeshifter);
 			animate();
+		}else document.getElementById('master').className = 'old';
 		</script>";
 
 		?>

@@ -11,6 +11,7 @@ $(document).ready(function(){
 		if (hash.indexOf('!home') === 0) $('#movement').removeClass().addClass('second');
 		if (hash.indexOf('!project') === 0){
 			var theProj = hash.split('_')[1];
+			console.log(theProj)
 			$('#movement').removeClass().addClass('third');
 
 			var $cubeInQuestion = $cubic.find('div[data-callmemaybe="' + theProj + '"]');
@@ -24,6 +25,7 @@ $(document).ready(function(){
 
 			$cubeInQuestion.click()
 		}
+
 	}else{
 		$('#movement').removeClass().addClass('second');
 		window.location.hash = '!home';
@@ -31,6 +33,7 @@ $(document).ready(function(){
 });
 
 $windowpane.load(function(){
+	$('#master').addClass('ready');
 
 });
 
