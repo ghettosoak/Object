@@ -242,18 +242,15 @@ a{
 
 			.newcube div{background-color:rgba(0,0,0,.2);}
 
-			.r1 div{background-color:rgba(255,0,0,.2);}
-			.r2 div{background-color:rgba(0,255,0,.2);}
-			.r3 div{background-color:rgba(0,0,255,.2);}
-			.r4 div{background-color:rgba(255,255,0,.2);}
-			.r5 div{background-color:rgba(0,0,0,.2);}
-			.r6 div{background-color:rgba(0,0,0,.2);}
-			.r7 div{background-color:rgba(0,0,0,.2);}
-			.r8 div{background-color:rgba(0,0,0,.2);}
-			.r9 div{background-color:rgba(0,0,0,.2);}
-			.r10 div{background-color:rgba(0,0,0,.2);}
-			.r11 div{background-color:rgba(0,0,0,.2);}
-			.r12 div{background-color:rgba(0,0,0,.2);}
+			.r1 div{background-color:rgba(230, 0, 140, 0.2);}
+			.r2 div{background-color:rgba(247, 148, 30, 0.2);}
+			.r3 div{background-color:rgba(141, 198, 63, 0.2);} 
+			.r4 div{background-color:rgba(0, 166, 81, 0.2);}
+			.r5 div{background-color:rgba(0, 174, 239, 0.2);}
+			.r6 div{background-color:rgba(169, 124, 80, 0.2);}
+			.r7 div{background-color:rgba(0, 104, 56, 0.2);}
+			.r8 div{background-color:rgba(138, 157, 167, 0.2);}
+			.r9 div{background-color:rgba(237, 28, 36, 0.2);}
 
 			.name{
 			    text-align:left;
@@ -426,6 +423,7 @@ a{
 			border-bottom:$greyline;
 			top:11px;
 			position: relative;
+			z-index:10;
 			#cell_add{
 				width:46px;
 				height:46px;

@@ -1,6 +1,6 @@
 <?php
 
-include('../join/delicious.php');
+include('join/delicious.php');
 
 $cubes = mysql_query("select object_id, category, coord_y, coord_z from objects");
 $shapeshift = mysql_query("select object_key, img, madewith from shapeshifters_sprite");
@@ -58,8 +58,8 @@ $me_y = 1;
 				<div class="me">
 					<div class="me_img">
 						<?php
-							echo '<div id="me_clean"><img src="../join/img/me/clean/'.$mike.'.jpg" /></div>';
-							echo '<div id="me_blur"><img src="../join/img/me/blur/'.$mike.'.jpg" /></div>';
+							echo '<div id="me_clean"><img src="join/img/me/clean/'.$mike.'.jpg" /></div>';
+							echo '<div id="me_blur"><img src="join/img/me/blur/'.$mike.'.jpg" /></div>';
 						?>						
 					</div>
 

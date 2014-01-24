@@ -68,25 +68,51 @@ function projectdeploy(incoming){
 		'</div>'+
 	'</div>');
 
-	for (var i in incoming.cells){
-		var decide = Math.random();
-		var orient;
-		if (decide < .25) orient = 'vertical';
-		if (decide > .25 && decide < .5) orient = 'horzontal';
-		if (decide > .5 && decide < .75) orient = 'square_small';
-		if (decide > .75) orient = 'square_large';
+	for (var i in incoming.cells) gridSet(i, incoming.cells[i]);
 
-		$floater.append('<div class="cell '+orient+'" id="pr_'+i+'"><p>'+incoming.cells[i].txt+'</p></div>');
-		imager(i, incoming.cells[i].img);
-	}
+	function gridSet(numerate, thisone){
 
-	function imager(selec, place){
-		var img = $("<img id=i_"+selec+"/>").load(function(){
-			$.when( img ).done(function() {
-				$('#pr_'+selec).prepend(img);
-				imagemarker.push(selec);
+		var theImg = $("<img/>").load(function(){
+			$.when( theImg ).done(function() {
+				var decide = Math.random();
+				var orient, direct, locale;
+
+				if (decide < .25) orient = 'vertical';
+				if (decide > .25 && decide < .5) orient = 'horzontal';
+				if (decide > .5 && decide < .75) orient = 'square_small';
+				if (decide > .75) orient = 'square_large';
+
+				if (theImg[0].height < theImg[0].width){
+					direct = 'auto 450px';
+					if (decide < .25) locale = -( ( (theImg[0].width / theImg[0].height) * 450 ) * .25 ) + 'px center';
+					if (decide > .25 && decide < .5) locale = 'center center';
+					if (decide > .5 && decide < .75) locale = 'center center';
+					if (decide > .75) locale = 'center center';
+
+				}else if (theImg[0].height > theImg[0].width){
+					direct = '450px auto';
+					if (decide < .25) locale = 'center center';
+					if (decide > .25 && decide < .5) locale = -( ( (theImg[0].width / theImg[0].height) * 450 ) * .25 ) + 'px center';
+					if (decide > .5 && decide < .75) locale = 'center center';
+					if (decide > .75) locale = 'center center';
+				}else{
+					direct = '450px auto';
+					locale = 'center center';
+				}
+
+				$floater.append(
+					'<div class="cell '+orient+'" style="'+
+						'background-image: url(' + thisone.img + ');' +
+						'background-position:' + locale + ';' + 
+						'background-size:' + direct + ';' + 
+					'">'+
+						'<p>'+thisone.txt+'</p>'+
+					'</div>'
+				);
+
+				imagemarker.push(numerate);
 			});
-		}).attr('src', place);
+		}).attr('src', thisone.img);
 	}
 
 	fertig = setInterval(function(){
@@ -215,7 +241,7 @@ $('#crumbput').on('click', '.crumbcube', function(){
 $('#point').on('click', function(){
 	where = 'front';
 	$('#cubic').click();
-	window.location.hash = '!home';
+	window.location.hash = '!cubic';
 	setTimeout(cleargrid, 1000);
 })
 

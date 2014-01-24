@@ -21,7 +21,7 @@ if(array_key_exists('shap',$_FILES) && $_FILES['shap']['error'] == 0 ){
 
 	$escapedname = str_replace(' ', '%20', $shap['name']);
 
-	mysql_query("insert into shapeshifter_individual(object_key, img) values(".$projected.", '../join/img/shapeshift/".$projected."/new_".$escapedname."')");
+	mysql_query("insert into shapeshifter_individual(object_key, img) values('".$projected."', 'join/img/shapeshift/".$projected."/new_".$escapedname."')");
 
 	$thelatestnumber = mysql_insert_id();
 
@@ -32,10 +32,10 @@ if(array_key_exists('shap',$_FILES) && $_FILES['shap']['error'] == 0 ){
 	$line = implode('		', array( date('r'), $_SERVER['REMOTE_ADDR'], $shap['size'], $shap['name']));
 	file_put_contents('log.txt', $line.PHP_EOL, FILE_APPEND);		
 
-	if(move_uploaded_file($shap['tmp_name'], $upload_dir."/".$projected."/".$shap['name'])){
+	if(move_uploaded_file($shap['tmp_name'], $upload_dir . '/' . $projected . '/' . $shap['name'])){
 
-		$image = imagecreatefromjpeg($upload_dir."/".$projected."/".$shap['name']);
-		$filename = $upload_dir."/".$projected."/new_".$shap['name'];
+		$image = imagecreatefromjpeg($upload_dir . "/" . $projected .  "/" . $shap['name']);
+		$filename = $upload_dir . "/" . $projected . "/new_" . $shap['name'];
 
 		$thumb_width = 351;
 		$thumb_height = 351;
@@ -70,7 +70,7 @@ if(array_key_exists('shap',$_FILES) && $_FILES['shap']['error'] == 0 ){
 
 		unlink($upload_dir."/".$projected."/".$shap['name']);
 
-		echo json_encode(array('status'=>'Uploaded & Cropped!', 'number'=>$thelatestnumber));
+		echo json_encode(array('status'=>'Uploaded & Cropped!', 'number'=>$thelatestnumber, 'filename' => $projected));
 		exit;
 	}
 }

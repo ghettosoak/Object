@@ -6,12 +6,9 @@
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Page Title</title>
+    <title>THEBACK</title>
     <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1" />
-    <!-- <link rel="stylesheet" type="text/css" href="type/type.css"/> -->
-    <link rel="stylesheet" type="text/css" href="../back/css/master.css" />
-
-    <!--<script type="text/javascript" src="../back/js/lib/jquery.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="back/css/master.css" />
 </head>
 
 <body>
@@ -20,11 +17,11 @@
 			<div class="projects">
 				<div id="oversight">
 					<div id="add_project">
-						<img src="../back/img/plus_large.png" id="add_project_plus"/>
-						<img src="../back/img/minus_large.png"/>
+						<img src="back/img/plus_large.png" id="add_project_plus"/>
+						<img src="back/img/minus_large.png"/>
 					</div>
 					<div id="add_row">
-						<img src="../back/img/addrow.png" /><p>add row</p>
+						<img src="back/img/addrow.png" /><p>add row</p>
 						<div id="row_list">
 							<li class="rowselectable" data-after="first"></li>
 						</div>
@@ -55,15 +52,15 @@
 						<div id="coord_y_hold">
 							<p>Y:</p>
 							<input tabindex="1" type="text" class="coord_inp" id="coord_y">
-							<img src="../back/img/down.png" class="coord_button cb_down" id="coord_y_down" />
-							<img src="../back/img/up.png" class="coord_button cb_up" id="coord_y_up" />
+							<img src="back/img/down.png" class="coord_button cb_down" id="coord_y_down" />
+							<img src="back/img/up.png" class="coord_button cb_up" id="coord_y_up" />
 							<br />
 						</div>
 						<div id="coord_z_hold">
 							<p>Z:</p>
 							<input tabindex="1" type="text" class="coord_inp" id="coord_z">
-							<img src="../back/img/down.png" class="coord_button cb_down" id="coord_z_down" />
-							<img src="../back/img/up.png" class="coord_button cb_up" id="coord_z_up" />
+							<img src="back/img/down.png" class="coord_button cb_down" id="coord_z_down" />
+							<img src="back/img/up.png" class="coord_button cb_up" id="coord_z_up" />
 							<br />
 						</div>
 					</div>
@@ -75,7 +72,7 @@
 				<div class="divide"><div></div></div>
 				<div class="cells">
 					<div class="cell_top">
-						<div id="cell_add"><img src="../back/img/plus_small.png" /></div>
+						<div id="cell_add"><img src="back/img/plus_small.png" /></div>
 						<h3>Cells</h3>
 					</div>
 					<div id="cell_put"></div>
@@ -96,11 +93,11 @@
 		</div>
 	</div>
 
-<script src="../back/js/lib/jquery.tmpl.min.js"></script>
-<script src="../back/js/lib/jquery.filedrop.js"></script>
+<script src="back/js/lib/jquery.tmpl.min.js"></script>
+<script src="back/js/lib/jquery.filedrop.js"></script>
 
-<script type="text/javascript" src="../back/js/projects-m.js"></script>
-<script type="text/javascript" src="../back/js/about-m.js"></script>
+<script type="text/javascript" src="back/js/projects-m.js"></script>
+<script type="text/javascript" src="back/js/about-m.js"></script>
 
 </body>
 </html>

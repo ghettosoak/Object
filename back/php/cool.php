@@ -5,17 +5,10 @@
 // 	}
 	include('../../join/delicious.php');
 
-	function my_array_diff($a, $b) {
-	    $map = $out = array();
-	    foreach($a as $val) $map[$val] = 1;
-	    foreach($b as $val) if(isset($map[$val])) $map[$val] = 0;
-	    foreach($map as $val => $ok) if($ok) $out[] = $val;
-	    return $out;
-	}
+	$projected = 23;
+	$escapedname = 'yeah';
 
-	$a = array('A', 'B', 'C', 'D');
-	$b = array('A', 'B', 'C', 'D', 'E');
+		mysql_query("insert into shapeshifter_individual(object_key, img) values('".$projected."', 'join/img/shapeshift/".$projected."/new_".$escapedname."')");
 
-	print_r(my_array_diff($a, $b));
 
 ?>

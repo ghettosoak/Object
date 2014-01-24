@@ -8,7 +8,7 @@ $(document).ready(function(){
 		console.log(hash);
 
 		if (hash.indexOf('!me') === 0) $('#movement').removeClass().addClass('first');
-		if (hash.indexOf('!home') === 0) $('#movement').removeClass().addClass('second');
+		if (hash.indexOf('!cubic') === 0) $('#movement').removeClass().addClass('second');
 		if (hash.indexOf('!project') === 0){
 			var theProj = hash.split('_')[1];
 			console.log(theProj)
@@ -28,7 +28,7 @@ $(document).ready(function(){
 
 	}else{
 		$('#movement').removeClass().addClass('second');
-		window.location.hash = '!home';
+		window.location.hash = '!cubic';
 	}
 });
 
@@ -46,7 +46,7 @@ $windowpane.bind('hashchange', function(){
 	hash = window.location.hash.split('#')[1];
 
 	if (hash.indexOf('!me') === 0) $('#movement').removeClass().addClass('first');
-	if (hash.indexOf('!home') === 0) $('#movement').removeClass().addClass('second');
+	if (hash.indexOf('!cubic') === 0) $('#movement').removeClass().addClass('second');
 	if (hash.indexOf('!project') === 0) {
 		$('#movement').removeClass().addClass('third');
 		projLoader(hash.split('_')[1]);
@@ -58,5 +58,5 @@ $windowpane.bind('hashchange', function(){
 });
 
 $('.title').on('click', function(){
-	window.location.hash = '!home';
+	window.location.hash = '!cubic';
 })

@@ -259,7 +259,7 @@ function cubedescender(activate){
 	$.ajax({
 		type: "POST",
 		dataType:'JSON',
-		url: "../back/php/cubepull.php",
+		url: "back/php/cubepull.php",
 	}).done( function(cube){
 		editor_cubedescend = cube.cubes;
 		categ = cube.tot_cat;
@@ -391,7 +391,7 @@ function b_workload(er){
 		type: "POST",
 		dataType:'JSON',
 		data: {projector:er},
-		url: "../back/php/projection.php"
+		url: "back/php/projection.php"
 	}).done(function(thisproj){
 		console.log(thisproj)
 		// presenceorig[thisproj.data.object_id] = thisproj;
@@ -417,14 +417,14 @@ function b_workload(er){
 		}
 
 		$.each(thisproj.shapeshifters, function(s){
-			var shapeshifted = '<div style="width:'+hoppersize+'px; height:'+hoppersize+'px;" ><img src="../back/img/kill.png" class="shap_kill" /><img src="'+thisproj.shapeshifters[s].img+'" data-shapnum="'+thisproj.shapeshifters[s].shapeshifter_id+'" style="width:'+hoppersize+'px;" />'
+			var shapeshifted = '<div style="width:'+hoppersize+'px; height:'+hoppersize+'px;" ><img src="back/img/kill.png" class="shap_kill" /><img src="'+thisproj.shapeshifters[s].img+'" data-shapnum="'+thisproj.shapeshifters[s].shapeshifter_id+'" style="width:'+hoppersize+'px;" />'
 			$.tmpl( shapeshifted , thisproj.shapeshifters[s]).appendTo( "#shapeshifterhopper" );
 		});
 
 		shapeshifterpower();
 
 		$.each(thisproj.cells, function(l){
-			var cellular = '<div class="cell_'+thisproj.cells[l].cell_id+'"><div class="cell_img_hold"><img src="'+thisproj.cells[l].img+'" /><img src="../back/img/kill.png" class="cell_kill" /></div><textarea tabindex="16" class="kommentar_content">'+thisproj.cells[l].txt+'</textarea></div>'
+			var cellular = '<div class="cell_'+thisproj.cells[l].cell_id+'"><div class="cell_img_hold"><img src="'+thisproj.cells[l].img+'" /><img src="back/img/kill.png" class="cell_kill" /></div><textarea tabindex="16" class="kommentar_content">'+thisproj.cells[l].txt+'</textarea></div>'
 			$.tmpl( cellular , thisproj.cells[l]).appendTo( "#cell_put" );
 		});
 
@@ -458,21 +458,23 @@ $('#cell_add').on('click', function(){
 
 	$.ajax({
 		type: "POST",
-		url: "../back/php/newcell.php"
+		dataType:'JSON',
+		url: "back/php/newcell.php"
 	}).done(function(e){
 
 		if ((editor_separated) && (!newest)){
 			newest = true;
-			$('<div class="cell_'+e.number+'"><div class="cell_img_hold"><img src="../back/img/cross.png" id="img_blank" /><img src="../back/img/kill.png" class="cell_kill" /></div><textarea tabindex="16" class="kommentar_content"></textarea></div>')
+			console.log(e.number)
+			$('<div class="cell_'+e.number+'"><div class="cell_img_hold"><img src="back/img/cross.png" id="img_blank" /><img src="back/img/kill.png" class="cell_kill" /></div><textarea tabindex="16" class="kommentar_content"></textarea></div>')
 			.appendTo('#cell_put')
 			.filedrop({
 				fallback_id: 'cell_new',
 				paramname:'pic',
 				
 				maxfiles: 1,
-				url: '../back/php/cell.php',
+				url: 'back/php/cell.php',
 				data:{
-					projeceditor_tnumbercell: currentlyediting,
+					projectnumbercell: currentlyediting,
 					cellnumbercell: e.number
 				},
 				
@@ -507,15 +509,16 @@ $('#cell_add').on('click', function(){
 			});
 		}
 		
-		$('#cell_put').animate({'scrollTop':10000}).children().last().delay(400).css('background-color','rgba(255,0,0,.1)').animate({backgroundColor:'rgba(255,255,255,1)'})
+		$('#cell_put').animate({'scrollTop':10000})
+		.children().last().delay(400).css('background-color','rgba(255,0,0,.1)')
+		.animate({backgroundColor:'rgba(255,255,255,1)'});
 
 		$('.cell_kill').on('click', function(){
 			kill('cell', $(this).parent().parent().attr('class').split('_')[1], true)
 			$(this).parent().parent().slideUp().remove();
-		})
-
-	})
-})
+		});
+	});
+});
 
 function shapeshifterpower(){
 	if (!firstly){
@@ -528,8 +531,8 @@ function shapeshifterpower(){
 		fallback_id: 'shapeshifterhopper',
 		paramname:'shap',
 		
-		url: '../back/php/shapeshiftput.php',
-		data:{ projeceditor_tnumbershapeshift: currentlyediting },
+		url: 'back/php/shapeshiftput.php',
+		data:{ projectnumbershapeshift: currentlyediting },
 		
 		uploadFinished:function(i,file,response){
 
@@ -567,7 +570,7 @@ function shapeshifterpower(){
 			reader.onload = function(e){ image.attr('src',e.target.result); };
 			reader.readAsDataURL(file);
 			preview.appendTo('#shapeshifterhopper');
-			preview.append('<img src="../back/img/kill.png" class="shap_kill" />')
+			preview.append('<img src="back/img/kill.png" class="shap_kill" />')
 			$.data(file,preview);			
 		},
 			
@@ -671,7 +674,7 @@ function categorical(freshness){
 							type: "POST",
 							dataType:'JSON',
 							data: { newcategarray : categ },
-							url: "../back/php/newrow.php"
+							url: "back/php/newrow.php"
 						}).done(function(e){
 							addrow_open = false;
 							makingnewrow = false;
@@ -767,14 +770,11 @@ function projectuploader(remain, weight){
 		}
 	});
 
-
 	var shapeshnr = [];
 
 	$('#shapeshifterhopper').find('img').not('.shap_kill').each(function(e){
 		shapeshnr.push($(this).data('shapnum'))
 	});
-
-	console.log(shapeshnr)
 
 	$.ajax({
 		type: "POST",
@@ -785,7 +785,7 @@ function projectuploader(remain, weight){
 			celltext:cellcomplet,
 			isnew:workingwithanewcube
 		},
-		url: "../back/php/heavylifting.php"
+		url: "back/php/heavylifting.php"
 	}).done(function(e){		
 		if ((catinit !== presence[currentlyediting].data.category) || (workingwithanewcube)){
 			$ovr_sight.children().children().empty();
@@ -795,12 +795,12 @@ function projectuploader(remain, weight){
 					editor_counter = 0;
 					editor_cubecounter = 0;
 					editor_rowcount = 1;
-					cubedescender(weight)
-					catinit = presence[currentlyediting].data.category
+					cubedescender(weight);
+					catinit = presence[currentlyediting].data.category;
 				}
 			}
 		}
-		if (!remain) b_workload(weight)
+		if (!remain) b_workload(weight);
 
 		if (workingwithanewcube) workingwithanewcube = false;
 	});
@@ -816,7 +816,7 @@ function kill(who, where, how){
 			field : where,
 			project : currentlyediting
 		},
-		url: "../back/php/kill.php"
+		url: "back/php/kill.php"
 	})
 }
 
@@ -834,16 +834,16 @@ $addproj.on({
 		
 		if ((uptimer - downtimer) < holding) newcube();
 		else{
-			$addproj.animate({backgroundColor:'rgb(255,255,255)'},200)
-			$addproj.animate({backgroundColor:'rgb(255,0,0)'},200)
-			$addproj.animate({backgroundColor:'rgb(255,255,255)'},200)
-			$addproj.animate({backgroundColor:'rgb(255,0,0)'},200)
+			$addproj.animate({backgroundColor:'rgb(255,255,255)'},200);
+			$addproj.animate({backgroundColor:'rgb(255,0,0)'},200);
+			$addproj.animate({backgroundColor:'rgb(255,255,255)'},200);
+			$addproj.animate({backgroundColor:'rgb(255,0,0)'},200);
 			killcube();
 		}
 	},
 	mouseout:function(){
 		$addproj.animate({backgroundColor:'rgb(128,128,128)'})
-		.find('#add_project_plus').removeClass('minus')
+		.find('#add_project_plus').removeClass('minus');
 	}
 })
 
@@ -854,7 +854,7 @@ function killcube(){
 		data: {
 			target : currentlyediting
 		},
-		url: "../back/php/killcube.php"
+		url: "back/php/killcube.php"
 	}).done(function(e){
 		editor_scene.remove(editor_scene.children[cubearrayediting]);
 		$('.targeted').find('div').remove()
@@ -870,37 +870,30 @@ function killcube(){
 function newcube(){
 	$.ajax({
 		type: "POST",
-		url: "../back/php/newcube.php"
+		url: "back/php/newcube.php"
 	}).done(function(e){
-		// console.log(e)
+		$('#shapeshifterhopper, #cell_put').empty();
 
-		$('#shapeshifterhopper, #cell_put').empty()
-
-		var $targetedindex = $('.targeted').data('array')
-		var $targetedrow = $('.targeted').data('row')
-		slide.editor_likethis($targetedindex, 'left', $targetedrow)
+		var $targetedindex = $('.targeted').data('array');
+		var $targetedrow = $('.targeted').data('row');
+		slide.editor_likethis($targetedindex, 'left', $targetedrow);
 		$('.targeted').siblings().each(function(){
-			var $theindex = $(this).data('array')
-			var $therow = $(this).data('row')
-			if($therow == $targetedrow) editor_slide.editor_likethis($theindex, 'left', $therow)
-			if($therow >= $targetedrow) editor_slide.editor_likethis($theindex, 'left', $therow)
-		})
+			var $theindex = $(this).data('array');
+			var $therow = $(this).data('row');
+			if($therow == $targetedrow) editor_slide.editor_likethis($theindex, 'left', $therow);
+			if($therow >= $targetedrow) editor_slide.editor_likethis($theindex, 'left', $therow);
+		});
 
 		editor_separated = false;
 		workingwithanewcube = true;
 
-
 		var element = document.createElement( 'div' );
 		element.className = 'cube newcube';
 		element.id = 'c'+counter.toString();
-		// element.setAttribute('data-callmemaybe', i)
-		// element.setAttribute('data-number', numberexact.toString())
-		element.setAttribute('data-array', editor_counter.toString())
-		element.setAttribute('data-cube', editor_cubecounter.toString())
-		// element.setAttribute('data-row', editor_rowcount.toString())
+		element.setAttribute('data-array', editor_counter.toString());
+		element.setAttribute('data-cube', editor_cubecounter.toString());
 		counter++;	
 		editor_cubecounter++;
-		// numberexact++
 
 		var front = document.createElement('div');
 		front.className = 'front';
@@ -937,19 +930,19 @@ function newcube(){
 
 		cubearrayediting = editor_scene.children.length-1;
 
-		$('.info').find('input, textarea').val('')
+		$('.info').find('input, textarea').val('');
 
-		$('#info_category_carousel').css('top', '19px')
+		$('#info_category_carousel').css('top', '19px');
 
-		$('#coord_y').val(6)
-		$('#coord_z').val(1)
+		$('#coord_y').val(6);
+		$('#coord_z').val(1);
 
 		presence = {};
 		presence[currentlyediting] = {cells:{}, data:{category: "", client: "", coord_y: 300, coord_z: 50, date_launched: "", link: "", name: "", object_id: "", project_text: "", total_hours: ""}, shapeshifters:{}};
 
-		shapeshifterpower()
+		shapeshifterpower();
 
-		setTimeout(function(){$('.newcube').addClass('targeted').siblings().removeClass('targeted');},50)
+		setTimeout(function(){$('.newcube').addClass('targeted').siblings().removeClass('targeted');},50);
 	})
 }
 

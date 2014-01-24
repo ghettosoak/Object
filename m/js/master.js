@@ -5,7 +5,7 @@ var $category, $title;
 var currentProj;
 
 var catCount = [];
-ing glisten!
+
 $(document).ready(function(){
 	wpheight = $windowpane.height();
 	wpwidth = $windowpane.width();

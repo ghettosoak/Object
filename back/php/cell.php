@@ -18,10 +18,7 @@ if(array_key_exists('pic',$_FILES) && $_FILES['pic']['error'] == 0 ){
 
 	$escapedname = str_replace(' ', '%20', $pic['name']);
 
-	//mysql_query("insert into cells(object_key, img) values(".$projector.", 'img/cells/".$escapedname."')");
-	mysql_query("update cells set object_key =".$projector.", img = 'img/cells/".$escapedname."' where cell_id = ".$microprojector);
-
-	// mysql_query("update cells set object_key = $projector, img = '' where cell_id = $microprojector");
+	mysql_query("update cells set object_key =".$projector.", img = 'join/img/cells/".$escapedname."' where cell_id = ".$microprojector);
 
 	if(!in_array(get_extension($pic['name']),$allowed_ext)){
 		exit_status('Only '.implode(',',$allowed_ext).' files are allowed!');

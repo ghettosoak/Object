@@ -242,25 +242,23 @@ body {
     #work .categoryContainer .viewing {
       height: 300px; }
     #work .categoryContainer:nth-child(1) {
-      background-color: #888888; }
+      background-color: rgba(230, 0, 140, 0.5); }
     #work .categoryContainer:nth-child(2) {
-      background-color: #999999; }
+      background-color: rgba(247, 148, 30, 0.5); }
     #work .categoryContainer:nth-child(3) {
-      background-color: #aaaaaa; }
+      background-color: rgba(141, 198, 63, 0.5); }
     #work .categoryContainer:nth-child(4) {
-      background-color: #bbbbbb; }
+      background-color: rgba(0, 166, 81, 0.5); }
     #work .categoryContainer:nth-child(5) {
-      background-color: #cccccc; }
+      background-color: rgba(0, 174, 239, 0.5); }
     #work .categoryContainer:nth-child(6) {
-      background-color: #dddddd; }
+      background-color: rgba(169, 124, 80, 0.5); }
     #work .categoryContainer:nth-child(7) {
-      background-color: #eeeeee; }
+      background-color: rgba(0, 104, 56, 0.5); }
     #work .categoryContainer:nth-child(8) {
-      background-color: #888888; }
+      background-color: rgba(138, 157, 167, 0.5); }
     #work .categoryContainer:nth-child(9) {
-      background-color: #999999; }
-    #work .categoryContainer:nth-child(10) {
-      background-color: #aaaaaa; }
+      background-color: rgba(237, 28, 36, 0.5); }
   #work .open {
     height: inherit; }
     #work .open .project {

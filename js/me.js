@@ -19,6 +19,6 @@ $('.meback').on(action, function(){
 	if (hashhistory.length > 1) {
 		window.location.hash = hashhistory[hashhistory.length-2];
 	}else{
-		window.location.hash = '!home';
+		window.location.hash = '!cubic';
 	}
 });

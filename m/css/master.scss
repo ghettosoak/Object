@@ -276,16 +276,26 @@ body {
             height:300px;
         }
 
-        &:nth-child(1){  background-color:#888  }
-        &:nth-child(2){  background-color:#999  }
-        &:nth-child(3){  background-color:#aaa  }
-        &:nth-child(4){  background-color:#bbb  }
-        &:nth-child(5){  background-color:#ccc  }
-        &:nth-child(6){  background-color:#ddd  }
-        &:nth-child(7){  background-color:#eee  }
-        &:nth-child(8){  background-color:#888  }
-        &:nth-child(9){  background-color:#999  }
-        &:nth-child(10){ background-color:#aaa  }
+        // &:nth-child(1){  background-color:#888  }
+        // &:nth-child(2){  background-color:#999  }
+        // &:nth-child(3){  background-color:#aaa  }
+        // &:nth-child(4){  background-color:#bbb  }
+        // &:nth-child(5){  background-color:#ccc  }
+        // &:nth-child(6){  background-color:#ddd  }
+        // &:nth-child(7){  background-color:#eee  }
+        // &:nth-child(8){  background-color:#888  }
+        // &:nth-child(9){  background-color:#999  }
+        // &:nth-child(10){ background-color:#aaa  }
+
+        &:nth-child(1){background-color:rgba(230, 0, 140, 0.5);}
+        &:nth-child(2){background-color:rgba(247, 148, 30, 0.5);}
+        &:nth-child(3){background-color:rgba(141, 198, 63, 0.5);}
+        &:nth-child(4){background-color:rgba(0, 166, 81, 0.5);}
+        &:nth-child(5){background-color:rgba(0, 174, 239, 0.5);}
+        &:nth-child(6){background-color:rgba(169, 124, 80, 0.5);}
+        &:nth-child(7){background-color:rgba(0, 104, 56, 0.5);}
+        &:nth-child(8){background-color:rgba(138, 157, 167, 0.5);}
+        &:nth-child(9){background-color:rgba(237, 28, 36, 0.5);}
     }
 
     .open{

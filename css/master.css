@@ -2,18 +2,18 @@
 @import url("//hello.myfonts.net/count/276103");
 @font-face {
   font-family: 'u47';
-  src: url("../../join/type/u47/2760F4_0_0.eot");
-  src: url("../../join/type/u47/2760F4_0_0.eot?#iefix") format("embedded-opentype"), url("../../join/type/u47/2760F4_0_0.woff") format("woff"), url("../../join/type/u47/2760F4_0_0.ttf") format("truetype"), url("../../join/type/u47/2760F4_0_0.svg#wf") format("svg"); }
+  src: url("../join/type/u47/2760F4_0_0.eot");
+  src: url("../join/type/u47/2760F4_0_0.eot?#iefix") format("embedded-opentype"), url("../join/type/u47/2760F4_0_0.woff") format("woff"), url("../join/type/u47/2760F4_0_0.ttf") format("truetype"), url("../join/type/u47/2760F4_0_0.svg#wf") format("svg"); }
 
 @font-face {
   font-family: 'u39';
-  src: url("../../join/type/u39/276103_0_0.eot");
-  src: url("../../join/type/u39/276103_0_0.eot?#iefix") format("embedded-opentype"), url("../../join/type/u39/276103_0_0.woff") format("woff"), url("../../join/type/u39/276103_0_0.ttf") format("truetype"), url("../../join/type/u39/276103_0_0.svg#wf") format("svg"); }
+  src: url("../join/type/u39/276103_0_0.eot");
+  src: url("../join/type/u39/276103_0_0.eot?#iefix") format("embedded-opentype"), url("../join/type/u39/276103_0_0.woff") format("woff"), url("../join/type/u39/276103_0_0.ttf") format("truetype"), url("../join/type/u39/276103_0_0.svg#wf") format("svg"); }
 
 @font-face {
   font-family: 'u67';
-  src: url("../../join/type/u67/276103_1_0.eot");
-  src: url("../../join/type/u67/276103_1_0.eot?#iefix") format("embedded-opentype"), url("../../join/type/u67/276103_1_0.woff") format("woff"), url("../../join/type/u67/276103_1_0.ttf") format("truetype"), url("../../join/type/u67/276103_1_0.svg#wf") format("svg"); }
+  src: url("../join/type/u67/276103_1_0.eot");
+  src: url("../join/type/u67/276103_1_0.eot?#iefix") format("embedded-opentype"), url("../join/type/u67/276103_1_0.woff") format("woff"), url("../join/type/u67/276103_1_0.ttf") format("truetype"), url("../join/type/u67/276103_1_0.svg#wf") format("svg"); }
 
 * {
   -moz-box-sizing: border-box;
@@ -197,13 +197,13 @@ body {
         display: block; }
     .me .meme #megrey {
       background-color: rgba(0, 0, 0, 0.8);
-      width: 200px;
-      height: 200px;
+      width: 150px;
+      height: 150px;
       border-radius: 100px;
       position: absolute;
       top: 50%;
       left: 50%;
-      margin: -100px 0px 0px -100px;
+      margin: -75px 0px 0px -75px;
       float: none;
       display: block;
       padding: 0px; }
@@ -223,13 +223,13 @@ body {
     cursor: pointer; }
     .me .meback #mebackwhite {
       background-color: white;
-      width: 160px;
-      height: 160px;
+      width: 140px;
+      height: 140px;
       border-radius: 100px;
       position: absolute;
       top: 50%;
       left: 50%;
-      margin: -80px 0px 0px -80px;
+      margin: -70px 0px 0px -70px;
       float: none;
       display: block;
       padding: 0px; }
@@ -511,7 +511,7 @@ body {
       top: 50%;
       margin: -68.5px 0px 0px -137px;
       overflow: hidden;
-      background-image: url(../../join/img/loadr.png); }
+      background-image: url(../join/img/loadr.png); }
     .red .middle .load_0 {
       background-position-x: 0px; }
     .red .middle .load_1 {
@@ -719,6 +719,10 @@ body {
       display: none; }
     .grid .floater .s_open #stats_open {
       display: block; }
+  .grid .floater .bg_vert {
+    background-size: 450px auto; }
+  .grid .floater .bg_horiz {
+    background-size: auto 450px; }
   .grid .floater .vertical {
     height: 300px;
     width: 150px; }

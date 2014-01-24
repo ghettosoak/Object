@@ -1,6 +1,6 @@
 <?php
 
-include('../../join/delicious.php');
+include('../join/delicious.php');
 
 $project = $_REQUEST['project'];
 

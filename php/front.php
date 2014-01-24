@@ -1,6 +1,6 @@
 <?php
 
-include('../../join/delicious.php');
+include('../join/delicious.php');
 
 
 $cubes = mysql_query("select name, object_id, category, coord_y, coord_z from objects");

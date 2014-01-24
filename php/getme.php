@@ -1,6 +1,6 @@
 <?php
 
-	include('../../join/delicious.php');
+	include('../join/delicious.php');
 
 	$ids = mysql_query("select mebg_id from mebg");
 

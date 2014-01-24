@@ -77,7 +77,7 @@
 
 		include('sprite.php');
 
-		mysql_query('update shapeshifters_sprite set madewith = "'.implode(', ', $shapeshifters).'", img = "../join/img/shapeshift/sprite_'.$number.'.png" where object_key = '.$number);
+		mysql_query('update shapeshifters_sprite set madewith = "'.implode(', ', $shapeshifters).'", img = "join/img/shapeshift/sprite_'.$number.'.png" where object_key = '.$number);
 
 	}else array_push($watcher, "NO SPRITE CREATED");
 
