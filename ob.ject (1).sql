@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 03, 2013 at 08:23 AM
+-- Generation Time: Jan 25, 2014 at 01:37 PM
 -- Server version: 5.5.25
 -- PHP Version: 5.4.4
 
@@ -61,26 +61,38 @@ CREATE TABLE `cells` (
   `txt` text,
   PRIMARY KEY (`cell_id`),
   KEY `object_key` (`object_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `cells`
 --
 
 INSERT INTO `cells` (`cell_id`, `object_key`, `img`, `txt`) VALUES
-(1, 23, '../join/img/cells/1.jpg', 'funktastic!'),
-(2, 23, '../join/img/cells/2.jpg', 'yeah!'),
-(3, 23, '../join/img/cells/3.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
-(7, 23, '../join/img/cells/7.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
-(8, 9, '../join/img/cells/8.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
-(9, 9, '../join/img/cells/9.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
-(10, 9, '../join/img/cells/7.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
-(11, 9, '../join/img/cells/7.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
-(12, 9, '../join/img/cells/7.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
-(13, 9, '../join/img/cells/7.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
-(14, 23, '../join/img/cells/6.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
-(15, 9, '../join/img/cells/7.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
-(19, 9, '../join/img/cells/9.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.');
+(1, 23, 'join/img/cells/1.jpg', 'funktastic!'),
+(2, 23, 'join/img/cells/2.jpg', 'yeah! test!'),
+(3, 23, 'join/img/cells/3.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
+(8, 9, 'join/img/cells/8.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
+(9, 9, 'join/img/cells/9.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
+(10, 9, 'join/img/cells/7.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
+(11, 9, 'join/img/cells/7.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
+(12, 9, 'join/img/cells/7.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
+(13, 9, 'join/img/cells/7.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
+(14, 23, 'join/img/cells/6.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
+(15, 9, 'join/img/cells/7.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
+(19, 9, 'join/img/cells/9.jpg', 'this is some text about project 20. I am not sure how long it will be in the end, but this seems like a good length, more or less.'),
+(20, NULL, NULL, NULL),
+(21, NULL, NULL, NULL),
+(22, NULL, NULL, NULL),
+(23, NULL, NULL, NULL),
+(24, NULL, NULL, NULL),
+(25, NULL, NULL, NULL),
+(26, NULL, NULL, NULL),
+(27, NULL, NULL, NULL),
+(28, NULL, NULL, NULL),
+(29, NULL, NULL, NULL),
+(30, NULL, NULL, 'why hello there!'),
+(31, NULL, NULL, 'not too shabby'),
+(32, 23, 'join/img/cells/ztJCpBi.jpg', 'not too shabby yeah!');
 
 -- --------------------------------------------------------
 
@@ -123,12 +135,12 @@ CREATE TABLE `mebg` (
 --
 
 INSERT INTO `mebg` (`mebg_id`, `bg`) VALUES
-(1, 0x2e2e2f6a6f696e2f696d672f6d652f636c65616e2f312e6a7067),
-(9, 0x2e2e2f6a6f696e2f696d672f6d652f636c65616e2f322e6a7067),
-(54, 0x2e2e2f6a6f696e2f696d672f6d652f636c65616e2f35342e6a7067),
-(56, 0x2e2e2f6a6f696e2f696d672f6d652f636c65616e2f35362e6a7067),
-(57, 0x2e2e2f6a6f696e2f696d672f6d652f636c65616e2f35372e6a7067),
-(58, 0x2e2e2f6a6f696e2f696d672f6d652f636c65616e2f35382e6a7067);
+(1, 0x6a6f696e2f696d672f6d652f636c65616e2f312e6a7067),
+(9, 0x6a6f696e2f696d672f6d652f636c65616e2f322e6a7067),
+(54, 0x6a6f696e2f696d672f6d652f636c65616e2f35342e6a7067),
+(56, 0x6a6f696e2f696d672f6d652f636c65616e2f35362e6a7067),
+(57, 0x6a6f696e2f696d672f6d652f636c65616e2f35372e6a7067),
+(58, 0x6a6f696e2f696d672f6d652f636c65616e2f35382e6a7067);
 
 -- --------------------------------------------------------
 
@@ -148,7 +160,7 @@ CREATE TABLE `metxt` (
 --
 
 INSERT INTO `metxt` (`metxt_id`, `txt`) VALUES
-(1, 0x7468697320697320736f6d65206e65772074657874),
+(1, 0x7468697320697320736f6d65206e65772074657874206d61796265),
 (2, 0x74686973206973206e6f7420736f6d65206e65772074657874),
 (3, 0x7468697320697320736f6d652074657874),
 (4, 0x7468697320697320736f6d652074657874),
@@ -210,7 +222,7 @@ INSERT INTO `objects` (`object_id`, `name`, `client`, `category`, `date_launched
 (28, 'soon', 'soon', 'interactive', 'soon', '0', 'soon', 'soon', 1, 2),
 (31, 'soon', 'soon', 'fun', 'soon', '0', 'soon', 'soon', 1, 2),
 (32, 'soon', 'soon', 'fun', 'soon', '0', 'soon', 'soon', 2, 1),
-(39, '', '', 'corporate', '', '', '', '', 3, 1);
+(39, 'nope', 'nope', 'corporate', '', '', '', '', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -233,9 +245,9 @@ CREATE TABLE `shapeshifters_sprite` (
 --
 
 INSERT INTO `shapeshifters_sprite` (`shapeshifter_id`, `object_key`, `img`, `madewith`) VALUES
-(1, 23, '../join/img/shapeshift/sprite_23.png', '71, 72, 73, 76'),
-(2, 24, '../join/img/shapeshift/sprite_23.png', '71, 72, 73, 76'),
-(3, 25, '../join/img/shapeshift/sprite_23.png', '71, 72, 73, 76');
+(1, 23, 'join/img/shapeshift/sprite_23.png', '71, 72, 73, 76, 88'),
+(2, 24, 'join/img/shapeshift/sprite_23.png', '71, 72, 73, 76'),
+(3, 25, 'join/img/shapeshift/sprite_23.png', '71, 72, 73, 76');
 
 -- --------------------------------------------------------
 
@@ -250,19 +262,20 @@ CREATE TABLE `shapeshifter_individual` (
   `img` text,
   PRIMARY KEY (`shapeshifter_id`),
   KEY `object_key` (`object_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=77 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=89 ;
 
 --
 -- Dumping data for table `shapeshifter_individual`
 --
 
 INSERT INTO `shapeshifter_individual` (`shapeshifter_id`, `object_key`, `img`) VALUES
-(7, 22, '../join/img/shapeshift/22/Expansion%20Writ-18.jpg'),
-(10, 22, '../join/img/shapeshift/22/Expansion%20Writ-23.jpg'),
-(71, 23, '../join/img/shapeshift/23/new_Expansion%20Writ-18.jpg'),
-(72, 23, '../join/img/shapeshift/23/new_Expansion%20Writ-19.jpg'),
-(73, 23, '../join/img/shapeshift/23/new_Expansion%20Writ-21.jpg'),
-(76, 23, '../join/img/shapeshift/23/new_Expansion%20Writ-04.jpg');
+(7, 22, 'join/img/shapeshift/22/Expansion%20Writ-18.jpg'),
+(10, 22, 'join/img/shapeshift/22/Expansion%20Writ-23.jpg'),
+(71, 23, 'join/img/shapeshift/23/new_Expansion%20Writ-18.jpg'),
+(72, 23, 'join/img/shapeshift/23/new_Expansion%20Writ-19.jpg'),
+(73, 23, 'join/img/shapeshift/23/new_Expansion%20Writ-21.jpg'),
+(76, 23, 'join/img/shapeshift/23/new_Expansion%20Writ-04.jpg'),
+(88, 23, 'join/img/shapeshift/23/new_ztJCpBi.jpg');
 
 --
 -- Constraints for dumped tables

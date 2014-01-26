@@ -166,11 +166,9 @@ body {
       height: 100%;
       width: 100%;
       top: 0px;
-      left: 0px; }
-      .me .me_img #me_blur img, .me .me_img #me_clean img {
-        display: block;
-        position: relative;
-        margin: auto; }
+      left: 0px;
+      background-size: cover;
+      background-position: center center; }
     .me .me_img .not {
       opacity: 0; }
   .me .meme {

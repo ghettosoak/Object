@@ -17,12 +17,19 @@
 		foreach($newimg as $blurring){
 			array_push($response, intval($blurring));
 
-			$image = imagecreatefromjpeg('../../join/img/me/clean/'.$blurring.'.jpg');
-			for ($i = 0; $i < 30; $i++) {
-			    imagefilter($image, IMG_FILTER_GAUSSIAN_BLUR);
-			}
-			imagejpeg($image, "../../join/img/me/blur/'.$blurring.'.jpg");
-			imagedestroy($image);
+			// $image = imagecreatefromjpeg('../../join/img/me/clean/'.$blurring.'.jpg');
+			// for ($i = 0; $i < 30; $i++) {
+			//     imagefilter($image, IMG_FILTER_GAUSSIAN_BLUR);
+			// }
+			// imagejpeg($image, "../../join/img/me/blur/'.$blurring.'.jpg");
+			// imagedestroy($image);
+
+
+			$image = new Imagick("../../join/img/me/clean/".$blurring.".jpg");
+
+			$image -> blurImage(25,25);
+
+			$image -> writeImage('../../join/img/me/blur/'.$blurring.'.jpg');
 		}
 		array_push($response, 'IMAGES BLURRED');
 	}

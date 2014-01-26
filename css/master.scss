@@ -152,11 +152,8 @@ body {
             width:100%;
             top:0px;
             left:0px;
-            img{
-                display: block;
-                position: relative;
-                margin: auto;
-            }
+            background-size:cover;
+            background-position: center center;
         }
         .not{opacity:0;}
     }
