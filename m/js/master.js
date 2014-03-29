@@ -93,7 +93,7 @@ function projectLoad(er, $ing){
 
 			$.each(e.cells, function(i){
 				$ing.find('.long').append(
-					'<div class="img" style="background-image:url(' + e.cells[i].img + ')"><p>' + e.cells[i].txt + '</p></div>'
+					'<div class="img" style="background-image:url(../' + e.cells[i].img + ')"><p>' + e.cells[i].txt + '</p></div>'
 				);
 			});
 

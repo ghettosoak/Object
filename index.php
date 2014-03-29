@@ -44,10 +44,13 @@ $me_y = 1;
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		
+		<link rel="shortcut icon" href="img/favicon.ico" />
+		<link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+		
 		<link rel="stylesheet" type="text/css" href="css/master.css" />
 		<script>
 			if (window.innerWidth <= 568){
-				window.location = 'mobile';
+				window.location = 'm';
 			}
 		</script>
 	</head>
@@ -71,11 +74,7 @@ $me_y = 1;
 					<?php
 						while ($metext = mysql_fetch_assoc($txt)){
 							echo '<div class="me_x'.$me_x++.' me_y'.$me_y.' me_bit">
-									<div class="me_float">
-										<div class="me_txt">
-											<p>'.$metext['txt'].'</p>
-										</div>
-									</div>
+									<p>'.$metext['txt'].'</p>
 								</div>';
 							if ($me_x > 4){
 								$me_x = 1;
@@ -170,6 +169,18 @@ $me_y = 1;
 
 		?>
 
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-31902149-2', 'ject.ch');
+		  ga('send', 'pageview', {
+		   'page': location.pathname + location.search  + location.hash
+		  });
+
+		</script>
 		
 
 	</body>

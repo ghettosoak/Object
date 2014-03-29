@@ -433,7 +433,7 @@ a {
 .projects .cells .cell_top {
   height: 56px;
   border-bottom: 1px #b3b3b3 solid;
-  top: 11px;
+  top: 10px;
   position: relative;
   z-index: 10; }
   .projects .cells .cell_top #cell_add {

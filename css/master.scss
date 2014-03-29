@@ -198,7 +198,6 @@ body {
         &:hover{
             border:none !important;
             #megrey{background-color:rgba(255,0,0,1) !important;}
-            p{color:black;}
         }
     }
     .meback{
@@ -231,7 +230,7 @@ body {
             z-index:2;
         }
         &:hover{
-            border:none !important;
+            // border:none !important;
             #mebackwhite{background-color:grey;}
         }
     }
@@ -240,29 +239,20 @@ body {
         width:25%;
         height:25%;
         cursor: pointer;
+        display:table;
         background-color:rgba(0,0,0,.0);
-        &:hover{border:1px black solid;}
-        .me_float{
+        @include transition (all 0.5s ease-in-out);
+        padding:2%;
+        p{
             @include transition (all 0.5s ease-in-out);
-            height:100%;
-            width:100%;
-            position: absolute;
-            .me_txt{
-                padding:10%;
-                display:table;
-                position: absolute;
-                width:100%;
-                height:100%;
-                top:0px;
-                left:0px;
-                p{
-                    @include transition (all 0.5s ease-in-out);
-                    display:table-cell;
-                    vertical-align: middle;
-                    opacity:0;
-                    color:white;
-                }
-            }
+            display:table-cell;
+            vertical-align: middle;
+            opacity:0;
+            color:white;
+        }
+
+        &:hover{
+            background-color: rgba(0,0,0,.1);
         }
     }
     .me_x1{left:0*25%;}
@@ -274,15 +264,15 @@ body {
     .me_y3{top:2*25%;}
     .me_y4{top:3*25%;}
     .up{
-        &:hover{border:none;}
-        .me_float{
+        &:hover{background-color: rgba(0,0,0,.5);}
+        // .me_float{
             background-color: rgba(0,0,0,.5);
-            box-shadow: 10px 10px 15px; 
-            top: -3px;
-            .me_txt{
+            // box-shadow: 10px 10px 15px; 
+            // top: -3px;
+            // .me_txt{
                 p{opacity:1 !important;}
-            }
-        }
+            // }
+        // }
     }
 }
 
@@ -645,6 +635,7 @@ body {
                     p:nth-child(2){
                         font-size:2em;
                         margin:2px 0px 0px -1px;
+                        line-height: 25px;
                     }
                 }
                 .stat_full{width:100%;}
@@ -663,7 +654,7 @@ body {
                         text-align: center;
                         color:white;
                         font-size:2em;
-                        margin-top: 12px;
+                        margin-top: 20px;
                     }
                     a{color:inherit;}
                     &:hover{

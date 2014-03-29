@@ -29,7 +29,6 @@ var lookingat = 'projects';
 
 
 $(document).ready(function(){
-// $(document).ajaxComplete(function(){
 	if (!backendexists){
 		setTimeout(function(){
 
@@ -389,8 +388,8 @@ function b_workload(er){
 
 		$('#info_datelaunch').val(thisproj.data.date_launched)
 		$('#info_hours').val(thisproj.data.total_hours)
-		$('#info_link').val(thisproj.data.project_text)
-		$('#info_text').val(thisproj.data.link)
+		$('#info_text').val(thisproj.data.project_text)
+		$('#info_link').val(thisproj.data.link)
 		$('#coord_y').val(thisproj.data.coord_y)
 		$('#coord_z').val(thisproj.data.coord_z)
 
@@ -446,7 +445,7 @@ $('#cell_add').on('click', function(){
 		url: "back/php/newcell.php"
 	}).done(function(e){
 
-		if ((editor_separated) && (!newest)){
+		if ((editor_separated)/* && (!newest)*/){
 			newest = true;
 			console.log(e.number)
 			$('<div class="cell_'+e.number+'"><div class="cell_img_hold"><img src="back/img/cross.png" id="img_blank" /><img src="back/img/kill.png" class="cell_kill" /></div><textarea tabindex="16" class="kommentar_content"></textarea></div>')
@@ -854,19 +853,23 @@ function killcube(){
 function newcube(){
 	$.ajax({
 		type: "POST",
+		dataType:'JSON',
 		url: "back/php/newcube.php"
 	}).done(function(e){
 		$('#shapeshifterhopper, #cell_put').empty();
 
 		var $targetedindex = $('.targeted').data('array');
 		var $targetedrow = $('.targeted').data('row');
-		slide.editor_likethis($targetedindex, 'left', $targetedrow);
-		$('.targeted').siblings().each(function(){
-			var $theindex = $(this).data('array');
-			var $therow = $(this).data('row');
-			if($therow == $targetedrow) editor_slide.editor_likethis($theindex, 'left', $therow);
-			if($therow >= $targetedrow) editor_slide.editor_likethis($theindex, 'left', $therow);
-		});
+		editor_slide.editor_likethis($targetedindex, 'left', $targetedrow);
+		
+		if ($('.targeted').siblings().size() > 0){
+			$('.targeted').siblings().each(function(){
+				var $theindex = $(this).data('array');
+				var $therow = $(this).data('row');
+				if($therow == $targetedrow) editor_slide.editor_likethis($theindex, 'left', $therow);
+				if($therow >= $targetedrow) editor_slide.editor_likethis($theindex, 'left', $therow);
+			});
+		}
 
 		editor_separated = false;
 		workingwithanewcube = true;
@@ -910,6 +913,8 @@ function newcube(){
 		object.position.z = 50;
 		editor_scene.add( object );
 
+		console.log(e);
+
 		currentlyediting = e.number;
 
 		cubearrayediting = editor_scene.children.length-1;
@@ -922,7 +927,22 @@ function newcube(){
 		$('#coord_z').val(1);
 
 		presence = {};
-		presence[currentlyediting] = {cells:{}, data:{category: "", client: "", coord_y: 300, coord_z: 50, date_launched: "", link: "", name: "", object_id: "", project_text: "", total_hours: ""}, shapeshifters:{}};
+		presence[currentlyediting] = {
+			cells:{}, 
+			data:{
+				category: categ[0], 
+				client: "", 
+				coord_y: 300, 
+				coord_z: 50, 
+				date_launched: "", 
+				link: "", 
+				name: "", 
+				object_id: "", 
+				project_text: "", 
+				total_hours: ""
+			}, 
+			shapeshifters:{}
+		};
 
 		shapeshifterpower();
 

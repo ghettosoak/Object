@@ -63,7 +63,7 @@ function projectdeploy(incoming){
 				'<p>'+incoming.stat.project_text+'</p>'+
 			'</div>'+
 			'<div class="stat_link">'+
-				'<a href="'+incoming.stat.link+'" target="_blank"><p>View</p></a>'+
+				'<a href="http://'+incoming.stat.link+'" target="_blank"><p>View</p></a>'+
 			'</div>'+
 		'</div>'+
 	'</div>');

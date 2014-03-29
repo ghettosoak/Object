@@ -61,7 +61,7 @@ body {
     width: 50px;
     height: 50px;
     position: absolute;
-    top: 50%;
+    top: 33.3333%;
     left: 50%;
     margin: -25px 0 0 -25px;
     -webkit-transform-style: preserve-3d;
@@ -126,7 +126,7 @@ body {
     position: absolute;
     height: 45px;
     width: 70px;
-    top: 75%;
+    top: 66.6666%;
     left: 50%;
     margin: -22.5px 0 0 -35px;
     font-family: u39;
@@ -207,7 +207,8 @@ body {
             position: relative;
             float: left; }
           #work .categoryContainer .project .view .long .stats {
-            padding: 10px 0px 0px; }
+            padding: 10px 0px 0px;
+            background-color: white; }
             #work .categoryContainer .project .view .long .stats p {
               margin: 0px 10px; }
             #work .categoryContainer .project .view .long .stats .stat, #work .categoryContainer .project .view .long .stats link {
