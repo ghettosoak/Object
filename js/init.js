@@ -61,8 +61,9 @@ var presentlyloading = false;
 //PROJECT.JS
 var mass, fertig, first = false;
 var imagemarker = [];
+var $stats = $('.stats');
 var $floater = $('.floater');
-var $floaterparent;
+var floatcol;
 var drg_h, drg_w;
 
 //ME.JS

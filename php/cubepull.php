@@ -18,7 +18,7 @@ while ($row = mysql_fetch_assoc($result)){
 }
 
 
-echo jsonReadable(json_encode($cubes));
+echo json_encode($cubes);
 
 
 

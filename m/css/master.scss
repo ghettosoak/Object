@@ -199,6 +199,7 @@ body {
             @include prfl;
             height:50px;
             width:100%;
+            overflow:hidden;
             
             .title, .view{
                 @include prfl;
@@ -227,6 +228,7 @@ body {
                         height:100%;
                         width:250px;
                         @include prfl;
+                        margin-right:5px; 
                     }
                     .stats{
                         padding:10px 0px 0px;

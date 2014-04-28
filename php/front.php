@@ -39,6 +39,6 @@ while ($metext = mysql_fetch_assoc($txt)){
 	$first['me']['txt'][] = $metext['txt'];
 }
 
-echo jsonReadable(json_encode($first));
+echo json_encode($first);
 
 ?>

@@ -59,10 +59,12 @@ a{
 
 body {
     font-family: u47, Helvetica, Arial, sans-serif;
-    color: #333;
+    color: #444;
     margin: 0px;
     overflow: hidden;
 }
+
+
 
 #master{
     position:absolute;
@@ -73,6 +75,13 @@ body {
     line-height:18px;
     font-size:14px;
     overflow:hidden;   
+}
+
+#classy{
+    position:absolute;
+    top:100%;
+    left:50%;
+    margin-left:-76px;
 }
 
 #edit{
@@ -249,6 +258,11 @@ body {
             vertical-align: middle;
             opacity:0;
             color:white;
+        }
+
+        a{
+            color:white;
+            border-bottom:1px white dotted;
         }
 
         &:hover{
@@ -560,149 +574,85 @@ body {
 
 
 .grid{
-    // top:-2px;
-    .floater{
-        width:150%;
+    $thick: 20px;
+
+    padding:0px 0px 0px $thick;
+
+    .stats{
+        position:relative;
+        float:left;
+        width:25%;
         height:100%;
-        position: absolute;
-        top:0px;
-        left:10px;
-        .vertical, .horzontal, .square_small, .square_large{
-            overflow:hidden;
+        padding:40px $thick 65px $thick;
+
+        .stat{
+            width:100%;
+            position: relative;
             float:left;
-            position:relative;
-            p{
-                padding:10px;
-                margin:0px;
-                background-color:rgba(0,0,0,.7);
-                color:white;
-                position:absolute;
-                bottom:0px;
-                left:0px;
+            padding:0px 0px 10px;
+
+            span{
                 width:100%;
-                display:none;
-            }
-        }
-
-
-
-        .stats{
-            #stats_closed{
-                height:150px;
-                width:150px;
-                border-radius: 300px;
-                background-color:#ccc;
-                display:table;
-                span{
-                    display:table-cell;
-                    vertical-align: middle;
-                    text-align: center;
-                    font-style:italic;
-                    font-family: georgia;
-                    font-size:82px;
-                    color:white;
-                    cursor: pointer;
-                }
-
-                &:hover{
-                    background-color:white;
-                    height:149px;
-                    width:149px;
-                    border: 1px #ccc solid;
-                    span{
-                        color:#ccc;
-                    }
-                }
+                // font-size:1em;
+                font-family:u67;
+                display:block;
+                padding-bottom:3px;
+                border-bottom:1px #ccc solid;
+                margin-bottom:3px;
             }
 
-            #stats_open{
-                padding-top:20px;
-                p{
-                    margin:0px;
-                    width:100%;
-                }
+            p{
+                margin:2px 0px 0px -1px;
+            }
 
-                .stat_full, .stat_small, .stat_text{
-                    position: relative;
-                    float:left;
-                    padding:0px 20px;
-                }
-
-                .stat_full, .stat_small{
-                    height:74px;
-
-                    p:nth-child(1){font-size:1em;}
-                    p:nth-child(2){
-                        font-size:2em;
-                        margin:2px 0px 0px -1px;
-                        line-height: 25px;
-                    }
-                }
-                .stat_full{width:100%;}
-                .stat_small{width:50%;}
-
-                .stat_text{
-                    width:100%;
-                }
-                .stat_link{
-                    height:52px;
-                    width:100%;
-                    position: absolute;
-                    bottom:0px;
-                    background-color:#ccc;
-                    p{
-                        text-align: center;
-                        color:white;
-                        font-size:2em;
-                        margin-top: 20px;
-                    }
-                    a{color:inherit;}
-                    &:hover{
-                        background-color:white;
-                        p{color:#ccc;}
-                    }
-                }                
+            a{
+                padding-top:10px;
+                color:#444;
+                border-bottom:1px #444 dotted;
             }
         }
-        .s_close{
-            height:150px;
-            width:150px;
-            #stats_closed{display:table;}
-            #stats_open{display:none;}
-        }
-        .s_open{
-            border:1px #ccc solid;
-            height:449px;
-            width:300px;
-            #stats_closed{display:none;}
-            #stats_open{display:block;}
-        }
+    }
+
+    .floater{
+        width:75%;
+        height:100%;
+        position:relative;
+        float:left;
+        overflow:scroll;
+        padding:$thick $thick $thick 0px;
 
         .bg_vert{ background-size:450px auto; }
         .bg_horiz{ background-size:auto 450px; }
 
-        .vertical{
-            height:300px;
-            width:150px;
-            // background-position:-150px center;
+        .floatLeft, .floatRight{
+            width:50%;
+            position: relative;
+            float: left;
         }
-        .horzontal{
-            height:150px;
-            width:300px;
-            // background-position:;
-        }
-        .square_small{
-            height:150px;
-            width:150px;
-        }
-        .square_large{
-            height:300px;
-            width:300px;
-        }
-        .open{
-            height:450px;
-            width:450px;
-            &:hover p{display:block;}
+
+        .cell{
+            padding:$thick;
+            width:100%;
+            position:relative;
+            float:left;
+
+
+            .cellImg{
+                background-size:cover;
+                background-position:center center;
+                height:300px;
+                width:100%;
+                position:relative;
+                border: 5px #ccc solid;
+            }
+
+            p{
+                padding:10px 0px;
+                margin:0px;
+                border-bottom:1px #ccc solid;
+                position:relative;
+                width:100%;
+            }
         }
     }
 }

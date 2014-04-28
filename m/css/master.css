@@ -181,7 +181,8 @@ body {
       position: relative;
       float: left;
       height: 50px;
-      width: 100%; }
+      width: 100%;
+      overflow: hidden; }
       #work .categoryContainer .project .title, #work .categoryContainer .project .view {
         position: relative;
         float: left; }
@@ -205,7 +206,8 @@ body {
             height: 100%;
             width: 250px;
             position: relative;
-            float: left; }
+            float: left;
+            margin-right: 5px; }
           #work .categoryContainer .project .view .long .stats {
             padding: 10px 0px 0px;
             background-color: white; }

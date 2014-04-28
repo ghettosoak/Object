@@ -21,91 +21,59 @@ function projLoader(which){
 		cleargrid();
 		console.log('DEPLOY');
 		projectdeploy(cellular);
-		breadcrumb(cubedescend.nav.cubes[tref], trow, tcallme);
 	});
 }
 
 function projectdeploy(incoming){
 	imagemarker.length = 0;
 	mass = _.size(incoming.cells);
-	$floaterparent = $floater.parent();
 	console.log(incoming);
 
-	var squaresize = (Math.floor(Math.sqrt(mass))+1) * 229;
-
-	$floater.css('width', squaresize);
-
-	drg_h = $floaterparent.outerHeight();
-	drg_w = $floaterparent.outerWidth();
-
-	$floater.append('<div class="cell stats s_close">'+
-		'<div id="stats_closed">'+
-			'<span>i</span>'+
-		'</div>'+
-		'<div id="stats_open">'+
-			'<div class="stat_full">'+
-				'<p>name</p>'+
+	$stats.append(
+			'<div class="stat">'+
+				'<span>Name</span>'+
 				'<p>'+incoming.stat.name+'</p>'+
 			'</div>'+
-			'<div class="stat_full">'+
-				'<p>client</p>'+
+			'<div class="stat">'+
+				'<span>Client</span>'+
 				'<p>'+incoming.stat.client+'</p>'+
 			'</div>'+
-			'<div class="stat_small">'+
-				'<p>total hours</p>'+
+			'<div class="stat">'+
+				'<span>Total Hours</span>'+
 				'<p>'+incoming.stat.total_hours+'</p>'+
 			'</div>'+
-			'<div class="stat_small">'+
-				'<p>date launched</p>'+
+			'<div class="stat">'+
+				'<span>Date Launched</span>'+
 				'<p>'+incoming.stat.date_launched+'</p>'+
 			'</div>'+
-			'<div class="stat_text">'+
+			'<div class="stat s_text">'+
 				'<p>'+incoming.stat.project_text+'</p>'+
 			'</div>'+
-			'<div class="stat_link">'+
-				'<a href="http://'+incoming.stat.link+'" target="_blank"><p>View</p></a>'+
-			'</div>'+
-		'</div>'+
-	'</div>');
+			'<div class="stat">'+
+				'<a href="http://'+incoming.stat.link+'" target="_blank">Have a look</a>'+
+			'</div>'
+		);
 
 	for (var i in incoming.cells) gridSet(i, incoming.cells[i]);
 
 	function gridSet(numerate, thisone){
 
+
+
 		var theImg = $("<img/>").load(function(){
 			$.when( theImg ).done(function() {
-				var decide = Math.random();
-				var orient, direct, locale;
 
-				if (decide < .25) orient = 'vertical';
-				if (decide > .25 && decide < .5) orient = 'horzontal';
-				if (decide > .5 && decide < .75) orient = 'square_small';
-				if (decide > .75) orient = 'square_large';
+				floatcol = numerate % 2 ? 'Right' : 'Left';
 
-				if (theImg[0].height < theImg[0].width){
-					direct = 'auto 450px';
-					if (decide < .25) locale = -( ( (theImg[0].width / theImg[0].height) * 450 ) * .25 ) + 'px center';
-					if (decide > .25 && decide < .5) locale = 'center center';
-					if (decide > .5 && decide < .75) locale = 'center center';
-					if (decide > .75) locale = 'center center';
+				console.log(numerate)
 
-				}else if (theImg[0].height > theImg[0].width){
-					direct = '450px auto';
-					if (decide < .25) locale = 'center center';
-					if (decide > .25 && decide < .5) locale = -( ( (theImg[0].width / theImg[0].height) * 450 ) * .25 ) + 'px center';
-					if (decide > .5 && decide < .75) locale = 'center center';
-					if (decide > .75) locale = 'center center';
-				}else{
-					direct = '450px auto';
-					locale = 'center center';
-				}
+				console.log(numerate % 2 ? 'Right' : 'Left')
 
-				$floater.append(
-					'<div class="cell '+orient+'" style="'+
-						'background-image: url(' + thisone.img + ');' +
-						'background-position:' + locale + ';' + 
-						'background-size:' + direct + ';' + 
-					'">'+
+				$floater.find('.float' + floatcol).append(
+					'<div class="cell">'+
+						'<div class="cellImg" style="'+
+							'background-image: url(' + thisone.img + ');' +
+						'"></div>'+
 						'<p>'+thisone.txt+'</p>'+
 					'</div>'
 				);
@@ -118,7 +86,6 @@ function projectdeploy(incoming){
 	fertig = setInterval(function(){
 		if (imagemarker.length == mass){
 			clearInterval(fertig);
-			isotopeengage();
 			first = true;
 			gotogrid();
 			$cubic.mouseup();
@@ -154,80 +121,8 @@ function breadcrumb(shape, color, selected){
 	}
 }
 
-function isotopeengage(){
-	$floater.isotope({
-		itemSelector : '.cell',
-		masonry : {
-			columnWidth : 150
-		},
-		masonryHorizontal : {
-			rowHeight: 150
-		},
-		cellsByRow : {
-			columnWidth : 300,
-			rowHeight : 300
-		},
-		cellsByColumn : {
-			columnWidth : 300,
-			rowHeight : 300
-		}
-	});
-}
-
 var go_x, go_y, orig_y, orig_x;
 var clicked = false, dragging = false;
-
-$floater.on({
-	mousedown:function(e){
-
-		e.preventDefault();
-		if (!$(this).hasClass('stats')) clicked = true;
-
-		drg_h = $floaterparent.outerHeight()
-		drg_w = $floaterparent.outerWidth()
-		
-		orig_y = $floaterparent.offset().top + drg_h - e.pageY,
-		orig_x = $floaterparent.offset().left + drg_w - e.pageX;
-	},
-	mousemove:function(e){
-		go_x = (e.pageY + orig_y) - drg_h;
-		go_y = (e.pageX + orig_x) - drg_w;
-
-		if (((Math.abs(go_x) > 10) || (Math.abs(go_y) > 10)) && clicked){
-			dragging = true;
-			$floaterparent.offset({
-				top:go_x,
-				left:go_y
-			})
-		}else dragging = false;
-		e.preventDefault();
-	},
-	mouseup:function(){
-		if (!dragging && (!$(this).hasClass('stats'))){
-			$(this).toggleClass('open');
-			$floater.isotope('reLayout');
-		}else if ($(this).hasClass('stats')){
-			$(this).toggleClass('s_close s_open')
-			$floater.isotope('reLayout');
-		}
-
-		clicked = false;
-		dragging = false;
-		go_x = 0;
-		go_y = 0;
-	}
-},'.cell');
-
-if (document.addEventListener) {
-	document.addEventListener("mousewheel", MouseWheelHandler, false);
-	document.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
-}
-else document.attachEvent("onmousewheel", MouseWheelHandler);
-	
-function MouseWheelHandler() {
-	if (!mobileis) $('#instruct').addClass('reinstruct').css('display','block').delay(3000).fadeOut();
-}
-
 $('#crumbput').on('click', '.crumbcube', function(){
 	$('#movement').removeClass().addClass('third')
 	var $nextcrumb = $(this).data()
@@ -246,8 +141,8 @@ $('#point').on('click', function(){
 })
 
 function cleargrid(){
-	$("#crumbput, .floater").children().detach();
-	$floater.isotope('destroy');
+	$(".floaters").children().detach();
+	$stats.empty();
 }
 
 

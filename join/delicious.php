@@ -52,6 +52,13 @@ function jsonReadable($json, $html=FALSE) {
     return $result; 
 } 
 
+function escapeJsonString($value) { # list from www.json.org: (\b backspace, \f formfeed)
+    $escapers = array("\\", "/", "\"", "\n", "\r", "\t", "\x08", "\x0c");
+    $replacements = array("\\\\", "\\/", "\\\"", "\\n", "\\r", "\\t", "\\f", "\\b");
+    $result = str_replace($escapers, $replacements, $value);
+    return $result;
+}
+
 function proper_array_diff($a, $b) {
     $map = $out = array();
     foreach($a as $val) $map[$val] = 1;

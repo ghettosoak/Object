@@ -14,6 +14,13 @@ $(document).ready(function(){
 	$work = $('#work');
 	$about = $('#about');
 
+	$('.down').on('click', function(){
+		var $that = $(this)
+		$('#master').animate({
+		    scrollTop: $that.offset().top - 10
+		 }, 1000);
+	});
+
 	$category = $work.find('.head');
 
 	$title = $work.find('.title');
@@ -59,7 +66,6 @@ $(document).ready(function(){
 
 	$('#about').on('click', function(){
 		$(this).toggleClass('hello');
-
 	});
 });
 
@@ -80,7 +86,7 @@ function projectLoad(er, $ing){
 
 			currentProj = e;
 
-			$ing.find('.long').css('width', ((e.cells.length)*250) + 250)
+			$ing.find('.long').css('width', ((e.cells.length)*260) + 250)
 			.append(
 				'<div class="stats">'+
 					'<p class="stat">Made for: '+e.stat.client+'</p>'+

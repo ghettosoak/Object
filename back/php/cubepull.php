@@ -28,6 +28,6 @@ while ($row = mysql_fetch_assoc($gathered)){
     $cubes['cubes'][$row['category']][$row['object_id']] = $coords;
 }
 
-echo jsonReadable(json_encode($cubes));
+echo json_encode($cubes);
 
 ?>

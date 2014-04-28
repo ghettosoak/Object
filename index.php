@@ -56,6 +56,7 @@ $me_y = 1;
 	</head>
 	<body>
 		<div id="master">
+			<img src="img/apple-touch-icon.png" id="classy"/>
 			<div id="edit"></div>
 			<div id="movement" class="second">
 				<div class="me">
@@ -82,6 +83,9 @@ $me_y = 1;
 							}
 						}
 					?>
+					<div class="me_x3 me_y4 me_bit">
+						<p>Get in touch <a href="mailto:e@ject.ch">here.</a></p>
+					</div>
 					<div class="meback me_x4 me_y4">
 						<div id="mebackwhite"></div>
 						<img src="img/back_right.png" />
@@ -113,18 +117,15 @@ $me_y = 1;
 						</div>
 					</div>
 					<div class="right">
-						<p id="instruct">
-							click to expand<br />
-							drag to navigate
-						</p>
 						<img src="img/back_left.png" id="point" />
-						<div class="crumb">
-							<div id="crumbput"></div>
-						</div>
 					</div>
 				</div>
 				<div class="grid">
-					<div class="floater"></div>
+					<div class="stats"></div>
+					<div class="floater">
+						<div class="floaters floatLeft"></div>
+						<div class="floaters floatRight"></div>
+					</div>
 				</div>
 			</div>
 			<div id="nope">
@@ -133,28 +134,10 @@ $me_y = 1;
 				<p>at all.</p>
 				<p>come back with something that doesn't make my blood boil.<br /></p>
 				<p>deal with it,<br />m</p>
-
 			</div>
-		</div>		
+		</div>
 
-		<script src="js/lib/jquery-1.8.3.min.js"></script>
-		<script src="js/lib/underscore-min.js"></script>
-		<script src="js/lib/three.min.54.js"></script>
-		<script src="js/lib/CSS3DRenderer.js"></script>
-		<script src="js/lib/tween.min.js"></script>
-		<script src="js/lib/jquery.isotope.min.js"></script>
-		<script src="js/lib/sha512.js"></script>
-
-		<script src='js/init.js'></script>
-
-		<script src='js/cubecontrol.js'></script>
-		<script src='js/shapeshifter.js'></script>
-		<script src='js/loadr.js'></script>
-		<script src='js/project.js'></script>
-		<script src='js/me.js'></script>
-		<script src='js/link.js'></script>
-
-		<script src='js/launch.js'></script>
+		<script src='js/master-m.js'></script>
 
 		<?php		
 
