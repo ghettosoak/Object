@@ -34,7 +34,6 @@ $(document).ready(function(){
 
 $windowpane.load(function(){
 	$('#master').addClass('ready');
-
 });
 
 $windowpane.resize(function(){

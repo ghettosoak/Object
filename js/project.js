@@ -57,19 +57,10 @@ function projectdeploy(incoming){
 	for (var i in incoming.cells) gridSet(i, incoming.cells[i]);
 
 	function gridSet(numerate, thisone){
-
-
-
 		var theImg = $("<img/>").load(function(){
 			$.when( theImg ).done(function() {
 
-				floatcol = numerate % 2 ? 'Right' : 'Left';
-
-				console.log(numerate)
-
-				console.log(numerate % 2 ? 'Right' : 'Left')
-
-				$floater.find('.float' + floatcol).append(
+				$floater.append(
 					'<div class="cell">'+
 						'<div class="cellImg" style="'+
 							'background-image: url(' + thisone.img + ');' +
@@ -87,8 +78,10 @@ function projectdeploy(incoming){
 		if (imagemarker.length == mass){
 			clearInterval(fertig);
 			first = true;
+			$('.floater').masonry({
+				itemSelector: '.cell'
+			});
 			gotogrid();
-			$cubic.mouseup();
 		}
 	},50);
 
@@ -141,7 +134,7 @@ $('#point').on('click', function(){
 })
 
 function cleargrid(){
-	$(".floaters").children().detach();
+	$(".floater").children().detach();
 	$stats.empty();
 }
 

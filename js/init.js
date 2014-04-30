@@ -23,7 +23,6 @@ jQuery.getScript = function( resources, callback ) {
 var $windowpane = $(window);
 var wpheight, wpwidth, 
 	titlemargin, whomargin, 
-	mobileis = false, 
 	action = 'click', 
 	hash, hashhistory = [];
 
@@ -63,7 +62,6 @@ var mass, fertig, first = false;
 var imagemarker = [];
 var $stats = $('.stats');
 var $floater = $('.floater');
-var floatcol;
 var drg_h, drg_w;
 
 //ME.JS

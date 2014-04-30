@@ -123,8 +123,6 @@ $me_y = 1;
 				<div class="grid">
 					<div class="stats"></div>
 					<div class="floater">
-						<div class="floaters floatLeft"></div>
-						<div class="floaters floatRight"></div>
 					</div>
 				</div>
 			</div>
@@ -143,7 +141,7 @@ $me_y = 1;
 
 		echo "<script>
 		if (navigator.userAgent.toLowerCase().indexOf('msie') === -1){
-			var cubedescend = " . json_encode($first) . "
+			var cubedescend = " . json_encode($first) . ";
 			cubeinit(cubedescend.nav.cubes);
 			shapeshifterload(cubedescend.nav.shapeshifter);
 			animate();

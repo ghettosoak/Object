@@ -31,6 +31,20 @@
          url('../join/type/u67/276103_1_0.svg#wf') format('svg');
 }
 
+@mixin transition($property, $time, $ease){
+    -webkit-transition: $property $time $ease;
+    -moz-transition: $property $time $ease;
+    -o-transition: $property $time $ease;
+    transition: $property $time $ease;
+}
+
+@mixin delay($time){
+    -webkit-transition-delay: $time;
+    -moz-transition-delay: $time;
+    -o-transition-delay: $time;
+    transition-delay: $time;
+}
+
 @import "bourbon";
 
 //DEFINES
@@ -239,7 +253,6 @@ body {
             z-index:2;
         }
         &:hover{
-            // border:none !important;
             #mebackwhite{background-color:grey;}
         }
     }
@@ -279,14 +292,8 @@ body {
     .me_y4{top:3*25%;}
     .up{
         &:hover{background-color: rgba(0,0,0,.5);}
-        // .me_float{
-            background-color: rgba(0,0,0,.5);
-            // box-shadow: 10px 10px 15px; 
-            // top: -3px;
-            // .me_txt{
-                p{opacity:1 !important;}
-            // }
-        // }
+        background-color: rgba(0,0,0,.5);
+        p{opacity:1 !important;}
     }
 }
 
@@ -305,7 +312,6 @@ body {
 
     .name{
         text-align:left;
-        opacity:1;
         cursor:pointer;
         p{
             font-size: 28px;
@@ -331,6 +337,10 @@ body {
     }
 }
 
+.ready #cubic{
+    // top:50%;
+}
+
 .ssi{display:none;}
 
 .cube {
@@ -343,6 +353,10 @@ body {
     transform-style: preserve-3d;
     cursor: pointer;
     z-index: 10;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
+    
 }
 
 .cube div {
@@ -355,6 +369,9 @@ body {
     font-weight: bold;
     color: white;
     text-align: center;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
 }
 
 .cube .cubefront { @include transform(translateZ( $offset )); }
@@ -364,15 +381,16 @@ body {
 .cube .cubetop { @include transform(rotateX(   90deg ) translateZ( $offset )); }
 .cube .cubebottom { @include transform(rotateX(  -90deg ) translateZ( $offset )); }
 
-.r1 div{background-color:rgba(230, 0, 140, 0.2);}
-.r2 div{background-color:rgba(247, 148, 30, 0.2);}
-.r3 div{background-color:rgba(141, 198, 63, 0.2);}
-.r4 div{background-color:rgba(0, 166, 81, 0.2);}
-.r5 div{background-color:rgba(0, 174, 239, 0.2);}
-.r6 div{background-color:rgba(169, 124, 80, 0.2);}
-.r7 div{background-color:rgba(0, 104, 56, 0.2);}
-.r8 div{background-color:rgba(138, 157, 167, 0.2);}
-.r9 div{background-color:rgba(237, 28, 36, 0.2);}
+
+.r1 div{background-color:rgba(230, 0, 140, 0.2); }
+.r2 div{background-color:rgba(247, 148, 30, 0.2); }
+.r3 div{background-color:rgba(141, 198, 63, 0.2); }
+.r4 div{background-color:rgba(0, 166, 81, 0.2); }
+.r5 div{background-color:rgba(0, 174, 239, 0.2); }
+.r6 div{background-color:rgba(169, 124, 80, 0.2); }
+.r7 div{background-color:rgba(0, 104, 56, 0.2); }
+.r8 div{background-color:rgba(138, 157, 167, 0.2); }
+.r9 div{background-color:rgba(237, 28, 36, 0.2); }
 
 .red{
     z-index:200;
@@ -576,7 +594,7 @@ body {
 .grid{
     $thick: 20px;
 
-    padding:0px 0px 0px $thick;
+    padding:0px $thick;
 
     .stats{
         position:relative;
@@ -593,7 +611,6 @@ body {
 
             span{
                 width:100%;
-                // font-size:1em;
                 font-family:u67;
                 display:block;
                 padding-bottom:3px;
@@ -602,7 +619,7 @@ body {
             }
 
             p{
-                margin:2px 0px 0px -1px;
+                margin:0px;
             }
 
             a{
@@ -615,27 +632,16 @@ body {
 
     .floater{
         width:75%;
-        height:100%;
+        height:100% !important;
         position:relative;
         float:left;
         overflow:scroll;
-        padding:$thick $thick $thick 0px;
-
-        .bg_vert{ background-size:450px auto; }
-        .bg_horiz{ background-size:auto 450px; }
-
-        .floatLeft, .floatRight{
-            width:50%;
-            position: relative;
-            float: left;
-        }
+        padding:$thick 0px;
 
         .cell{
             padding:$thick;
-            width:100%;
             position:relative;
             float:left;
-
 
             .cellImg{
                 background-size:cover;
@@ -643,7 +649,7 @@ body {
                 height:300px;
                 width:100%;
                 position:relative;
-                border: 5px #ccc solid;
+                border: 2px #ccc solid;
             }
 
             p{
@@ -654,6 +660,24 @@ body {
                 width:100%;
             }
         }
+    }
+}
+
+@media all and (min-width: 568px) and (max-width: 1024px) {
+    .grid .floater .cell{
+        width:50%;
+    }
+}
+
+@media all and (min-width: 1024px) and (max-width: 1467px) {
+    .grid .floater .cell{
+        width:33.33333%;
+    }
+}
+
+@media all and (min-width: 1468px) {
+    .grid .floater .cell{
+        width:25%;
     }
 }
 
