@@ -216,7 +216,9 @@ body {
             #work .categoryContainer .project .view .long .stats .stat, #work .categoryContainer .project .view .long .stats link {
               font-weight: u67; }
             #work .categoryContainer .project .view .long .stats .text {
-              border-top: 1px #aaa solid; }
+              margin-top: 10px;
+              border-top: 1px #aaa solid;
+              padding-top: 10px; }
             #work .categoryContainer .project .view .long .stats .link {
               position: absolute;
               bottom: 0px;
@@ -255,7 +257,7 @@ body {
     #work .categoryContainer:nth-child(5) {
       background-color: rgba(0, 174, 239, 0.5); }
     #work .categoryContainer:nth-child(6) {
-      background-color: rgba(169, 124, 80, 0.5); }
+      background-color: rgba(107, 37, 222, 0.5); }
     #work .categoryContainer:nth-child(7) {
       background-color: rgba(0, 104, 56, 0.5); }
     #work .categoryContainer:nth-child(8) {

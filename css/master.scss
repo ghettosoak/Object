@@ -162,6 +162,7 @@ body {
 .me{
     @include background-size(cover);
     overflow:hidden;
+    padding:5px;
     .me_img{
         position:absolute;
         height:100%;
@@ -181,7 +182,8 @@ body {
         .not{opacity:0;}
     }
     .meme {
-        position:absolute;
+        position: relative;
+        float: left;
         width:25%;
         height:25%;
         cursor: pointer;
@@ -224,7 +226,8 @@ body {
         }
     }
     .meback{
-        position:absolute;
+        position: relative;
+        float: left;
         width:25%;
         height:25%;
         padding:0px;
@@ -257,44 +260,54 @@ body {
         }
     }
     .me_bit{
-        position:absolute;
+        position: relative;
+        float: left;
         width:25%;
         height:25%;
         cursor: pointer;
-        display:table;
-        background-color:rgba(0,0,0,.0);
-        @include transition (all 0.5s ease-in-out);
-        padding:2%;
-        p{
+        padding:5px;
+        div{
+            padding:0 10px;
+            display:table;
+            position: relative;
+            top: 0;
+            left:0;
+            height:100%;
+            width:100%;
+            background-color:rgba(0,0,0,.0);
             @include transition (all 0.5s ease-in-out);
-            display:table-cell;
-            vertical-align: middle;
-            opacity:0;
-            color:white;
-        }
+            p{
+                @include transition (all 0.5s ease-in-out);
+                display:table-cell;
+                vertical-align: middle;
+                opacity:0;
+                color:white;
+            }
 
-        a{
-            color:white;
-            border-bottom:1px white dotted;
+            a{
+                color:white;
+                border-bottom:1px white dotted;
+            }
         }
+        
 
-        &:hover{
+        &:hover div{
             background-color: rgba(0,0,0,.1);
         }
     }
-    .me_x1{left:0*25%;}
-    .me_x2{left:1*25%;}
-    .me_x3{left:2*25%;}
-    .me_x4{left:3*25%;}
-    .me_y1{top:0*25%;}
-    .me_y2{top:1*25%;}
-    .me_y3{top:2*25%;}
-    .me_y4{top:3*25%;}
-    .up{
+    .up div{
         &:hover{background-color: rgba(0,0,0,.5);}
         background-color: rgba(0,0,0,.5);
         p{opacity:1 !important;}
     }
+    // .me_x1{left:0*25%;}
+    // .me_x2{left:1*25%;}
+    // .me_x3{left:2*25%;}
+    // .me_x4{left:3*25%;}
+    // .me_y1{top:0*25%;}
+    // .me_y2{top:1*25%;}
+    // .me_y3{top:2*25%;}
+    // .me_y4{top:3*25%;}
 }
 
 .front{
@@ -352,11 +365,7 @@ body {
     -o-transform-style: preserve-3d;
     transform-style: preserve-3d;
     cursor: pointer;
-    z-index: 10;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility:    hidden;
-    -ms-backface-visibility:     hidden;
-    
+    z-index: 10; 
 }
 
 .cube div {
@@ -369,9 +378,8 @@ body {
     font-weight: bold;
     color: white;
     text-align: center;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility:    hidden;
-    -ms-backface-visibility:     hidden;
+    border-width:0;
+    border-style: solid;
 }
 
 .cube .cubefront { @include transform(translateZ( $offset )); }
@@ -382,15 +390,21 @@ body {
 .cube .cubebottom { @include transform(rotateX(  -90deg ) translateZ( $offset )); }
 
 
-.r1 div{background-color:rgba(230, 0, 140, 0.2); }
-.r2 div{background-color:rgba(247, 148, 30, 0.2); }
-.r3 div{background-color:rgba(141, 198, 63, 0.2); }
-.r4 div{background-color:rgba(0, 166, 81, 0.2); }
-.r5 div{background-color:rgba(0, 174, 239, 0.2); }
-.r6 div{background-color:rgba(169, 124, 80, 0.2); }
-.r7 div{background-color:rgba(0, 104, 56, 0.2); }
-.r8 div{background-color:rgba(138, 157, 167, 0.2); }
-.r9 div{background-color:rgba(237, 28, 36, 0.2); }
+.r1 div{ border-color: rgba(230, 0,   140, 0.2); background-color:rgba(230, 0,   140, 0.1); }
+.r2 div{ border-color: rgba(247, 148, 30,  0.2); background-color:rgba(247, 148, 30,  0.1); }
+.r3 div{ border-color: rgba(141, 198, 63,  0.2); background-color:rgba(141, 198, 63,  0.1); }
+.r4 div{ border-color: rgba(0,   166, 81,  0.2); background-color:rgba(0,   166, 81,  0.1); }
+.r5 div{ border-color: rgba(0,   174, 239, 0.2); background-color:rgba(0,   174, 239, 0.1); }
+.r6 div{ border-color: rgba(107, 37,  222, 0.2); background-color:rgba(107, 37,  222, 0.1); }
+.r7 div{ border-color: rgba(0,   104, 56,  0.2); background-color:rgba(0,   104, 56,  0.1); }
+.r8 div{ border-color: rgba(138, 157, 167, 0.2); background-color:rgba(138, 157, 167, 0.1); }
+.r9 div{ border-color: rgba(237, 28,  36,  0.2); background-color:rgba(237, 28,  36,  0.1); }
+
+
+.cube:hover div{
+    background-color: transparent;
+    border-width:1px;
+}
 
 .red{
     z-index:200;
@@ -663,19 +677,19 @@ body {
     }
 }
 
-@media all and (min-width: 568px) and (max-width: 1024px) {
+@media all and (min-width: 568px) and (max-width: 1467px) {
     .grid .floater .cell{
         width:50%;
     }
 }
 
-@media all and (min-width: 1024px) and (max-width: 1467px) {
+@media all and (min-width: 1468px) and (max-width: 2467px) {
     .grid .floater .cell{
         width:33.33333%;
     }
 }
 
-@media all and (min-width: 1468px) {
+@media all and (min-width: 2468px) {
     .grid .floater .cell{
         width:25%;
     }

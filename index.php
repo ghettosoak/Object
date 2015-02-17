@@ -75,7 +75,9 @@ $me_y = 1;
 					<?php
 						while ($metext = mysql_fetch_assoc($txt)){
 							echo '<div class="me_x'.$me_x++.' me_y'.$me_y.' me_bit">
-									<p>'.$metext['txt'].'</p>
+									<div>
+										<p>'.$metext['txt'].'</p>
+									</div>
 								</div>';
 							if ($me_x > 4){
 								$me_x = 1;
@@ -84,7 +86,9 @@ $me_y = 1;
 						}
 					?>
 					<div class="me_x3 me_y4 me_bit">
-						<p>Get in touch <a href="mailto:e@ject.ch">here.</a></p>
+						<div>
+							<p>Connect with me <a href="mailto:e@ject.ch?subject=Howdy">here.</a></p>
+						</div>
 					</div>
 					<div class="meback me_x4 me_y4">
 						<div id="mebackwhite"></div>

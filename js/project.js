@@ -134,7 +134,8 @@ $('#point').on('click', function(){
 })
 
 function cleargrid(){
-	$(".floater").children().detach();
+	$(".floater").masonry('destroy')
+	.children().detach();
 	$stats.empty();
 }
 

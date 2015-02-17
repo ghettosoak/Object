@@ -240,7 +240,9 @@ body {
                             font-weight: u67;
                         }
                         .text{
+                            margin-top:10px;
                             border-top:1px #aaa solid;
+                            padding-top:10px;
                         }
                         .link{
                             position: absolute;
@@ -295,7 +297,7 @@ body {
         &:nth-child(3){background-color:rgba(141, 198, 63, 0.5);}
         &:nth-child(4){background-color:rgba(0, 166, 81, 0.5);}
         &:nth-child(5){background-color:rgba(0, 174, 239, 0.5);}
-        &:nth-child(6){background-color:rgba(169, 124, 80, 0.5);}
+        &:nth-child(6){background-color:rgba(107, 37, 222, 0.5);}
         &:nth-child(7){background-color:rgba(0, 104, 56, 0.5);}
         &:nth-child(8){background-color:rgba(138, 157, 167, 0.5);}
         &:nth-child(9){background-color:rgba(237, 28, 36, 0.5);}
