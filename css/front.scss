@@ -1,0 +1,61 @@
+.front{
+    overflow:hidden;
+    cursor: all-scroll;
+
+    &.shapeshifting {
+        cursor: default;
+
+        #shapeshifter{
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    #cubic{
+        position:absolute;
+        top:50%;
+        left:50%;
+        z-index:50;
+        width:819px;
+        height:672px;
+        margin:-336px 0px 0px -409.5px;
+    }
+
+    .name{
+        text-align:left;
+        cursor:pointer;        
+
+        p{
+            font-size: 28px;
+            opacity: 0;
+            @include transform(scale3d(0.5, 0.5, 1));
+            @include transition(opacity, .5s, linear);
+            .to_rock &{ opacity: 1; }
+        }
+    }
+
+    #shapeshifter{
+        position:absolute;
+        top:50%;
+        left:50%;
+        width:137px;
+        height:147px;
+        margin:-73.5px 0px 0px -68.5px;
+        z-index: 100;
+        cursor: pointer;
+        visibility: hidden;
+        opacity: 0;
+
+        @include transition(all, .3s, $fade);
+
+        div{
+            position:absolute;
+            width:137px;
+            height:147px;
+            display:none;
+        }
+    }
+}
+
+.ssi{display:none;}
+

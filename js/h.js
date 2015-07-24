@@ -6,7 +6,7 @@ rollOveredFace, isShiftDown = false, isMouseDown = false,
 epsilon = 45, isCtrlDown = false, heylookatme, camera_ed = true, quickness = 10,
 radious = 1600, theta = 45, onMouseDownTheta = 45, phi = 60, onMouseDownPhi = 60, onMouseDownPosition, previewed = false, separated = false,
 trow, tnumber, strow, stnumber, rowsless = 0, rowsmore = 0, previewedOrigCoordx, previewedOrigCoordy, returnCoordx, returnCoordy, returnCoordz,
-$name;
+$name, intro = false;
 
 var rollOverMesh, rollOverMaterial, voxelPosition = new THREE.Vector3(), tmpVec = new THREE.Vector3();
 var cubeGeo, cubeMaterial;

@@ -343,6 +343,8 @@ function editor_cubegenerator(receive, active){
 function editor_slider(){
 	function editor_likethis(number, direction, row){
 		var jump = 500;
+		console.log(editor_scene)
+		console.log(number)
 		var stay = editor_scene.children[number].position.x;
 		var going;
 		if (direction == 'left') going = (row*50)-50;

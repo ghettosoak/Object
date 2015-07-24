@@ -1,0 +1,90 @@
+.grid{
+    $thick: 20px;
+
+    padding:0px $thick;
+
+    .stats{
+        position:relative;
+        float:left;
+        width:25%;
+        height:100%;
+        padding:40px $thick 65px $thick;
+
+        .stat{
+            width:100%;
+            position: relative;
+            float:left;
+            padding:0px 0px 10px;
+
+            span{
+                width:100%;
+                font-family:u67;
+                display:block;
+                padding-bottom:3px;
+                border-bottom:1px #ccc solid;
+                margin-bottom:3px;
+            }
+
+            p{
+                margin:0px;
+            }
+
+            a{
+                padding-top:10px;
+                color:#444;
+                border-bottom:1px #444 dotted;
+            }
+        }
+    }
+
+    .floater{
+        width:75%;
+        height:100% !important;
+        position:relative;
+        float:left;
+        overflow:scroll;
+        padding:$thick 0px;
+
+        .cell{
+            padding:$thick;
+            position:relative;
+            float:left;
+            width: 100%;
+
+            .cellImg{
+                background-size:cover;
+                background-position:center center;
+                height:300px;
+                width:100%;
+                position:relative;
+                border: 2px #ccc solid;
+            }
+
+            p{
+                padding:10px 0px;
+                margin:0px;
+                border-bottom:1px #ccc solid;
+                position:relative;
+                width:100%;
+            }
+        }
+    }
+}
+
+@media all and (min-width: 568px) and (max-width: 1467px) {
+    .grid .floater .cell{
+        width:50%;
+    }
+}
+
+@media all and (min-width: 1468px) and (max-width: 2467px) {
+    .grid .floater .cell{
+        width:33.33333%;
+    }
+}
+
+@media all and (min-width: 2468px) {
+    .grid .floater .cell{
+        width:25%;
+    }
+}

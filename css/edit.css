@@ -1,0 +1,14 @@
+.edit {
+  background-color: #63D0FF !important; }
+  .edit .who {
+    top: 69% !important;
+    color: #63D0FF !important;
+    border: 1px #63D0FF solid !important; }
+    .edit .who:hover {
+      background: #63D0FF !important;
+      border: 1px white solid !important;
+      color: white !important; }
+  .edit .copyright {
+    top: 74% !important; }
+  .edit #trial {
+    opacity: 1 !important; }

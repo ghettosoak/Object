@@ -24,9 +24,18 @@ function cubeinit(thecube, fade) {
 	heylookatme = scene.position;
 
 	camera = new THREE.PerspectiveCamera( 18, 1024 / 768, 1, 10000 ); 
-	camera.position.x = radious * Math.sin( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
-	camera.position.y = radious * Math.sin( phi * Math.PI / 360 );
-	camera.position.z = radious * Math.cos( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
+
+	// if (letsIntro){
+		camera.position.x = introPos.x;
+		camera.position.y = introPos.y;
+		camera.position.z = introPos.z;
+	// }
+	// else{
+	// 	camera.position.x = normalPos.x;
+	// 	camera.position.y = normalPos.y;
+	// 	camera.position.z = normalPos.z;
+	// }
+
 	camera.lookAt(heylookatme)
 
 	onMouseDownPosition = new THREE.Vector2();
@@ -36,7 +45,32 @@ function cubeinit(thecube, fade) {
 
 function onWindowResize() { camera.updateProjectionMatrix(); }
 
+function cubeIntro(duration){
+	var tween = new TWEEN.Tween({ 
+		x: introPos.x,
+		y: introPos.y,
+		z: introPos.z,
+	})
+	.to({ 
+		x: normalPos.x,
+		y: normalPos.y,
+		z: normalPos.z,
+	}, duration )
+	.easing(TWEEN.Easing.Exponential.InOut)
+	.onUpdate(function (){
+		camera.position.x = this.x;
+		camera.position.y = this.y;
+		camera.position.z = this.z;
+
+		camera.lookAt(heylookatme)
+		camera.updateMatrix();
+	})
+	.start();
+}
+
 function cube_ensure(){
+	acceleration();
+
 	$cubic.on({
 		mousedown:function ( event ) {
 			event.preventDefault();
@@ -70,46 +104,46 @@ function cube_ensure(){
 
 			console.log(camera.position.x+' /// '+camera.position.y+' /// '+camera.position.z)
 			console.log(heylookatme.x+' /// '+heylookatme.y+' /// '+heylookatme.z)
+			console.log(theta+' /// '+phi+' /// '+theta)
 			if (previewed){
-				$('#shapeshifter').fadeOut(100, function(){
-					console.log('44444444')
+				console.log('44444444')
 
-					clearInterval(clicker)
-					$('.ssi').css('display','none')
+				clearInterval(clicker)
+				$('.ssi').css('display','none')
+				$front.removeClass('shapeshifting');
 
-					var tween = new TWEEN.Tween({ 
-						center_x: heylookatme.x, center_y: heylookatme.y, center_z: heylookatme.z,
-						x: camera.position.x, y: camera.position.y, z: camera.position.z 
-					})
-					.to({ 
-						center_x: previewedOrigCoordx-50, center_y: 50, center_z: 100,
-						x: returnCoordx, y: returnCoordy, z: returnCoordz 
-					}, 500 )
+				var tween = new TWEEN.Tween({ 
+					center_x: heylookatme.x, center_y: heylookatme.y, center_z: heylookatme.z,
+					x: camera.position.x, y: camera.position.y, z: camera.position.z 
+				})
+				.to({ 
+					center_x: previewedOrigCoordx-50, center_y: 50, center_z: 100,
+					x: returnCoordx, y: returnCoordy, z: returnCoordz 
+				}, 500 )
+				.easing(TWEEN.Easing.Exponential.InOut)
+				.onUpdate(function (){
+					camera.position.x = this.x;
+					camera.position.y = this.y;
+					camera.position.z = this.z;
+
+					var centering = new THREE.Vector3(this.center_x, this.center_y, this.center_z)
+					heylookatme = centering;
+					camera.lookAt(heylookatme)
+				})
+				.start();
+
+				setTimeout(function(){
+					var tween = new TWEEN.Tween({ by: scene.children[stnumber].position.y})
+					.to({ by: previewedOrigCoordy }, 500)
 					.easing(TWEEN.Easing.Exponential.InOut)
-					.onUpdate(function (){
-						camera.position.x = this.x;
-						camera.position.y = this.y;
-						camera.position.z = this.z;
-
-						var centering = new THREE.Vector3(this.center_x, this.center_y, this.center_z)
-						heylookatme = centering;
-						camera.lookAt(heylookatme)
+					.onUpdate(function () {
+						scene.children[stnumber].position.y = this.by
 					})
 					.start();
 
-					setTimeout(function(){
-						var tween = new TWEEN.Tween({ by: scene.children[stnumber].position.y})
-						.to({ by: previewedOrigCoordy }, 500)
-						.easing(TWEEN.Easing.Exponential.InOut)
-						.onUpdate(function () {
-							scene.children[stnumber].position.y = this.by
-						})
-						.start();
-
-						previewed = false;
-						camera.updateMatrix();
-					},200);
-				})
+					previewed = false;
+					camera.updateMatrix();
+				},200);
 			}
 		}
 	});

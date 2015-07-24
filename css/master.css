@@ -279,7 +279,7 @@ body {
       .me .me_bit div a {
         color: white;
         border-bottom: 1px white dotted; }
-    .me .me_bit:hover div {
+    .me .me_bit:hover div, .me .me_bit.hello div {
       background-color: rgba(0, 0, 0, 0.1); }
   .me .up div {
     background-color: rgba(0, 0, 0, 0.5); }
@@ -289,7 +289,13 @@ body {
       opacity: 1 !important; }
 
 .front {
-  overflow: hidden; }
+  overflow: hidden;
+  cursor: all-scroll; }
+  .front.shapeshifting {
+    cursor: default; }
+    .front.shapeshifting #shapeshifter {
+      visibility: visible;
+      opacity: 1; }
   .front #cubic {
     position: absolute;
     top: 50%;
@@ -303,11 +309,17 @@ body {
     cursor: pointer; }
     .front .name p {
       font-size: 28px;
+      opacity: 0;
       -webkit-transform: scale3d(0.5, 0.5, 1);
       -moz-transform: scale3d(0.5, 0.5, 1);
       -ms-transform: scale3d(0.5, 0.5, 1);
       -o-transform: scale3d(0.5, 0.5, 1);
-      transform: scale3d(0.5, 0.5, 1); }
+      transform: scale3d(0.5, 0.5, 1);
+      -webkit-transition: opacity, 0.5s, linear;
+      -moz-transition: opacity, 0.5s, linear;
+      transition: opacity, 0.5s, linear; }
+      .to_rock .front .name p {
+        opacity: 1; }
   .front #shapeshifter {
     position: absolute;
     top: 50%;
@@ -316,7 +328,12 @@ body {
     height: 147px;
     margin: -73.5px 0px 0px -68.5px;
     z-index: 100;
-    display: none; }
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all, 0.3s, cubic-bezier(0, 0.4, 0.63, 0.99);
+    -moz-transition: all, 0.3s, cubic-bezier(0, 0.4, 0.63, 0.99);
+    transition: all, 0.3s, cubic-bezier(0, 0.4, 0.63, 0.99); }
     .front #shapeshifter div {
       position: absolute;
       width: 137px;
@@ -348,7 +365,15 @@ body {
   color: white;
   text-align: center;
   border-width: 0;
-  border-style: solid; }
+  border-style: solid;
+  opacity: 0;
+  -webkit-transition: opacity, 0.5s, cubic-bezier(0, 0.4, 0.63, 0.99);
+  -moz-transition: opacity, 0.5s, cubic-bezier(0, 0.4, 0.63, 0.99);
+  transition: opacity, 0.5s, cubic-bezier(0, 0.4, 0.63, 0.99); }
+  .to_rock .cube div {
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none; }
 
 .cube .cubefront {
   -webkit-transform: translateZ(25px);
@@ -395,38 +420,56 @@ body {
 .r1 div {
   border-color: rgba(230, 0, 140, 0.2);
   background-color: rgba(230, 0, 140, 0.1); }
+  .r1_active .r1 div {
+    opacity: 1; }
 
 .r2 div {
   border-color: rgba(247, 148, 30, 0.2);
   background-color: rgba(247, 148, 30, 0.1); }
+  .r2_active .r2 div {
+    opacity: 1; }
 
 .r3 div {
   border-color: rgba(141, 198, 63, 0.2);
   background-color: rgba(141, 198, 63, 0.1); }
+  .r3_active .r3 div {
+    opacity: 1; }
 
 .r4 div {
   border-color: rgba(0, 166, 81, 0.2);
   background-color: rgba(0, 166, 81, 0.1); }
+  .r4_active .r4 div {
+    opacity: 1; }
 
 .r5 div {
   border-color: rgba(0, 174, 239, 0.2);
   background-color: rgba(0, 174, 239, 0.1); }
+  .r5_active .r5 div {
+    opacity: 1; }
 
 .r6 div {
   border-color: rgba(107, 37, 222, 0.2);
   background-color: rgba(107, 37, 222, 0.1); }
+  .r6_active .r6 div {
+    opacity: 1; }
 
 .r7 div {
   border-color: rgba(0, 104, 56, 0.2);
   background-color: rgba(0, 104, 56, 0.1); }
+  .r7_active .r7 div {
+    opacity: 1; }
 
 .r8 div {
   border-color: rgba(138, 157, 167, 0.2);
   background-color: rgba(138, 157, 167, 0.1); }
+  .r8_active .r8 div {
+    opacity: 1; }
 
 .r9 div {
   border-color: rgba(237, 28, 36, 0.2);
   background-color: rgba(237, 28, 36, 0.1); }
+  .r9_active .r9 div {
+    opacity: 1; }
 
 .cube:hover div {
   background-color: transparent;
@@ -659,7 +702,8 @@ body {
     .grid .floater .cell {
       padding: 20px;
       position: relative;
-      float: left; }
+      float: left;
+      width: 100%; }
       .grid .floater .cell .cellImg {
         background-size: cover;
         background-position: center center;
@@ -683,25 +727,6 @@ body {
 @media all and (min-width: 2468px) {
   .grid .floater .cell {
     width: 25%; } }
-#nope {
-  height: 280px;
-  width: 230px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -140px 0 0 -115px;
-  display: none; }
-  #nope h1 {
-    font-family: u39;
-    text-align: center;
-    font-size: 65px;
-    font-weight: normal; }
-
-.old #edit, .old #movement {
-  display: none; }
-.old #nope {
-  display: block; }
-
 .isotope-item {
   z-index: 2; }
 
@@ -764,3 +789,22 @@ body {
 
   50% {
     border: 5px white solid; } }
+
+#nope {
+  height: 280px;
+  width: 230px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -140px 0 0 -115px;
+  display: none; }
+  #nope h1 {
+    font-family: u39;
+    text-align: center;
+    font-size: 65px;
+    font-weight: normal; }
+
+.old #edit, .old #movement {
+  display: none; }
+.old #nope {
+  display: block; }

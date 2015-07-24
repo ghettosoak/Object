@@ -18,9 +18,9 @@ function shapeshifterload(block){
 function shapeshift(){
 	var toomuch = $('#ssi_'+tcallme).css('display','block').data('count')-1;
 	console.log(toomuch)
-	$('#shapeshifter').fadeIn(300)
+	$front.addClass('shapeshifting');
 	clicker = setInterval(function(){
-		document.getElementById('ssi_'+tcallme).setAttributeNS(null, 'y', -149*tracker)
+		document.getElementById('ssi_'+tcallme).setAttributeNS(null, 'y', -149 * tracker)
 		tracker >= toomuch ? tracker = 0 : tracker++;
 	}, 500);
 }

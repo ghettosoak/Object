@@ -1,0 +1,143 @@
+.me{
+    @include background-size(cover);
+    overflow:hidden;
+    padding:5px;
+    .me_img{
+        position:absolute;
+        height:100%;
+        width:100%;
+        top:0px;
+        left:0px;
+        #me_blur, #me_clean{
+            @include transition (all 0.5s ease-in-out);
+            position:absolute;
+            height:100%;
+            width:100%;
+            top:0px;
+            left:0px;
+            background-size:cover;
+            background-position: center center;
+        }
+        .not{opacity:0;}
+    }
+    .meme {
+        position: relative;
+        float: left;
+        width:25%;
+        height:25%;
+        cursor: pointer;
+        display:table;
+        p{
+            color:white;
+            z-index:2;
+            opacity:1 !important;
+            position: absolute;
+            width:108px;
+            height:84px;
+            top: 50%;
+            left: 50%;
+            margin: -42px 0px 0px -54px;
+            text-align: center;
+            span{
+                font-family: u39;
+                font-size:79px;
+                margin: 30px 24px 0px 20px;
+                display:block;
+            }
+        }
+        #megrey{
+            background-color:rgba(0,0,0,.8);
+            width:150px;
+            height:150px;
+            border-radius: 100px;
+            position:absolute;
+            top:50%;
+            left:50%; 
+            margin:-75px 0px 0px -75px;
+            float:none;
+            display:block;
+            padding:0px;
+            &:hover{border:none !important;}
+        }
+        &:hover{
+            border:none !important;
+            #megrey{background-color:rgba(255,0,0,1) !important;}
+        }
+    }
+    .meback{
+        position: relative;
+        float: left;
+        width:25%;
+        height:25%;
+        padding:0px;
+        cursor: pointer;
+        
+        #mebackwhite{
+            background-color:white;
+            width:140px;
+            height:140px;
+            border-radius: 100px;
+            position:absolute;
+            top:50%;
+            left:50%;
+            margin:-70px 0px 0px -70px; 
+            float:none;
+            display:block;
+            padding:0px;
+            &:hover{border:none !important;}
+        }
+        img{
+            position: absolute;
+            top:50%;
+            left:50%;
+            width:100px;
+            margin:-26px 0px 0px -50px;
+            z-index:2;
+        }
+        &:hover{
+            #mebackwhite{background-color:grey;}
+        }
+    }
+    .me_bit{
+        position: relative;
+        float: left;
+        width:25%;
+        height:25%;
+        cursor: pointer;
+        padding:5px;
+        div{
+            padding:0 10px;
+            display:table;
+            position: relative;
+            top: 0;
+            left:0;
+            height:100%;
+            width:100%;
+            background-color:rgba(0,0,0,.0);
+            @include transition (all 0.5s ease-in-out);
+            p{
+                @include transition (all 0.5s ease-in-out);
+                display:table-cell;
+                vertical-align: middle;
+                opacity:0;
+                color:white;
+            }
+
+            a{
+                color:white;
+                border-bottom:1px white dotted;
+            }
+        }
+        
+
+        &:hover div,
+        &.hello div{
+            background-color: rgba(0,0,0,.1);
+        }
+    }
+    .up div{
+        &:hover{background-color: rgba(0,0,0,.5);}
+        background-color: rgba(0,0,0,.5);
+        p{opacity:1 !important;}
+    }
+}

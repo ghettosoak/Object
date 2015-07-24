@@ -1,5 +1,3 @@
-
-
 function projLoader(which){
 	console.log('WHICH = '+which);
 	$.ajax({
@@ -50,7 +48,7 @@ function projectdeploy(incoming){
 				'<p>'+incoming.stat.project_text+'</p>'+
 			'</div>'+
 			'<div class="stat">'+
-				'<a href="http://'+incoming.stat.link+'" target="_blank">Have a look</a>'+
+				'<a href="http://'+incoming.stat.link+'" target="_blank">See for yourself</a>'+
 			'</div>'
 		);
 
@@ -65,6 +63,7 @@ function projectdeploy(incoming){
 						'<div class="cellImg" style="'+
 							'background-image: url(' + thisone.img + ');' +
 						'"></div>'+
+						// '<img src="' + thisone.img + '" />'+
 						'<p>'+thisone.txt+'</p>'+
 					'</div>'
 				);
@@ -74,16 +73,18 @@ function projectdeploy(incoming){
 		}).attr('src', thisone.img);
 	}
 
-	fertig = setInterval(function(){
-		if (imagemarker.length == mass){
-			clearInterval(fertig);
-			first = true;
-			$('.floater').masonry({
-				itemSelector: '.cell'
-			});
-			gotogrid();
-		}
-	},50);
+	var fertigCounter = 0,
+		fertig = setInterval(function(){
+			fertigCounter++;
+			if (imagemarker.length == mass && fertigCounter >= 40){
+				clearInterval(fertig);
+				first = true;
+					$('.floater').masonry({
+						itemSelector: '.cell'
+					});
+				gotogrid();
+			}
+		},50);
 
 	function gotogrid(){
 		$('#movement').removeClass().addClass('fourth');
@@ -134,8 +135,9 @@ $('#point').on('click', function(){
 })
 
 function cleargrid(){
-	$(".floater").masonry('destroy')
-	.children().detach();
+	// $(".floater").masonry('destroy')
+	// .children().detach();
+	$(".floater").empty();
 	$stats.empty();
 }
 

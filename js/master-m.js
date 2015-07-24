@@ -1035,7 +1035,8 @@ var $windowpane = $(window);
 var wpheight, wpwidth, 
 	titlemargin, whomargin, 
 	action = 'click', 
-	hash, hashhistory = [];
+	hash, hashhistory = [],
+	$master = $('#master');
 
 //CUBECONTROL.JS
 var container, stats;
@@ -1046,6 +1047,20 @@ radious = 1600, theta = -90, onMouseDownTheta = -90, phi = 60, onMouseDownPhi = 
 tcallme, trow, tref, tnumber, tcube, strow, stnumber, previewedOrigCoordx, previewedOrigCoordy, returnCoordx, returnCoordy, returnCoordz,
 $name, backendhasexisted = false;
 var where = 'front';
+var $front = $('.front')
+
+var introPos = {
+	x: 146.4025898614438,
+	y: 0,
+	z: 1593.2878841194588	
+},
+
+normalPos = {
+	x: radious * Math.sin( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 ),
+	y: radious * Math.sin( phi * Math.PI / 360 ),
+	z: radious * Math.cos( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 ),
+};
+
 
 var rollOverMesh, rollOverMaterial, voxelPosition = new THREE.Vector3(), tmpVec = new THREE.Vector3();
 var cubeGeo, cubeMaterial;
@@ -1077,6 +1092,51 @@ var drg_h, drg_w;
 
 //ME.JS
 var where;
+
+var $x2_y1 = $('.me_x2.me_y1'),
+    $x3_y1 = $('.me_x3.me_y1'),
+    $x4_y1 = $('.me_x4.me_y1'),
+    $x1_y2 = $('.me_x1.me_y2'),
+    $x2_y2 = $('.me_x2.me_y2'),
+    $x3_y2 = $('.me_x3.me_y2'),
+    $x4_y2 = $('.me_x4.me_y2'),
+    $x1_y3 = $('.me_x1.me_y3'),
+    $x2_y3 = $('.me_x2.me_y3'),
+    $x3_y3 = $('.me_x3.me_y3'),
+    $x4_y3 = $('.me_x4.me_y3'),
+    $x1_y4 = $('.me_x1.me_y4'),
+    $x2_y4 = $('.me_x2.me_y4'),
+    $x3_y4 = $('.me_x3.me_y4');
+
+var shimmer_row = 100;
+var shimmer_el = 500;
+
+var helloPattern = [
+    [
+        $x2_y1,
+        $x1_y2,
+    ],
+    [
+        $x3_y1,
+        $x2_y2,
+        $x1_y3,
+    ],
+    [
+        $x4_y1,
+        $x3_y2,
+        $x2_y3,
+        $x1_y4,
+    ],
+    [
+        $x4_y2,
+        $x3_y3,
+        $x2_y4,
+    ],
+    [
+        $x4_y3,
+        $x3_y4,
+    ]
+];
 
 //HOLY FUCK
 
@@ -1111,9 +1171,18 @@ function cubeinit(thecube, fade) {
 	heylookatme = scene.position;
 
 	camera = new THREE.PerspectiveCamera( 18, 1024 / 768, 1, 10000 ); 
-	camera.position.x = radious * Math.sin( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
-	camera.position.y = radious * Math.sin( phi * Math.PI / 360 );
-	camera.position.z = radious * Math.cos( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 );
+
+	// if (letsIntro){
+		camera.position.x = introPos.x;
+		camera.position.y = introPos.y;
+		camera.position.z = introPos.z;
+	// }
+	// else{
+	// 	camera.position.x = normalPos.x;
+	// 	camera.position.y = normalPos.y;
+	// 	camera.position.z = normalPos.z;
+	// }
+
 	camera.lookAt(heylookatme)
 
 	onMouseDownPosition = new THREE.Vector2();
@@ -1123,7 +1192,32 @@ function cubeinit(thecube, fade) {
 
 function onWindowResize() { camera.updateProjectionMatrix(); }
 
+function cubeIntro(duration){
+	var tween = new TWEEN.Tween({ 
+		x: introPos.x,
+		y: introPos.y,
+		z: introPos.z,
+	})
+	.to({ 
+		x: normalPos.x,
+		y: normalPos.y,
+		z: normalPos.z,
+	}, duration )
+	.easing(TWEEN.Easing.Exponential.InOut)
+	.onUpdate(function (){
+		camera.position.x = this.x;
+		camera.position.y = this.y;
+		camera.position.z = this.z;
+
+		camera.lookAt(heylookatme)
+		camera.updateMatrix();
+	})
+	.start();
+}
+
 function cube_ensure(){
+	acceleration();
+
 	$cubic.on({
 		mousedown:function ( event ) {
 			event.preventDefault();
@@ -1157,46 +1251,46 @@ function cube_ensure(){
 
 			console.log(camera.position.x+' /// '+camera.position.y+' /// '+camera.position.z)
 			console.log(heylookatme.x+' /// '+heylookatme.y+' /// '+heylookatme.z)
+			console.log(theta+' /// '+phi+' /// '+theta)
 			if (previewed){
-				$('#shapeshifter').fadeOut(100, function(){
-					console.log('44444444')
+				console.log('44444444')
 
-					clearInterval(clicker)
-					$('.ssi').css('display','none')
+				clearInterval(clicker)
+				$('.ssi').css('display','none')
+				$front.removeClass('shapeshifting');
 
-					var tween = new TWEEN.Tween({ 
-						center_x: heylookatme.x, center_y: heylookatme.y, center_z: heylookatme.z,
-						x: camera.position.x, y: camera.position.y, z: camera.position.z 
-					})
-					.to({ 
-						center_x: previewedOrigCoordx-50, center_y: 50, center_z: 100,
-						x: returnCoordx, y: returnCoordy, z: returnCoordz 
-					}, 500 )
+				var tween = new TWEEN.Tween({ 
+					center_x: heylookatme.x, center_y: heylookatme.y, center_z: heylookatme.z,
+					x: camera.position.x, y: camera.position.y, z: camera.position.z 
+				})
+				.to({ 
+					center_x: previewedOrigCoordx-50, center_y: 50, center_z: 100,
+					x: returnCoordx, y: returnCoordy, z: returnCoordz 
+				}, 500 )
+				.easing(TWEEN.Easing.Exponential.InOut)
+				.onUpdate(function (){
+					camera.position.x = this.x;
+					camera.position.y = this.y;
+					camera.position.z = this.z;
+
+					var centering = new THREE.Vector3(this.center_x, this.center_y, this.center_z)
+					heylookatme = centering;
+					camera.lookAt(heylookatme)
+				})
+				.start();
+
+				setTimeout(function(){
+					var tween = new TWEEN.Tween({ by: scene.children[stnumber].position.y})
+					.to({ by: previewedOrigCoordy }, 500)
 					.easing(TWEEN.Easing.Exponential.InOut)
-					.onUpdate(function (){
-						camera.position.x = this.x;
-						camera.position.y = this.y;
-						camera.position.z = this.z;
-
-						var centering = new THREE.Vector3(this.center_x, this.center_y, this.center_z)
-						heylookatme = centering;
-						camera.lookAt(heylookatme)
+					.onUpdate(function () {
+						scene.children[stnumber].position.y = this.by
 					})
 					.start();
 
-					setTimeout(function(){
-						var tween = new TWEEN.Tween({ by: scene.children[stnumber].position.y})
-						.to({ by: previewedOrigCoordy }, 500)
-						.easing(TWEEN.Easing.Exponential.InOut)
-						.onUpdate(function () {
-							scene.children[stnumber].position.y = this.by
-						})
-						.start();
-
-						previewed = false;
-						camera.updateMatrix();
-					},200);
-				})
+					previewed = false;
+					camera.updateMatrix();
+				},200);
 			}
 		}
 	});
@@ -1489,9 +1583,9 @@ function shapeshifterload(block){
 function shapeshift(){
 	var toomuch = $('#ssi_'+tcallme).css('display','block').data('count')-1;
 	console.log(toomuch)
-	$('#shapeshifter').fadeIn(300)
+	$front.addClass('shapeshifting');
 	clicker = setInterval(function(){
-		document.getElementById('ssi_'+tcallme).setAttributeNS(null, 'y', -149*tracker)
+		document.getElementById('ssi_'+tcallme).setAttributeNS(null, 'y', -149 * tracker)
 		tracker >= toomuch ? tracker = 0 : tracker++;
 	}, 500);
 }
@@ -1532,8 +1626,6 @@ function okayitsloaded(){
 /* **********************************************
      Begin project.js
 ********************************************** */
-
-
 
 function projLoader(which){
 	console.log('WHICH = '+which);
@@ -1585,7 +1677,7 @@ function projectdeploy(incoming){
 				'<p>'+incoming.stat.project_text+'</p>'+
 			'</div>'+
 			'<div class="stat">'+
-				'<a href="http://'+incoming.stat.link+'" target="_blank">Have a look</a>'+
+				'<a href="http://'+incoming.stat.link+'" target="_blank">See for yourself</a>'+
 			'</div>'
 		);
 
@@ -1600,6 +1692,7 @@ function projectdeploy(incoming){
 						'<div class="cellImg" style="'+
 							'background-image: url(' + thisone.img + ');' +
 						'"></div>'+
+						// '<img src="' + thisone.img + '" />'+
 						'<p>'+thisone.txt+'</p>'+
 					'</div>'
 				);
@@ -1609,16 +1702,18 @@ function projectdeploy(incoming){
 		}).attr('src', thisone.img);
 	}
 
-	fertig = setInterval(function(){
-		if (imagemarker.length == mass){
-			clearInterval(fertig);
-			first = true;
-			$('.floater').masonry({
-				itemSelector: '.cell'
-			});
-			gotogrid();
-		}
-	},50);
+	var fertigCounter = 0,
+		fertig = setInterval(function(){
+			fertigCounter++;
+			if (imagemarker.length == mass && fertigCounter >= 40){
+				clearInterval(fertig);
+				first = true;
+					$('.floater').masonry({
+						itemSelector: '.cell'
+					});
+				gotogrid();
+			}
+		},50);
 
 	function gotogrid(){
 		$('#movement').removeClass().addClass('fourth');
@@ -1669,8 +1764,9 @@ $('#point').on('click', function(){
 })
 
 function cleargrid(){
-	$(".floater").masonry('destroy')
-	.children().detach();
+	// $(".floater").masonry('destroy')
+	// .children().detach();
+	$(".floater").empty();
 	$stats.empty();
 }
 
@@ -1689,18 +1785,22 @@ function cleargrid(){
 
 $('.who').on(action, function(){
 	window.location.hash = '!me';
-})
+	helloMike();
+});
 
 $('.me').on(action, '.me_bit', function(){
 	var $that = $(this);
 	if (!$that.hasClass('meme') && !$that.hasClass('meback') && !$that.is('#mebackwhite')){
-		$that.toggleClass('up')
+		$that.toggleClass('up');
+		goodbyeMike();
 		if ($('#me_blur').hasClass('not')) $('#me_blur').removeClass('not')
 	}
 });
 
 $('.meme').on(action, function(){
 	$('#me_blur').toggleClass('not')
+	if ( !$('#me_blur').hasClass('not') ) helloMike();
+	else goodbyeMike();
 	$('.me_bit').removeClass('up')
 });
 
@@ -1710,7 +1810,63 @@ $('.meback').on(action, function(){
 	}else{
 		window.location.hash = '!cubic';
 	}
+
+	goodbyeMike();
 });
+
+function shimmer(){
+	setTimeout(function(){
+		$x2_y1.addClass('hello'); setTimeout(function(){ $x2_y1.removeClass('hello'); }, shimmer_el);
+		$x1_y2.addClass('hello'); setTimeout(function(){ $x1_y2.removeClass('hello'); }, shimmer_el);
+	}, shimmer_row * 1);
+
+	setTimeout(function(){
+		$x3_y1.addClass('hello'); setTimeout(function(){ $x3_y1.removeClass('hello'); }, shimmer_el);
+		$x2_y2.addClass('hello'); setTimeout(function(){ $x2_y2.removeClass('hello'); }, shimmer_el);
+		$x1_y3.addClass('hello'); setTimeout(function(){ $x1_y3.removeClass('hello'); }, shimmer_el);
+	}, shimmer_row * 2);
+
+	setTimeout(function(){
+		$x4_y1.addClass('hello'); setTimeout(function(){ $x4_y1.removeClass('hello'); }, shimmer_el);
+		$x3_y2.addClass('hello'); setTimeout(function(){ $x3_y2.removeClass('hello'); }, shimmer_el);
+		$x2_y3.addClass('hello'); setTimeout(function(){ $x2_y3.removeClass('hello'); }, shimmer_el);
+		$x1_y4.addClass('hello'); setTimeout(function(){ $x1_y4.removeClass('hello'); }, shimmer_el);
+	}, shimmer_row * 3);
+
+	setTimeout(function(){
+		$x4_y2.addClass('hello'); setTimeout(function(){ $x4_y2.removeClass('hello'); }, shimmer_el);
+		$x3_y3.addClass('hello'); setTimeout(function(){ $x3_y3.removeClass('hello'); }, shimmer_el);
+		$x2_y4.addClass('hello'); setTimeout(function(){ $x2_y4.removeClass('hello'); }, shimmer_el);
+	}, shimmer_row * 4);
+
+	setTimeout(function(){
+		$x4_y3.addClass('hello'); setTimeout(function(){ $x4_y3.removeClass('hello'); }, shimmer_el);
+		$x3_y4.addClass('hello'); setTimeout(function(){ $x3_y4.removeClass('hello'); }, shimmer_el);
+	}, shimmer_row * 5);
+}
+
+function helloMike(){
+	helloHello = setInterval(shimmer, 5000);
+}
+
+function goodbyeMike(){
+	clearInterval(helloHello);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* **********************************************
      Begin link.js
@@ -1816,9 +1972,14 @@ $(document).ready(function(){
 		hashhistory.push(hash);
 		console.log(hash);
 
-		if (hash.indexOf('!me') === 0) $('#movement').removeClass().addClass('first');
-		if (hash.indexOf('!cubic') === 0) $('#movement').removeClass().addClass('second');
-		if (hash.indexOf('!project') === 0){
+		if (hash.indexOf('!me') === 0){
+			$('#movement').removeClass().addClass('first');
+			helloMike();
+		}
+
+		else if (hash.indexOf('!cubic') === 0) $('#movement').removeClass().addClass('second');
+		
+		else if (hash.indexOf('!project') === 0){
 			var theProj = hash.split('_')[1];
 			console.log(theProj)
 			$('#movement').removeClass().addClass('third');
@@ -1831,6 +1992,7 @@ $(document).ready(function(){
 			twhich = $cubeInQuestion.data('number');
 			
 			projLoader(theProj);
+			loadr();
 
 			$cubeInQuestion.click()
 		}
@@ -1841,9 +2003,24 @@ $(document).ready(function(){
 	}
 });
 
-$windowpane.load(function(){
-	$('#master').addClass('ready');
-});
+function acceleration(){	
+
+	$master.addClass('ready'); 
+
+	setTimeout(function(){ $master.addClass('r1_active'); }, 100);
+	setTimeout(function(){ $master.addClass('r2_active'); }, 200);
+	setTimeout(function(){ $master.addClass('r3_active'); }, 300);
+	setTimeout(function(){ $master.addClass('r4_active'); }, 400);
+	setTimeout(function(){ $master.addClass('r5_active'); }, 500);
+	setTimeout(function(){ $master.addClass('r6_active'); }, 600);
+
+	setTimeout(function(){
+		cubeIntro(1900);
+	}, 600);
+
+	setTimeout(function(){ $master.addClass('to_rock'); }, 2000);
+}
+
 
 $windowpane.resize(function(){
 	wpheight = $windowpane.height();
@@ -1853,9 +2030,12 @@ $windowpane.resize(function(){
 $windowpane.bind('hashchange', function(){
 	hash = window.location.hash.split('#')[1];
 
-	if (hash.indexOf('!me') === 0) $('#movement').removeClass().addClass('first');
-	if (hash.indexOf('!cubic') === 0) $('#movement').removeClass().addClass('second');
-	if (hash.indexOf('!project') === 0) {
+	if (hash.indexOf('!me') === 0){
+		$('#movement').removeClass().addClass('first');
+		helloMike();
+	}
+	else if (hash.indexOf('!cubic') === 0) $('#movement').removeClass().addClass('second');
+	else if (hash.indexOf('!project') === 0) {
 		$('#movement').removeClass().addClass('third');
 		projLoader(hash.split('_')[1]);
 		cleargrid();

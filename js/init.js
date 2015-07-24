@@ -24,7 +24,8 @@ var $windowpane = $(window);
 var wpheight, wpwidth, 
 	titlemargin, whomargin, 
 	action = 'click', 
-	hash, hashhistory = [];
+	hash, hashhistory = [],
+	$master = $('#master');
 
 //CUBECONTROL.JS
 var container, stats;
@@ -35,6 +36,20 @@ radious = 1600, theta = -90, onMouseDownTheta = -90, phi = 60, onMouseDownPhi = 
 tcallme, trow, tref, tnumber, tcube, strow, stnumber, previewedOrigCoordx, previewedOrigCoordy, returnCoordx, returnCoordy, returnCoordz,
 $name, backendhasexisted = false;
 var where = 'front';
+var $front = $('.front')
+
+var introPos = {
+	x: 146.4025898614438,
+	y: 0,
+	z: 1593.2878841194588	
+},
+
+normalPos = {
+	x: radious * Math.sin( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 ),
+	y: radious * Math.sin( phi * Math.PI / 360 ),
+	z: radious * Math.cos( theta * Math.PI / 360 ) * Math.cos( phi * Math.PI / 360 ),
+};
+
 
 var rollOverMesh, rollOverMaterial, voxelPosition = new THREE.Vector3(), tmpVec = new THREE.Vector3();
 var cubeGeo, cubeMaterial;
@@ -66,5 +81,50 @@ var drg_h, drg_w;
 
 //ME.JS
 var where;
+
+var $x2_y1 = $('.me_x2.me_y1'),
+    $x3_y1 = $('.me_x3.me_y1'),
+    $x4_y1 = $('.me_x4.me_y1'),
+    $x1_y2 = $('.me_x1.me_y2'),
+    $x2_y2 = $('.me_x2.me_y2'),
+    $x3_y2 = $('.me_x3.me_y2'),
+    $x4_y2 = $('.me_x4.me_y2'),
+    $x1_y3 = $('.me_x1.me_y3'),
+    $x2_y3 = $('.me_x2.me_y3'),
+    $x3_y3 = $('.me_x3.me_y3'),
+    $x4_y3 = $('.me_x4.me_y3'),
+    $x1_y4 = $('.me_x1.me_y4'),
+    $x2_y4 = $('.me_x2.me_y4'),
+    $x3_y4 = $('.me_x3.me_y4');
+
+var shimmer_row = 100;
+var shimmer_el = 500;
+
+var helloPattern = [
+    [
+        $x2_y1,
+        $x1_y2,
+    ],
+    [
+        $x3_y1,
+        $x2_y2,
+        $x1_y3,
+    ],
+    [
+        $x4_y1,
+        $x3_y2,
+        $x2_y3,
+        $x1_y4,
+    ],
+    [
+        $x4_y2,
+        $x3_y3,
+        $x2_y4,
+    ],
+    [
+        $x4_y3,
+        $x3_y4,
+    ]
+];
 
 //HOLY FUCK

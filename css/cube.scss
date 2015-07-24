@@ -1,0 +1,84 @@
+.cube {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.cube div {
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 120px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    border-width:0;
+    border-style: solid;
+
+    opacity: 0;
+
+    @include transition(opacity, .5s, $fade);
+
+    .to_rock &{ @include transition(none); }
+}
+
+.cube .cubefront {  
+    @include transform(translateZ( $offset )); 
+}
+.cube .cubeback {   
+    @include transform(rotateX( -180deg ) translateZ( $offset )); 
+}
+.cube .cuberight {  
+    @include transform(rotateY(   90deg ) translateZ( $offset )); 
+}
+.cube .cubeleft {   
+    @include transform(rotateY(  -90deg ) translateZ( $offset )); 
+}
+.cube .cubetop {    
+    @include transform(rotateX(   90deg ) translateZ( $offset )); 
+}
+.cube .cubebottom { 
+    @include transform(rotateX(  -90deg ) translateZ( $offset )); 
+}
+
+
+.r1 div{ border-color: rgba(230, 0,   140, 0.2); background-color:rgba(230, 0,   140, 0.1); 
+.r1_active &{ opacity: 1; } }
+.r2 div{ border-color: rgba(247, 148, 30,  0.2); background-color:rgba(247, 148, 30,  0.1); 
+.r2_active &{ opacity: 1; } }
+.r3 div{ border-color: rgba(141, 198, 63,  0.2); background-color:rgba(141, 198, 63,  0.1); 
+.r3_active &{ opacity: 1; } }
+.r4 div{ border-color: rgba(0,   166, 81,  0.2); background-color:rgba(0,   166, 81,  0.1); 
+.r4_active &{ opacity: 1; } }
+.r5 div{ border-color: rgba(0,   174, 239, 0.2); background-color:rgba(0,   174, 239, 0.1); 
+.r5_active &{ opacity: 1; } }
+.r6 div{ border-color: rgba(107, 37,  222, 0.2); background-color:rgba(107, 37,  222, 0.1); 
+.r6_active &{ opacity: 1; } }
+.r7 div{ border-color: rgba(0,   104, 56,  0.2); background-color:rgba(0,   104, 56,  0.1); 
+.r7_active &{ opacity: 1; } }
+.r8 div{ border-color: rgba(138, 157, 167, 0.2); background-color:rgba(138, 157, 167, 0.1); 
+.r8_active &{ opacity: 1; } }
+.r9 div{ border-color: rgba(237, 28,  36,  0.2); background-color:rgba(237, 28,  36,  0.1); 
+.r9_active &{ opacity: 1; } }
+
+
+.cube:hover div{
+    background-color: transparent;
+    border-width:1px;
+}
+
+
+
+
+
+
+
+

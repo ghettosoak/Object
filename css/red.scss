@@ -1,0 +1,178 @@
+
+.red{
+    z-index:200;
+    background-color:rgb(197, 0, 0);
+    color:white;
+    overflow:hidden;
+    &>div{
+        position:relative;
+        float:left;
+        height:100%;
+        top:0px;
+    }
+    .left{
+        width:14%;
+        left: .16%;
+        .title, .who, .copyright{
+            position: relative;
+            margin: auto;
+            text-align: center;
+        }
+        .title{
+            font-family: u39;
+            font-size:53px;
+            top:10%;
+            width:72px;
+            z-index:100;
+            cursor: pointer;
+        }
+        .who{
+            top:76%;
+            font-size:20px;
+            height: 40px;
+            width:40px;
+            padding: 12px;
+            border-radius:40px;
+            background:white;
+            color:rgb(197, 0, 0);
+            border:1px rgb(197, 0, 0) solid;
+            z-index: 200;
+            -webkit-transition: top 1s ease-in-out !important;
+            -moz-transition: top 1s ease-in-out !important;
+            -o-transition: top 1s ease-in-out !important;
+            transition: top 1s ease-in-out !important;
+            &:hover{
+                background:rgb(197, 0, 0);
+                border:1px white solid;
+                color:white;
+                height: 39px;
+                width:39px;
+                cursor: pointer;
+                margin-bottom:1px;
+            }
+        }
+        .copyright{
+            top: 81%;
+            width: 33px;
+            font-size: 11px;
+            line-height: 12px;
+            text-align: center;
+        }
+        #trial{
+            font-family: u47;
+            font-size:14px;
+            width:104%;
+            position:relative;
+            float:left;
+            left:-2%;
+            height:30px;
+            border: 0px;
+            margin: auto;
+            display: block;
+            top: 76%;
+            z-index: 200;
+            outline:0px !important;
+            text-align: center;
+            opacity: 0;
+        }
+    }
+    .middle{
+        width:72%;
+        #loadr{
+            position: absolute;
+            width:308px;
+            height:173px;
+            left:50%;
+            top:50%;
+            margin:-68.5px 0px 0px -137px;
+            overflow: hidden;
+            background-image:url(../join/img/loadr.png);
+        }
+        .load_0{background-position-x: -0*308px}
+        .load_1{background-position-x: -1*308px}
+        .load_2{background-position-x: -2*308px}
+        .load_3{background-position-x: -3*308px}
+        .load_4{background-position-x: -4*308px}
+        .load_5{background-position-x: -5*308px}
+        .load_6{background-position-x: -6*308px}
+        .load_7{background-position-x: -7*308px}
+        .load_8{background-position-x: -8*308px}
+        .load_9{background-position-x: -9*308px}
+
+    }
+    .right{
+        width:13.6%;
+        .crumb{
+            height:175px;
+            width:175px;
+            background-color:white;
+            border-radius:500px;
+            position: relative;
+            margin: auto;
+            top:50%;
+            margin-top:-87.5px;
+            #crumbput{
+                margin: auto;
+                position: relative;
+                width: 20px;
+                height: 116px;
+                .crumbcube {
+                    position: absolute;
+                    cursor: pointer;
+                }
+                .ccs div{border:1px white solid;}
+                .ccs:hover div{
+                    -webkit-animation: throb 1s infinite;
+                    -moz-animation: throb 1s infinite;
+                    -ms-animation: throb 1s infinite;
+                    -o-animation: throb 1s infinite;
+                    animation: throb 1s infinite;
+                }
+                .crumbface {
+                    position: absolute;
+                    width: 27px;
+                    height: 27px;
+                }
+                .cr_top {
+                    @include transform(rotate(-45deg) skew(15deg, 15deg));
+
+                }
+                .cr_left {
+                    @include transform(rotate(15deg) skew(15deg, 15deg));
+                    top: 22px;
+                    left: -12px;
+                }
+                .cr_right {
+                    @include transform(rotate(-15deg) skew(-15deg, -15deg));
+                    top: 21px;
+                    left: 12px;
+                }
+            }
+        }
+        #instruct{
+            position: absolute;
+            margin: auto;
+            width: 130px;
+            height: 130px;
+            padding: 49px 0px;
+            text-align: center;
+            top: 20%;
+            left: 50%;
+            margin-left: -62px;
+        }
+        .reinstruct{
+            background-color:white;
+            color:black;
+            border-radius:1000px;
+        }
+        #point{
+            position: absolute;
+            margin: auto;
+            width:100px;
+            left:50%;
+            margin-left:-50px;
+            top:68%;
+            cursor: pointer;
+        }
+    }
+}
